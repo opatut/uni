@@ -1,0 +1,252 @@
+\documentclass[a4paper]{scrartcl}
+\usepackage[german,ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{enumerate}
+\usepackage{scrpage2}\pagestyle{scrheadings}
+\usepackage{tikz}
+\usetikzlibrary{patterns}
+\usetikzlibrary{arrows}
+\newcommand{\midarrow}{\tikz \draw[-triangle 90] (0,0) -- +(.1,0);}
+
+\author{Paul Bienkowski, Jascha Andersen}
+\title{DM 01-B (HA) zum 26.10.2012}
+\date{\today}
+\begin{document}
+\setcounter{secnumdepth}{0}
+\maketitle
+
+\begin{enumerate}
+        % Aufgabe 1
+    \item[\textbf{1.}]
+        \begin{enumerate}
+            \item[a)]
+                \begin{enumerate}
+                    \item[(i)]
+                        Eine mögliche Funktion:
+                        
+                        \makebox[\linewidth]{
+                            \centering
+                            \begin{minipage}[c]{0.5\textwidth}
+                            \begin{tikzpicture}[]
+                                \node[label=left:$1$, fill, circle, inner sep=2pt] (A1) at (-2, 1) {};
+                                \node[label=left:$2$, fill, circle, inner sep=2pt] (A2) at (-2, 0) {};
+                                \node[label=left:$3$, fill, circle, inner sep=2pt] (A3) at (-2,-1) {};
+                                \draw (-2.2, 0) ellipse (1 and 1.8) {};
+                                \node[label=$A$] (A) at (-2, 2) {};
+
+                                \node[label=right:$3$, fill, circle, inner sep=2pt] (B3) at (2, 0.5) {};
+                                \node[label=right:$4$, fill, circle, inner sep=2pt] (B4) at (2,-0.5) {};
+                                \draw (2.2, 0) ellipse (1 and 1.8) {};
+                                \node[label=$B$] (B) at (2, 2) {};
+
+                                \draw[->] (A1) to (B3);
+                                \draw[->] (A2) to (B3);
+                                \draw[->] (A3) to (B4);
+                            \end{tikzpicture}
+                            \end{minipage}
+                            \begin{minipage}[c]{0.2\textwidth}
+                                \begin{tabular}[t]{c|c}
+                                    $x$ & $f(x)$\\
+                                    \hline
+                                    1 & 3\\
+                                    2 & 3\\
+                                    3 & 4
+                                \end{tabular}
+                            \end{minipage}
+                        }
+                        
+                    \item[(ii)]
+                        Bilden einer injektiven Funktion ist nicht möglich,
+                        da $\left|A\right| > \left|B\right|$ ist.
+                    \item[(iii)]
+                        Eine bijektive Funktion ist nicht möglich, da keine injektive Funktion gebildet werden kann, siehe (ii).
+                \end{enumerate}
+            \item[b)]
+                \begin{enumerate}
+                    \item[(i)]
+                        Nicht möglich, da in einer surjektiven Funktion jeder Wert aus B genau, einmal zugeordnet wäre ($\left|A\right| = \left|B\right|$), damit wäre die Funktion automatisch ebenfalls injektiv.
+                    \item[(ii)]
+                        Nicht möglich aus demselben Grund.
+                    \item[(iii)]
+                        Eine mögliche Funktion:
+                        
+                        \makebox[\linewidth]{
+                            \centering
+                            \begin{minipage}[c]{0.5\textwidth}
+                            \begin{tikzpicture}[]
+                                \node[label=left:$1$, fill, circle, inner sep=2pt] (A1) at (-2, 1) {};
+                                \node[label=left:$2$, fill, circle, inner sep=2pt] (A2) at (-2, 0) {};
+                                \node[label=left:$3$, fill, circle, inner sep=2pt] (A3) at (-2,-1) {};
+                                \draw (-2.2, 0) ellipse (1 and 1.8) {};
+                                \node[label=$A$] (A) at (-2, 2) {};
+
+                                \node[label=right:$3$, fill, circle, inner sep=2pt] (B3) at (2, 1) {};
+                                \node[label=right:$4$, fill, circle, inner sep=2pt] (B4) at (2, 0) {};
+                                \node[label=right:$5$, fill, circle, inner sep=2pt] (B5) at (2,-1) {};
+                                \draw (2.2, 0) ellipse (1 and 1.8) {};
+                                \node[label=$B$] (B) at (2, 2) {};
+
+                                \draw[->] (A1) to (B3);
+                                \draw[->] (A2) to (B5);
+                                \draw[->] (A3) to (B4);
+                            \end{tikzpicture}
+                            \end{minipage}
+                            \begin{minipage}[c]{0.2\textwidth}
+                                \begin{tabular}[t]{c|c}
+                                    $x$ & $h(x)$\\
+                                    \hline
+                                    1 & 3\\
+                                    2 & 5\\
+                                    3 & 4
+                                \end{tabular}
+                            \end{minipage}
+                        }
+                        
+                \end{enumerate}
+        \item[c)]
+            \begin{enumerate}
+                    \item[(i)]
+                        Nicht möglich, da für eine surjektiven Funktion jeder Wert in $B$ zugeordnet werden muss, es stehen jedoch 
+                        nicht genügend Werte in $A$ zur Verfügung ($\left|A\right| < \left|B\right|$).
+                    \item[(ii)]
+                        Eine mögliche Funktion:
+                        
+                        \makebox[\linewidth]{
+                            \centering
+                            \begin{minipage}[c]{0.5\textwidth}
+                            \begin{tikzpicture}[]
+                                \node[label=left:$1$, fill, circle, inner sep=2pt] (A1) at (-2, 1) {};
+                                \node[label=left:$2$, fill, circle, inner sep=2pt] (A2) at (-2, 0) {};
+                                \node[label=left:$3$, fill, circle, inner sep=2pt] (A3) at (-2,-1) {};
+                                \draw (-2.2, 0) ellipse (1 and 1.8) {};
+                                \node[label=$A$] (A) at (-2, 2) {};
+
+                                \node[label=right:$3$, fill, circle, inner sep=2pt] (B3) at (2, 0.9) {};
+                                \node[label=right:$4$, fill, circle, inner sep=2pt] (B4) at (2, 0.3) {};
+                                \node[label=right:$5$, fill, circle, inner sep=2pt] (B5) at (2,-0.3) {};
+                                \node[label=right:$6$, fill, circle, inner sep=2pt] (B6) at (2,-0.9) {};
+                                \draw (2.2, 0) ellipse (1 and 1.8) {};
+                                \node[label=$B$] (B) at (2, 2) {};
+
+                                \draw[->] (A1) to (B5);
+                                \draw[->] (A2) to (B6);
+                                \draw[->] (A3) to (B3);
+                            \end{tikzpicture}
+                            \end{minipage}
+                            \begin{minipage}[c]{0.2\textwidth}
+                                \begin{tabular}[t]{c|c}
+                                    $x$ & $g(x)$\\
+                                    \hline
+                                    1 & 5\\
+                                    2 & 6\\
+                                    3 & 3
+                                \end{tabular}
+                            \end{minipage}
+                        }
+                        
+                    \item[(iii)]
+                        Eine bijektive Funktion ist nicht möglich, da keine surjektive Funktion gebildet werden kann, siehe (i).
+                \end{enumerate}
+        \end{enumerate}
+
+        % Aufgabe 2
+    \item[\textbf{2.}]
+    
+        % Aufgabe 3
+    \item[\textbf{3.}]
+        
+        % Aufgabe 4
+    \item[\textbf{4.}]
+        \begin{enumerate}
+            \item[a)]
+                \begin{tabular}[t]{c|c||c|c|c|c|c}
+                    $A$ & $B$ & $A \cap B$ & $\overline{A \cap B}$ & $\overline{A}$ & $\overline{B}$ & $\overline{A} \cup \overline{B}$ \\
+                    \hline
+                    0 & 0 & 0 & 1 & 1 & 1 & 1\\
+                    0 & 1 & 0 & 1 & 1 & 0 & 1\\
+                    1 & 0 & 0 & 1 & 0 & 1 & 1\\
+                    1 & 1 & 1 & 0 & 0 & 0 & 0
+                \end{tabular}\\
+
+                Die Spalten für $\overline{A \cap B}$ und $\overline{A} \cup \overline{B}$ sind identisch, daher gilt für alle $x \in M$:
+                $\overline{A \cap B} = \overline{A} \cup \overline{B}$
+
+
+                \begin{tikzpicture}[fill=gray]
+                    % first pattern
+                    % filled
+                    \fill[pattern color=gray,pattern=north west lines] (-6,-2) rectangle (-1,2);
+
+                    \scope
+                    \clip (-3,0) circle (1);
+                    \clip (-4,0) circle (1);
+                    \fill[fill=white] (-6,-2) rectangle (-1,2);
+                    \fill[pattern color=gray,pattern=north east lines] (-6,-2) rectangle (-1,2);
+                    \endscope
+                    % outline
+                    \draw (-4,0) circle (1) (-4,1)  node [above] {$A$}
+                    (-3,0) circle (1) (-3,1)  node [above] {$B$}
+                    (-6,-2) rectangle (-1,2) node [right] {$M$};
+                    % labels
+                    \node[draw, fill, circle, pattern=north east lines, pattern color=gray, label=right:$A \cap B$] (LABEL1) at (-4, -2.5) {};
+                    \node[draw, circle, pattern=north west lines,pattern color=gray,label=right:$\overline{A \cap B}$] (LABEL2) at (-4, -3) {};
+
+                    % second pattern
+                    % filled
+                    \fill[pattern=north east lines, pattern color=lightgray] (1,-2) rectangle (6,2);
+                    \fill[pattern=north west lines, pattern color=lightgray] (1,-2) rectangle (6,2);
+                    \fill[fill=white] (4,0) circle (1);
+                    \fill[fill=white] (3,0) circle (1);
+
+                    \fill[pattern=north east lines, pattern color=lightgray] (4,0) circle (1);
+                    \fill[pattern=north west lines, pattern color=lightgray] (3,0) circle (1);
+
+                    \scope
+                    \clip (4,0) circle (1);
+                    \fill[fill=white] (3,0) circle (1);
+                    \endscope
+                    % outline
+                    \draw (3,0) circle (1) (3,1)  node [above] {$A$}
+                    (4,0) circle (1) (4,1)  node [above] {$B$}
+                    (1,-2) rectangle (6,2) node [right] {$M$};
+                    % labels
+                    \node[draw, fill, circle, pattern=north east lines, label=right:$\overline{A}$] (LABEL1) at (3, -2.5) {};
+                    \node[draw, fill, circle, pattern=north west lines, label=right:$\overline{B}$] (LABEL2) at (3, -3) {};
+
+                    \node[draw, fill, circle, pattern=north west lines, label=right:$oder$] (LABEL3) at (1.6, -3.5) {};
+                    \node[draw, fill, circle, pattern=north east lines, label=right:$\overline{A} \cup \overline{B}$] (LABEL4) at (3, -3.5) {};
+
+                \end{tikzpicture}
+
+            \item[b)]
+                \begin{align}
+                    \nonumber \mathcal{P}(M) = \Big\{ & \emptyset, \{a\}, \{b\}, \{c\}, \{d\},\\
+                    \nonumber & \{a,b\}, \{a,c\}, \{a,d\}, \{b,c\}, \{b,d\}, \{c,d\},\\
+                              & \{a,b,c\}, \{a,b,d\}, \{a,c,d\}, \{b,c,d\}, \{a,b,c,d\} \Big\}
+                \end{align}
+
+            \item[c)]
+                \begin{enumerate}
+                    \item[(i)]
+                        falsch, $a$ ist keine Menge, es gilt: $a \not\subseteq M$, daher $a \notin \mathcal{P}(M)$.
+                    \item[(ii)]
+                        falsch, $a$ ist keine Menge, daher kann es auch keine Teilmenge sein
+                    \item[(iii)]
+                        wahr, da $\{a\} \subseteq M$
+                    \item[(iv)]
+                        falsch, $a \notin \mathcal{P}(M)$, daher ist $\{a\}$ keine Teilmenge
+                    \item[(v)]
+                        falsch, $\{\{a\}\}$ ist keine Element der Potenzmenge
+                    \item[(vi)]
+                        wahr, da $\{a\} \in \mathcal{P}(M)$, siehe (iii).
+                \end{enumerate}
+
+
+        \end{enumerate}
+\end{enumerate}
+
+\end{document}
