@@ -1,5 +1,135 @@
-1.1. 
-a) Ein Interpreter übersetzt Befehle einer höheren Sprache zu Laufzeit in Abfolgen von Befehlen niedrigerer Sprachen und führt diese aus.
-b) Ein Compiler übersetzt Befehle wie ein Interpreter, nur erstellt der Compiler ein Programm vor der Ausführung.
-c) Eine Virtual Machine (VM) simuliert eine Maschine
+\documentclass[10pt,a4paper]{article}
 
+\usepackage[margins=1in]{geometry}
+\usepackage{amstext}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage{lmodern}
+    
+\author{Paul Bienkowski, Vincent Immer}
+\title{DM 01-B (HA) zum 26.10.2012}
+\date{\today}
+\begin{document}
+\setcounter{secnumdepth}{0}
+\maketitle
+
+\begin{enumerate}
+        % Aufgabe 1
+    \item[\textbf{1.1.}]
+        \begin{enumerate}
+            \item[a)]
+                Ein Interpreter übersetzt Befehle einer höheren Sprache zu Laufzeit in 
+                Abfolgen von Befehlen niedrigerer Sprachen und führt diese aus.
+            \item[b)]
+                Ein Compiler übersetzt Befehle wie ein Interpreter, nur erstellt der 
+                Compiler ein Programm vor der Ausführung.
+            \item[c)]
+                Eine Virtuelle Maschine (VM) simuliert eine Maschine, sodass Befehle einer
+                höheren Sprache L1 auf die gleiche Art ausgeführt werden können wie Hardware-Befehle,
+                obwohl sie durch die Virtuelle Maschine erst weiter interpretiert werden.
+                
+                Dies ermöglicht z.B. die Virtualisierung ganzer Betriebssysteme auf fremden Host-Systemen.
+        \end{enumerate}
+    \item[\textbf{1.2.}]
+        $A(x)$ sei die Anzahl der Befehle auf $L_0$, die für ein Kommando auf $L_x$ nötig sind.
+        
+        $$\begin{array}{rcl}
+            A(x) &=& n^x\\
+            A(3) &=& n^3\\
+            A(2) &=& n^2\\
+            A(1) &=& n\\
+            A(0) &=& 1
+        \end{array}$$
+        
+        $T(x)$ sei die Dauer eines Befehls auf $L_x$.
+    
+        $$\begin{array}{rcl}
+            T(x) &=& k \cdot n^x\\
+            T(3) &=& k \cdot n^3\\
+            T(2) &=& k \cdot n^2\\
+            T(1) &=& k \cdot n\\
+            T(0) &=& k
+        \end{array}$$
+    
+    \item[\textbf{1.3.}]
+        Ein Vorteil des von-Neumann-Konzepts ist es, dass Programme dynamisch erstellt und verändert werden 
+        können. Da Programme selbst Daten sind, ist es möglich, mit Compilern auf der Maschine selbst Programme
+        zu erstellen und auszuführen. Somit ist die Programmierung der Maschine flexibel, da Programme garantiert
+        wie die Daten änderbar sind.
+        
+        Allerdings können ohne weitere Sicherheitsmaßnahmen Programme andere Programme manipulieren, und so zum Beispiel
+        die Funktionalität abändern. Dies kann ein Sicherheitsrisiko sein, wenn z.B. Schadsoftware die laufenden Programme
+        verändern kann. Deshalb wird ein System benötigt, was den Speicherzugriff von Programmen einschränkt.
+        
+    \item[\textbf{1.4.}]
+        \begin{enumerate}
+            \item[a)]
+                $$\begin{array}{rcl}
+                    y &=& a \cdot x^6 + b \cdot x^5 + c \cdot x^4 + d \cdot x^3 + e \cdot x^2 + f \cdot x + g\\
+                      &=& a \cdot x \cdot x \cdot x \cdot x \cdot x \cdot x + b \cdot x \cdot x \cdot x \cdot x \cdot x + c \cdot x \cdot x \cdot x \cdot x + \\
+                       && d \cdot x \cdot x \cdot x + e \cdot x \cdot x + f \cdot x + g
+                \end{array}$$
+                
+                Es werden $6 + 5 + 4 + 3 + 2 + 1 = 21$ Multiplikationen und $6$ Additionen benötigt. Dies ergibt
+                eine Dauer von $21 * 6 \text{ns} + 6 * 1 \text{ns} = 132 \text{ns}$.
+                
+                Nach dem Horner-Schema ergibt sich eine Umformung zu
+                
+                $$\begin{array}{rcl}
+                    y &=& g + x * (f + x * (e + x * (d + x * (c + x * (b + x * a)))))
+                \end{array}$$
+                
+                Dies entspricht je 6 Multiplikationen und Additionen, also einer Laufzeit von $6 \cdot 6 \text{ns} + 6 \cdot 1 \text{ns} = 42 \text{ns}$.
+            \item[b)]
+                $$\begin{array}{ll}
+                    a &= x + 1\\
+                    b &= a \cdot a\\
+                    c &= b \cdot b\\
+                    d &= c \cdot c\\
+                    e &= d \cdot d\\
+                    y &= (x + 1)^{23} = a * b * c * e\\
+                    &= a * a^2 * {a^2}^2 * {{{a^2}^2}^2}^2 \\
+                    &= a * a^2 * a^4 * a^{16} = a^{23}
+                \end{array}$$
+                
+                Für die Werte der Variablen $a$, $b$, $c$, $d$ und $e$ werden insgesamt 1 Addition und 4 Multiplikationen 
+                benötigt, die Berechnung des Endergebnisses erfordert dann 3 weitere Multiplikationen. Daraus ergibt
+                sich eine Gesamtzeit von
+                
+                $$(4 + 3) \cdot 6 \text{ns} + 1 \cdot 1 \text{ns} = 43 \text{ns}$$
+
+        \end{enumerate}
+
+        
+    \item[\textbf{1.5.}]
+        \begin{enumerate}
+            \item[a)]
+                Aufgrund von Schaltjahren hat ein Jahr im Durchschnitt $365.242$ Tage. Daraus ergibt sich:
+                
+                $$5 \frac{\text{MB}}{sec} \cdot (60 \cdot 60 \cdot 24 \cdot 365.242) \frac{sec}{a} \cdot 80 a = 12622763520 \text{ MB}$$
+                
+            \item[b)]
+                Eine Datenmenge von $12622763520$ MB entspricht $11480.337$ TiB.
+                
+                $T$ sei die gesuchte Anzahl von Jahren, $lg$ steht für den dekadischen Logarithmus. Es ergibt sich:
+                
+                $$T = \frac{\lg{\frac{11480.337 \text{TiB}}{2 \text{TiB}}}}{\lg{1.45}} = \approx 23.3 $$
+                
+                Nach etwa $23.3$ Jahren passen also die gesamten Aufzeichnungen eines Lebens auf eine Festplatte.
+            
+            \item[c)]
+                Eine Datenmenge von $12622763520$ MB entspricht $11755865$ GiB.
+            
+                $$T = \lg{\frac{11755865 \text{GiB}}{32 \text{GiB}}} / \lg{1.52} \approx 30.6$$
+                
+                Nach etwa $30.6$ Jahren passen also die gesamten Aufzeichnungen eines Lebens auf eine SD-Karte.
+            \item[d)]
+                $N$ sei die Anzahl benötigter Magnetbänder der Kapazität $140$ MB.
+                
+                $$N = \frac{12622763520 \text{MB}}{140 \text{MB}} = 90162597$$
+                
+                Man würde also etwas über $90$ Millionen Magnetbänder benötigen.
+        \end{enumerate}
+
+\end{enumerate}
+\end{document}

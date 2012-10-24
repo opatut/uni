@@ -5,3 +5,5 @@ stinewatch
 *.log
 *.aux
 *~
+*.kate-swp
+*.backup
