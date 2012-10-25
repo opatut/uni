@@ -10,7 +10,6 @@
 \usepackage{tikz}
 \usetikzlibrary{patterns}
 \usetikzlibrary{arrows}
-\newcommand{\midarrow}{\tikz \draw[-triangle 90] (0,0) -- +(.1,0);}
 
 \author{Paul Bienkowski, Jascha Andersen}
 \title{DM 01-B (HA) zum 26.10.2012}
@@ -61,16 +60,23 @@
                         
                     \item[(ii)]
                         Bilden einer injektiven Funktion ist nicht möglich,
-                        da $\left|A\right| > \left|B\right|$ ist.
+                        denn es gilt:
+                        
+                        $$\left|A\right| > \left|B\right|.$$
                     \item[(iii)]
                         Eine bijektive Funktion ist nicht möglich, da keine injektive Funktion gebildet werden kann, siehe (ii).
                 \end{enumerate}
             \item[b)]
                 \begin{enumerate}
                     \item[(i)]
-                        Nicht möglich, da in einer surjektiven Funktion jeder Wert aus B genau, einmal zugeordnet wäre ($\left|A\right| = \left|B\right|$), damit wäre die Funktion automatisch ebenfalls injektiv.
+                        Nicht möglich, da in einer surjektiven Funktion jeder Wert aus B genau einmal zugeordnet wäre:
+                        
+                        $$\left|A\right| = \left|B\right|.$$
+                        
+                        Damit wäre die Funktion automatisch ebenfalls injektiv.
                     \item[(ii)]
                         Nicht möglich aus demselben Grund.
+                        
                     \item[(iii)]
                         Eine mögliche Funktion:
                         
@@ -111,7 +117,9 @@
             \begin{enumerate}
                     \item[(i)]
                         Nicht möglich, da für eine surjektiven Funktion jeder Wert in $B$ zugeordnet werden muss, es stehen jedoch 
-                        nicht genügend Werte in $A$ zur Verfügung ($\left|A\right| < \left|B\right|$).
+                        nicht genügend Werte in $A$ zur Verfügung:
+                        
+                        $$\left|A\right| < \left|B\right|.$$
                     \item[(ii)]
                         Eine mögliche Funktion:
                         
@@ -153,13 +161,237 @@
                 \end{enumerate}
         \end{enumerate}
 
+    \newpage
         % Aufgabe 2
     \item[\textbf{2.}]
+        \begin{tabular}[t]{c||c|c|c}
+              & injektiv & surjektiv & bijektiv\\
+            \hline
+            f & nein (i) & nein (ii) & nein\\
+            g & ja (iii) & nein (iv) & nein\\
+            h & ja (v)   & ja (vi)   & ja
+        \end{tabular}
+        
+        \begin{enumerate}
+            \item[(i)]
+                \textbf{Behauptung:} f ist nicht injektiv.
+                
+                \textbf{Beweis:} Es sind $x_1, x_2 \in \mathbb{Z}$ anzugeben, für die $f(x_1) = f(x_2)$ gilt.
+                
+                \textbf{Annahme:} Für $x_1 = 3$ und $x_2 = -3$ ist dies der Fall.
+                
+                \textbf{Nachweis:}
+                
+                $$\begin{array}{rcl}
+                    f(3) &=& f(-3)\\
+                    3^2 - 5 &=& (-3)^2 - 5\\
+                    9 - 5 &=& 9 - 5\\
+                    4 &=& 4
+                \end{array}$$
+                
+                Es ist gezeigt dass es Werte für $f(x)$ gibt, welche durch verschiedene $x$ zugeordnet werden, daher
+                ist $f$ nicht injektiv. $\Box$
+
+            \item[(ii)]
+                \textbf{Behauptung:} f ist nicht surjektiv.
+                
+                \textbf{Beweis:} Es sei ein $y \in \mathbb{Z}$ anzugeben, für das gilt: es gibt kein $x \in \mathbb{Z}$ mit
+                $f(x) = y$.
+                
+                \textbf{Annahme:} Für $y = -6$ ist dies der Fall.
+                
+                \textbf{Nachweis:}
+                
+                $$\begin{array}{rcl}
+                    f(x) &=& -6\\
+                    x^2 - 5 &=& -6\\
+                    x^2 &=& -1
+                \end{array}$$
+                
+                Es gibt kein $x \in \mathbb{Z}$, für das gilt $x^2 = -1$, daher ist $f$ nicht surjektiv. $\Box$
+            
+            \item[(iii)]
+                \textbf{Behauptung:} g ist injektiv.
+                
+                \textbf{Beweis:} Wäre g nicht injektiv, würde für mindestens ein $x_1, x_2 \in \mathbb{Z}$ mit $x_1 \not= x_2$ gelten:
+                
+                $$\begin{array}{rcl}
+                   g(x_1) &=& g(x_2)\\
+                   5 \cdot x_1 - 3 &=& 5 \cdot x_2 - 3\\
+                   5 \cdot x_1 &=& 5 \cdot x_2\\
+                   x_1 &=& x_2
+                \end{array}$$
+                
+                Die steht im Widerspruch zur Annahme $x_1 \not= x_2$, daher ist $g$ injektiv. $\Box$
+                
+            \item[(iv)]
+                \textbf{Behauptung:} g ist nicht surjektiv.
+
+                \textbf{Beweis:} Es sei ein $y \in \mathbb{Z}$ anzugeben, für das gilt: es gibt kein $x \in \mathbb{Z}$ mit
+                $g(x) = y$.
+                
+                \textbf{Annahme:} Für $y = 0$ ist dies der Fall.
+                
+                \textbf{Nachweis:}
+                
+                $$\begin{array}{rcl}
+                    g(x) &=& 0\\
+                    5 \cdot x - 3 &=& 0\\
+                    5 \cdot x &=& 3\\
+                    x &=& \frac{3}{5}
+                \end{array}$$
+                
+                Der errechnete Wert für $x$ liegt nicht im Definitionsbereich $\mathbb{Z}$, daher ist $g$ nicht surjektiv. $\Box$
+            
+            \item[(v)]
+                \textbf{Behauptung:} h ist injektiv.
+                
+                \textbf{Beweis:} Wäre h nicht injektiv, würde für mindestens ein $x_1, x_2 \in \mathbb{Z}$ mit $x_1 \not= x_2$ gelten:
+                
+                $$\begin{array}{rcl}
+                   h(x_1) &=& h(x_2)\\
+                   x_1 + 5 &=& x_2 + 5\\
+                   x_1 &=& x_2
+                \end{array}$$
+                
+                Die steht im Widerspruch zur Annahme $x_1 \not= x_2$, daher ist $h$ injektiv. $\Box$
+                
+            \item[(vi)]
+                \textbf{Behauptung:} h ist surjektiv.
+
+                \textbf{Beweis:} Es gibt für jedes $y \in \mathbb{Z}$ ein $x \in \mathbb{Z}$, sodass gilt: $f(x) = y$. Dieses
+                $x$ lässt sich wie folgt berechnen:
+                
+                $$\begin{array}{rcl}
+                    y &=& x + 5\\
+                    x &=& y - 5 
+                \end{array}$$
+                
+                Da die Subtraktion im $\mathbb{Z}$ unbegrenzt ausführbar ist, lässt sich diese Berechnung auf jedes $y \in \mathbb{Z}$
+                anwenden. Daher ist h surjektiv. $\Box$
+        \end{enumerate}
     
+    \newpage
         % Aufgabe 3
     \item[\textbf{3.}]
+        \begin{enumerate}
+            \item[a)]
+                \textbf{Behauptung:} f ist nicht injektiv.
+
+                \textbf{Beweis:} Es sind $(n_1, m_1), (n_2, m_2) \in \mathbb{Z} \times \mathbb{Z}$ anzugeben, für die $f(n_1, m_1) = f(n_2, m_2)$ gilt.
+
+                \textbf{Annahme:} Für $(n_1, m_1) = (5, 2)$ und $(n_2, m_2) = (4, 1)$ ist dies der Fall.
+
+                \textbf{Nachweis:}
+
+                $$\begin{array}{rcl}
+                    f(5, 2) &=& f(4, 1)\\
+                    5 - 2 &=& 4 - 1\\
+                    3 &=& 3
+                \end{array}$$
+
+                Es ist gezeigt dass es Werte für $f(n, m)$ gibt, welche durch verschiedene $(n, m)$ zugeordnet werden, daher
+                ist $f$ nicht injektiv. $\Box$
+                
+                \textbf{Behauptung:} f ist surjektiv.
+
+                \textbf{Beweis:} Jede ganze Zahl lässt sich als Differenz zweier anderer ganzen Zahlen ausdrücken. 
+                Für jede $x, k \in \mathbb{Z}$ gilt:
+
+                $$\begin{array}{rcl}
+                    f(x + k, k) = x + k - k = x
+                \end{array}$$
+
+                Somit lässt sich jedes $x \in \mathbb{Z}$ durch $f$ abbilden, also
+                ist $f$ surjektiv. $\Box$
+                
+            \item[b)]
+                \textbf{Behauptung:} g ist injektiv.
+                
+                \textbf{Beweis:} Es gilt $(n_1, m_1), (n_2, m_2) \in \mathbb{Z} \times \mathbb{Z}$ und
+                $(n_1, m_1) \not= (n_2, m_2)$. Wäre $g$ injektiv, wäre:
+                
+                $$\begin{array}{rcl}
+                    g(n_1, m_1) &=& g(n_2, m_2)\\
+                    (n_1 + m_1, n_1 - m_1) &=& (n_2 + m_2, n_2 - m_2)
+                \end{array}$$
+                $$\begin{array}{rclcrcl}
+                    n_1 + m_1 &=& n_2 + m_2 &\wedge& n_1 - m_1 &=& n_2 - m_2\\
+                    n_1 - n_2 &=& m_2 - m_1 &\wedge& n_1 - n_2 &=& m_1 - m_2
+                \end{array}$$
+                $$\begin{array}{rcl}
+                    m_2 - m_1 &=& m_1 - m_2\\
+                    2 \cdot m_2 &=& 2 \cdot m_1\\
+                    m_2 &=& m_1\\
+                    \\
+                    n_1 - n_2 &=& m_2 - m_1\\
+                    n_1 - n_2 &=& 0\\
+                    n_1 &=& n_2
+                \end{array}$$
+                
+                Dies steht im Widerspruch zu $(n_1, m_1) \not= (n_2, m_2)$, also ist $g$ nicht injektiv. $\Box$
+                
+                \textbf{Behauptung:} g ist nicht surjektiv.
+                
+                \textbf{Beweis:} Es ist ein $y \in \mathbb{Z} \times \mathbb{Z}$ anzugeben, für die gilt: es gibt 
+                kein $(n, m) \in \mathbb{Z} \times \mathbb{Z}$ mit $g(n, m) = y$.
+                
+                \textbf{Annahme:} Für $y = (1, 0)$ ist dies der Fall.
+                
+                \textbf{Nachweis:}
+                
+                $$\begin{array}{rcl}
+                    g(n, m) &=& (1, 0)\\
+                    (n + m, n - m) &=& (1, 0)\\
+                    n + m = 1 & \wedge & n - m = 0\\
+                    n &=& m\\
+                    n + n &=& 1\\
+                    2 \cdot n &=& 1\\
+                    n = m &=& \frac{1}{2}\\
+                    \Rightarrow (n, m) &=& (\frac{1}{2}, \frac{1}{2})
+                \end{array}$$
+                
+                Der errechnete Wert für $(n, m)$ liegt nicht im Definitionsbereich $\mathbb{Z} \times \mathbb{Z}$, 
+                daher ist $g$ nicht surjektiv. $\Box$
+            \item[c)]
+                \textbf{Behauptung:} h ist injektiv.
+
+                \textbf{Beweis:} Wäre h nicht injektiv, gäbe es $n_1, n_2 \in \mathbb{Z}$ mit $n_1 \not= n_2$, für die gilt:
+                
+                $$\begin{array}{rcl}
+                    h(n_1) &=& h(n_2)\\
+                    \big((n_1 + 1)^2, n_1^2 + 1\big) &=& \big((n_2 + 1)^2, n_2^2 + 1\big)
+                \end{array}$$
+                $$\begin{array}{rclcrcl}
+                    (n_1 + 1)^2 &=& (n_2 + 1)^2 &\wedge& n_1^2 + 1 &=& n_2^2 + 1\\
+                    n_1^2 + 2 \cdot n_1 + 1 = n_2^2 + 2 \cdot n_2 + 1 &\wedge& n_1^2 = n_2^2\\
+                    2 \cdot n_1 + 1 &=& 2 \cdot n_2 + 1\\
+                    n_1 &=& n_2
+                \end{array}$$
+
+                Dies steht im Widerspruch zu Annahme $n_1 \not= n_2$, also ist h injektiv. $\Box$
+                
+                \textbf{Behauptung:} h ist nicht surjektiv.
+                
+                \textbf{Beweis:} Es sei ein $y \in \mathbb{Z} \times \mathbb{Z}$ anzugeben, für das gilt: 
+                es gibt kein $n \in \mathbb{Z}$ mit $h(n) = y$.
+                
+                \textbf{Annahme:} Für $y = (k, 4)$ mit beliebigem $k \in \mathbb{Z}$ ist dies der Fall.
+                
+                \textbf{Nachweis:}
+                
+                $$\begin{array}{rcl}
+                    h(n) &=& (k, 4)\\
+                    ((n + 1)^2, n^2 + 1) &=& (k, 4) \Rightarrow \\
+                    n^2 + 1 &=& 4\\
+                    n^2 &=& 3\\
+                    n &=& \sqrt{3}
+                \end{array}$$
+                
+                Der errechnete Wert für $n$ ist kein Element der Definitionsmenge ($\sqrt{3} \notin \mathbb{Z}$), also ist h nicht surjektiv. $\Box$
+        \end{enumerate}
         
-        % Aufgabe 4
+    % Aufgabe 4
     \item[\textbf{4.}]
         \begin{enumerate}
             \item[a)]
@@ -170,10 +402,11 @@
                     0 & 1 & 0 & 1 & 1 & 0 & 1\\
                     1 & 0 & 0 & 1 & 0 & 1 & 1\\
                     1 & 1 & 1 & 0 & 0 & 0 & 0
-                \end{tabular}\\
+                \end{tabular}
 
                 Die Spalten für $\overline{A \cap B}$ und $\overline{A} \cup \overline{B}$ sind identisch, daher gilt für alle $x \in M$:
-                $\overline{A \cap B} = \overline{A} \cup \overline{B}$
+                
+                $$\overline{A \cap B} = \overline{A} \cup \overline{B}$$
 
 
                 \begin{tikzpicture}[fill=gray]
@@ -223,11 +456,11 @@
                 \end{tikzpicture}
 
             \item[b)]
-                \begin{align}
-                    \nonumber \mathcal{P}(M) = \Big\{ & \emptyset, \{a\}, \{b\}, \{c\}, \{d\},\\
-                    \nonumber & \{a,b\}, \{a,c\}, \{a,d\}, \{b,c\}, \{b,d\}, \{c,d\},\\
-                              & \{a,b,c\}, \{a,b,d\}, \{a,c,d\}, \{b,c,d\}, \{a,b,c,d\} \Big\}
-                \end{align}
+                $$\begin{array}{rl}
+                    \mathcal{P}(M) = \Big\{ & \emptyset, \{a\}, \{b\}, \{c\}, \{d\},\\
+                        & \{a,b\}, \{a,c\}, \{a,d\}, \{b,c\}, \{b,d\}, \{c,d\},\\
+                        & \{a,b,c\}, \{a,b,d\}, \{a,c,d\}, \{b,c,d\}, \{a,b,c,d\} \Big\}
+                \end{array}$$
 
             \item[c)]
                 \begin{enumerate}
