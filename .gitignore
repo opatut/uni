@@ -4,6 +4,7 @@ Anmeldung
 stinewatch
 *.log
 *.aux
+*.dvi
 *~
 *.kate-swp
 *.backup

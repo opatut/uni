@@ -1,0 +1,269 @@
+\documentclass[a4paper,10pt]{scrartcl}
+\usepackage[german,ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{enumerate}
+\usepackage{array}
+\usepackage{breqn}
+\usepackage{fullpage}
+
+\author{Paul Bienkowski, Jascha Andersen}
+\title{DM 02-B (HA) zum 02.11.2012}
+\date{\today}
+\begin{document}
+\setcounter{secnumdepth}{0}
+\maketitle
+
+\begin{enumerate}
+        % Aufgabe 1
+    \item[\textbf{1.}]
+        \begin{enumerate}
+            \item[a)]
+                $$\sum_{i=1}^{n} \frac{1}{i \cdot (i + 1)} = 1 - \frac{1}{n + 1}$$
+
+            \item[b)]
+                $$\begin{array}{l *5{>{\displaystyle}l}}
+                    A(1): &
+                        \frac{1}{1 \cdot 2} &
+                        = \frac{1}{2} &
+                        = 1 - \frac{1}{1 + 1} &
+                        = 1 - \frac{1}{2}\\[1em]
+                    A(2): &
+                        \frac{1}{1 \cdot 2} + \frac{1}{2 \cdot 3} &
+                        = \frac{2}{3} &
+                        = 1 - \frac{1}{2 + 1} &
+                        = 1 - \frac{1}{3}\\[1em]
+                    A(3): &
+                        \frac{1}{1 \cdot 2} + \frac{1}{2 \cdot 3} + \frac{1}{3 \cdot 4} &
+                        = \frac{3}{4} &
+                        = 1 - \frac{1}{3 + 1} &
+                        = 1 - \frac{1}{4}\\[1em]
+                    A(4): &
+                        \frac{1}{1 \cdot 2} + \frac{1}{2 \cdot 3} + \frac{1}{3 \cdot 4} + \frac{1}{4 \cdot 5} &
+                        = \frac{4}{5} &
+                        = 1 - \frac{1}{4 + 1} &
+                        = 1 - \frac{1}{5}\\
+                \end{array}$$
+
+            \item[c)]
+                \textbf{Induktionsanfang:} $A(1)$ ist wahr, siehe b).
+
+                \textbf{Induktionsschritt:} Wir nehmen an, die Gleichung $A(n)$ gelte für ein beliebiges $n \in \mathbb{N}$. Dann gilt:
+
+                \begin{equation}\label{eq:1cIA}\tag{IA}
+                    \sum_{i=1}^{n} \frac{1}{i \cdot (i + 1)} = 1 - \frac{1}{n + 1}
+                \end{equation}
+
+                Es ist zu zeigen, dass die Gleichung $A(n + 1)$ ebenfalls gilt, also:
+
+                \begin{equation}\label{eq:1cIS1}
+                    \sum_{i=1}^{n + 1} \frac{1}{i \cdot (i + 1)} = 1 - \frac{1}{n + 2}
+                \end{equation}
+
+                Dies lässt sich wie folgt zeigen:
+
+                \begin{dmath}
+                    \sum_{i=1}^{n + 1} \frac{1}{i \cdot (i + 1)} =
+                    \sum_{i=1}^{n} \frac{1}{i \cdot (i + 1)} + \frac{1}{(n + 1)(n + 2)} \overset{\text{\scriptsize\eqref{eq:1cIA}}}{=}
+                    1 - \frac{1}{n + 1} + \frac{1}{(n + 1)(n + 2)} =
+                    1 - \frac{n + 2}{(n + 1)(n + 2)} + \frac{1}{(n + 1)(n + 2)} =
+                    1 - \frac{n + 1}{(n + 1)(n + 2)}=
+                    1 - \frac{1}{n + 2}
+                \end{dmath}
+
+                Damit ist \eqref{eq:1cIS1} bewiesen. $\Box$
+        \end{enumerate}
+
+    \item[\textbf{2.}]
+        \begin{enumerate}
+            \item[a)]
+                $$\begin{array}{l *5{>{\displaystyle}l}}
+                    B(1):
+                        & \sum_{i=1}^{1} (2i-1)
+                        &= 2 \cdot 1 - 1
+                        &
+                        &= 1
+                        &= 1^2\\[1.5em]
+                    B(2):
+                        & \sum_{i=1}^{2} (2i-1)
+                        &= (2 \cdot 1 - 1) + (2 \cdot 2 - 1)
+                        &= 1 + 3
+                        &= 4
+                        &= 2^2\\[1.5em]
+                    B(3):
+                        & \sum_{i=1}^{3} (2i-1)
+                        &= (2 \cdot 1 - 1) + (2 \cdot 2 - 1) + (2 \cdot 3 - 1)
+                        &= 1 + 3 + 5
+                        &= 9
+                        &= 3^2\\[1.5em]
+                    B(4):
+                        & \sum_{i=1}^{4} (2i-1)
+                        &= (2 \cdot 1 - 1) + \dotsb + (2 \cdot 4 - 1)
+                        &= 1 + 3 + 5 + 7
+                        &= 16
+                        &= 4^2\\
+                \end{array}$$
+
+            \item[b)]
+                $$B(n): \hspace{1em} (2 \cdot 1 - 1) + (2 \cdot 2 - 1) + (2 \cdot 3 - 1) + \dotsb + (2 \cdot n - 1) = n^2$$
+
+                Das Quadrat einer beliebigen natürlichen Zahl $n$ ist gleich der Summe aller Zweifachen der natürlichen Zahlen, die
+                kleiner oder gleich $n$ sind (also $1$ bis $n$), jeweils minus $1$.
+
+            \item[c)]
+                \textbf{Induktionsanfang:} $B(1)$ ist wahr, siehe a).
+
+                \textbf{Induktionsschritt:} Wir nehmen an, die Gleichung $B(n)$ gelte für ein beliebiges $n \in \mathbb{N}$. Dann gilt:
+
+                \begin{equation}\label{eq:2cIA}\tag{IA}
+                    \sum_{i=1}^{n} (2 \cdot i - 1) = n^2
+                \end{equation}
+
+                Es ist zu zeigen, dass die Gleichung $B(n + 1)$ ebenfalls gilt, also:
+
+                \begin{equation}\label{eq:2cIS1}
+                    \sum_{i=1}^{n + 1} (2 \cdot i - 1) = (n + 1)^2
+                \end{equation}
+
+                Dies lässt sich wie folgt zeigen:
+
+                \begin{dmath}
+                    \sum_{i=1}^{n + 1} (2 \cdot i - 1) =
+                    \sum_{i=1}^{n} (2 \cdot i - 1) + (2 \cdot (n + 1) - 1) \overset{\text{\scriptsize\eqref{eq:2cIA}}}{=}
+                    n^2 + (2 \cdot n + 2) - 1 =
+                    n^2 + 2n + 1 =
+                    (n + 1)^2 \hspace{2cm} % fix underfull hbox... !?
+                \end{dmath}
+
+                Damit ist \eqref{eq:2cIS1} bewiesen. $\Box$
+        \end{enumerate}
+
+    \newpage
+    \item[\textbf{3.}]
+        \begin{enumerate}
+            \item[a)]
+                $A(n): \hspace{1em} 13n < 2^n$
+
+                \textbf{Induktionsanfang:} Es ist zu zeigen, dass $A(7)$ gilt:
+
+                $$13 \cdot 7 = 91 < 2^7 = 128$$
+
+                \textbf{Induktionsschritt:} Wir nehmen an, die Ungleichung $A(n)$ gelte für ein beliebiges $n \in \mathbb{N}$ mit $n \geq 7$. Dann gilt:
+
+                \begin{equation}\label{eq:3aIA}\tag{IA}
+                    13n \leq 2^n
+                \end{equation}
+
+                Es ist zu zeigen, dass die Ungleichung $A(n + 1)$ ebenfalls gilt, also:
+
+                \begin{equation}\label{eq:3aIS1}
+                    13(n+1) \leq 2^{n+1}
+                \end{equation}
+
+                Dies lässt sich wie folgt zeigen:
+
+                \begin{equation}
+                    13(n+1) = 13n + 13 \overset{\text{\scriptsize\eqref{eq:3aIA}}}{<} 2^n + 13 \overset{(\star)}{<} 2^n + 2^n = 2^{n+1}
+                \end{equation}
+
+                Der mit $(\star)$ markierte Schritt ist zulässig, da für $n \geq 7$ die Ungleichung $13 < 2^n$ gilt. Damit
+                ist \eqref{eq:3aIS1} bewiesen. $\Box$
+
+            \item[b)]
+                $B(n): \hspace{1em}n^2 < 2^n$ ist gültig für:
+
+                $$\begin{array}{l rcl c rcl l}
+                    B(1): & 1^2 &<& 2^1 &\Leftrightarrow&  1 &<&  2 & wahr\\
+                    B(2): & 2^2 &<& 2^2 &\Leftrightarrow&  4 &<&  4 & falsch\\
+                    B(3): & 3^2 &<& 2^3 &\Leftrightarrow&  9 &<&  8 & falsch\\
+                    B(4): & 4^2 &<& 2^4 &\Leftrightarrow& 16 &<& 16 & falsch\\
+                    B(5): & 5^2 &<& 2^5 &\Leftrightarrow& 25 &<& 32 & wahr\\
+                    B(6): & 6^2 &<& 2^6 &\Leftrightarrow& 36 &<& 64 & wahr
+                \end{array}$$
+
+                \textbf{Behauptung:} $B(n)$ gilt für alle $n \in \mathbb{N}$ mit $n \geq 5$.
+
+                \textbf{Induktionsanfang:} $B(5)$ ist wahr, siehe oben.
+
+                \textbf{Induktionsschritt:} Wir nehmen an, die Ungleichung $B(n)$ gelte für ein beliebiges $n \in \mathbb{N}$ mit $n \geq 5$. Dann gilt:
+
+                \begin{equation}\label{eq:3bIA}\tag{IA}
+                    n^2 < 2^n
+                \end{equation}
+
+                Es ist zu zeigen, dass die Ungleichung $B(n + 1)$ ebenfalls gilt, also:
+
+                \begin{equation}\label{eq:3bIS1}
+                    (n+1)^2 < 2^{n+1}
+                \end{equation}
+
+                Dies lässt sich wie folgt zeigen:
+
+                \begin{equation}\label{eq:3bIS2}
+                    (n+1)^2 = n^2 + 2n + 1 \overset{\text{\scriptsize\eqref{eq:3bIA}}}{<} 2^n + 2n + 1 \overset{(\star)}{\leq} 2^n + 2^n = 2^{n+1}
+                \end{equation}
+
+                Für den mit $(\star)$ markierten Schritt ist zu zeigen, dass $2n + 1 \leq 2^n$ für $n \geq 5$ gilt. Diese Aussage wird
+                als $B'(n)$ bezeichnet. Sie kann mittels vollständiger Induktion bewiesen werden. Es gilt $B'(5)$, da
+                $2 \cdot 5 + 1 \leq 2^5 \Leftrightarrow 9 \leq 32$ gilt. Es bleibt zu zeigen, dass $B'(n+1)$ ebenfalls gilt, wenn $B'(n)$
+                wahr ist:
+
+                \begin{equation}\label{eq:3bIS3}
+                    B'(n + 1): \hspace{1em}
+                    2(n + 1) + 1 = 2n + 3 = (2n + 1) + 2 \overset{B'(n) gilt}{\leq} 2^n + 2 \overset{(\star\star)}{\leq} 2^n + 2^n = 2^{n+1}
+                \end{equation}
+
+                Der mit $(\star\star)$ bezeichnete Schritt ist zulässig, da für alle $n \geq 5$ die Ungleichung $2 \leq 2^n$ gilt.
+
+                Somit ist die Aussage $B'(n)$ für $n \geq 5$ bewiesen, also ist der Schritt $(\star)$ in \eqref{eq:3bIS2}
+                zulässig, und somit ist die Aussage $B(n)$ ebenfalls bewiesen. $\Box$
+
+        \end{enumerate}
+
+    \vspace{2cm}
+
+    \item[\textbf{4.}]
+        $A(n): \hspace{1em}2^n < n!$ ist gültig für:
+
+        $$\begin{array}{l rcl c rcl l}
+            A(1): & 2^1 &<& 1! &\Leftrightarrow&  2 &<&  1 & falsch\\
+            A(2): & 2^2 &<& 2! &\Leftrightarrow&  4 &<&  2 & falsch\\
+            A(3): & 2^3 &<& 3! &\Leftrightarrow&  8 &<&  6 & falsch\\
+            A(4): & 2^4 &<& 4! &\Leftrightarrow& 16 &<& 24 & wahr\\
+            A(5): & 2^5 &<& 5! &\Leftrightarrow& 32 &<& 60 & wahr\\
+        \end{array}$$
+
+        \textbf{Behauptung:} $A(n)$ gilt für alle $n \in \mathbb{N}$ mit $n \geq 4$.
+
+        \textbf{Induktionsanfang:} $A(4)$ ist wahr, siehe oben.
+
+        \textbf{Induktionsschritt:} Wir nehmen an, die Ungleichung $A(n)$ gelte für ein beliebiges
+        $n \in \mathbb{N}$ mit $n \geq 4$. Dann gilt:
+
+        \begin{equation}\label{eq:4IA}\tag{IA}
+            2^n < n!
+        \end{equation}
+
+        Es ist zu zeigen, dass die Ungleichung $A(n + 1)$ ebenfalls gilt, also:
+
+        \begin{equation}\label{eq:4IS1}
+            2^{n+1} < (n+1)!
+        \end{equation}
+
+        Dies lässt sich wie folgt zeigen:
+
+        \begin{equation}\label{eq:4IS2}
+            2^{n+1} = 2^n \cdot 2 \overset{\text{\scriptsize\eqref{eq:4IA}}}{<}
+            n! \cdot 2 \overset{(\star)}{<} n! \cdot n = (n+1)!
+        \end{equation}
+
+        Der mit $(\star)$ markierte Schritt ist gültig, da $2 < n$ für alle $n \geq 4$ gilt. Damit ist die Aussage
+        $A(n)$ für alle $n \geq 4$ bewiesen. $\Box$
+
+\end{enumerate}
+
+\end{document}
