@@ -1,0 +1,144 @@
+\documentclass[a4paper,10pt]{scrartcl}
+\usepackage[german,ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{enumerate}
+\usepackage{array}
+\usepackage{breqn}
+\usepackage{fullpage}
+
+\author{Paul Bienkowski, Vincent Immer}
+\title{RS 02 (HA) zum 02.11.2012}
+\date{\today}
+\begin{document}
+\setcounter{secnumdepth}{0}
+\maketitle
+
+\begin{enumerate}
+    \item[\textbf{1.}]
+        \begin{enumerate}
+            \item[a)]
+                Das Register kann $2^{64}$ Zustände annehmen, also gilt:
+
+                $$\frac{2^{64}}{3.2 \cdot 10^9} s \approx 5.7 \cdot 10^9 s \approx 182.67 a$$
+
+                Folglich läuft das Register nach etwa 182.67 Jahren zum ersten Mal über.
+
+            \item[b)]
+                Moderne PCs haben meist mehrere CPU-Kerne, die asynchron laufen. Daher müsste es für 2 Kerne auch 2 verschiedene Register
+                geben, die dann verschiedene Werte enthalten würden.
+
+                Außerdem können moderne CPUs dynamisch nach Bedarf (ondemand) ihren Takt ändern (over-/underclocking), sodass die Anzahl der
+                vergangenen Takte nicht als Zeitmaß ausreichen.
+        \end{enumerate}
+
+    \item[\textbf{2.}]
+        \begin{enumerate}
+            \item[a)]
+                $53_{10} = 110101_2 = 65_8 = 35_{16}$
+
+            \item[b)]
+                $2012_{10} = 11111011100_2 = 3734_8 = \text{7DC}_{16}$
+
+            \item[c)]
+                $5.5625_{10} = 101.1001_2 = 5.44_8 = 5.\text{C}_{16}$
+
+            \item[d)]
+                $375,375_{10} = 101110111.011_2 = 567.3_8 = 177.6_{16}$
+        \end{enumerate}
+
+    \item[\textbf{3.}]
+        \begin{enumerate}
+            \item[a)]
+                $1110,1001_2 = 14.5625_{10}$
+
+            \item[b)]
+                $10101.10011_2 = 21.59375_{10}$
+        \end{enumerate}
+
+    \item[\textbf{4.}]
+        $25487_{10} = 110001110001111_2 = 61617_8 = 638\text{F}_{16}$
+
+        $15190_{10} = 11101101010110_2 = 35526_8 = 3\text{B}56_{16}$
+
+        \begin{verbatim}
+  110 0011 1000 1111
++  11 1011 0101 0110
+--------------------
+ 11    11    11 11
+====================
+ 1001 1110 1110 0101
+        \end{verbatim}
+
+        $1001111011100101_2 = 117345_8 = 9\text{EE}5_{16} = 40677_{10}$
+
+        Zur Überprüfung wird im Dezimalsystem gezeigt: $25487 + 15190 = 40677$.
+
+    \newpage
+    \item[\textbf{5.}]
+        \begin{verbatim}
+  10010011 * 1110001
+ --------------------
+  111001
+   000000
+    000000
+     111001
+      000000
+       000000
+        111001
+         111001
+ ----------------
+ 111111111
+ ================
+ 10000010111011
+        \end{verbatim}
+
+        Zur Überprüfung:
+        $$\begin{array}{rcl}
+            10010011_2 &=& 147_{10}\\
+            111001_2 &=& 57_{10}\\
+            10000010111011_2 &=& 8376_{10}\\
+            147_{10} \cdot 57_{10} &=& 8376_{10}
+        \end{array}$$
+
+    \item[\textbf{6.}]
+        \begin{enumerate}
+            \item[a)]
+                $K_{10}(4.582)_{10} = 10^2 - 4.582 = 95.4180$
+
+            \item[b)]
+                $K_{9}(0.1274)_{10} = 10^2 - 10^{-4} - 0.1274 = 99.8725$
+
+            \item[c)]
+                $K_2(1.011)_2 = 2_{10}^2 - 1.375_{10} = 2.625_{10} = 10.101_2$
+
+            \item[d)]
+                $\begin{array}[t]{rclllcl}
+                    K_1(100.01)_2 &=& 2_{10}^4 &{}- 2_{10}^{-3} &{}- 4.25_{10} &=& 11.625_{10} \\
+                    &=& 10000.000_2 &{}- 0.001_2 &{}- 100.01_2 &=& 1011.101_2
+                \end{array}$
+        \end{enumerate}
+
+    \item[\textbf{7.}]
+        \bgroup
+        \def\arraystretch{1.5}
+        \begin{tabular}[t]{|l|c|c|c|c|}
+            \hline
+            & a) $0000\;1001_2$ & b) $0110\;0101_2$ & c) $1000\;0001_2$ & d) $1111\;1011_2$\\
+            \hline
+            1. &  9  & 101 & 129 & 251 \\
+            2. &  9  & 101 &  -1 &-123 \\
+            3. &-119 & -27 &   1 & 123 \\
+            4. &  9  & 101 &-126 &  -4 \\
+            5. &  9  & 101 &-127 &  -5 \\
+            \hline
+        \end{tabular}
+        \egroup
+
+\end{enumerate}
+
+\end{document}
