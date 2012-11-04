@@ -1,0 +1,268 @@
+\documentclass[a4paper,10pt]{scrartcl}
+\usepackage[german,ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{subfigure}
+\usepackage{amsmath}
+\usepackage{enumerate}
+\usepackage{array}
+\usepackage{breqn}
+\usepackage{fullpage}
+\usepackage{tikz}
+
+\usetikzlibrary{patterns}
+
+\author{Paul Bienkowski, Jascha Andersen}
+\title{DM 03-B (HA) zum 09.11.2012}
+\date{\today}
+\begin{document}
+\setcounter{secnumdepth}{0}
+\maketitle
+
+\begin{enumerate}
+        % Aufgabe 1
+    \item[\textbf{1.}]
+        \begin{enumerate}
+            \item[a)]
+                \begin{enumerate}
+                    \item[(i)]      $177 - 18 = 159, 5 \nmid 159 \rightarrow$ falsch
+                    \item[(ii)]     $177 - (-18) = 195, 5 \mid 195 \rightarrow$ wahr
+                    \item[(iii)]    $-89 - (-12) = -77, 12 \nmid -77 \rightarrow$ falsch
+                    \item[(iv)]     $-123 - 33= -156, 12 \mid -156 \rightarrow$ wahr
+                    \item[(v)]      $39 - (-1) = 40, 40 \mid 40 \rightarrow$ wahr
+                    \item[(vi)]     $77 - 0 = 77, 11 \mid 77 \rightarrow$  wahr
+                    \item[(vii)]    $2^{51}$ ist gerade, also ist $2^{51} - 51$ ungerade, somit gilt $2 \nmid 2^{51} -51 \rightarrow$ falsch
+                \end{enumerate}
+
+            \item[b)]
+                $ggT(7293, 378) = ggT(378, 111) = ggT(111, 45) = ggT(45, 21) = ggT(21, 3) = 3$
+
+                $$\begin{array}{rcrll}
+                    7293 &=& 19 &{}\cdot 378 &{}+ 111\\
+                    378  &=&  3 &{}\cdot 111 &{}+ 45\\
+                    111  &=&  2 &{}\cdot  45 &{}+ 21\\
+                    45   &=&  2 &{}\cdot  21 &{}+ 3\\
+                    21   &=&  7 &{}\cdot   3 &{}+ 0.
+                \end{array}$$
+
+            \item[c)]
+                $\begin{array}[t]{lcr}
+                    \lceil\sqrt{7}\rceil    &=& 3\\
+                    \lfloor\sqrt{7}\rfloor  &=& 2\\
+                    \lceil7.1\rceil     &=& 8\\
+                    \lfloor7.1\rfloor   &=& 7\\
+                    \lceil-7.1\rceil    &=& -7\\
+                    \lfloor-7.1\rfloor  &=& -8\\
+                    \lceil-7\rceil      &=& -7\\
+                    \lfloor-7\rfloor    &=& -7\\
+                \end{array}$
+        \end{enumerate}
+
+    \newpage
+    \item[\textbf{2.}]
+        \begin{enumerate}
+            \item[(2)]
+                Es ist gegeben, dass $b_1 \mid a_1$ und $b_2 \mid a_2$. Für beliebige $c_1, c_2 \in \mathbb{Z}$
+                gilt also $a_1 = b_1 \cdot c_1$ und $a_2 = b_2 \cdot c_2$. Es ist zu zeigen, dass
+                $b_1 \cdot b_2 \mid a_1 \cdot a_2$ wahr ist.
+
+                Dies lässt sich wie folgt darstellen:
+
+                $$b_1 \cdot b_2 \mid (b_1 \cdot c_1) \cdot (b_2 \cdot c_2)$$
+                $$b_1 \cdot b_2 \mid (b_1 \cdot b_2) \cdot (c_1 \cdot c_2)$$
+
+                Dies ist wahr, da $(c_1 \cdot c_2) \in \mathbb{Z}$ ist. $\Box$
+
+            \item[(3)]
+                Es ist gegeben, dass $c \cdot b \mid c \cdot a$. Es ist zu zeigen, dass $b \mid a$ wahr ist.
+                Für $d \in \mathbb{Z}$ gilt also:
+
+                $$\begin{array}{rcl}
+                    c \cdot a &=& (c \cdot b) \cdot d\\
+                    \Rightarrow a &=& b \cdot d
+                \end{array}$$
+
+                Aus $a = b \cdot d$ und $d \in \mathbb{Z}$ folgt $a \mid b$. $\Box$
+
+            \item[(4)]
+                Es ist gegeben, dass $b \mid a_1$ und $b \mid a_2$. Es ist zu zeigen, dass $b \mid c_1 \cdot a_1
+                + c_2 \cdot a_2$ für $c_1, c_2 \in \mathbb{Z}$ gilt. Es folgt für $d_1, d_2 \in \mathbb{Z}$:
+
+                \begin{equation}\label{eq:24}\begin{array}{rcl}
+                    a_1 &=& b \cdot d_1\\
+                    a_2 &=& b \cdot d_2
+                \end{array}\end{equation}
+
+                Damit $b \mid c_1 \cdot a_1 + c_2 \cdot a_2$ gilt, muss für $e \in \mathbb{Z}$ gelten:
+                $$c_1 \cdot a_1 + c_2 \cdot a_2 = b \cdot e$$
+
+                Aus \eqref{eq:24} folgt:
+
+                $$\begin{array}{rcl}
+                    c_1 \cdot (b \cdot d_1) + c_2 \cdot (b \cdot d_2) &=& b \cdot e\\
+                    b \cdot (c_1 \cdot d_1 + c_2 \cdot d_2) &=& b \cdot e\\
+                    c_1 \cdot d_1 + c_2 \cdot d_2 &=& e
+                \end{array}$$
+
+                Da $c_1, d_1, c_2, d_2 \in \mathbb{Z}$ sind, ist auch $e \in \mathbb{Z}$, somit ist die Aussage bewiesen. $\Box$
+        \end{enumerate}
+
+    \item[\textbf{3.}]
+        \begin{enumerate}
+            \item[a)]
+                Die Aussage $3 \mid (n^3 + 2n)$ wird als $A(n)$ bezeichnet.
+
+                \textbf{Induktionsanfang:} $A(0): 3 \mid (0^3 + 2 \cdot 0) \Leftrightarrow 3 \mid 0$ ist wahr.
+
+                \textbf{Induktionsschritt:} Wir nehmen an, die Aussage $A(n)$ gelte für ein beliebiges
+                $n \in \mathbb{N}$. Dann gilt:
+
+                \begin{equation}\label{eq:3aIA}\tag{IA}
+                    3 \mid (n^3 + 2n)
+                \end{equation}
+
+                Es ist zu zeigen, dass die Aussage $A(n + 1)$ ebenfalls gilt, also:
+
+                \begin{equation}\label{eq:3aIS1}
+                    3 \mid \left((n+1)^3 + 2(n+1)\right)
+                \end{equation}
+
+                Dies lässt sich wie folgt zeigen:
+
+                \begin{equation}\begin{array}{rcl}\label{eq:3aIS2}
+                    3 &\mid& (n+1)^3 + 2(n+1)\\
+                    3 &\mid& n^3 + 3n^2 + 3n +1 + 2n + 2\\
+                    3 &\mid& (n^3 + 2n) + (3n^2  + 3n + 3)\\
+                    3 &\mid& \underbrace{(n^3 + 2n)}_{\eqref{eq:3aIS1}} + 3 (n^2  + n + 1)
+                \end{array}\end{equation}
+
+                Da $3 \mid n^3 + 2n$ laut \eqref{eq:3aIA} gilt, und $3 | 3(n^2 + n + 1)$ ebenfalls
+                wahr ist, ist auch \eqref{eq:3aIS2} wahr. $\Box$
+
+            \item[b)]
+                Aus 4 L-Stücken lässt sich ein größeres L-Stück mit doppelter Kantenlänge zusammenlegen \subref{fig:4b1}.
+                Dieses L-Stück sei nun als $L_2$ bezeichnet (Länge einer kurzen Kante beträgt 2 Einheiten), das
+                Original-L-Stück ist demnach $L_1$.
+
+                Um für $n = 1$ ein $2 \times 2$ Feld nach den Vorgaben zu belegen, benötigt man nur ein $L_1$,
+                wie in \subref{fig:4b2} gezeigt.
+
+                Um für $n = 2$ ein $4 \times 4$ Feld zu belegen, benötigt man ein $L_1$ für die obere rechte
+                Ecke, es bleibt genau Platz für ein $L_2$. Dies ist in \subref{fig:4b3} für $n = 2$ dargestellt.
+
+                Auf diese Weise lässt sich jedes $2^n \times 2^n$ - Schachbrett mit der Belegung des vorigen Schachbrettes
+                $2^{n-1} \times 2^{n-1}$ in der oberen rechten Ecke, plus eines L-Stücks der Größe $L_n$ belegen, da die Kanten
+                der noch zu füllende Fläche genau doppelt so lang sind, wie in der vorherigen Iteration.
+
+                \begin{figure}[!hb]
+                    \centering
+                    \subfigure[]{
+                        \label{fig:4b1}
+                        \begin{tikzpicture}[scale=0.5]
+                            %\draw[fill=gray,pattern=north west lines] (3, 3) rectangle (4, 4);
+                            %\draw (0, 0) -- (0, 4) -- (4, 4) -- (4, 0) -- (0, 0);
+                            \draw (0, 0) -- (0, 4) -- (2, 4) -- (2, 2) -- (4, 2) -- (4, 0) -- (0, 0);
+                            \draw (2, 4) -- (2, 2) -- (4, 2);
+                            \draw (2, 3) -- (1, 3) -- (1, 1) -- (3, 1) -- (3, 2);
+                            \draw (0, 2) -- (1, 2);
+                            \draw (2, 0) -- (2, 1);
+                        \end{tikzpicture}
+                    }\subfigure[]{
+                        \label{fig:4b2}
+                        \begin{tikzpicture}[scale=1]
+                            \draw[fill=gray,pattern=north west lines] (1, 1) rectangle (2, 2);
+                            \draw (0, 0) -- (0, 2) -- (2, 2) -- (2, 0) -- (0, 0);
+                        \end{tikzpicture}
+                    }\subfigure[]{
+                        \label{fig:4b3}
+                        \begin{tikzpicture}[scale=0.5]
+                            \draw[fill=gray,pattern=north west lines] (3, 3) rectangle (4, 4);
+                            \draw (0, 0) -- (0, 4) -- (4, 4) -- (4, 0) -- (0, 0);
+                            \node[label=center:$L_{n-1}$] at (3, 2.5) {};
+
+                            \draw[fill=lightgray,draw=none] (0, 0) rectangle (4, 2);
+                            \draw[fill=lightgray,draw=none] (0, 0) rectangle (2, 4);
+                            \draw (0, 0) -- (0, 4) -- (2, 4) -- (2, 2) -- (4, 2) -- (4, 0) -- (0, 0);
+                            \draw[style=dashed] (2, 4) -- (2, 2) -- (4, 2);
+                            \draw[style=dashed] (2, 3) -- (1, 3) -- (1, 1) -- (3, 1) -- (3, 2);
+                            \draw[style=dashed] (0, 2) -- (1, 2);
+                            \draw[style=dashed] (2, 0) -- (2, 1);
+                            \node[label=center:$L_{n}$] at (1.65, 1.65) {};
+                        \end{tikzpicture}
+                    }
+                \end{figure}
+        \end{enumerate}
+
+    \item[\textbf{4.}]
+        \begin{enumerate}
+            \item[a)]
+                \textbf{Behauptung:} $g$ ist injektiv.
+
+                \textbf{Beweis:} Wäre $g$ nicht injektiv, gäbe es $(x_1, y_1), (x_2, y_2) \in \mathbb{Q} \times \mathbb{Q}$
+                mit $(x_1, y_1) \not= (x_2, y_2)$ für die gilt:
+
+                $$\begin{array}{rcl}
+                    g(x_1, y_1) &=& g(x_2, y_2)\\[1em]
+                    (x_1 y_1^2, x_1 y_1^2 - 3 x_1, (x_1^2 - 2) y_1) &=& (x_2 y_2^2, x_2 y_2^2 - 3 x_2, (x_2^2 - 2) y_2)
+                \end{array}$$
+
+                Daraus ergeben sich folgende Gleichungen:
+
+                \begin{equation}\label{eq:4a1}
+                    x_1 y_1^2 = x_2 y_2^2
+                \end{equation}
+
+                \begin{equation}\label{eq:4a2}
+                    x_1 y_1^2 - 3 x_1 = x_2 y_2^2 - 3 x_2
+                \end{equation}
+
+                \begin{equation}\label{eq:4a3}
+                    (x_1^2 - 2) y_1 = (x_2^2 - 2) y_2
+                \end{equation}
+
+                Setzt man \eqref{eq:4a1} in \eqref{eq:4a2} ein, folgt:
+
+                \begin{equation}\label{eq:4a4}\begin{array}{rcl}
+                    -3 x_1 &=& -3 x_2\\
+                    \Rightarrow x_1 &=& x_2
+                \end{array}\end{equation}
+
+                Setzt man \eqref{eq:4a4} in \eqref{eq:4a3} ein, ergibt sich:
+
+                $$\begin{array}{rcl}
+                    (x_1^2 - 2) y_1 &=& (x_1^2 - 2) y_2\\
+                    \Rightarrow y_1 &=& y_2
+                \end{array}$$
+
+                Somit ergibt sich $x_1 = x_2 \wedge y_1 = y_2$, was ein Widerspruch zu $(x_1, y_1) \not= (x_2, y_2)$ ist.
+                Damit ist $g$ injektiv. $\Box$
+
+            \item[b)]
+                \textbf{Behauptung:} $h$ ist nicht surjektiv.
+
+                \textbf{Beweis:} Es ist ein $(z_1, z_2) \in \mathbb{Z} \times \mathbb{Z}$ anzugeben, das nicht als $h(z)$
+                dargestellt werden kann.
+
+                \textbf{Annahme:} Für $(1, 0)$ ist dies der Fall.
+
+                \textbf{Nachweis:}
+                    $$\begin{array}{rcl}
+                        h(z) &=& (1, 0)\\
+                        (z + 2, z - 1) &=& (1, 0)\\
+                        \Rightarrow z + 2 = 1 &\wedge& z - 1 = 0\\
+                        \Rightarrow z = -1 &\wedge& z = 1
+                    \end{array}$$
+
+                    Dies stellt einen Widerspruch dar, somit ist $(1, 0)$ nicht als $h(z)$ dargestellt werden, also ist
+                    $h$ nicht surjektiv. $\Box$
+
+
+
+        \end{enumerate}
+
+
+\end{enumerate}
+\end{document}
