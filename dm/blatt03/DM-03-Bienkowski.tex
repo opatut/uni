@@ -155,7 +155,11 @@
 
                 Auf diese Weise lässt sich jedes $2^n \times 2^n$ - Schachbrett mit der Belegung des vorigen Schachbrettes
                 $2^{n-1} \times 2^{n-1}$ in der oberen rechten Ecke, plus eines L-Stücks der Größe $L_n$ belegen, da die Kanten
-                der noch zu füllende Fläche genau doppelt so lang sind, wie in der vorherigen Iteration.
+                der noch zu füllende Fläche genau doppelt so lang sind, wie in der vorherigen
+                Iteration. Dieser Nachweis funktioniert ähnlich einer vollständigen Induktion,
+                da gezeigt ist, dass die Aussage für $n = 1$ gilt, und dass eine geltende
+                Aussage auch die nächste Aussage $n + 1$ beweist (ein $L_n$ lässt sich mit 4
+                $L_{n-1}$ darstellen).
 
                 \begin{figure}[!hb]
                     \centering
