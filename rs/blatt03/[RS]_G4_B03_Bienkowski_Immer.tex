@@ -1,0 +1,177 @@
+\documentclass[a4paper,10pt]{scrartcl}
+\usepackage[german,ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{enumerate}
+\usepackage{array}
+\usepackage{breqn}
+\usepackage{fullpage}
+
+\author{Paul Bienkowski, Vincent Immer}
+\title{RS 03 (HA) zum 09.11.2012}
+\date{\today}
+\begin{document}
+\setcounter{secnumdepth}{0}
+\maketitle
+
+% Stuff for manual multiplication/division/addition/...
+\newlength{\digitwidth}
+\newcommand\wmrule[2]{\noalign{\moveright#1\digitwidth\vbox{\hrule width#2\digitwidth\vspace{1pt}}}}
+\newenvironment{wmcalc}
+  {\vspace{0.6em}\begin{center}\settowidth\digitwidth{0}\setlength{\tabcolsep}{\digitwidth}\def~{\hspace{\digitwidth}}\begin{tabular}{r@{}}}
+  {\end{tabular}\end{center}\vspace{0.6em}}
+
+\begin{enumerate}
+    \item[\textbf{1.}]
+        \begin{enumerate}
+            \item[a)]
+                $1385 - 532 \Rightarrow 1385 + K_{10}(532) \Rightarrow 1385 + 9468 \Rightarrow [1]0853 \Rightarrow 0853 \Rightarrow 853$
+                
+                \begin{wmcalc}
+                    ~~~1385\\
+                    ~+~9368\\
+                    \wmrule{1}{8}
+                    \wmrule{1}{8}
+                    ~1~$\underbracket[1pt]{0853}$
+                \end{wmcalc}              
+                
+            \item[b)]
+                $372 - 687 \Rightarrow 372 + K_{10}(687) \Rightarrow 0372 + 9313 \Rightarrow 9685 \overset{(\star)}{\Rightarrow} -K_{10}(9685) = -315$
+                
+                \begin{wmcalc}
+                    ~~~0372\\
+                    ~+~9313\\
+                    \wmrule{1}{8}
+                    \wmrule{1}{8}
+                    ~~~9685
+                \end{wmcalc}              
+                
+                $(\star)$: Da eine negative Zahl erwartet wird, muss aus dem Ergebnis der Addition $(9685)$ das 10er-Komplement gebildet und als negative Zahl
+                interpretiert werden $(-315)$.
+                
+            \item[c)]
+                $1385 = 101\;0110\;1001_2$ und $532 = 10\;0001\;0100_2$.
+                
+                \begin{dmath*}
+                    K_2(10\;0001\;0100_2) 
+                    = K_1(10\;0001\;0100_2) + 0001_2 
+                    = 1101\;1110\;1011_2 + 0001_2 
+                    = 1101\;1110\;1100_2
+                \end{dmath*}
+                
+                \begin{wmcalc}
+                    ~~0101~0110~1001\\
+                    +~1101~1110~1100\\
+                    \wmrule{1}{17}
+                    1~1111~11~1~~~~~~\\
+                    \wmrule{1}{17}
+                    \wmrule{1}{17}
+                    1~$\underbracket[1pt]{0011~0101~0101}$
+                \end{wmcalc}
+                
+                $11\;0101\;0101_2 = 853$
+            
+            \item[d)]
+                $372 = 1\;0111\;0100_2$ und $687 = 10\;1010\;1111_2$.
+                
+                \begin{dmath*}
+                    K_2(10\;1010\;1111_2) 
+                    = K_1(10\;1010\;1111_2) + 0001_2 
+                    = 1101\;0101\;0000_2 + 0001_2 
+                    = 1101\;0101\;0001_2
+                \end{dmath*}
+                
+                \begin{wmcalc}
+                    ~~0001~0111~0100\\
+                    +~1101~0101~0001\\
+                    \wmrule{1}{17}
+                    ~~~1~~111~~~~~~~\\
+                    \wmrule{1}{17}
+                    \wmrule{1}{17}
+                    ~~1110~1100~0101
+                \end{wmcalc}
+
+                Das Ergebnis muss wie in (b) als negative Zahl interpretiert werden, daher ist das 2er-Komplement zu bilden:
+                
+                \begin{dmath*}
+                    K_2(1110\;1100\;0101_2)
+                    = K_1(1110\;1100\;0101_2) + 0001_2
+                    = 0001\;0011\;1010_2 + 0001_2
+                    = 0001\;0011\;1011_2
+                    = 315_{10}
+                \end{dmath*}
+                
+                Das Ergebnis ist demnach $-315$.
+        \end{enumerate}
+    
+    \item[\textbf{2.}]
+        \begin{enumerate}
+            \item[a)]
+                $(6.9242 \mid 4)_{10}$
+                
+            \item[b)]
+                $(-1.100101 \mid -010)_{2}$
+                
+            \item[c)]
+                $(-2.\text{D}4\text{A} \mid B)_{16}$
+                
+        \end{enumerate}
+
+    \item[\textbf{3.}]
+        \begin{enumerate}
+            \item[a)]
+                $0 \mid 1000\;0101 \mid 0110\;1100\;0000\;0000\;0000\;000$
+            
+            \item[b)]
+                $1 \mid 1000\;0110 \mid 0101\;0001\;0100\;0000\;0000\;000$
+    
+        \end{enumerate}
+        
+    \item[\textbf{4.}]
+        \begin{enumerate}
+            \item[a)]
+                \begin{dmath*}
+                    y 
+                    = 8.626 \cdot 10^5 + 9.9442 \cdot 10^7
+                    = 0.08626 \cdot 10^7 + 9.9442 \cdot 10^7
+                    = (0.08626 + 9.9442) \cdot 10^7
+                    = 10.03046 \cdot 10^7
+                    = 1.003046 \cdot 10^8
+                    \approx 1.0030 \cdot 10^8
+                \end{dmath*}
+            
+            \item[b)]
+                \begin{dmath*}
+                    y 
+                    = 8.626 \cdot 10^5 + 9.9442 \cdot 10^7
+                    \approx 0.0863 \cdot 10^7 + 9.9442 \cdot 10^7
+                    = (0.0863 + 9.9442) \cdot 10^7
+                    = 10.030\textbf{5} \cdot 10^7
+                    \approx  1.0031 \cdot 10^8
+                \end{dmath*}
+
+            \item[c)]
+                Beim 2. Verfahren wird ein gerundetes Ergebnis erneut gerundet. Da die letzte entfernte Stelle zu
+                einer 5 aufgerundet wurde, wird auch im 2. Rundungsschritt aufgerundet, was das Ergebnis verfälscht.
+                Besser ist es daher, nach dem ersten Verfahren erst am Ende der Berechnungen zu runden.
+            
+        \end{enumerate}
+
+    \item[\textbf{4.}]
+        \begin{dmath*}
+            y 
+            = 5.6538 \cdot 10^7 \times 3.1415 \cdot 10^4
+            = (5.6538 \times 3.1415) \cdot 10^{7 + 4}
+            = 17.7614127 \cdot 10^{11}
+            = 1.77614127 \cdot 10^{12}  \text{\hspace{2cm}(normalisiert)}
+            \approx 1.7761 \cdot 10^{12}  \text{\hspace{2.7cm}(gerundet)}
+        \end{dmath*}
+    
+    
+\end{enumerate}
+
+\end{document}
