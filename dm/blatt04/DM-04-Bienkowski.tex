@@ -1,0 +1,154 @@
+\newcommand{\authorinfo}{Paul Bienkowski, Jascha Andersen}
+\newcommand{\titleinfo}{DM 04-B (HA) zum 16.11.2012}
+
+\newcommand{\FF}[2]{\Bigg\lfloor\displaystyle\frac{#1}{#2}\Bigg\rfloor}
+
+% PREAMBLE ===============================================================
+
+\documentclass[a4paper,10pt]{scrartcl}
+\usepackage[german,ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{enumerate}
+\usepackage{array}
+\usepackage{listings}
+\usepackage{fullpage}
+\usepackage{breqn}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+
+\author{\authorinfo}
+\title{\titleinfo}
+\date{\today}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\authorinfo}
+\fancyhead[R]{\titleinfo}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+\renewcommand{\headheight}{12pt}
+\renewcommand{\headsep}{12pt}
+
+\begin{document}
+\setcounter{secnumdepth}{0}
+\maketitle
+
+% DOCUMENT ===============================================================
+
+\begin{enumerate}
+        % Aufgabe 1
+    \item[\textbf{1.}]
+        \begin{enumerate}
+            \item[a)]
+                Es gibt insgesamt $7 \cdot 7 \cdot 7 \cdot 7 \cdot 7 = 16807$ Abbildungen.
+
+                Davon sind $7 \cdot 6 \cdot 5 \cdot 4 \cdot 3 = 2520$ injektiv.
+
+                Es gibt $7 \cdot 7 \cdot 6 \cdot 5 \cdot 7 = 10290$ Abbildungen, für die $g(2), g(3)$ und $g(4)$
+                verschiedene Elemente sind.
+
+            \item[b)]
+                Da die Reihenfolge der gewählten Zahlen irrelevant ist, gilt:
+
+                $$\frac{49^{\underline{6}}}{6!} = \frac{49 \cdot 48 \cdot 47 \cdot 46 \cdot 45 \cdot 44}{6 \cdot 5 \cdot 4 \cdot 3 \cdot 2 \cdot 1} = 13983816 \approx 14 \text{ Mio. verschiedene Tipps.}$$
+
+            \item[c)]
+                Die Anzahl der n-teiligen Teilmengen lässt sich mit $\binom{1000}{n}$ bestimmen, damit ergibt sich für die
+                Anzahl der gesuchten Teilmengen:
+
+                $$\sum_{n=997}^{1000} \binom{1000}{n} = \binom{1000}{997} + \binom{1000}{998} + \binom{1000}{999} + \binom{1000}{1000}$$
+
+                $$= 166\;167\;000 + 499\;500 + 1\;000 + 1 = 166\;667\;501$$
+        \end{enumerate}
+
+    \item[\textbf{2.}]
+        \begin{enumerate}
+            \item[a)]
+                Der Koeffizient von $x^5y^{11}$ in $(x + y)^{16}$ lautet:
+
+                $$\frac{16!}{5! \cdot 11!} = \binom{16}{5} = \binom{16}{11}$$
+
+                Der Koeffizient von $x^3y^5z^2$ in $(x + y + z)^{10}$ lautet:
+
+                $$\frac{10!}{2! \cdot 3! \cdot 5!} \text{ (keine Schreibweise als Binomialkoeffizient)}$$
+
+            \item[b)]
+                \textbf{CAPPUCCINO} - 10 Buchstaben, davon 3 $\times$ ,,C'' und 2 $\times$ ,,P''
+
+                $$\frac{10!}{2! \cdot 3!} = 302\;400$$
+
+                \textbf{MANGOLASSI} - 10 Buchstaben, davon 2 $\times$ ,,A'' und 2 $\times$ ,,S''
+
+                $$\frac{10!}{2! \cdot 2!} = 907\;200$$
+
+                \textbf{SELTERWASSER} - 12 Buchstaben, davon 3 $\times$ ,,S'', 3 $\times$ ,,E'', 2 $\times$ ,,R''
+
+                $$\frac{12!}{2! \cdot 3! \cdot 3!} = 6\;652\;800$$
+
+            \item[c)]
+                Da ein Flaschentyp mehrfach vorkommen darf, und die Reihenfolge egal ist, gibt es $10^6$ Möglichkeiten
+                (die Belegungen der einzelnen Kisten-Plätze sind unabhängig voneinander).
+        \end{enumerate}
+    \newpage
+
+    \item[\textbf{3.}]
+        \textbf{Induktionsanfang:} Es gilt $A(3):$
+
+            $$\sum_{i=3}^{3} \binom{i}{i-3} = \binom{3}{3 - 3} = \binom{3}{0} = 1 = \binom{3+1}{4} = \binom{4}{4} = 1$$
+
+        \textbf{Induktionsanfang:}
+            Es wird angenommen, dass für $n \geq 3$ folgende Aussage gilt:
+
+            \begin{equation}\label{3IA}\tag{IA}
+                A(n): \sum_{i=3}^{n} \binom{i}{i-3} = \binom{n+1}{4}
+            \end{equation}
+
+            Es ist zu zeigen, dass dann auch $A(n+1)$ gilt:
+
+            \begin{equation}\label{3IS1}
+                A(n+1): \sum_{i=3}^{n + 1} \binom{i}{i-3} = \binom{n+2}{4}
+            \end{equation}
+
+            Dies lässt sich wie folgt beweisen:
+
+            \begin{dmath*}
+                \sum_{i=3}^{n + 1} \binom{i}{i-3}
+                = \sum_{i=3}^{n} \binom{i}{i-3} + \binom{n + 1}{n + 1 - 3}
+                \overset{\eqref{3IA}}{=} \binom{n + 1}{4} + \binom{n + 1}{n - 2}
+                = \binom{n + 1}{4} + \binom{n + 1}{(n + 1) - (n - 2)}
+                = \binom{n + 1}{4} + \binom{n + 1}{3}
+                = \binom{(n + 2) - 1}{4} + \binom{(n + 2) - 1}{4 - 1}
+                = \binom{n + 2}{4}
+            \end{dmath*}
+
+            Damit ist \eqref{3IS1} bewiesen. $\Box$
+
+    \item[\textbf{4.}]
+        \begin{enumerate}
+            \item[a)]
+                $$2000 - \FF{2000}{3} - \FF{2000}{5} - \FF{2000}{7} + \FF{2000}{3 \cdot 5} + \FF{2000}{3 \cdot 7} + \FF{2000}{5 \cdot 7}
+                - \FF{2000}{3 \cdot 5 \cdot 7}$$
+
+                $$= 2000 - 666 - 400 - 285 + 133 + 95 + 57 - 19 = 915$$
+
+            \item[b)]
+                $$\begin{array}{rcl}
+                   1000 &-& \FF{1000}{3} - \FF{1000}{5} - \FF{1000}{7} - \FF{1000}{11}\\[1.8em]
+                &+& \FF{1000}{3 \cdot 5} + \FF{1000}{3 \cdot 7} + \FF{1000}{3 \cdot 11}
+                + \FF{1000}{5 \cdot 7} + \FF{1000}{5 \cdot 11} + \FF{1000}{7 \cdot 11}\\[1.8em]
+                &-& \FF{1000}{3 \cdot 5 \cdot 7} - \FF{1000}{3 \cdot 5 \cdot 11}
+                - \FF{1000}{3 \cdot 7 \cdot 11} - \FF{1000}{5 \cdot 7 \cdot 11}\\[1.8em]
+                &+& \FF{1000}{3 \cdot 5 \cdot 7 \cdot 11} = \\[1.8em]
+                1000 &-& 333 - 200 - 142 - 90 + 66 + 47 + 30 + 28 + 18 + 12 - 9 - 6 - 4 - 2 + 0 = 415
+                \end{array}$$
+
+        \end{enumerate}
+\end{enumerate}
+
+\end{document}

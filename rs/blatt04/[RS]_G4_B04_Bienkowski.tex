@@ -1,3 +1,8 @@
+\newcommand{\authorinfo}{Paul Bienkowski}
+\newcommand{\titleinfo}{RS 04 (HA) zum 16.11.2012}
+
+% PREAMBLE ===============================================================
+
 \documentclass[a4paper,10pt]{scrartcl}
 \usepackage[german,ngerman]{babel}
 \usepackage[utf8]{inputenc}
@@ -10,19 +15,29 @@
 \usepackage{array}
 \usepackage{listings}
 \usepackage{fullpage}
-\author{Paul Bienkowski}
-\title{RS 04 (HA) zum 09.11.2012}
+
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+
+\author{\authorinfo}
+\title{\titleinfo}
 \date{\today}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\authorinfo}
+\fancyhead[R]{\titleinfo}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+\renewcommand{\headheight}{12pt}
+\renewcommand{\headsep}{12pt}
+
 \begin{document}
 \setcounter{secnumdepth}{0}
 \maketitle
 
-% Stuff for manual multiplication/division/addition/...
-\newlength{\digitwidth}
-\newcommand\wmrule[2]{\noalign{\moveright#1\digitwidth\vbox{\hrule width#2\digitwidth\vspace{1pt}}}}
-\newenvironment{wmcalc}
-  {\vspace{0.6em}\begin{center}\settowidth\digitwidth{0}\setlength{\tabcolsep}{\digitwidth}\def~{\hspace{\digitwidth}}\begin{tabular}{r@{}}}
-  {\end{tabular}\end{center}\vspace{0.6em}}
+% DOCUMENT ===============================================================
 
 \begin{enumerate}
     \item[\textbf{1.}]
