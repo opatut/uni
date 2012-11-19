@@ -1,0 +1,285 @@
+\newcommand{\authorinfo}{Paul Bienkowski, Hans Ole Hatzel}
+\newcommand{\titleinfo}{RS 05 (HA) zum 19.11.2012}
+
+% PREAMBLE ===============================================================
+
+\documentclass[a4paper,10pt]{scrartcl}
+\usepackage[german,ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{enumerate}
+\usepackage{array}
+\usepackage{listings}
+\usepackage{fullpage}
+\usepackage{tikz}
+\usepackage{pgffor}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+
+\author{\authorinfo}
+\title{\titleinfo}
+\date{\today}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\authorinfo}
+\fancyhead[R]{\titleinfo}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+\renewcommand{\headheight}{12pt}
+\renewcommand{\headsep}{12pt}
+
+\begin{document}
+\setcounter{secnumdepth}{0}
+\maketitle
+
+% DOCUMENT ===============================================================
+
+\definecolor{awesomegray}{gray}{0.95}
+
+\begin{enumerate}
+    \item[\textbf{1.}]
+        Die einzelnen Werte sollen nach folgendem Schema übersetzt werden:
+
+            \begin{tikzpicture}[x=1em,y=-1em]
+                \tikzstyle{every node}=[font=\small]
+
+                \foreach \n in {0,...,11}{
+                    \fill[fill=awesomegray] (\n*2,0) rectangle (\n*2+1, 1);
+                    \fill[fill=awesomegray] (\n*2,2) rectangle (\n*2+1, 3);
+                }
+
+                \draw (0,0) rectangle (6,1);
+                \draw (6,0) rectangle (12,1);
+                \draw (12,0) rectangle (18,1);
+                \draw (18,0) rectangle (24,1);
+
+                \draw (0,2) rectangle (8,3);
+                \draw (8,2) rectangle (16,3);
+                \draw (16,2) rectangle (24,3);
+
+                \node[label=center:a1] at (3,0.5) {};
+                \node[label=center:a2] at (9,0.5) {};
+                \node[label=center:a3] at (15,0.5) {};
+                \node[label=center:a4] at (21,0.5) {};
+
+                \node[label=center:b1] at (4,2.5) {};
+                \node[label=center:b2] at (12,2.5) {};
+                \node[label=center:b3] at (20,2.5) {};
+            \end{tikzpicture}
+
+            Um dies zu erreichen, werden die Eingabebits verschoben und mit ODER kombiniert. Um nur
+            die ersten 8 bits zu verwenden, wird der Modulo 256 gebildet.
+
+            \begin{lstlisting}[language=java]
+int b1 = (a1 << 2 | a2 >>> 4) % 256;
+int b2 = (a2 << 4 | a3 >>> 2) % 256;
+int b3 = (a3 << 6 | a4)       % 256;
+            \end{lstlisting}
+
+    \item[\textbf{2.}]
+        \begin{enumerate}
+            \item[a)]
+                Der Code hat $\frac{360^\circ}{15^\circ} = 24$ Codewörter.
+
+            \item[b)]
+                \textbf{Schritt 1} (2 Codewörter): \begin{verbatim}
+0 1
+                \end{verbatim}
+
+                \textbf{Schritt 2} (4 Codewörter): \begin{verbatim}
+00 01
+11 10
+                \end{verbatim}
+
+                \textbf{Schritt 3} (8 Codewörter): \begin{verbatim}
+ 000  001 011 [010]
+[110] 111 101  100
+                \end{verbatim}
+
+                \textbf{Schritt 4} (6 Codewörter): Die Wörter in [Klammern] werden weggelassen, um aus $6$ Codewörtern innerhalb von 2 Schritten $6 \cdot 2^2 = 24$
+                Codewörter zu erhalten.
+
+                \begin{verbatim}
+000 001 011
+111 101 100
+                \end{verbatim}
+
+                \textbf{Schritt 5} (12 Codewörter): \begin{verbatim}
+0000 0001 0011 0111 0101 0100
+1100 1101 1111 1011 1001 1100
+                \end{verbatim}
+
+                \textbf{Schritt 6} (24 Codewörter): \begin{verbatim}
+00000 00001 00011 00111 00101 00100 01100 01101 01111 01011 01001 01100
+11100 11001 11011 11111 11101 11100 10100 10101 10111 10011 10001 10000
+                \end{verbatim}
+
+                \newpage
+
+                Die folgende Winkelcodierscheibe stellt diesen Code dar:
+                \begin{figure}[!h]
+                    \centering
+                    \begin{tikzpicture}[x=1em,y=1em]
+                        \foreach \n in {0,...,23}{
+                            \draw[color=gray] (\n*15:1.5) -- (\n*15:6.5);
+                        }
+
+                        \draw[line width=1em]
+                            (0:2) arc (0:180:2);
+
+                        \draw[line width=1em]
+                            (90:3) arc (90:270:3);
+
+                        \draw[line width=1em]
+                            (-45:4) arc (-45:45:4);
+                        \draw[line width=1em]
+                            (135:4) arc (135:225:4);
+
+                        \draw[line width=1em]
+                            (-30:5) arc (-30:30:5);
+                        \draw[line width=1em]
+                            (60:5) arc (60:120:5);
+                        \draw[line width=1em]
+                            (150:5) arc (150:210:5);
+                        \draw[line width=1em]
+                            (240:5) arc (240:300:5);
+
+                        \draw[line width=1em]
+                            (-15:6) arc (-15:15:6);
+                        \draw[line width=1em]
+                            (75:6) arc (75:105:6);
+                        \draw[line width=1em]
+                            (165:6) arc (165:195:6);
+                        \draw[line width=1em]
+                            (255:6) arc (255:285:6);
+
+                        \draw (0,0) circle[radius=1.5];
+                        \draw (0,0) circle[radius=2.5];
+                        \draw (0,0) circle[radius=3.5];
+                        \draw (0,0) circle[radius=4.5];
+                        \draw (0,0) circle[radius=5.5];
+                        \draw (0,0) circle[radius=6.5];
+                    \end{tikzpicture}
+                \end{figure}
+
+        \end{enumerate}
+
+    \item[\textbf{3.}]
+        \begin{enumerate}
+            \item[a)]
+                Der entstehende Huffman-Baum kann so dargestellt werden (Wahrscheinlichkeits-Angaben
+                werden zur Übersicht in Prozent notiert):
+
+                \begin{figure}[!h]
+                    \centering
+                    \begin{tikzpicture}[x=1.5em,y=-1.5em,every node=radius\=2]
+                        \tikzstyle{n}=[draw,circle,radius=1cm,font=\small,inner sep=0,minimum size=1.6em]
+
+                        \node[n] (R) at (-1,0) {100};
+
+                        \node[n] (R0) at (-3,3) {57};
+
+                        \node[n] (R00) at (-4,6) {27};
+                        \node[n,label=below:d] (R01) at (-2,6) {30};
+                        \node[n] (R1) at (3,6) {43};
+
+                        \node[n] (R000) at (-5,9) {15};
+                        \node[n,label=below:k] (R001) at (-3,9) {12};
+                        \node[n] (R10) at (1,9) {23};
+                        \node[n] (R11) at (5,9) {20};
+
+                        \node[n,label=below:l] (R0000) at (-6,12) {6};
+                        \node[n] (R0001) at (-4,12) {9};
+                        \node[n,label=below:a] (R100) at (0,12) {12};
+                        \node[n] (R101) at (2,12) {11};
+                        \node[n,label=below:g] (R110) at (4,12) {10};
+                        \node[n,label=below:j] (R111) at (6,12) {10};
+
+                        \node[n] (R00010) at (-3,15) {4};
+                        \node[n,label=below:c] (R00011) at (-5,15) {5};
+                        \node[n] (R1010) at (1,15) {6};
+                        \node[n,label=below:f] (R1011) at (3,15) {5};
+
+                        \node[n,label=below:e] (R000100) at (-4,18) {2};
+                        \node[n,label=below:h] (R000101) at (-2,18) {2};
+                        \node[n,label=below:b] (R10100) at (0,18) {3};
+                        \node[n,label=below:i] (R10101) at (2,18) {3};
+
+
+                        %\node[n,label=below:h] (h) at (2,0) {30};
+
+                        \draw
+                            (R) -- (R0)
+                            (R) -- (R1)
+
+                            (R0) -- (R00)
+                            (R0) -- (R01)
+                            (R1) -- (R10)
+                            (R1) -- (R11)
+
+                            (R00) -- (R000)
+                            (R00) -- (R001)
+                            (R10) -- (R100)
+                            (R10) -- (R101)
+                            (R11) -- (R110)
+                            (R11) -- (R111)
+
+                            (R000) -- (R0000)
+                            (R000) -- (R0001)
+                            (R101) -- (R1010)
+                            (R101) -- (R1011)
+
+                            (R0001) -- (R00010)
+                            (R0001) -- (R00011)
+                            (R1010) -- (R10100)
+                            (R1010) -- (R10101)
+
+                            (R00010) -- (R000100)
+                            (R00010) -- (R000101)
+                            ;
+
+                    \end{tikzpicture}
+                \end{figure}
+
+                Legt man den reweils linken Zweig als 0 und den jeweils rechten Zweig
+                als 1 fest, ergibt sich folgende Codierung:
+
+                \begin{tabular}{rl|rl|rl}
+                    a & 100    & b & 10100  & c & 00010 \\
+                    d & 01     & e & 000110 & f & 1011  \\
+                    g & 110    & h & 000111 & i & 10101 \\
+                    j & 111    & k & 001    & l & 0000
+                \end{tabular}
+
+            \item[b)]
+            $$\begin{array}{crl}
+            H &=& {}
+                - 2 \cdot 0.02 \cdot \log_2(0.02) - 2 \cdot 0.3 \cdot \log_2(0.3)
+                - 2 \cdot 0.05 \cdot \log_2(0.05) - 0.06 \cdot \log_2(0.06)\\
+            &&{}- 2 \cdot 0.10 \cdot \log_2(0.10) - 2 \cdot 0.12 \cdot \log_2(0.12)
+                - 0.30 \cdot \log_2(0.30)\\
+            &\approx& 3.12
+            \end{array}$$
+
+        \end{enumerate}
+
+    \item[\textbf{4.}]
+        \begin{enumerate}
+            \item[a)]
+
+            \item[b)]
+
+            \item[c)]
+
+            \item[d)]
+
+        \end{enumerate}
+\end{enumerate}
+
+\end{document}
