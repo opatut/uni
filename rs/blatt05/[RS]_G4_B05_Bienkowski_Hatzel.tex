@@ -280,7 +280,7 @@ int b3 = (a3 << 6 | a4)       % 256;
                     0110 & 0010 & 0000 & 0100 & 0001 & 1000 & 1100 & 1001 & 0011 & 1111
                 \end{tabular}
 
-                $H_0 = 10 \cdot 0.1 \cdot \log_2(2^4) = \log_2(16) = 4$ Bit
+                $H_0 = 10 \cdot 0.1 \cdot \log_2(2^4) = \log_2(16) = 4$ Bit 
 
                 $H = - 10 \cdot 0.1 \cdot \log_2(0.1) = -\log_2(0.1) \approx 3.322$ Bit
 
@@ -292,7 +292,14 @@ int b3 = (a3 << 6 | a4)       % 256;
                 erhält.
 
                 $$0000000, 0000001, 0000010, 0000011, 0000100, ..., 1100011$$
+				
 
+				$H_0 = 100 \cdot \frac{1}{100} \cdot \log_2(2^8) = 8 $
+
+                $H = - 100 \cdot \frac{1}{100} \cdot \log_2(\frac{1}{100}) \approx -6,6438526$ %meinst du man sollte das lieber als Summe schreiben?
+                
+                $ R = H_0 - H \approx 1,3561474$
+                
                 ...
 
             \item[c)]
