@@ -272,8 +272,28 @@ int b3 = (a3 << 6 | a4)       % 256;
     \item[\textbf{4.}]
         \begin{enumerate}
             \item[a)]
+                Eine unsystematischer Beispiel-Code:
+
+                \begin{tabular}{c|c|c|c|c|c|c|c|c|c}
+                    0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 \\
+                    \hline
+                    0110 & 0010 & 0000 & 0100 & 0001 & 1000 & 1100 & 1001 & 0011 & 1111
+                \end{tabular}
+
+                $H_0 = 10 \cdot 0.1 \cdot \log_2(2^4) = \log_2(16) = 4$ Bit
+
+                $H = - 10 \cdot 0.1 \cdot \log_2(0.1) = -\log_2(0.1) \approx 3.322$ Bit
+
+                $R = 4$ Bit${}- 3.322$ Bit $= 0.678$ Bit
 
             \item[b)]
+                Es werden mindestens 7 bits (128 mögliche Codewörter) benötigt. Ein möglicher
+                Code wäre die binäre Repräsentation, in der das $(7-n)$-te bit den Wert $2^n$
+                erhält.
+
+                $$0000000, 0000001, 0000010, 0000011, 0000100, ..., 1100011$$
+
+                ...
 
             \item[c)]
 
