@@ -294,18 +294,21 @@ int b3 = (a3 << 6 | a4)       % 256;
                 $$0000000, 0000001, 0000010, 0000011, 0000100, ..., 1100011$$
 				
 
-				$H_0 = 100 \cdot \frac{1}{100} \cdot \log_2(2^8) = 8 $
+				$H_0 = 100 \cdot \frac{1}{100} \cdot \log_2(2^8) = 8 $ Bit
 
-                $H = - 100 \cdot \frac{1}{100} \cdot \log_2(\frac{1}{100}) \approx -6,6438526$ %meinst du man sollte das lieber als Summe schreiben?
+                $H = - 100 \cdot \frac{1}{100} \cdot \log_2(\frac{1}{100}) \approx 6,6438526$ Bit %meinst du man sollte das lieber als Summe schreiben?
                 
-                $ R = H_0 - H \approx 1,3561474$
+                $ R = H_0 - H \approx 1,35615$ Bit \\
+              
+                Redundanz pro Dezimalziffer:
                 
-                ...
-
+                $\frac{1}{100} \cdot \log_2(2^8) -  \frac{1}{100} \cdot \log_2(\frac{1}{100}) \approx 0,14643856$
+                %nicht sicher ob richtig sollte doch =R/10 sein RUndungsungenauigkeiten?
+                
             \item[c)]
 
             \item[d)]
-
+                
         \end{enumerate}
 \end{enumerate}
 
