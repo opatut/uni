@@ -5,6 +5,7 @@ stinewatch
 *.log
 *.aux
 *.dvi
+*.tex~
 *.gz
 *.kate-swp
 *.backup
