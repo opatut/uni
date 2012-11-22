@@ -1,0 +1,545 @@
+\newcommand{\authorinfo}{Paul Bienkowski, Jascha Andersen, Benedikt Bushart}
+\newcommand{\titleinfo}{DM 05-B (HA) zum 23.11.2012}
+
+% PREAMBLE ===============================================================
+
+\documentclass[a4paper,10pt]{scrartcl}
+\usepackage[german,ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{enumerate}
+\usepackage{array}
+\usepackage{listings}
+\usepackage{fullpage}
+\usepackage{breqn}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{tikz}
+\usetikzlibrary{decorations.markings}
+
+\author{\authorinfo}
+\title{\titleinfo}
+\date{\today}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\authorinfo}
+\fancyhead[R]{\titleinfo}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+\renewcommand{\headheight}{12pt}
+\renewcommand{\headsep}{12pt}
+
+\begin{document}
+\setcounter{secnumdepth}{0}
+\maketitle
+
+% DOCUMENT ===============================================================
+
+\tikzstyle{n}=[fill,circle,radius=1cm,font=\huge,inner sep=0,minimum size=0.5em]
+%\tikzstyle{->-}=[decoration={markings, mark=at position #1 with {\arrow{latex}}},postaction={decorate}]
+\tikzstyle{->-}=[decoration={markings, mark=at position #1 with {
+    \fill (1.2pt,0)--(-1.2pt,1.5pt)--(-1.2pt,-1.5pt)--cycle;
+}},postaction={decorate}]
+\tikzstyle{a}=[->-=0.5]
+\tikzstyle{add}=[color=gray]
+\tikzstyle{ref}=[out=#1+40, in=#1-40, distance=0.5cm]
+
+\begin{enumerate}
+    \item[\textbf{1.}]
+        \begin{enumerate}
+            \item[a)]
+                Die vorgegebene Relation:
+
+                \vspace{0.5cm}
+                \begin{minipage}[c]{0.3\textwidth}
+                    \centering
+                    \begin{tikzpicture}
+                        \node[n,label=below:a] (a) at (0, 0) {};
+                        \node[n,label=below:b] (b) at (1, 0) {};
+                        \node[n,label=below:c] (c) at (2, 0) {};
+                        \node[n,label=below:d] (d) at (3, 0) {};
+                        \node[n,label=above:e] (e) at (1, 1) {};
+                        \node[n,label=above:f] (f) at (2, 1) {};
+
+                        \draw[a] (a) -> (b);
+                        \draw[a] (b) -> (c);
+                        \draw[a] (c) -> (d);
+                        \draw[a] (b) -> (e);
+                        \draw[a] (e) -> (f);
+                    \end{tikzpicture}
+                \end{minipage}
+                \begin{minipage}[c]{0.5\textwidth}
+                    \centering
+                    \begin{tabular}{c|cccccc}
+                        & a & b & c & d & e & f\\
+                        \hline
+                        a & 0 & 1 & 0 & 0 & 0 & 0\\
+                        b & 0 & 0 & 1 & 0 & 1 & 0\\
+                        c & 0 & 0 & 0 & 1 & 0 & 0\\
+                        d & 0 & 0 & 0 & 0 & 0 & 0\\
+                        e & 0 & 0 & 0 & 0 & 0 & 1\\
+                        f & 0 & 0 & 0 & 0 & 0 & 0\\
+                    \end{tabular}
+                \end{minipage}
+                \vspace{0.5cm}
+
+            \item[b) c)]
+                Die Ordnungsrelation $R^+$ als gerichteter Graph und als Hasse-Diagramm:
+
+                \vspace{0.5cm}
+                \begin{minipage}[c]{0.3\textwidth}
+                    \centering
+                    \begin{tikzpicture}
+                        \node[n,label=below:a] (a) at (0, 0) {};
+                        \node[n,label=below:b] (b) at (1, 0) {};
+                        \node[n,label=below:c] (c) at (2, 0) {};
+                        \node[n,label=below:d] (d) at (3, 0) {};
+                        \node[n,label=above:e] (e) at (1, 1) {};
+                        \node[n,label=above:f] (f) at (2, 1) {};
+
+                        \draw[a] (a) -> (b);
+                        \draw[a] (b) -> (c);
+                        \draw[a] (c) -> (d);
+                        \draw[a] (b) -> (e);
+                        \draw[a] (e) -> (f);
+
+                        %\draw (a) [bend left=40] -> (b);
+                        \path (a) edge[a, add, ref=180] (a);
+                        \path (b) edge[a, add, ref=225] (b);
+                        \path (c) edge[a, add, ref=315] (c);
+                        \path (d) edge[a, add, ref=0] (d);
+                        \path (e) edge[a, add, ref=180] (e);
+                        \path (f) edge[a, add, ref=0] (f);
+
+                        \path (a) edge[a, add] (e);
+                        \path (a) edge[a, add, bend right=60] (c);
+                        \path (a) edge[a, add, bend right=60] (d);
+                        \path (b) edge[a, add, bend left=30] (d);
+                        \path (b) edge[a, add] (f);
+                        \path (a) edge[->-=0.7, add] (f);
+                    \end{tikzpicture}
+                \end{minipage}
+                \begin{minipage}[c]{0.5\textwidth}
+                    \centering
+                    \begin{tikzpicture}
+                        \node[n,label=right:a] (a) at (1, 0) {};
+                        \node[n,label=right:b] (b) at (1, 1) {};
+                        \node[n,label=right:c] (c) at (1, 2) {};
+                        \node[n,label=right:d] (d) at (1, 3) {};
+                        \node[n,label=left:e]  (e) at (0, 2) {};
+                        \node[n,label=left:f]  (f) at (0, 3) {};
+
+                        \draw (a) -- (b);
+                        \draw (b) -- (c);
+                        \draw (b) -- (e);
+                        \draw (c) -- (d);
+                        \draw (e) -- (f);
+                    \end{tikzpicture}
+                \end{minipage}
+                \vspace{0.5cm}
+
+            \item[d)]
+                Da in der Äquivalenzrelation jedes Paar aus Elementen jeder Äquivalenzklasse auftritt, gilt:
+
+                $$S = \bigcup_{k \in K} k^2$$
+
+                wobei $K$ die Menge der Äquivalenzklassen darstellt. In diesem Fall gibt es nur eine Äquivalenzklasse
+                $K = \{k_1\} = A$, daher gilt:
+
+                $$S = A^2$$
+
+                \vspace{0.2cm}
+                \begin{center}
+                    \begin{tikzpicture}
+                        \node[n,label=left:a]  (a) at (0, 0) {};
+                        \node[n,label=right:b] (b) at (2, 0) {};
+                        \node[n,label=below right:c] (c) at (2.6, 1.6) {};
+                        \node[n,label=above right:d] (d) at (1, 3) {};
+                        \node[n,label=below left:e]  (e) at (-0.6, 1.6) {};
+
+                        \path (a) edge[a, bend left=10     ] (b);
+                        \path (b) edge[a, bend left=10, add] (a);
+
+                        \path (b) edge[a, bend left=10     ] (c);
+                        \path (c) edge[a, bend left=10, add] (b);
+
+                        \path (c) edge[a, bend left=10     ] (d);
+                        \path (d) edge[a, bend left=10, add] (c);
+
+                        \path (b) edge[a, bend left=10     ] (e);
+                        \path (e) edge[a, bend left=10, add] (b);
+
+                        \path (a) edge[a, bend left=10, add] (c);
+                        \path (c) edge[a, bend left=10, add] (a);
+
+                        \path (a) edge[a, bend left=10, add] (d);
+                        \path (d) edge[a, bend left=10, add] (a);
+
+                        \path (a) edge[a, bend left=10, add] (e);
+                        \path (e) edge[a, bend left=10, add] (a);
+
+                        \path (b) edge[a, bend left=10, add] (d);
+                        \path (d) edge[a, bend left=10, add] (b);
+
+                        \path (c) edge[a, bend left=10, add] (e);
+                        \path (e) edge[a, bend left=10, add] (c);
+
+                        \path (d) edge[a, bend left=10, add] (e);
+                        \path (e) edge[a, bend left=10, add] (d);
+
+                        \path (a) edge[a, add, ref=234] (a);
+                        \path (b) edge[a, add, ref=306] (b);
+                        \path (c) edge[a, add, ref=18] (c);
+                        \path (d) edge[a, add, ref=90] (d);
+                        \path (e) edge[a, add, ref=162] (e);
+                    \end{tikzpicture}
+                \end{center}
+
+        \end{enumerate}
+
+    \item[\textbf{2.}]
+        \begin{enumerate}
+            \item[a)]
+                Die vorgegebene Relation:
+
+                \vspace{0.5cm}
+                \begin{minipage}[c]{0.3\textwidth}
+                    \centering
+                    \begin{tikzpicture}
+                        \node[n,label=below:a] (a) at (0, 0) {};
+                        \node[n,label=below:b] (b) at (1.5, 0) {};
+                        \node[n,label=right:c] (c) at (2.2, 1) {};
+                        \node[n,label=above:d] (d) at (1.5, 2) {};
+                        \node[n,label=above:e] (e) at (0, 2) {};
+                        \node[n,label=left:f] (f) at (-0.7, 1) {};
+
+                        \draw[a] (a) -> (b);
+                        \draw[a] (b) -> (d);
+                        \draw[a] (e) -> (f);
+                    \end{tikzpicture}
+                \end{minipage}
+                \begin{minipage}[c]{0.5\textwidth}
+                    \centering
+                    \begin{tabular}{c|cccccc}
+                        & a & b & c & d & e & f\\
+                        \hline
+                        a & 0 & 1 & 0 & 0 & 0 & 0\\
+                        b & 0 & 0 & 0 & 1 & 0 & 0\\
+                        c & 0 & 0 & 0 & 0 & 0 & 0\\
+                        d & 0 & 0 & 0 & 0 & 0 & 0\\
+                        e & 0 & 0 & 0 & 0 & 0 & 1\\
+                        f & 0 & 0 & 0 & 0 & 0 & 0\\
+                    \end{tabular}
+                \end{minipage}
+                \vspace{0.5cm}
+
+            \item[b) c)]
+                Die Ordnungsrelation $R^+$ als gerichteter Graph und als Hasse-Diagramm:
+
+                \vspace{0.5cm}
+                \begin{minipage}[c]{0.3\textwidth}
+                    \centering
+                    \begin{tikzpicture}
+                        \node[n,label=below:a] (a) at (0, 0) {};
+                        \node[n,label=below:b] (b) at (1.5, 0) {};
+                        \node[n,label=right:c] (c) at (2.2, 1) {};
+                        \node[n,label=above:d] (d) at (1.5, 2) {};
+                        \node[n,label=above:e] (e) at (0, 2) {};
+                        \node[n,label=left:f] (f) at (-0.7, 1) {};
+
+                        \draw[a] (a) -> (b);
+                        \draw[a] (b) -> (d);
+                        \path (e) edge[a, bend left=10] (f);
+
+                        \path (a) edge[a, add, ref=180] (a);
+                        \path (b) edge[a, add, ref=0] (b);
+                        \path (c) edge[a, add, ref=90] (c);
+                        \path (d) edge[a, add, ref=0] (d);
+                        \path (e) edge[a, add, ref=0] (e);
+                        \path (f) edge[a, add, ref=270] (f);
+
+                        \path (a) edge[a, add] (d);
+                        \path (f) edge[a, add, bend left=10] (e);
+                    \end{tikzpicture}
+                \end{minipage}
+                \begin{minipage}[c]{0.5\textwidth}
+                    \centering
+                    \begin{tikzpicture}
+                        \node[n,label=left:a]  (a) at (0, 0) {};
+                        \node[n,label=left:b]  (b) at (0, 1) {};
+                        \node[n,label=left:d]  (d) at (0, 2) {};
+                        \node[n,label=below:c] (c) at (1, 1) {};
+                        \node[n,label=right:e] (e) at (2, 0.5) {};
+                        \node[n,label=right:f] (f) at (2, 1.5) {};
+
+                        \draw (a) -- (b);
+                        \draw (b) -- (d);
+                        \draw (e) -- (f);
+                    \end{tikzpicture}
+                \end{minipage}
+
+            \item[d)]
+                Da in diesem Fall die drei Äquivalenzklassen
+                $\left\{\left\{a, b, d\right\}, \left\{c\right\}, \left\{e, f\right\}\right\}$ vorliegen, gilt:
+
+                $$S = \left\{a, b, d\right\}^2 \cup \left\{c\right\}^2 \cup \left\{e, f\right\}^2$$
+
+                \vspace{0.3cm}
+                \begin{center}
+                    \begin{tikzpicture}
+                        \node[n,label=below:a] (a) at (0, 0) {};
+                        \node[n,label=below:b] (b) at (1.5, 0) {};
+                        \node[n,label=right:c] (c) at (2.2, 1) {};
+                        \node[n,label=above:d] (d) at (1.5, 2) {};
+                        \node[n,label=above:e] (e) at (0, 2) {};
+                        \node[n,label=left:f] (f) at (-0.7, 1) {};
+
+                        \path (a) edge[a, bend left=10     ] (b);
+                        \path (b) edge[a, bend left=10, add] (a);
+
+                        \path (b) edge[a, bend left=10     ] (d);
+                        \path (d) edge[a, bend left=10, add] (b);
+
+                        \path (a) edge[a, bend left=10, add] (d);
+                        \path (d) edge[a, bend left=10, add] (a);
+
+                        \path (e) edge[a, bend left=10     ] (f);
+                        \path (f) edge[a, bend left=10, add] (e);
+
+                        \path (a) edge[a, add, ref=180] (a);
+                        \path (b) edge[a, add, ref=0] (b);
+                        \path (c) edge[a, add, ref=90] (c);
+                        \path (d) edge[a, add, ref=0] (d);
+                        \path (e) edge[a, add, ref=0] (e);
+                        \path (f) edge[a, add, ref=270] (f);
+                    \end{tikzpicture}
+                \end{center}
+        \end{enumerate}
+
+    \item[\textbf{3.}]
+        \begin{enumerate}
+            \item[a)]
+                $R = \{(a,b), (b, a), (b, c), (c, a), (a, a), (b, b), (c, c), (d, d)\}$
+
+                \vspace{0.3cm}
+                \begin{center}
+                    \begin{tikzpicture}
+                        \node[n, label=below:a] (a) at (0, 0) {};
+                        \node[n, label=below:b] (b) at (1, 0) {};
+                        \node[n, label=below:c] (c) at (2, 0) {};
+                        \node[n, label=below:d] (d) at (3, 0) {};
+
+                        \path (a) edge[a, ref=90] (a);
+                        \path (b) edge[a, ref=90] (b);
+                        \path (c) edge[a, ref=90] (c);
+                        \path (d) edge[a, ref=90] (d);
+
+                        \path (a) edge[a, bend left=20] (b);
+                        \path (b) edge[a, bend left=20] (a);
+                        \path (b) edge[a, bend left=20] (c);
+                        \path (c) edge[a, bend left=20] (b);
+
+                        \path (a) edge[a, dashed, add, bend right=70] (c);
+                    \end{tikzpicture}
+                \end{center}
+
+                Diese Relation ist reflexiv (jeder Knoten hat eine Kante zu sich selbst) und
+                symmetrisch (zwei Knoten sind immer durch zwei Kanten in beide Richtungen verbunden).
+
+                Sie ist jedoch nicht transitiv, da z.B. die gestrichelte Kante $(a, c)$ fehlt, und
+                es einen ,,Weg'' von $a$ über $b$ nach $c$ gibt ($(a,b),(b,c) \in R$).
+
+
+            \item[b)]
+                $R = \{(a,b), (b, c), (a, c), (a, a), (b, b), (c, c), (d, d)\}$
+
+                \vspace{0.3cm}
+                \begin{center}
+                    \begin{tikzpicture}
+                        \node[n, label=below:a] (a) at (0, 0) {};
+                        \node[n, label=below:b] (b) at (1, 0) {};
+                        \node[n, label=below:c] (c) at (2, 0) {};
+                        \node[n, label=below:d] (d) at (3, 0) {};
+
+                        \path (a) edge[a, ref=90] (a);
+                        \path (b) edge[a, ref=90] (b);
+                        \path (c) edge[a, ref=90] (c);
+                        \path (d) edge[a, ref=90] (d);
+
+                        \path (a) edge[a] (b);
+                        \path (b) edge[a, bend left=20] (c);
+                        \path (a) edge[a, bend right=70] (c);
+
+                        \path (c) edge[a, dashed, add, bend left=20] (b);
+                    \end{tikzpicture}
+                \end{center}
+
+                Diese Relation ist transitiv (da sowohl $(a,b),(b,c) \in R$ als auch $(a,c) \in R$ gilt)
+                und ebenfalls reflexiv (siehe oben).
+
+                Sie ist jedoch nicht symmetrisch, da z.B. $(b, c) \in R$ gilt, aber die
+                gestrichelte Kante $(c,b) \not\in R$.
+
+            \item[c)]
+                $R = \{(a,b), (b, a), (b, c), (c, b), (a, c), (c, a), (a, a), (b, b), (c, c)\}$
+
+                \vspace{0.3cm}
+                \begin{center}
+                    \begin{tikzpicture}
+                        \node[n, label=below:a] (a) at (0, 0) {};
+                        \node[n, label=below:b] (b) at (1, 0) {};
+                        \node[n, label=below:c] (c) at (2, 0) {};
+                        \node[n, label=below:d] (d) at (3, 0) {};
+
+                        \path (a) edge[a, ref=90] (a);
+                        \path (b) edge[a, ref=90] (b);
+                        \path (c) edge[a, ref=90] (c);
+
+                        \path (a) edge[a, bend left=20] (b);
+                        \path (b) edge[a, bend left=20] (a);
+                        \path (b) edge[a, bend left=20] (c);
+                        \path (c) edge[a, bend left=20] (b);
+                        \path (a) edge[a, bend right=70] (c);
+                        \path (c) edge[a, bend right=50] (a);
+
+                        \path (d) edge[a, dashed, add, ref=90] (d);
+                    \end{tikzpicture}
+                \end{center}
+
+                Diese Relation ist transitiv (wie (b)) und symmetrisch (wie (a)). Allerdings fehlt
+                dem Knoten $d$ die Schleife ($(d, d) \not\in R$, gestrichelte Kante), somit ist sie nicht reflexiv.
+        \end{enumerate}
+
+    \item[\textbf{4.}]
+        \begin{enumerate}
+            \item[a)]
+                $R = \{(1, 1), (1, 2), (1, 3), (1, 4), (1, 5), (1, 6), (2, 2), (2, 4), (2, 6), (3, 3), (3, 6), (4, 4), (5, 5), (6, 6)\}$
+
+                \vspace{0.4cm}
+                \begin{minipage}[c]{0.3\textwidth}
+                    \begin{tikzpicture}
+                        \node[n,label=below:1] (1) at (0, 0) {};
+                        \node[n,label=below:2] (2) at (1.5, 0) {};
+                        \node[n,label=below:3] (3) at (3, 0) {};
+                        \node[n,label=above:4] (4) at (0, 1.5) {};
+                        \node[n,label=above:5] (5) at (1.5, 1.5) {};
+                        \node[n,label=above:6] (6) at (3, 1.5) {};
+
+                        \path (1) edge[a, ref=180] (1);
+                        \path (2) edge[a, ref=0] (2);
+                        \path (3) edge[a, ref=0] (3);
+                        \path (4) edge[a, ref=180] (4);
+                        \path (5) edge[a, ref=0] (5);
+                        \path (6) edge[a, ref=0] (6);
+
+                        \path (1) edge[a] (2);
+                        \path (1) edge[a, bend right=40] (3);
+                        \path (1) edge[a] (4);
+                        \path (1) edge[->-=0.7] (5);
+                        \path (1) edge[a] (6);
+
+                        \path (2) edge[->-=0.7] (4);
+                        \path (2) edge[a] (6);
+
+                        \path (3) edge[a] (6);
+                    \end{tikzpicture}
+                \end{minipage}
+                \begin{minipage}[c]{0.5\textwidth}
+                    \centering
+                    \begin{tikzpicture}
+                        \node[n,label=right:1] (1) at (0, 0) {};
+                        \node[n,label=right:2] (2) at (0, 1) {};
+                        \node[n,label=left:3]  (3) at (1, 1) {};
+                        \node[n,label=right:4] (4) at (0, 2) {};
+                        \node[n,label=right:5] (5) at (-1, 1) {};
+                        \node[n,label=right:6] (6) at (1, 2) {};
+
+                        \draw (1) -- (2);
+                        \draw (1) -- (3);
+                        \draw (1) -- (5);
+                        \draw (2) -- (4);
+                        \draw (2) -- (6);
+                        \draw (3) -- (6);
+                    \end{tikzpicture}
+                \end{minipage}
+
+            \item[b)]
+                $M = \{1, 2\}$
+
+                $R = \{(\emptyset, \emptyset), (\emptyset, \{1\}), (\emptyset, \{2\}), (\emptyset, M), (\{1\}, \{1\}), (\{1\}, M), (\{2\}, \{2\}), (\{2\}, M), (M, M)\}$
+
+                \vspace{0.4cm}
+                \begin{minipage}[c]{0.3\textwidth}
+                    \begin{tikzpicture}
+                        \node[n,label=right:$\emptyset$]  (0) at (0, 0) {};
+                        \node[n,label=right:$\{1\}$]       (1) at (-1, 1) {};
+                        \node[n,label=left:$\{2\}$]      (2) at (1, 1) {};
+                        \node[n,label={right:$\{1, 2\}$}] (12) at (0, 2) {};
+
+                        \path (0)  edge[a, ref=270] (0);
+                        \path (1)  edge[a, ref=180] (1);
+                        \path (2)  edge[a, ref=0]   (2);
+                        \path (12) edge[a, ref=90]  (12);
+
+                        \path (0) edge[a]  (1);
+                        \path (0) edge[a]  (2);
+                        \path (0) edge[a]  (12);
+                        \path (1) edge[a]  (12);
+                        \path (2) edge[a]  (12);
+                    \end{tikzpicture}
+                \end{minipage}
+                \begin{minipage}[c]{0.5\textwidth}
+                    \centering
+                    \begin{tikzpicture}
+                        \node[n,label=below:$\emptyset$]  (0) at (0, 0) {};
+                        \node[n,label=left:$\{1\}$]       (1) at (-0.6, 1) {};
+                        \node[n,label=right:$\{2\}$]      (2) at (0.6, 1) {};
+                        \node[n,label={above:$\{1, 2\}$}] (12) at (0, 2) {};
+
+                        \draw (0) -- (1);
+                        \draw (0) -- (2);
+                        \draw (1) -- (12);
+                        \draw (2) -- (12);
+                    \end{tikzpicture}
+                \end{minipage}
+                \vspace{0.2cm}
+
+            \item[c)]
+                $A = \mathcal{P}(M) = \left\{ \emptyset, \left\{ 1 \right\}, \left\{ 2 \right\}, \left\{ 3 \right\}, \left\{ 1, 2 \right\}, \left\{ 1, 3 \right\}, \left\{ 2, 3 \right\}, \left\{ 1, 2, 3 \right\} \right\}$
+
+                \vspace{0.5cm}
+                \begin{tikzpicture}
+                    \node[n,label=below:$\emptyset$]     (0)   at ( 0, 0) {};
+                    \node[n,label=left:$\{1\}$]          (1)   at (-1, 1) {};
+                    \node[n,label=right:$\{2\}$]         (2)   at ( 0, 1) {};
+                    \node[n,label=right:$\{3\}$]         (3)   at ( 1, 1) {};
+                    \node[n,label={left:$\{1, 2\}$}]     (12)  at (-1, 2) {};
+                    \node[n,label={above:$\{1, 3\}$}]    (13)  at ( 0, 2) {};
+                    \node[n,label={right:$\{2, 3\}$}]    (23)  at ( 1, 2) {};
+                    \node[n,label={above:$\{1, 2, 3\}$}] (123) at ( 0, 3) {};
+
+                    \draw (0) -- (1);
+                    \draw (0) -- (2);
+                    \draw (0) -- (3);
+                    \draw (1) -- (12);
+                    \draw (1) -- (13);
+                    \draw (2) -- (12);
+                    \draw (2) -- (23);
+                    \draw (3) -- (23);
+                    \draw (3) -- (13);
+                    \draw (12) -- (123);
+                    \draw (23) -- (123);
+                    \draw (13) -- (123);
+                \end{tikzpicture}
+
+        \end{enumerate}
+
+\end{enumerate}
+
+\end{document}
