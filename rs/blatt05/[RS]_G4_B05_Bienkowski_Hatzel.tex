@@ -280,7 +280,7 @@ int b3 = (a3 << 6 | a4)       % 256;
                     0110 & 0010 & 0000 & 0100 & 0001 & 1000 & 1100 & 1001 & 0011 & 1111
                 \end{tabular}
 
-                $H_0 = 10 \cdot 0.1 \cdot \log_2(2^4) = \log_2(16) = 4$ Bit 
+                $H_0 = 10 \cdot 0.1 \cdot \log_2(2^4) = \log_2(16) = 4$ Bit
 
                 $H = - 10 \cdot 0.1 \cdot \log_2(0.1) = -\log_2(0.1) \approx 3.322$ Bit
 
@@ -292,44 +292,59 @@ int b3 = (a3 << 6 | a4)       % 256;
                 erhält.
 
                 $$0000000, 0000001, 0000010, 0000011, 0000100, ..., 1100011$$
-				
 
-				$H_0 = 100 \cdot \frac{1}{100} \cdot \log_2(2^7) = 7 $ Bit
+                $H_0 = 100 \cdot \frac{1}{100} \cdot \log_2(2^7) = 7 $ Bit
 
-                $H = - 100 \cdot \frac{1}{100} \cdot \log_2(1: \frac{1}{100}) \approx 6,6438526$ Bit %meinst du man sollte das lieber als Summe schreiben?
-                
-                $ R = H_0 - H \approx 0,35615$ Bit \\
-              
+                $H = - 100 \cdot \frac{1}{100} \cdot \log_2(1: \frac{1}{100}) \approx 6.6438526$ Bit
+                %meinst du man sollte das lieber als Summe schreiben?
+
+                $R = H_0 - H \approx 0,35615$ Bit
+
                 Redundanz pro Dezimalziffer:
-                
+
                 $\frac{R}{2}=0,178075$
                 %nicht sicher ob richtig sollte doch =R/10 sein. Rundungsungenauigkeiten?
-                
-                
+
+
             \item[c)]
-				\textbf{Zahlen 000...999:}\\
-					$H_0 = 1000 \cdot \frac{1}{1000} \cdot \log_2(2^{10}) = 10 $ \\
-					Also: $\frac{10}{3} \approx 3,33$ \\
-					
-				\textbf{Zahlen 0000...9999:} \\
-					$H_0 = 10000 \cdot \frac{1}{10000} \cdot \log_2(2^{14}) = 14 $ \\
-					Also: $\frac{14}{4}=3,5$ \\
-					Da es sich um einen Blockcode (im Binärsystem) handelt lassen sich immer nur ganze Zweierpotenzen darstellen.
-					Die Zweierpotenzen im höheren Zahelenbereich liegen weiter auseinander in diesem Beispiel sind die dichtesten Zweierpotenzen: $2^{10}=1024$ und $2^{14}=16384$. 
-					Wir decken im zweiten Fall also einen wesentlich größeren Zahlenbereich ab als nötig wäre. 
-					Wir könnten über 1,5 mal mehr Zahlen darstellen, somit ist der Informationsgehalt geringer. 
-					
+                \textbf{Zahlen 000...999:}
+
+                    $H_0 = 1000 \cdot \frac{1}{1000} \cdot \log_2(2^{10}) = 10$
+
+                    Informationsgehalt pro Dezimalstelle: $\frac{10}{3} \approx 3.33$
+
+                \textbf{Zahlen 0000...9999:}
+
+                    $H_0 = 10000 \cdot \frac{1}{10000} \cdot \log_2(2^{14}) = 14$
+
+                    Informationsgehalt pro Dezimalstelle: $\frac{14}{4} = 3.5$
+
+                    Da es sich um einen Blockcode (im Binärsystem) handelt lassen sich immer nur Worte bilden, die einen
+                    Wertebereich ganzer Zweierpotenzen darstellen.
+                    Die Zweierpotenzen im höheren Zahelenbereich liegen weiter auseinander.
+                    In diesem Beispiel sind die dichtesten Zweierpotenzen: $2^{10} = 1024$ und $2^{14} = 16384$.
+                    Im zweiten Fall gibt es also wesentlich mehr mögliche Worte als darzustellende Werte, daher ist die
+                    Redundanz hoch bzw. der Informationsgehalt geringer. Es wären über 1.6 mal mehr Zahlen darstellbar.
+
             \item[d)]
-            	Codierung: \\
+            	Codierung:
+
                 \begin{tabular}{c|c|c|c|c|c|c|c|c|c}
                     0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 \\
                     \hline
                     111 & 110 & 101 & 100 & 0111 & 0110 & 0101 & 0100 & 001 & 000
                 \end{tabular}
-                 $$H_0 = 6 \cdot \frac{1}{10} \cdot \log_2(2^3) + 4 \cdot \frac{1}{10} \cdot \log_2(2^4) = 3,4 \text{ Bit}$$ 
-                  $$H = - \bigg(\big(6 \cdot \frac{1}{10} \cdot \log_2(\frac{1}{10})\big) + \big(4 \cdot \frac{1}{10} \cdot \log_2(1 : \frac{1}{10})\big)\bigg) \approx 1,9931569 \text{ Bit}$$
-                  
-                  $$R = H_0 - H = 1.4068431$$
+
+                $$H_0 = 6 \cdot \frac{1}{10} \cdot \log_2(2^3) + 4 \cdot \frac{1}{10} \cdot \log_2(2^4) = 3.4 \text{ Bit}$$
+
+                $$H = - 10 \cdot \frac{1}{10} \cdot \log_2(\frac{1}{10}) \approx 3.322 \text{ Bit}$$
+
+                $$R = H_0 - H \approx 0.078 \text{ Bit}$$
+
+                Eine effektivere Codierung als eine solche Huffman-Codierung ist nicht möglich, solange das Binärsystem
+                als Alphabet feststeht und nur die Worte 0...9 kodiert werden sollen. Mit anderem Alphabet oder durch
+                Zusammenfassen der Worte/Ziffern zu Zahlen (siehe (c)) könnten noch geringere Redundanzen erreicht werden.
+
         \end{enumerate}
 \end{enumerate}
 
