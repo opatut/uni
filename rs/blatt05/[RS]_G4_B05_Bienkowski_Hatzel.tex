@@ -294,21 +294,42 @@ int b3 = (a3 << 6 | a4)       % 256;
                 $$0000000, 0000001, 0000010, 0000011, 0000100, ..., 1100011$$
 				
 
-				$H_0 = 100 \cdot \frac{1}{100} \cdot \log_2(2^8) = 8 $ Bit
+				$H_0 = 100 \cdot \frac{1}{100} \cdot \log_2(2^7) = 7 $ Bit
 
-                $H = - 100 \cdot \frac{1}{100} \cdot \log_2(\frac{1}{100}) \approx 6,6438526$ Bit %meinst du man sollte das lieber als Summe schreiben?
+                $H = - 100 \cdot \frac{1}{100} \cdot \log_2(1: \frac{1}{100}) \approx 6,6438526$ Bit %meinst du man sollte das lieber als Summe schreiben?
                 
-                $ R = H_0 - H \approx 1,35615$ Bit \\
+                $ R = H_0 - H \approx 0,35615$ Bit \\
               
                 Redundanz pro Dezimalziffer:
                 
-                $\frac{1}{100} \cdot \log_2(2^8) -  \frac{1}{100} \cdot \log_2(\frac{1}{100}) \approx 0,14643856$
-                %nicht sicher ob richtig sollte doch =R/10 sein RUndungsungenauigkeiten?
+                $\frac{R}{2}=0,178075$
+                %nicht sicher ob richtig sollte doch =R/10 sein. Rundungsungenauigkeiten?
+                
                 
             \item[c)]
-
+				\textbf{Zahlen 000...999:}\\
+					$H_0 = 1000 \cdot \frac{1}{1000} \cdot \log_2(2^{10}) = 10 $ \\
+					Also: $\frac{10}{3} \approx 3,33$ \\
+					
+				\textbf{Zahlen 0000...9999:} \\
+					$H_0 = 10000 \cdot \frac{1}{10000} \cdot \log_2(2^{14}) = 14 $ \\
+					Also: $\frac{14}{4}=3,5$ \\
+					Da es sich um einen Blockcode (im Binärsystem) handelt lassen sich immer nur ganze Zweierpotenzen darstellen.
+					Die Zweierpotenzen im höheren Zahelenbereich liegen weiter auseinander in diesem Beispiel sind die dichtesten Zweierpotenzen: $2^{10}=1024$ und $2^{14}=16384$. 
+					Wir decken im zweiten Fall also einen wesentlich größeren Zahlenbereich ab als nötig wäre. 
+					Wir könnten über 1,5 mal mehr Zahlen darstellen, somit ist der Informationsgehalt geringer. 
+					
             \item[d)]
-                
+            	Codierung: \\
+                \begin{tabular}{c|c|c|c|c|c|c|c|c|c}
+                    0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 \\
+                    \hline
+                    111 & 110 & 101 & 100 & 0111 & 0110 & 0101 & 0100 & 001 & 000
+                \end{tabular}
+                 $$H_0 = 6 \cdot \frac{1}{10} \cdot \log_2(2^3) + 4 \cdot \frac{1}{10} \cdot \log_2(2^4) = 3,4 \text{ Bit}$$ 
+                  $$H = - \bigg(\big(6 \cdot \frac{1}{10} \cdot \log_2(\frac{1}{10})\big) + \big(4 \cdot \frac{1}{10} \cdot \log_2(1 : \frac{1}{10})\big)\bigg) \approx 1,9931569 \text{ Bit}$$
+                  
+                  $$R = H_0 - H = 1.4068431$$
         \end{enumerate}
 \end{enumerate}
 
