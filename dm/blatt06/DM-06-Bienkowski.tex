@@ -1,0 +1,136 @@
+\newcommand{\authorinfo}{Paul Bienkowski, Jascha Andersen, Benedikt Bushart}
+\newcommand{\titleinfo}{DM 06-B (HA) zum 30.11.2012}
+
+% PREAMBLE ===============================================================
+
+\documentclass[a4paper,10pt]{scrartcl}
+\usepackage[german,ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{enumerate}
+\usepackage{array}
+\usepackage{listings}
+\usepackage{fullpage}
+\usepackage{breqn}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{tikz}
+\usetikzlibrary{decorations.markings}
+
+\author{\authorinfo}
+\title{\titleinfo}
+\date{\today}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\authorinfo}
+\fancyhead[R]{\titleinfo}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+\renewcommand{\headheight}{12pt}
+\renewcommand{\headsep}{12pt}
+
+\begin{document}
+\setcounter{secnumdepth}{0}
+\maketitle
+
+% DOCUMENT ===============================================================
+
+\begin{enumerate}
+    \item[\textbf{1.}]
+        \begin{enumerate}
+            \item[a)]
+                \begin{tabular}[t]{lll}
+                    $AB = \begin{pmatrix} 7 & 5 & -2 \\ 2 & 1 & -1 \\ 30 & 17 & 5 \\ 3 & 2 & 5 \end{pmatrix}$ &
+                    $AD = \begin{pmatrix} 2 \\ 4 \\ 26 \\ -4 \end{pmatrix}$ &
+                    $BB = \begin{pmatrix} 10 & 5 & 1 \\ 5 & 4 & -1 \\ 4 & 2 & 1 \end{pmatrix}$ \\[3em]
+                    $CD = \begin{pmatrix} 12 \end{pmatrix}$ &
+                    $DC = \begin{pmatrix} 2 & 4 & -4 \\ 3 & 6 & -6 \\ -2 & -4 & 4 \end{pmatrix}$
+                \end{tabular}
+
+            \item[b)]
+                Das gesuchte Element $(AB)_{3;2}$ lässt sich wie folgt berechnen:
+
+                $$(AB)_{3;2} = 1 \cdot (-2) + 2 \cdot 2 + 3 \cdot 3 + 4 \cdot 1 = 15$$
+
+                Die gesuchte Spalte $(AB)_{i;4}$ lautet folgendermaßen:
+
+                $$(AB)_{i;4} = \begin{pmatrix} 13 \\ 8 \\ 3 \\ 23 \end{pmatrix}$$
+
+        \end{enumerate}
+
+    \item[\textbf{2.}]
+        \begin{enumerate}
+            \item[a)]
+
+                $B_1 + B_2 = \begin{pmatrix} 2 & 0 \\ 6 & 8 \end{pmatrix}$
+
+                $A(B_1 + B_2) =
+                    \begin{pmatrix} 5 & 7 \\ 9 & -1 \\ 8 & 2 \end{pmatrix} \cdot
+                    \begin{pmatrix} 2 & 0 \\ 6 & 8 \end{pmatrix} =
+                    \begin{pmatrix} 52 & 56 \\ 12 & -8 \\ 28 & 16 \end{pmatrix}
+                    $
+
+                \vspace{1em}
+
+                $AB_1 =
+                    \begin{pmatrix} 5 & 7 \\ 9 & -1 \\ 8 & 2 \end{pmatrix} \cdot
+                    \begin{pmatrix} 1 & 2 \\ 3 & 6 \end{pmatrix} =
+                    \begin{pmatrix} 26 & 52 \\ 6 & 12 \\ 14  & 28 \end{pmatrix}
+                    $
+
+                $AB_2 =
+                    \begin{pmatrix} 5 & 7 \\ 9 & -1 \\ 8 & 2 \end{pmatrix} \cdot
+                    \begin{pmatrix} 1 & -2 \\ 3 & 2 \end{pmatrix} =
+                    \begin{pmatrix} 26 & 4 \\ 6 & -20 \\ 14  & -12 \end{pmatrix}
+                    $
+
+                $AB_1 + AB_2 =
+                    \begin{pmatrix} 26 & 52 \\ 6 & 12 \\ 14  & 28 \end{pmatrix} +
+                    \begin{pmatrix} 26 & 4 \\ 6 & -20 \\ 14  & -12 \end{pmatrix} =
+                    \begin{pmatrix} 52 & 56 \\ 12 & -8 \\ 28 & 16 \end{pmatrix}
+                    = A(B_1 + B_2) \;\;\Box
+                    $
+
+            \item[b)]
+                $AB =
+                    \begin{pmatrix}1 & 3 \\ 2 6 6 \end{pmatrix} \cdot
+                    \begin{pmatrix}2 & -1 & 5 \\ 3 & 2 & 3 \end{pmatrix} =
+                    \begin{pmatrix}11 & 5 & 17 \\ 22 & 10 & 34\end{pmatrix}
+                \Leftrightarrow
+                 (AB)^T =
+                    \begin{pmatrix}11 & 22 \\ 5 & 10 \\ 17 & 34\end{pmatrix}
+                    $
+
+                $A^T = \begin{pmatrix} 1 & 2 \\ 3 & 6 \end{pmatrix}, B^T = \begin{pmatrix} 2 & 3 \\ -1 & 2 \\ 5 & 4 \end{pmatrix}
+                    \Leftrightarrow
+                    B^TA^T =
+                    \begin{pmatrix} 2 & 3 \\ -1 & 2 \\ 5 & 4 \end{pmatrix} \cdot
+                    \begin{pmatrix} 1 & 2 \\ 3 & 6 \end{pmatrix} =
+                    \begin{pmatrix}11 & 22 \\ 5 & 10 \\ 17 & 34\end{pmatrix} =
+                    (AB)^T \;\;\Box
+                    $
+
+            \item[c)]
+                $A^TB^T$ ist unsinnig, da $B^T$ 3 Zeilen hat, $A^T$ jedoch nur 2 Spalten.
+        \end{enumerate}
+
+    \item[\textbf{3.}]
+
+    \item[\textbf{4.}]
+        \begin{enumerate}
+            \item[a)]
+
+            \item[b)]
+
+        \end{enumerate}
+
+
+\end{enumerate}
+
+\end{document}
