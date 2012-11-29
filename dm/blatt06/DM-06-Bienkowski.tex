@@ -121,10 +121,62 @@
         \end{enumerate}
 
     \item[\textbf{3.}]
+        Im Folgenden gilt $N = 1 \dots n$, $M = 1 \dots m$, $P = 1 \dots p$.
+
+        Es ist zu zeigen, dass
+
+        $$A(B_1 + B_2) = AB_1 + AB_2$$
+
+        Es sei $B = B_1 + B_2$. Daraus folgt:
+
+        $$
+            \begin{pmatrix}b_{NP}\end{pmatrix} =
+            \begin{pmatrix}b1_{NP}\end{pmatrix} +
+            \begin{pmatrix}b2_{NP}\end{pmatrix}
+        $$
+
+        Die linke Seite der Gleichung lässt sich also so formulieren:
+
+        $$
+            A(B_1 + B_2) = AB =
+            \sum_{N = 1 \cdots n}
+            \begin{pmatrix}a_{MN}\end{pmatrix} \cdot
+            \begin{pmatrix}b_{NP}\end{pmatrix} =
+            \sum_{N = 1 \cdots n}
+            \begin{pmatrix}a_{MN}\end{pmatrix} \cdot \left(
+            \begin{pmatrix}b1_{NP}\end{pmatrix} +
+            \begin{pmatrix}b2_{NP}\end{pmatrix} \right)
+        $$
+
+        Die rechte Seite der Gleichung lautet folgendermaßen:
+
+        $$
+            AB_1 + AB_2 =
+            \sum_{N = 1 \cdots n}
+            \begin{pmatrix}a_{MN}\end{pmatrix} \cdot
+            \begin{pmatrix}b1_{NP}\end{pmatrix} +
+            \sum_{N = 1 \cdots n}
+            \begin{pmatrix}a_{MN}\end{pmatrix} \cdot
+            \begin{pmatrix}b2_{NP}\end{pmatrix}
+        $$
+
+        Mit Hilfe der Rechenregeln des Summenzeichens lässt sich dies umformen zu:
+
+        $$
+            AB_1 + AB_2 =
+            \sum_{N = 1 \cdots n}
+            \begin{pmatrix}a_{MN}\end{pmatrix} \cdot \left(
+            \begin{pmatrix}b1_{NP}\end{pmatrix} +
+            \begin{pmatrix}b2_{NP}\end{pmatrix} \right)
+            = A(B_1 + B_2)
+        $$
 
     \item[\textbf{4.}]
         \begin{enumerate}
             \item[a)]
+                Behauptung: f(f^-1(B'))Teilmenge B'
+
+        Beweis: Es sei b element f(f^-1(B')), dann gibt es ein a element f^-1(B') mit f(a)= b. Somit gilt b element B' mit f(a).
 
             \item[b)]
 
