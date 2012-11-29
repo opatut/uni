@@ -1,0 +1,19 @@
+# hades.models.Design file
+#  
+[name] flipflop-with-enable 
+[components]
+hades.models.flipflops.Dff i1 14400 6000 @N 1001 5.0E-9 4.0E-9 3.0E-9
+hades.models.gates.Mux21 i0 9600 3000 @N 1001 1.0E-8
+hades.models.io.Ipin clk 7200 7800 @N 1001 U
+hades.models.io.Opin c_out 20400 6600 @N 1001 5.0E-9
+hades.models.io.Ipin c_in 7200 3600 @N 1001 U
+hades.models.io.Ipin c_enable 7200 6600 @N 1001 U
+[end components]
+[signals]
+hades.signals.SignalStdLogic1164 dffq 3 i1 Q c_out A i0 A0 6 2 19200 6600 20400 6600 2 18000 6600 19200 6600 2 19200 6600 19200 1200 2 19200 1200 8400 1200 2 8400 1200 8400 4800 2 8400 4800 9600 4800 1 19200 6600 
+hades.signals.SignalStdLogic1164 mux_out 2 i0 Y i1 D 3 2 14400 6600 13200 6600 2 13200 6600 13200 4200 2 13200 4200 12000 4200 0 
+hades.signals.SignalStdLogic1164 clk 2 clk Y i1 C 1 2 7200 7800 14400 7800 0 
+hades.signals.SignalStdLogic1164 c_enable 2 c_enable Y i0 S 2 2 7200 6600 10800 6600 2 10800 6600 10800 5400 0 
+hades.signals.SignalStdLogic1164 c_in 2 c_in Y i0 A1 1 2 7200 3600 9600 3600 0 
+[end signals]
+[end]

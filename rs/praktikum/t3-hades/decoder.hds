@@ -1,0 +1,44 @@
+# hades.models.Design file
+#  
+[name] instruction-decoder
+[components]
+hades.models.rtlib.io.Merge i5 13800 9600 @N 1001 16 4 12 1111111111111110_B 1.0E-8
+hades.models.rtlib.io.Subset c 24000 3600 @N 1001 16 12 8 11111_B 1.0E-8
+hades.models.rtlib.io.SelectBit i4 13200 3600 @N 1001 16 11 1.0E-8
+hades.models.rtlib.io.ExpandBit i3 11400 6000 @N 1001 4 1.0E-8
+hades.models.rtlib.io.SmallConstant i1 20400 6000 @N 1001 4 0000_B 1.0E-8
+hades.models.rtlib.io.Merge i0 20400 7800 @N 1001 8 4 4 11110000_B 1.0E-8
+hades.models.rtlib.io.OpinVector STW_XA 21600 10200 @N 1001 8 1.0E-9 1
+hades.models.rtlib.io.OpinVector AY 28800 5400 @N 1001 4 1.0E-9 2
+hades.models.rtlib.io.OpinVector AX 32400 4200 @N 1001 4 1.0E-9 2
+hades.models.rtlib.io.IpinVector IR 4800 1200 @N 1001 16 1111111111111110_B 1.0E-9 0
+hades.models.rtlib.io.Subset opc 19800 3000 @N 1001 16 15 12 1111_B 1.0E-8
+hades.models.rtlib.io.OpinVector IMM12 14400 11400 @N 1001 16 1.0E-9 1
+hades.models.rtlib.io.OpinVector ALU_OPC 25200 6600 @N 1001 5 1.0E-9 1
+hades.models.rtlib.io.Subset y 27600 2400 @N 1001 16 7 4 1111_B 1.0E-8
+hades.models.rtlib.io.Subset x 31200 2400 @N 1001 16 3 0 1110_B 1.0E-8
+hades.models.rtlib.arith.ShiftLeft SHL 5400 11400 @N 1001 16 1 0000000000011110_B 1.0E-8
+hades.models.rtlib.io.Merge i8 5400 9600 @N 1001 16 12 4 0000000000001111_B 1.0E-8
+hades.models.rtlib.io.Subset opc2 8400 4800 @N 1001 16 11 8 1111_B 1.0E-8
+hades.models.rtlib.io.SmallConstant i6 4200 6000 @N 1001 12 000000000000_B 1.0E-8
+hades.models.rtlib.io.Subset opc1 16200 3600 @N 1001 16 11 0 111111111110_B 1.0E-8
+hades.models.rtlib.io.OpinVector IMM4 6000 14400 @N 1001 16 1.0E-9 1
+[end components]
+[signals]
+hades.signals.SignalStdLogicVector n9 12 2 opc1 Y i5 B 3 2 14400 9600 14400 9000 2 14400 9000 16200 9000 2 16200 9000 16200 4200 0 
+hades.signals.SignalStdLogic1164 n8 2 i4 Y i3 A 1 2 13200 6000 13200 4200 0 
+hades.signals.SignalStdLogicVector n7 8 2 i0 Y STW_XA A 2 2 20400 8400 20400 10200 2 20400 10200 21600 10200 0 
+hades.signals.SignalStdLogicVector n6 4 2 i1 Y i0 B 1 2 21000 7200 21000 7800 0 
+hades.signals.SignalStdLogicVector n5 4 2 opc Y i0 A 1 2 19800 3600 19800 7800 0 
+hades.signals.SignalStdLogicVector n4 5 2 c Y ALU_OPC A 2 2 24000 4200 24000 6600 2 24000 6600 25200 6600 0 
+hades.signals.SignalStdLogicVector n3 4 2 i3 Y i5 A 2 2 13200 9600 13200 8400 2 13200 8400 13200 7800 0 
+hades.signals.SignalStdLogicVector n2 16 8 IR Y y A x A opc A opc1 A i4 A opc2 A c A 15 2 31200 1200 27600 1200 2 24000 1200 27600 1200 2 27600 1200 27600 2400 2 31200 1200 31200 2400 2 19800 1200 24000 1200 2 24000 1200 24000 2400 2 16200 1200 19800 1200 2 19800 1200 19800 3000 2 13200 1200 16200 1200 2 16200 1200 16200 3600 2 8400 1200 13200 1200 2 13200 1200 13200 3600 2 4800 1200 8400 1200 2 8400 1200 8400 4800 2 24000 2400 24000 3600 6 27600 1200 8400 1200 19800 1200 13200 1200 24000 1200 16200 1200 
+hades.signals.SignalStdLogicVector n1 4 2 y Y AY A 2 2 28800 5400 27600 5400 2 27600 5400 27600 3000 0 
+hades.signals.SignalStdLogicVector n0 4 2 x Y AX A 2 2 31200 3000 31200 4200 2 31200 4200 32400 4200 0 
+hades.signals.SignalStdLogicVector n14 16 2 SHL Y IMM4 A 2 2 6000 14400 5400 14400 2 5400 14400 5400 13200 0 
+hades.signals.SignalStdLogicVector n13 4 2 opc2 Y i8 B 3 2 6000 9600 6000 9000 2 6000 9000 8400 9000 2 8400 9000 8400 5400 0 
+hades.signals.SignalStdLogicVector n12 16 2 i8 Y SHL A 1 2 5400 11400 5400 10200 0 
+hades.signals.SignalStdLogicVector n11 12 2 i6 Y i8 A 1 2 4800 9600 4800 7200 0 
+hades.signals.SignalStdLogicVector n10 16 2 i5 Y IMM12 A 2 2 13800 10200 13800 11400 2 13800 11400 14400 11400 0 
+[end signals]
+[end]

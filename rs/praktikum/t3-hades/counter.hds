@@ -1,0 +1,27 @@
+# hades.models.Design file
+#  
+[name] Counter16bit
+[components]
+hades.models.rtlib.io.IpinVector limit 9600 1200 @N 1001 16 0000000000100001_B 1.0E-9 0
+hades.models.rtlib.io.OpinVector count 22800 15600 @N 1001 16 1.0E-9 1
+hades.models.io.Ipin enable 6000 10200 @N 1001 1
+hades.models.io.Ipin nclear 6000 15000 @N 1001 0
+hades.models.rtlib.compare.CompareEqual i6 9600 3000 @N 1001 16 X 1.0E-8
+hades.models.rtlib.io.Constant i5 12000 5400 @N 1001 16 0000000000000000_B 1.0E-8
+hades.models.rtlib.muxes.Mux21 i4 14400 8400 @N 1001 16 UUUUUUUUUUUUUUUU_B 1.0E-8
+hades.models.rtlib.arith.Incr i2 16200 5400 @N 1001 16 0000000000001110_B 1.0E-8
+hades.models.io.Ipin clk 6000 12600 @N 1001 0
+hades.models.rtlib.register.RegRE i1 14400 11400 @N 1001 16 0000000000001101_B 1.0E-8
+[end components]
+[signals]
+hades.signals.SignalStdLogic1164 n8 2 i6 Y i4 S 2 2 11400 4800 11400 9600 2 11400 9600 14400 9600 0 
+hades.signals.SignalStdLogicVector n7 16 2 limit Y i6 A 2 2 9600 1200 10800 1200 2 10800 1200 10800 3000 0 
+hades.signals.SignalStdLogic1164 n6 2 enable Y i1 ENA 3 2 6000 10200 8400 10200 2 8400 10200 8400 12000 2 8400 12000 14400 12000 0 
+hades.signals.SignalStdLogic1164 n5 2 clk Y i1 CLK 1 2 6000 12600 14400 12600 0 
+hades.signals.SignalStdLogic1164 n4 2 nclear Y i1 NR 3 2 14400 13200 8400 13200 2 8400 13200 8400 15000 2 8400 15000 6000 15000 0 
+hades.signals.SignalStdLogicVector n3 16 4 i1 Q count A i6 B i2 A 8 2 16200 13800 16200 15600 2 21600 15600 22800 15600 2 16200 15600 21600 15600 2 21600 15600 21600 1200 2 18000 1200 12000 1200 2 12000 1200 12000 3000 2 21600 1200 18000 1200 2 18000 1200 18000 5400 2 21600 15600 18000 1200 
+hades.signals.SignalStdLogicVector n2 16 2 i5 Y i4 A1 1 2 13800 7200 15600 8400 0 
+hades.signals.SignalStdLogicVector n1 16 2 i2 Y i4 A0 1 2 18000 7200 16800 8400 0 
+hades.signals.SignalStdLogicVector n0 16 2 i4 Y i1 D 1 2 16200 10200 16200 11400 0 
+[end signals]
+[end]

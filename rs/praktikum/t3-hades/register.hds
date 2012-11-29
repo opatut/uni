@@ -1,0 +1,52 @@
+# hades.models.Design file
+#  
+[name] unnamed
+[components]
+hades.models.io.Ipin Enable1 7200 18600 @N 1001 null U
+hades.models.rtlib.io.OpinVector OutY 20400 39000 @N 1001 16 1.0E-9 0
+hades.models.rtlib.io.IpinVector SelY 7800 34200 @N 1001 4 0000_B 1.0E-9 0
+hades.models.io.Ipin nReset1 7200 21000 @N 1001 null U
+hades.models.rtlib.io.IpinVector SelX 7800 33000 @N 1001 4 0001_B 1.0E-9 0
+hades.models.io.Ipin Data 6600 6600 @N 1001 null U
+hades.models.rtlib.io.OpinVector OutX1 20400 36600 @N 1001 16 1.0E-9 0
+hades.models.io.Ipin Clock 6600 7800 @N 1001 null U
+hades.models.io.Opin Q 18000 6600 @N 1001 5.0E-9
+hades.models.io.Opin Q1 18000 11400 @N 1001 5.0E-9
+hades.models.rtlib.register.RegRE Reg 10800 18600 @N 1001 16 XXXXXXXXXXXXXXXX_B 1.0E-8
+hades.models.io.Ipin Data1 6600 11400 @N 1001 null U
+hades.models.rtlib.io.OpinVector i4 18000 22200 @N 1001 16 1.0E-9 0
+hades.models.rtlib.memory.RegBank i3 10800 28800 @N 1001 16 16 
+hades.models.io.Ipin nReset 6600 13800 @N 1001 null U
+hades.models.rtlib.io.IpinVector i2 7200 16200 @N 1001 16 0000000000000100_B 1.0E-9 0
+hades.models.flipflops.Dff i1 10800 6000 @N 1001 5.0E-9 4.0E-9 3.0E-9
+hades.models.flipflops.Dffre i0 10800 9600 @N 1001 5.0E-9 4.0E-9 3.0E-9
+hades.models.io.Ipin Clock3 7800 30000 @N 1001 null U
+hades.models.io.Ipin nEnable 7800 31200 @N 1001 null U
+hades.models.io.Ipin Clock2 7200 19800 @N 1001 null U
+hades.models.io.Ipin Clock1 6600 12600 @N 1001 null U
+hades.models.io.Ipin Enable 6600 10200 @N 1001 null U
+hades.models.rtlib.io.IpinVector DataIn 7200 25800 @N 1001 16 0000000000000110_B 1.0E-9 0
+[end components]
+[signals]
+hades.signals.SignalStdLogic1164 n9 2 Enable1 Y Reg ENA 1 2 7200 18600 10800 19200 0 
+hades.signals.SignalStdLogicVector n8 16 2 i2 Y Reg D 2 2 7200 16200 12600 16200 2 12600 16200 12600 18600 0 
+hades.signals.SignalStdLogic1164 n7 2 i0 Q Q1 A 1 2 14400 11400 18000 11400 0 
+hades.signals.SignalStdLogic1164 n6 2 nReset Y i0 NR 1 2 6600 13800 10800 13800 0 
+hades.signals.SignalStdLogic1164 n5 2 Clock1 Y i0 C 1 2 6600 12600 10800 12600 0 
+hades.signals.SignalStdLogicVector n19 16 2 i3 DY OutY A 2 2 13200 34800 13200 39000 2 13200 39000 20400 39000 0 
+hades.signals.SignalStdLogic1164 n4 2 Data1 Y i0 D 1 2 6600 11400 10800 11400 0 
+hades.signals.SignalStdLogicVector n18 16 2 i3 DX OutX1 A 2 2 15600 34800 15600 36600 2 15600 36600 20400 36600 0 
+hades.signals.SignalStdLogic1164 n3 2 Enable Y i0 E 1 2 6600 10200 10800 10200 0 
+hades.signals.SignalStdLogicVector n17 4 2 SelY Y i3 AY 3 2 7800 34200 9600 34200 2 9600 34200 9600 32400 2 9600 32400 10800 32400 0 
+hades.signals.SignalStdLogic1164 n2 2 i1 Q Q A 1 2 14400 6600 18000 6600 0 
+hades.signals.SignalStdLogicVector n16 4 3 SelX Y i3 AZ i3 AX 4 2 9000 33000 10800 33000 2 7800 33000 9000 33000 2 9000 33000 9000 31800 2 9000 31800 10800 31800 1 9000 33000 
+hades.signals.SignalStdLogic1164 n1 2 Clock Y i1 C 1 2 6600 7800 10800 7800 0 
+hades.signals.SignalStdLogic1164 n15 2 Clock3 Y i3 CLK 1 2 7800 30000 10800 30600 0 
+hades.signals.SignalStdLogic1164 n0 2 Data Y i1 D 1 2 6600 6600 10800 6600 0 
+hades.signals.SignalStdLogic1164 n14 2 nEnable Y i3 nWE 1 2 7800 31200 10800 31200 0 
+hades.signals.SignalStdLogicVector n13 16 2 DataIn Y i3 DZ 2 2 7200 25800 15600 25800 2 15600 25800 15600 28800 0 
+hades.signals.SignalStdLogicVector n12 16 2 Reg Q i4 A 2 2 12600 21000 12600 22200 2 12600 22200 18000 22200 0 
+hades.signals.SignalStdLogic1164 n11 2 nReset1 Y Reg NR 1 2 7200 21000 10800 20400 0 
+hades.signals.SignalStdLogic1164 n10 2 Clock2 Y Reg CLK 1 2 7200 19800 10800 19800 0 
+[end signals]
+[end]

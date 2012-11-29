@@ -1,0 +1,40 @@
+# hades.models.Design file
+#  
+[name] RTL-Komponenten
+[components]
+hades.models.rtlib.register.RegRE Y 21600 10800 @N 1001 16 0000000000001010_B 1.0E-8
+hades.models.rtlib.register.RegRE X 10800 10800 @N 1001 16 0000000000000001_B 1.0E-8
+hades.models.rtlib.muxes.TriBuf C_tri 29400 4800 @N 1001 16 ZZZZZZZZZZZZZZZZ_B 1.0E-8
+hades.models.rtlib.io.OpinVector y_out_plus_1 26400 19800 @N 1001 16 1.0E-9 0
+hades.models.io.Ipin clk 8400 14400 @N 1001  0
+hades.models.io.Ipin C_enable 27600 5400 @N 1001  0
+hades.models.io.Ipin I_enable 8400 5400 @N 1001  0
+hades.models.io.PowerOnReset nreset 8400 16200 @N 1001 0.0050 0.0050 
+hades.models.rtlib.io.IpinVector J 19200 3600 @N 1001 16 0000000000000001_B 1.0E-9 0
+hades.models.rtlib.io.IpinVector I 8400 3600 @N 1001 16 0000000000000100_B 1.0E-9 0
+hades.models.rtlib.muxes.TriBuf J_tri 21000 4800 @N 1001 16 0000000000000001_B 1.0E-8
+hades.models.rtlib.io.OpinVector y_out 26400 16200 @N 1001 16 1.0E-9 1
+hades.models.rtlib.arith.Incr i2 21600 16800 @N 1001 16 0000000000001011_B 1.0E-8
+hades.models.io.Ipin X_enable 8400 11400 @N 1001  0
+hades.models.io.Ipin Y_enable 19800 11400 @N 1001  0
+hades.models.io.Ipin J_enable 19200 5400 @N 1001  0
+hades.models.rtlib.io.OpinVector dbus_out 31200 8400 @N 1001 16 1.0E-9 0
+hades.models.rtlib.muxes.TriBuf I_tri 10200 4800 @N 1001 16 ZZZZZZZZZZZZZZZZ_B 1.0E-8
+hades.models.rtlib.io.OpinVector x_out 14400 19200 @N 1001 16 1.0E-9 0
+[end components]
+[signals]
+hades.signals.SignalStdLogic1164 i_enable 2 I_enable Y I_tri S 1 2 8400 5400 10200 5400 0 
+hades.signals.SignalStdLogicVector y_out 16 3 Y Q y_out A i2 A 3 2 23400 13200 23400 16200 2 23400 16200 26400 16200 2 23400 16200 23400 16800 1 23400 16200 
+hades.signals.SignalStdLogic1164 y_enable 2 Y_enable Y Y ENA 1 2 19800 11400 21600 11400 0 
+hades.signals.SignalStdLogicVector x_out 16 2 X Q x_out A 2 2 14400 19200 12600 19200 2 12600 19200 12600 13200 0 
+hades.signals.SignalStdLogic1164 clk 3 clk Y X CLK Y CLK 6 2 10800 12000 9600 12000 2 9600 12000 9600 14400 2 9600 14400 8400 14400 2 9600 14400 20400 14400 2 20400 14400 20400 12000 2 20400 12000 21600 12000 1 9600 14400 
+hades.signals.SignalStdLogic1164 nreset 3 nreset nreset X NR Y NR 7 2 10800 12600 10200 12600 2 10200 12600 10200 15000 2 10200 15000 21000 15000 2 21000 15000 21000 12600 2 21000 12600 21600 12600 2 10200 15000 10200 16200 2 8400 16200 10200 16200 1 10200 15000 
+hades.signals.SignalStdLogic1164 c_enable 2 C_enable Y C_tri S 1 2 27600 5400 29400 5400 0 
+hades.signals.SignalStdLogicVector j_out 16 2 J Y J_tri A 2 2 21600 4800 21600 3600 2 21600 3600 19200 3600 0 
+hades.signals.SignalStdLogicVector DBUS 16 6 C_tri Y I_tri Y J_tri Y Y D X D dbus_out A 11 2 30000 6000 30000 8400 2 23400 10800 23400 8400 2 12600 10800 12600 8400 2 10800 6000 10800 8400 2 10800 8400 6000 8400 2 21600 8400 21600 6000 2 10800 8400 12600 8400 2 21600 8400 12600 8400 2 21600 8400 23400 8400 2 23400 8400 30000 8400 2 30000 8400 31200 8400 5 30000 8400 10800 8400 21600 8400 12600 8400 23400 8400 
+hades.signals.SignalStdLogicVector i_out 16 2 I Y I_tri A 2 2 10800 4800 10800 3600 2 10800 3600 8400 3600 0 
+hades.signals.SignalStdLogic1164 x_enable 2 X_enable Y X ENA 1 2 8400 11400 10800 11400 0 
+hades.signals.SignalStdLogicVector n0 16 3 i2 Y C_tri A y_out_plus_1 A 7 2 23400 19800 23400 21600 2 23400 21600 39600 21600 2 39600 21600 39600 3000 2 39600 3000 30000 3000 2 30000 3000 30000 4800 2 23400 18600 23400 19800 2 23400 19800 26400 19800 1 23400 19800 
+hades.signals.SignalStdLogic1164 j_enable 2 J_enable Y J_tri S 1 2 19200 5400 21000 5400 0 
+[end signals]
+[end]

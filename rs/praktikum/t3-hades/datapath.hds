@@ -1,0 +1,39 @@
+# hades.models.Design file
+#  
+[name] datapath-with-immediates
+[components]
+hades.models.io.Ipin C_enable 17400 18600 @N 1001 null 1
+hades.models.io.Ipin ALU_enable 7200 14400 @N 1001 null 0
+hades.models.flipflops.Dffe i3 18600 17400 @N 1001 5.0E-9 5.0E-9 5.0E-9
+hades.models.io.Ipin clk 7200 3000 @N 1001 null 0
+hades.models.rtlib.muxes.TriBuf alu_buffer 13800 15600 @N 1001 16 ZZZZZZZZZZZZZZZZ_B 1.0E-8
+hades.models.rtlib.memory.RegBank REGS\u005b15:0\u005d 10800 3600 @N 1001 16 16 
+hades.models.rtlib.muxes.TriBuf ext_buffer 8400 20400 @N 1001 16 ZZZZZZZZZZZZZZZZ_B 1.0E-8
+hades.models.rtlib.io.IpinVector AY 7200 8400 @N 1001 4 0000_B 1.0E-9 1
+hades.models.io.Ipin ext_enable 7200 21000 @N 1001 null 0
+hades.models.rtlib.io.IpinVector AX 7200 6600 @N 1001 4 0011_B 1.0E-9 1
+hades.models.io.Ipin nWE 7200 4200 @N 1001 null 1
+hades.models.rtlib.io.IpinVector ext_in 7200 19800 @N 1001 16 0000000000000110_B 1.0E-9 1
+hades.models.rtlib.io.IpinVector ALU_OPC 7200 13200 @N 1001 5 10100_B 1.0E-9 1
+hades.models.rtlib.io.OpinVector dbus_out 28200 22800 @N 1001 16 1.0E-9 1
+hades.models.io.Opin c_out 28200 18000 @N 1001 5.0E-9
+hades.models.rtlib.arith.DcoreALU2 ALU 12000 12000 @N 1001 16 1.0E-8 28 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27
+[end components]
+[signals]
+hades.signals.SignalStdLogic1164 ALU_enable 2 ALU_enable Y alu_buffer S 3 2 13800 16200 10200 16200 2 10200 16200 10200 14400 2 10200 14400 7200 14400 0 
+hades.signals.SignalStdLogic1164 alu_cout 2 ALU COUT i3 D 4 2 13800 14400 13800 15000 2 13800 15000 18000 15000 2 18000 15000 18000 18000 2 18000 18000 18600 18000 0 
+hades.signals.SignalStdLogic1164 clk 3 clk Y REGS[15:0] CLK i3 C 5 2 10800 5400 9600 5400 2 9600 5400 9600 3000 2 9600 3000 7200 3000 2 9600 5400 9600 19200 2 9600 19200 18600 19200 1 9600 5400 
+hades.signals.SignalStdLogic1164 c_enable 2 C_enable Y i3 E 1 2 17400 18600 18600 18600 0 
+hades.signals.SignalStdLogicVector DBUS 16 4 alu_buffer Y ext_buffer Y REGS[15:0] DZ dbus_out A 11 2 15600 3600 15600 3000 2 15600 3000 16200 2400 2 16200 2400 24600 2400 2 14400 16800 14400 22800 2 9000 22800 7200 22800 2 25200 22800 28200 22800 2 14400 22800 25200 22800 2 25200 22800 25200 3000 2 25200 3000 24600 2400 2 14400 22800 9000 22800 2 9000 22800 9000 21600 3 9000 22800 25200 22800 14400 22800 
+hades.signals.SignalStdLogicVector AY 4 3 AY Y REGS[15:0] AY ALU IMM 6 2 10800 7200 7800 7200 2 7800 7200 7800 8400 2 7800 8400 7200 8400 2 7800 8400 7800 11400 2 7800 11400 12600 11400 2 12600 11400 12600 12000 1 7800 8400 
+hades.signals.SignalStdLogicVector AX 4 3 AX Y REGS[15:0] AX REGS[15:0] AZ 4 2 10200 6600 7200 6600 2 10800 6600 10200 6600 2 10200 6600 10200 7800 2 10200 7800 10800 7800 1 10200 6600 
+hades.signals.SignalStdLogic1164 n2 2 ext_enable Y ext_buffer S 1 2 7200 21000 8400 21000 0 
+hades.signals.SignalStdLogicVector n1 16 2 REGS[15:0] DY ALU B 1 2 13200 12000 13200 9600 0 
+hades.signals.SignalStdLogicVector ALU_out 16 2 ALU Y alu_buffer A 1 2 14400 14400 14400 15600 0 
+hades.signals.SignalStdLogic1164 nWE 2 nWE Y REGS[15:0] nWE 4 2 10800 6000 9000 6000 2 9000 6000 7800 6000 2 7800 6000 7800 4200 2 7800 4200 7200 4200 0 
+hades.signals.SignalStdLogicVector n0 16 2 REGS[15:0] DX ALU A 1 2 15600 12000 15600 9600 0 
+hades.signals.SignalStdLogicVector ext_in 16 2 ext_in Y ext_buffer A 2 2 9000 20400 9000 19800 2 9000 19800 7200 19800 0 
+hades.signals.SignalStdLogicVector ALU.opcode 5 2 ALU_OPC Y ALU OPC 1 2 12000 13200 7200 13200 0 
+hades.signals.SignalStdLogic1164 c_out 3 i3 Q ALU CIN c_out A 5 2 22200 18000 22800 18000 2 22800 18000 22800 10800 2 22800 10800 16200 10800 2 16200 10800 16200 12000 2 22800 18000 28200 18000 1 22800 18000 
+[end signals]
+[end]

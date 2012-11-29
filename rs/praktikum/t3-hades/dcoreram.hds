@@ -1,0 +1,21 @@
+# hades.models.Design file
+#  
+[name] unnamed
+[components]
+hades.models.io.Ipin i2 7200 5400 @N 1001 0
+hades.models.mcore.DcoreRAM i0 9600 3600 @N 1001 1024 16 0 /hades/test-br-init-ram-with-irq.rom
+hades.models.io.Ipin nOE 7200 7800 @N 1001 1
+hades.models.io.Ipin nWE 7200 6600 @N 1001 1
+hades.models.io.Ipin nCS 7200 5400 @N 1001 0
+hades.models.rtlib.io.IpinVector addr 8400 3600 @N 1001 10 0000000000_B 1.0E-9 0
+hades.models.rtlib.io.IpinVector datain 9600 1200 @N 1001 16 0000000000000100_B 1.0E-9 0
+[end components]
+[signals]
+hades.signals.SignalStdLogicVector n5 10 2 addr Y i0 A 1 2 9600 6000 8400 3600 0 
+hades.signals.SignalStdLogic1164 n4 2 i2 Y i0 nCS 1 2 9600 5400 7200 5400 0 
+hades.signals.SignalStdLogic1164 n3 2 nWE Y i0 nWE 1 2 9600 6600 7200 6600 0 
+hades.signals.SignalStdLogic1164 n2 2 nOE Y i0 nOE 1 2 7200 7800 9600 7200 0 
+hades.signals.SignalStdLogicVector n1 16 1 i0 DOUT 2 2 13200 8400 13200 9600 2 13200 9600 18000 9600 0 
+hades.signals.SignalStdLogicVector n0 16 2 datain Y i0 DIN 2 2 13200 3600 13200 1200 2 13200 1200 9600 1200 0 
+[end signals]
+[end]
