@@ -1,0 +1,238 @@
+\newcommand{\authorinfo}{Paul Bienkowski, Hans Ole Hatzel}
+\newcommand{\titleinfo}{RS 06 (HA) zum 30.11.2012}
+
+% PREAMBLE ===============================================================
+
+\documentclass[a4paper,10pt]{scrartcl}
+\usepackage[german,ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{enumerate}
+\usepackage{array}
+\usepackage{listings}
+\usepackage{fullpage}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{tikz}
+\usepackage{pgffor}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+
+\author{\authorinfo}
+\title{\titleinfo}
+\date{\today}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\authorinfo}
+\fancyhead[R]{\titleinfo}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+\renewcommand{\headheight}{12pt}
+\renewcommand{\headsep}{12pt}
+
+\begin{document}
+\setcounter{secnumdepth}{0}
+\maketitle
+
+% allow huuuuge matrix
+\setcounter{MaxMatrixCols}{31}
+
+% DOCUMENT ===============================================================
+
+\tikzstyle{kvloop}=[draw, opacity=1, line width=0.4mm, rounded corners=2mm]
+
+\begin{enumerate}
+    \item[\textbf{1.}]
+    \begin{enumerate}
+        \item[a)]
+            Die Funktion liegt bereits als KNF vor:
+
+            $$\begin{array}{rclr}
+                f(x) &=& (x_3 \vee \overline{x_2}) \wedge (x_2 \vee \overline{x_1}) & \text{(KNF)}\\
+                &=& x_2 x_3 \vee \overline{x_1}\;\overline{x_2} & \text{(DNF)}\\
+                &=& 1 \oplus x_1 \oplus x_2 \oplus x_1x_2 \oplus x_2x_3 & \text{(Reed-Muller-Form)}\\
+            \end{array}$$
+
+        \item[b)]
+            Die Funktion liegt bereits nahezu als Reed-Muller-Form vor:
+
+            $$\begin{array}{rclr}
+                g(x) &=& x_3 \oplus x_1 & \text{(Reed-Muller-Form)}\\
+                &=& \overline{x_3}x_1 \vee x_3\overline{x_1} & \text{(DNF)}\\
+                &=& (x_3 \vee \overline{x_1}) \wedge (x_1 \vee \overline{x_3}) & \text{(KNF)}\\
+            \end{array}$$
+
+    \end{enumerate}
+
+    \item[\textbf{2.}]
+    \begin{enumerate}
+        \item[a)]
+            \begin{itemize}
+                \item
+                    Da AND(a, a) immer a ergibt, muss NAND die Negation von a sein:
+
+                    {\centering
+                    \textbf{NOT}(a) = NAND(a, a)
+
+                    \begin{tabular}[t]{c||c|c}
+                        a & NAND(a, a) & NOT(a) \\
+                        \hline
+                        0 & 1 & 1 \\
+                        1 & 0 & 0
+                    \end{tabular}\\
+                    }
+
+                \item
+                    Um AND zu erreichen, kann ebenso das Inverse der Ausgabe von NAND verwendet werden:
+
+                    {\centering
+                    \textbf{AND}(a, b) = NOT(NAND(a, b)) = NAND(NAND(a, b), NAND(a, b))
+
+                    \begin{tabular}[t]{c|c||c|c|c}
+                        a & b & AND(a, b) & NAND(a, b) & NOT(NAND(a, b)) \\
+                        \hline
+                        0 & 0 & 0 & 1 & 0 \\
+                        0 & 1 & 0 & 1 & 0 \\
+                        1 & 0 & 0 & 1 & 0 \\
+                        1 & 1 & 1 & 0 & 1
+                    \end{tabular}\\
+                    }
+
+                \item
+                    Nach de Morgan gilt:
+
+                    {
+                    \centering
+                    NOT(\textbf{OR}(a, b)) = AND(NOT(A), NOT(B))\\
+                    $\Downarrow$\\
+                    \textbf{OR}(A, B) = NAND(NOT(A), NOT(B))\\
+                    $\Downarrow$\\
+                    \textbf{OR}(A, B) = NAND(NAND(A, A), NAND(B, B))\\
+                    }
+            \end{itemize}
+
+        \item[b)]
+            Es sei $a \barwedge b$ die Schreibweise für NAND(a, b).
+
+            $$\begin{array}{rcl}
+                f(x_3, x_2, x_1)
+                &=& (\overline{x_3}(\overline{x_2} \vee x_1)) \vee (x_1 ( \overline{x_2} \vee x_1 ) )\\
+                &=& (\overline{x_2} \vee x_1) \wedge (\overline{x_3} \vee x_1)\\
+                &=& x_1 \wedge (\overline{x_2} \vee \overline{x_3})\\
+                &=& x_1 \wedge (x_2 \barwedge x_3)\\
+                &=& \big(x_1 \barwedge (x_2 \barwedge x_3)\big) \barwedge \big(x_1 \barwedge (x_2 \barwedge x_3)\big)
+            \end{array}$$
+
+    \end{enumerate}
+
+    \newpage
+    \item[\textbf{3.}]
+    \begin{enumerate}
+        \item[a)]
+            Funktionstabelle für A und B:
+
+            \begin{center}
+                \begin{tabular}[t]{c||c|c|c|c||c|c}
+                    $x$ & $x_4$ & $x_3$ & $x_2$ & $x_1$ & $A$ & $B$\\
+                    \hline
+                    0 & 0 & 0 & 0 & 0 & 1 & 1 \\
+                    1 & 0 & 0 & 0 & 1 & 0 & 1 \\
+                    2 & 0 & 0 & 1 & 0 & 1 & 1 \\
+                    3 & 0 & 0 & 1 & 1 & 1 & 1 \\
+                    4 & 0 & 1 & 0 & 0 & 0 & 1 \\
+                    5 & 0 & 1 & 0 & 1 & 1 & 0 \\
+                    6 & 0 & 1 & 1 & 0 & 1 & 0 \\
+                    7 & 0 & 1 & 1 & 1 & 1 & 1 \\
+                    8 & 1 & 0 & 0 & 0 & 1 & 1 \\
+                    9 & 1 & 0 & 0 & 1 & 1 & 1
+                \end{tabular}
+            \end{center}
+
+            Karnaugh-Veitch-Diagramme:
+
+            \begin{minipage}[c]{0.4\textwidth}
+                \centering
+                \begin{tikzpicture}[x=7mm, y=7mm, font=\sffamily\small, label distance=-1.5mm]
+                    \draw[step=1] (0, 0) grid (4,4);
+
+                    \draw (1, 4.3) -- (3, 4.3) node[midway,label=above:x0] (x0) {};
+                    \draw (2, -0.3) -- (4, -0.3) node[midway,label=below:x1] (x1) {};
+                    \draw (-0.3, 1) -- (-0.3, 3) node[midway,label=left:x2] (x2) {};
+                    \draw (4.3, 0) -- (4.3, 2) node[midway,label=right:x3] (x3) {};
+
+                    \node[] at (0.5, 0.5) {1};
+                    \node[] at (1.5, 0.5) {1};
+                    \node[] at (2.5, 0.5) {X};
+                    \node[] at (3.5, 0.5) {X};
+                    \node[] at (0.5, 1.5) {X};
+                    \node[] at (1.5, 1.5) {X};
+                    \node[] at (2.5, 1.5) {X};
+                    \node[] at (3.5, 1.5) {X};
+                    \node[] at (0.5, 2.5) {0};
+                    \node[] at (1.5, 2.5) {1};
+                    \node[] at (2.5, 2.5) {1};
+                    \node[] at (3.5, 2.5) {1};
+                    \node[] at (0.5, 3.5) {1};
+                    \node[] at (1.5, 3.5) {0};
+                    \node[] at (2.5, 3.5) {1};
+                    \node[] at (3.5, 3.5) {1};
+
+                    \draw[kvloop, draw=Red] (0.1, 0.1) rectangle (3.9, 1.9);
+                    \draw[kvloop, draw=LimeGreen] (2.2, 0.2) rectangle (3.8, 3.8);0.6
+                    \draw[kvloop, draw=Cyan] (1.1, 1.1) rectangle (2.9, 2.9);
+
+                    \draw[kvloop, draw=Dandelion]
+                        (0, 3.1) -- (0.9, 3.1) -- (0.9, 4)
+                        (0, 0.9) -- (0.9, 0.9) -- (0.9, 0)
+                        (3.1, 0) -- (3.1, 0.9) -- (4, 0.9)
+                        (3.1, 4) -- (3.1, 3.1) -- (4, 3.1);
+                \end{tikzpicture}
+                $$A(x) = \textcolor{Red}{x_3} \vee \textcolor{LimeGreen}{x_1} \vee \textcolor{Cyan}{x_2x_0} \vee \textcolor{Dandelion}{\overline{x_2}\;\overline{x_0}}$$
+            \end{minipage}
+            \hspace{1cm}
+            \begin{minipage}[c]{0.4\textwidth}
+                \centering
+                \begin{tikzpicture}[x=7mm, y=7mm, font=\sffamily\small, label distance=-1.5mm]
+                    \draw[step=1] (0, 0) grid (4,4);
+
+                    \draw (1, 4.3) -- (3, 4.3) node[midway,label=above:x0] (x0) {};
+                    \draw (2, -0.3) -- (4, -0.3) node[midway,label=below:x1] (x1) {};
+                    \draw (-0.3, 1) -- (-0.3, 3) node[midway,label=left:x2] (x2) {};
+                    \draw (4.3, 0) -- (4.3, 2) node[midway,label=right:x3] (x3) {};
+
+                    \node[] at (0.5, 0.5) {1};
+                    \node[] at (1.5, 0.5) {1};
+                    \node[] at (2.5, 0.5) {X};
+                    \node[] at (3.5, 0.5) {X};
+                    \node[] at (0.5, 1.5) {X};
+                    \node[] at (1.5, 1.5) {X};
+                    \node[] at (2.5, 1.5) {X};
+                    \node[] at (3.5, 1.5) {X};
+                    \node[] at (0.5, 2.5) {1};
+                    \node[] at (1.5, 2.5) {0};
+                    \node[] at (2.5, 2.5) {1};
+                    \node[] at (3.5, 2.5) {0};
+                    \node[] at (0.5, 3.5) {1};
+                    \node[] at (1.5, 3.5) {1};
+                    \node[] at (2.5, 3.5) {1};
+                    \node[] at (3.5, 3.5) {1};
+
+                    \draw[kvloop, draw=Dandelion]
+                        (0.1, 0) -- (0.1, 0.9) -- (3.9, 0.9) -- (3.9, 0)
+                        (0.1, 4) -- (0.1, 3.1) -- (3.9, 3.1) -- (3.9, 4);
+                    \draw[kvloop, draw=LimeGreen] (2.2, 0.1) rectangle (2.8, 3.9);
+                    \draw[kvloop, draw=Cyan] (0.2, 0.1) rectangle (0.8, 3.9);
+                \end{tikzpicture}
+                $$B(x) = \textcolor{Dandelion}{\overline{x_2}} \vee \textcolor{Cyan}{\overline{x_1}\;\overline{x_0}} \vee \textcolor{LimeGreen}{x_1x_0}$$
+            \end{minipage}
+
+    \end{enumerate}
+
+\end{enumerate}
+
+\end{document}
