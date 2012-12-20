@@ -65,21 +65,22 @@
     \item[\textbf{1.}]
     \begin{enumerate}
         \item[a)]
-            Die Funktion liegt bereits als KNF vor:
-
             $$\begin{array}{rclr}
-                f(x) &=& (x_3 \vee \oline{x_2}) \wedge (x_2 \vee \oline{x_1}) & \text{(KNF)}\\
-                &=& x_2 x_3 \vee \oline{x_1}\;\oline{x_2} & \text{(DNF)}\\
+                f(x)
+                &=& (\oline{x_3} \vee x_2 \vee \oline{x_1}) \wedge (\oline{x_3} \vee x_2 \vee x_1) \wedge
+                    (\oline{x_3} \vee \oline{x_2} \vee x_1) \wedge (x_3 \vee  \oline{x_2} \vee x_1) & \text{(KNF)}\\
+                &=& \oline{x_3}x_2x_1 \vee \oline{x_3}\;\oline{x_2}x_1 \vee \oline{x_3}\;\oline{x_2}\;\oline{x_1}
+                    \vee x_3x_2x_1 & \text{(DNF)}\\
                 &=& 1 \oplus x_1 \oplus x_2 \oplus x_1x_2 \oplus x_2x_3 & \text{(Reed-Muller-Form)}\\
             \end{array}$$
 
         \item[b)]
-            Die Funktion liegt bereits nahezu als Reed-Muller-Form vor:
-
             $$\begin{array}{rclr}
                 g(x) &=& x_3 \oplus x_1 & \text{(Reed-Muller-Form)}\\
-                &=& \oline{x_3}x_1 \vee x_3\oline{x_1} & \text{(DNF)}\\
-                &=& (x_3 \vee \oline{x_1}) \wedge (x_1 \vee \oline{x_3}) & \text{(KNF)}\\
+                &=& \oline{x_3}\;\oline{x_2}\;\oline{x_1} \wedge x_3x_2x_1 \wedge
+                    x_3\oline{x_2}x_1 \wedge \oline{x_3}x_2\oline{x_1} & \text{(DNF)}\\
+                &=& (\oline{x_3} \vee \oline{x_2} \vee \oline{x_1})\wedge (x_3 \vee x_2 \vee x_1)\wedge (x_3 \vee  \oline{x_2} \vee x_1)
+                    \wedge ( \oline{x_3} \vee x_2 \vee  \oline{x_1})  & \text{(KNF)}
             \end{array}$$
 
     \end{enumerate}

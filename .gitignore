@@ -9,3 +9,4 @@ stinewatch
 *.gz
 *.kate-swp
 *.backup
+*-converted-to.pdf
