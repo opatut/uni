@@ -44,15 +44,18 @@
 % DOCUMENT ===============================================================
 
 \definecolor{lightblue}{RGB}{120, 140, 255}
+\definecolor{pink}{RGB}{255, 0, 255}
 \tikzstyle{iogrid}=[step=1,draw=lightblue]
 \tikzstyle{ioaxis}=[draw=gray,thin]
 \tikzstyle{ioline}=[draw=black,very thick]
+\tikzstyle{ioline2}=[draw=Orange,very thick]
+\tikzstyle{ioundf}=[fill=Cyan,draw=none,opacity=0.5]
 
 \begin{enumerate}
     \item[\textbf{1.}]
+    Flussdiagramm:
 
     \begin{tikzpicture}[x=0.5cm,y=0.5cm]
-
         \foreach \y/\l in {0/C,-2/D,-4/Q (D-Latch),-6/Q (D-FF)} {
             \draw[iogrid] (0, \y) grid (18,{1+\y});
             \draw[ioaxis] (0, \y) -- (0,{1.4 + \y})
@@ -74,6 +77,16 @@
         \draw[ioline] (0, -2) -- (1, -2) -- (1, -1) -- (4, -1) -- (4, -2) -- (7, -2) -- (7, -1)
             -- (9, -1) -- (9, -2) -- (11, -2) -- (11, -1) -- (12, -1) -- (12, -2) -- (14, -2)
             -- (14, -1) -- (17, -1) -- (17, -2) -- (18, -2);
+
+        % D-Latch
+        \draw[ioline2] (0, -4) -- (3, -4) -- (3, -3) -- (6, -3) -- (6, -4) -- (9, -4)
+            -- (9, -3) -- (10, -3) -- (10, -4) -- (17, -4) -- (17, -3) -- (18, -3);
+
+        % D-Flipflip
+        \draw[ioline2] (0, -6) -- (3, -6) -- (3, -5) -- (6, -5) -- (6, -6) -- (9, -6)
+            -- (9, -5) -- (13, -5) (17,-5) -- (18, -5);
+        \draw[ioundf] (13, -5) rectangle (17, -6);
+
     \end{tikzpicture}
 
     \item[\textbf{2.}]
