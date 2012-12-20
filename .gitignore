@@ -10,3 +10,5 @@ stinewatch
 *.kate-swp
 *.backup
 *-converted-to.pdf
+*.fls
+*.fdb_latexmk

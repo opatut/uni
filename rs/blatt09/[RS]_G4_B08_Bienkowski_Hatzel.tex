@@ -92,8 +92,43 @@
     \item[\textbf{2.}]
         \begin{enumerate}
             \item[a)]
+                \begin{minipage}[t]{0.4\textwidth}
+                Flipflop mit Multiplexer:\\ 
+
+                    \begin{tabular}{|c|c|c||c|}
+                        \hline
+                        D & E & CLK & $Q^+$ \\ \hline
+                        * & * & 0   & $Q$ \\
+                        * & * & 1   & $Q$ \\
+                        * & 0 & $\uparrow$ & $Q$ \\
+                        * & 1 & $\uparrow$ & D \\
+                        \hline
+                    \end{tabular}
+
+                \end{minipage}
+                \begin{minipage}[t]{0.4\textwidth}
+                Flipflop mit Taktausblendung:\\
+
+                    \begin{tabular}{|c|c|c||c|}
+                        \hline
+                        D & E & CLK & $Q^+$ \\ \hline
+                        * & * & 0   & $Q$ \\
+                        * & 0 & *   & $Q$ \\
+                        * & 1 & $\uparrow$ & D \\
+                        * & $\uparrow$ & 1 & D \\
+                        \hline
+                    \end{tabular}
+                \end{minipage}
+
             \item[b)]
+                Solche Schaltungen werden in einem synchronen System wie etwa einer CPU als Buffer eingesetzt.
             \item[c)]
+                Schaltung 2 speichert auch bei Vorderflanke auf dem Enable-Eingang (E) falls der Clock-Eingang (C) aktiv ist.Das umgeht die Synchronisation über den Clock-Eingang während einer Taktphase.
+
+                Vorteil von Schalltung 2 ist, das weniger Bauelemente (AND-Gatter statt Multiplexer) benötigt werden.
+                Außerdem bietet die zweite Schaltung ein einfacheres Zeitverhalten, da das Ausgabesignal (Q) nicht als Eingang für den Multiplexer verwendet wird.
+
+                Schaltung 1 hat zudem eine höhere Vorlaufzeit da der Multiplexer das Datensignal verzögert. Im Gegensatz dazu hat Schaltung eine höhere Haltezeit, da hier der Takt durch das AND-Gatter minimal verzögert wird.
         \end{enumerate}
 
     \item[\textbf{3.}]
