@@ -1,0 +1,94 @@
+\newcommand{\authorinfo}{Paul Bienkowski, Hans Ole Hatzel}
+\newcommand{\titleinfo}{RS 09 (HA) zum 21.12.2012}
+
+% PREAMBLE ===============================================================
+
+\documentclass[a4paper,10pt]{scrartcl}
+\usepackage[german,ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{enumerate}
+\usepackage{array}
+\usepackage{listings}
+\usepackage{fullpage}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{tikz}
+\usepackage{circuitikz}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+
+\usetikzlibrary{calc}
+
+\author{\authorinfo}
+\title{\titleinfo}
+\date{\today}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\authorinfo}
+\fancyhead[R]{\titleinfo}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+\renewcommand{\headheight}{12pt}
+\renewcommand{\headsep}{12pt}
+
+\begin{document}
+\setcounter{secnumdepth}{0}
+\maketitle
+
+% DOCUMENT ===============================================================
+
+\definecolor{lightblue}{RGB}{120, 140, 255}
+\tikzstyle{iogrid}=[step=1,draw=lightblue]
+\tikzstyle{ioaxis}=[draw=gray,thin]
+\tikzstyle{ioline}=[draw=black,very thick]
+
+\begin{enumerate}
+    \item[\textbf{1.}]
+
+    \begin{tikzpicture}[x=0.5cm,y=0.5cm]
+
+        \foreach \y/\l in {0/C,-2/D,-4/Q (D-Latch),-6/Q (D-FF)} {
+            \draw[iogrid] (0, \y) grid (18,{1+\y});
+            \draw[ioaxis] (0, \y) -- (0,{1.4 + \y})
+                (-0.4, \y) -- (18.4, \y)
+                (-0.4, {1 + \y}) -> (0, {1 + \y});
+
+            \node[label=left:\tiny0] at (0, \y) {};
+            \node[label=left:\tiny1] at (0, {\y + 1}) {};
+
+            \node[label=left:\small\l] at (-1, {\y + 0.5}) {};
+        }
+
+        % C input
+        \draw[ioline] (0, 0) -- (2, 0) -- (2, 1) -- (3, 1) -- (3, 0) -- (5, 0) -- (5, 1)
+            -- (6, 1) -- (6, 0) -- (8, 0) -- (8, 1) -- (10, 1) -- (10, 0) -- (12, 0) -- (12, 1)
+            -- (15, 1) -- (15, 0) -- (16, 0) -- (16, 1) -- (18, 1);
+
+        % D input
+        \draw[ioline] (0, -2) -- (1, -2) -- (1, -1) -- (4, -1) -- (4, -2) -- (7, -2) -- (7, -1)
+            -- (9, -1) -- (9, -2) -- (11, -2) -- (11, -1) -- (12, -1) -- (12, -2) -- (14, -2)
+            -- (14, -1) -- (17, -1) -- (17, -2) -- (18, -2);
+    \end{tikzpicture}
+
+    \item[\textbf{2.}]
+        \begin{enumerate}
+            \item[a)]
+            \item[b)]
+            \item[c)]
+        \end{enumerate}
+
+    \item[\textbf{3.}]
+        \begin{enumerate}
+            \item[a)]
+            \item[b)]
+            \item[c)]
+        \end{enumerate}
+\end{enumerate}
+
+\end{document}
