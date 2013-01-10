@@ -1,0 +1,234 @@
+\newcommand{\authorinfo}{Paul Bienkowski, Hans Ole Hatzel}
+\newcommand{\titleinfo}{RS 10 (HA) zum 11.01.2013}
+
+% PREAMBLE ===============================================================
+
+\documentclass[a4paper,10pt]{scrartcl}
+\usepackage[german,ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{enumerate}
+\usepackage{array}
+\usepackage{listings}
+\usepackage{fullpage}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{tikz}
+\usepackage{circuitikz}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+
+\usetikzlibrary{calc,decorations.markings}
+
+\author{\authorinfo}
+\title{\titleinfo}
+\date{\today}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\authorinfo}
+\fancyhead[R]{\titleinfo}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+\renewcommand{\headheight}{12pt}
+\renewcommand{\headsep}{12pt}
+
+\newcommand*{\oline}[1]{\overline{\vphantom{A}#1}}
+
+\begin{document}
+\setcounter{secnumdepth}{0}
+\maketitle
+
+% DOCUMENT ===============================================================
+
+\begin{enumerate}
+    \item[\textbf{1.}]
+        \begin{enumerate}
+            \item[a)]
+                Der Zähler und der Hauptautomat haben jeweils eigene Zustände. Ein Zustand des Hauptautomaten weist solange auf sich selbst, wie der Zähler nicht bei 0 angekommen ist (wir nehmen einen rückwärtsgeschalteten Zähler an). Steht der Zähler auf 0, wird im Hauptautomaten zum nächsten Zustand geschaltet. Die Information, welcher Zustand im Hauptautomaten vorliegt, wird dann benutzt, um zum richtigen Einsprungspunkt (abhänging von der zu wartenden Zeit und der Taktung) zu wechseln, der Zähler fängt erneut an zu zählen, der Hauptautomat wartet wieder, bis der Zähler bei 0 angekommen ist.
+
+            \item[b)]
+                Da zwei verschiedene Zustände vorliegen, ist es nicht geklärt, welcher Zustand bei Wechsel als Eingabe für den anderen Automaten verwendet werden soll (undefiniertes Verhalten). Angenommen, eine kleine Verzögerung bewirkt, dass bei gleicher Taktung immer der Vorzustand des anderen Automaten als Eingang verwendet wird, sieht die Grünphase wie folgt aus:
+
+                \begin{itemize}
+                    \item Ausgangszustände: Zähler auf 0, Ampel auf Rot/Gelb
+                    \item Da der Zähler auf 0 stand, wechselt die Ampel auf Grün. Da die Ampel auf Rot/Gelb stand, wechselt der Zähler auf 3000 (im Beispiel der Aufgabe \emph{d)} 3 Sekunden).
+                    \item Der Zähler fängt an, 3 Sekunden lang zu zählen.
+                    \item Der Zähler wechselt auf 0, die Ampel bleibt auf Grün, da im Vorzustand der Zähler noch 1 war.
+                    \item Die Ampel schaltet auf Gelb. Der Zähler wechselt auf die für die Grünphase vorgesehene Dauer.
+                \end{itemize}
+
+                Bei solchem Verhalten könnte man dem Fehler entgegenwirken, indem man die Zeitabstände neu belegt, und jeweils den vorigen Zustand des Hauptautomaten mit einbezieht.
+
+            \item[c)]
+                In diesem Fall kommt es nicht vor, dass der eine Automat den Zustand des anderen abfragt, während sich dieser ändert. Damit steht immer ein genauer Zustand fest, was die Modellierung vereinfacht.
+
+                \begin{itemize}
+                    \item Ausgangszustände: Zähler auf 0, Ampel auf Rot/Gelb.
+                    \item Ampel auf Grün.
+                    \item Da die Ampel auf Grün steht, wechselt der Zähler auf die für die Grünphase vorgesehene Zeit.
+                    \item Ampel wartet auf Zählerzustand 0.
+                    \item Zähler zählt abwärts bis 0.
+                    \item Ampel wechselt auf Gelb.
+                    \item Zähler wechselt auf die für Gelbphase vorgesehene Zeit.
+                \end{itemize}
+
+            \newpage
+            \item[d)]
+
+                Die gepunkteten Pfeile beim Zähler sollen andeuten, dass dazwischen
+                die einzelnen Zählstatus ausgelassen wurden. Zwischen den Zuständen
+                3000 und 0 müssten dementsprechen noch 2999 Zustände eingefügt werden,
+                die jeweils den Folgezustand referenzieren.
+
+                Die Steuerleitungen heißen $z_1$, $z_0$ und $c_h$, wobei $c_h$ vom
+                Zähler zum Hauptautomaten führt, die anderen zurück.
+
+                Es wird ein invertiertes Taktsignal für den Zähler angenommen, sodass
+                die Automaten abwechselnd schalten.
+
+                \tikzset{state/.style={circle, draw, inner sep=0, minimum size=5em}}
+                \tikzset{ministate/.style={state, minimum size=3em}}
+                \tikzset{output/.style={circle, draw, inner sep=0, minimum size=0.15cm}}
+                \tikzset{outputsample/.style={circle, draw, inner sep=0, minimum size=0.3cm}}
+                \tikzset{on/.style={fill=black}}
+                \tikzset{arrow/.style={draw,rounded corners=2mm,->}}
+                \tikzset{dotarrow/.style={draw,dotted,rounded corners=2mm,->}}
+                \tikzstyle{ref}=[out=#1-20, in=#1+20, distance=3em]
+
+                \begin{tikzpicture}
+                    \node[state] (red)      at (0, 2) {\rule{5em}{0.4pt}};
+                    \node[] at ($(red)+(0, 0.3)$) {rot};
+                    \node[output,on] at ($(red)-(0.2,0.2)$) {};
+                    \node[output] at ($(red)-(0.2,0.4)$) {};
+                    \node[output] at ($(red)-(0.2,0.6)$) {};
+                    \node[output] at ($(red)-(-0.2,0.3)$) {};
+                    \node[output] at ($(red)-(-0.2,0.5)$) {};
+
+                    \node[state] (orange)   at (2, 0) {\rule{5em}{0.4pt}};
+                    \node[] at ($(orange)+(0, 0.3)$) {rotgelb};
+                    \node[output,on] at ($(orange)-(0.2,0.2)$) {};
+                    \node[output,on] at ($(orange)-(0.2,0.4)$) {};
+                    \node[output] at ($(orange)-(0.2,0.6)$) {};
+                    \node[output,on] at ($(orange)-(-0.2,0.3)$) {};
+                    \node[output] at ($(orange)-(-0.2,0.5)$) {};
+
+                    \node[state] (green)    at (0, -2) {\rule{5em}{0.4pt}};
+                    \node[] at ($(green)+(0, 0.3)$) {grün};x=0.7,y=0.7
+                    \node[output] at ($(green)-(0.2,0.2)$) {};
+                    \node[output] at ($(green)-(0.2,0.4)$) {};
+                    \node[output,on] at ($(green)-(0.2,0.6)$) {};
+                    \node[output] at ($(green)-(-0.2,0.3)$) {};
+                    \node[output,on] at ($(green)-(-0.2,0.5)$) {};
+
+                    \node[state] (yellow)   at (-2, 0) {\rule{5em}{0.4pt}};
+                    \node[] at ($(yellow)+(0, 0.3)$) {gelb};
+                    \node[output] at ($(yellow)-(0.2,0.2)$) {};
+                    \node[output,on] at ($(yellow)-(0.2,0.4)$) {};
+                    \node[output] at ($(yellow)-(0.2,0.6)$) {};
+                    \node[output,on] at ($(yellow)-(-0.2,0.3)$) {};
+                    \node[output,on] at ($(yellow)-(-0.2,0.5)$) {};
+
+                    \draw[rounded corners=1em] (-1.8, -4.5) rectangle (1.5, -6.1);
+                    \node[outputsample,label=left:rot]    at ($(0, -4.5)-(0.4,0.4)$) {};
+                    \node[outputsample,label=left:gelb]   at ($(0, -4.5)-(0.4,0.8)$) {};
+                    \node[outputsample,label=left:grün]   at ($(0, -4.5)-(0.4,1.2)$) {};
+                    \node[outputsample,label=right:$z_0$] at ($(0, -4.5)-(-0.4,0.6)$) {};
+                    \node[outputsample,label=right:$z_1$] at ($(0, -4.5)-(-0.4,1.0)$) {};
+
+
+                    \path[arrow] (red) -- node[label=left:$c_h$]{} (orange);
+                    \path[arrow] (orange) -- node[label=left:$c_h$]{} (green);
+                    \path[arrow] (green) -- node[label=right:$c_h$]{} (yellow);
+                    \path[arrow] (yellow) -- node[label=right:$c_h$]{} (red);
+
+                    \path (red)     edge[arrow,ref=90] node[label=above:$\oline{c_h}$]{} (red);
+                    \path (orange)  edge[arrow,ref=0] node[label=right:$\oline{c_h}$]{} (orange);
+                    \path (green)   edge[arrow,ref=270] node[label=below:$\oline{c_h}$]{} (green);
+                    \path (yellow)  edge[arrow,ref=180] node[label=left:$\oline{c_h}$]{} (yellow);
+
+                \end{tikzpicture}\begin{tikzpicture}
+
+                    \node[ministate] (z0)  at (0, -3) {\rule{3em}{0.4pt}};
+                    \node[] at ($(z0)+(0, 0.2)$) {\tiny 0};
+                    \node[output, on] at ($(z0)-(0,0.2)$) {};
+
+                    \node[ministate] (z3)  at (0, -1.5) {\rule{3em}{0.4pt}};
+                    \node[] at ($(z3)+(0, 0.2)$) {\tiny 3000};
+                    \node[output] at ($(z3)-(0,0.2)$) {};
+
+                    \node[ministate] (z5)  at (0,  0) {\rule{3em}{0.4pt}};
+                    \node[] at ($(z5)+(0, 0.2)$) {\tiny 5000};
+                    \node[output] at ($(z5)-(0,0.2)$) {};
+
+                    \node[ministate] (z30) at (0,  1.5) {\rule{3em}{0.4pt}};
+                    \node[] at ($(z30)+(0, 0.2)$) {\tiny 30000};
+                    \node[output] at ($(z30)-(0,0.2)$) {};
+
+                    \node[ministate] (z35) at (0,  3) {\rule{3em}{0.4pt}};
+                    \node[] at ($(z35)+(0, 0.2)$) {\tiny 35000};
+                    \node[output] at ($(z35)-(0,0.2)$) {};
+
+                    \path[arrow] (z0) -- ($(z0)+(2,0)$) -- node[label={right:\small$z_1\;\oline{z_0}$}]{} ($(z35)+(2,0)$) -- (z35);
+                    \path[arrow] (z0) -- ($(z0)+(1,0)$) -- node[label={right:\small$\oline{z_1}\;\oline{z_0}$}]{} ($(z30)+(1,0)$) -- (z30);
+                    \path[arrow] (z0) -- ($(z0)-(2,0)$) -- node[label={left:\small$z_1\;z_0$}]{} ($(z5)-(2,0)$) -- (z5);
+                    \path[arrow] (z0) -- ($(z0)-(1,0)$) -- node[label={left:\small$\oline{z_1}\;z_0$}]{} ($(z3)-(1,0)$) -- (z3);
+
+                    \draw[dotarrow] (z35) -- (z30);
+                    \draw[dotarrow] (z30) -- (z5);
+                    \draw[dotarrow] (z5) -- (z3);
+                    \draw[dotarrow] (z3) -- (z0);
+
+                    \draw[rounded corners=1em] (-1.8, -4.5) rectangle (1.5, -6.1);
+                    \node[outputsample,label=left:$c_h$]    at (0, -5.3) {};
+
+                \end{tikzpicture}
+
+        \end{enumerate}
+    \item[\textbf{2.}]
+        \begin{enumerate}
+            \item[a)]
+                Zustandstabelle:
+
+                \begin{tabular}{|c|c|c||c|c||c|c|c||c|c|}
+                     \hline
+                     $Z$ & $z_1$ & $z_0$ & $x_1$ & $x_0$ & $Z^+$ & $z^+_1$ & $z^+_0$ & $y_1$ & $y_0$ \\
+                     \hline
+                     0 & 0 & 0 & * & 0 & 1 & 0 & 1 & 1 & 0\\
+                     0 & 0 & 0 & * & 1 & 0 & 0 & 0 & 1 & 0\\
+                     1 & 0 & 1 & * & 0 & 1 & 0 & 1 & 0 & 1\\
+                     1 & 0 & 1 & 0 & 1 & 3 & 1 & 1 & 0 & 1\\
+                     1 & 0 & 1 & 1 & 1 & 2 & 1 & 0 & 0 & 1\\
+                     2 & 1 & 0 & 0 & 0 & 1 & 0 & 1 & 0 & 1\\
+                     2 & 1 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 1\\
+                     2 & 1 & 0 & 1 & * & 2 & 1 & 0 & 0 & 1\\
+                     3 & 1 & 1 & * & 0 & 2 & 1 & 0 & 1 & 1\\
+                     3 & 1 & 1 & * & 1 & 3 & 1 & 1 & 1 & 1\\
+                     \hline
+                \end{tabular}
+
+                $\delta(z_1, z_0, x_1, x_0) = (z^+_1(z_1, z_0, x_1, x_0), z^+_0(z_1, z_0, x_1, x_0))$
+
+                $z^+_1(z_1, z_0, x_1, x_0) = z_1z_0 \vee z_1x_1 \vee z_0x_0$
+
+                $z^+_0(z_1, z_0, x_1, x_0) = z_1z_0x_0 \vee \oline{z_1}\;\oline{x_0} \vee z_0\oline{x_1}x_0 \vee \oline{z_0}\;\oline{x_1}\;\oline{x_0}$
+
+                $\delta(z_1, z_0, x_1, x_0) = (z_1z_0 \vee z_1x_1 \vee z_0x_0, z_1z_0x_0 \vee \oline{z_1}\;\oline{x_0} \vee z_0\oline{x_1}x_0 \vee \oline{z_0}\;\oline{x_1}\;\oline{x_0})$
+
+            \item[b)]
+                $\lambda(z_1, z_0) = (z_1 \oplus z_0 \oplus 1, z_1 \vee z_0)$
+
+            \item[c)]
+                Überprüft. Der Automat ist in der Tat vollständig und widerspruchsfrei.
+
+        \end{enumerate}
+    \item[\textbf{3.}]
+        \begin{enumerate}
+            \item[a/b)] Wir haben uns die Ausgaben angesehen. Die generierten Dateien sind angehängt.
+        \end{enumerate}
+\end{enumerate}
+\end{document}
