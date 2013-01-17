@@ -1,0 +1,212 @@
+\newcommand{\authorinfo}{Paul Bienkowski, Hans Ole Hatzel}
+\newcommand{\titleinfo}{RS 11 (HA) zum 18.01.2013}
+
+% PREAMBLE ===============================================================
+
+\documentclass[a4paper,10pt]{scrartcl}
+\usepackage[german,ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{enumerate}
+\usepackage{pgffor}
+\usepackage{array}
+\usepackage{listings}
+\usepackage{fullpage}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{tikz}
+\usepackage{circuitikz}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{multicol}\usepackage{multicol}
+
+\usetikzlibrary{calc,decorations.markings}
+
+\author{\authorinfo}
+\title{\titleinfo}
+\date{\today}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\authorinfo}
+\fancyhead[R]{\titleinfo}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+\renewcommand{\headheight}{12pt}
+\renewcommand{\headsep}{12pt}
+
+\newcommand*{\oline}[1]{\overline{\vphantom{A}#1}}
+
+\begin{document}
+\setcounter{secnumdepth}{0}
+\maketitle
+
+% DOCUMENT ===============================================================
+
+\begin{enumerate}
+    \item[\textbf{1.}]
+        \begin{multicols}{5}
+        \begin{enumerate}
+            \item[a)] 30
+            \item[b)] 40
+            \item[c)] 50
+            \item[d)] 40
+            \item[e)] 40
+        \end{enumerate}
+        \end{multicols}
+    \item[\textbf{2.}]
+        Es gibt 3 Klassen von Befehlen, siehe Aufgabe, die jeweils voneinander
+        unterscheidbar sein müssen.
+
+        \begin{tikzpicture}[scale=0.4]
+            \node[] (class1) at (-3,  0.4)  {\vphantom{Ag}Klasse 1:};
+            \node[] (class2) at (-3, -1.6)  {\vphantom{Ag}Klasse 2:};
+            \node[] (class3) at (-3, -3.6)  {\vphantom{Ag}Klasse 3:};
+
+
+            \definecolor{awesomegray}{gray}{0.9}
+            \foreach \n in {0,...,15}{
+                \fill[fill=awesomegray] (\n*2,0) rectangle (\n*2+1, 1);
+                \fill[fill=awesomegray] (\n*2,-2) rectangle (\n*2+1, -1);
+                \fill[fill=awesomegray] (\n*2,-4) rectangle (\n*2+1, -3);
+            }
+
+            \draw
+                (0, 0) rectangle (32, 1)
+                (3, 0) -- (3, 1)
+                (8, 0) -- (8, 1)
+
+                (0, -2) rectangle (32, -1)
+                (3, -2) -- (3, -1)
+                (10, -2) -- (10, -1)
+                (15, -2) -- (15, -1)
+                (20, -2) -- (20, -1)
+
+                (0, -4) rectangle (32, -3)
+                (3, -4) -- (3, -3)
+                (10, -4) -- (10, -3)
+                (15, -4) -- (15, -3);
+
+            \node[font=\small] (1opc1)   at (1.5, 0.4)  {\vphantom{Ag}opc1};
+            \node[font=\small] (1reg)    at (5.5, 0.4)  {\vphantom{Ag}reg};
+            \node[font=\small] (1addr24) at (20, 0.4)   {\vphantom{Ag}addr24};
+
+            \node[font=\small] (2opc1)   at (1.5, -1.6)  {\vphantom{Ag}111};
+            \node[font=\small] (2opc2)   at (6.5, -1.6)  {\vphantom{Ag}opc2};
+            \node[font=\small] (2reg1)   at (12.5, -1.6) {\vphantom{Ag}regA};
+            \node[font=\small] (2reg2)   at (17.5, -1.6) {\vphantom{Ag}regB};
+            \node[font=\small] (2addr13) at (26, -1.6)   {\vphantom{Ag}addr13};
+
+            \node[font=\small] (3opc1)   at (1.5, -3.6)  {\vphantom{Ag}111};
+            \node[font=\small] (3opc2)   at (6.5, -3.6)  {\vphantom{Ag}111};
+            \node[font=\small] (3opc3)   at (12.5, -3.6) {\vphantom{Ag}opc3};
+            \node[font=\small] (3unused) at (23.5, -3.6) {\vphantom{Ag}unused};
+        \end{tikzpicture}
+
+        Um alle benötigten 32 bit für Klasse 1 (3 bit Opcode + 5 bit Register + 24 bit Adresse)
+        unterbringen zu können, muss für den Opcode ein fester Platz vorgesehen sein. Um die
+        anderen Klassen unterscheiden zu können, werden hier die ersten 3 Bits auf 1 gesetzt,
+        da dies der einzige fehlende Opcode in der ersten Klasse ist. Ähnliches gilt
+        für die Unterscheidung der Klassen 2 und 3, jedoch könnte hier jeder andere
+        freie Opcode aus Klasse 2 verwendet werden. Der Übersichtlichkeit halber
+        wurde ebenfalls 1111111 gewählt.
+
+        Da für Klasse 2 zuerst 3 bit zur Unterscheidung von Klasse 1 nötig sind,
+        7 bit für den Opcode ($2^7 = 128 \leq 100$) und $2 \times 5$ bit für
+        die Register verwendet werden, bleiben $32 \text{ bit} - (3 + 7 + 2 \cdot 5) \text{ bit}
+        = 12 \text{ bit}$ für das Adressoffset.
+
+
+    \item[\textbf{3.}]
+        \begin{enumerate}
+            \item[a)] \texttt{0000 1011 1001}.
+            \item[b)] Nicht möglich, da der Abstand vom ersten 1-bit bis zum letzten 1-bit im Ergebnis 9 Stellen ist, und dies nicht im \emph{imm8} dargestellt werden kann.
+            \item[c)] Nicht möglich, da eine Rotation um 29 Stellen erfordert wäre.
+            \item[d)] \texttt{1110 0110 0011}.
+            \item[e)] \texttt{0010 0000 1001} \emph{oder} \texttt{0011 0010 0100} \emph{oder} \texttt{0100 1001 0000}.
+        \end{enumerate}
+    \item[\textbf{4.}]
+        \begin{enumerate}
+            \item[a)]
+                \textbf{0-Adress-Maschine:}
+
+                \begin{verbatim}Befehl         Stack (TOS ist links)
+
+PUSH E          E
+PUSH D          D ; E
+MUL             D * E
+PUSH F          F ; D * E
+ADD             F + D * E
+PUSH C          C ; F + D * E
+PUSH B          B ; C ; F + D * E
+MUL             B * C ; F + D * E
+PUSH A          A ; B * C ; F + D * E
+SUB             A - B * C ; F + D * E
+DIV             (A - B * C) / (F + D * E)
+POP R           R = (A - B * C) / (F + D * E)
+\end{verbatim}
+
+                \textbf{1-Adress-Maschine:}
+
+                \begin{verbatim}Befehl         Akkumulator/Bedeutung
+
+LOAD D          Akku = D
+MUL E           Akku = D * E
+ADD F           Akku = D * E + F
+STORE G         Akku = G = D * E + F
+LOAD B          Akku = B
+MUL C           Akku = B * C
+STORE H         MEM[H] = B * C
+LOAD A          Akku = A
+SUB H           Akku = A - H = A - B * C
+DIV G           Akku = (A - B * C) / G = (A - B * C) / (D * E + F)
+STORE R         MEM[R] = (A - B * C) / (D * E + F)
+\end{verbatim}
+
+                \textbf{2-Adress-Maschine:}
+
+                \begin{verbatim}Befehl         Bedeutung
+
+MUL D, E        MEM[D] = MEM[D] * MEM[E] = D * E
+ADD D, F        MEM[D] = MEM[D] + MEM[F] = D * E + F
+MUL B, C        MEM[B] = MEM[B] * MEM[C]
+SUB A, B        MEM[A] = MEM[A] - MEM[B] = A - B * C
+DIV A, D        MEM[A] = MEM[A] / MEM[D] = (A - B * C) / (D * E + F)
+MOV R, A        MEM[R] = MEM[A] = (A - B * C) / (D * E + F)
+\end{verbatim}
+
+                \textbf{3-Adress-Maschine:}
+
+                \begin{verbatim}Befehl          Bedeutung
+
+LOAD Y, D       Y = MEM[D]
+LOAD Z, E       Z = MEM[E]
+MUL Z, Y, Z     Z = Y * Z = D * E
+LOAD Y, F       Y = MEM[F]
+ADD Z, Z, Y     Z = Z + Y = D * E + F
+LOAD X, D       X = MEM[B]
+LOAD Y, E       Y = MEM[C]
+MUL Y, X, Y     Y = X * Y = B * C
+LOAD X, A       X = MEM[A]
+SUB X, X, Y     X = X - Y = A - B * C
+DIV X, X, Z     X = X / Z = (A - B * C) / (D * E + F)
+STORE R, X      MEM[R] = X
+\end{verbatim}
+
+            \item[b)]
+                \begin{tabular}[t]{l|r|r|r|r}
+                Maschine & Opcodes & Registernummern & Speicheradressen & Größe \\
+                \hline
+                \textbf{0-Adress} & 12 $\times$ 8 bit & 0  $\times$ 4 bit & 7  $\times$ 16 bit & 208 bit \\
+                \textbf{1-Adress} & 11 $\times$ 8 bit & 0  $\times$ 4 bit & 11 $\times$ 16 bit & 264 bit \\
+                \textbf{2-Adress} & 6  $\times$ 8 bit & 0  $\times$ 4 bit & 12 $\times$ 16 bit & 240 bit \\
+                \textbf{3-Adress} & 12 $\times$ 8 bit & 22 $\times$ 4 bit & 7  $\times$ 16 bit & 296 bit \\
+              \end{tabular}
+
+        \end{enumerate}
+\end{enumerate}
+\end{document}
