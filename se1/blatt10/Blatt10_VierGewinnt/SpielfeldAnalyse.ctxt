@@ -1,0 +1,17 @@
+#BlueJ class context
+comment0.params=spielfeld
+comment0.target=SpielfeldAnalyse(Spielfeld)
+comment0.text=\n\ Erstellt\ eine\ neue\ SpielfeldAnalyse.\n\ \n\ @param\ spielfeld\n\ \ \ \ \ \ \ \ \ \ \ \ das\ Spielfeld,\ das\ analysiert\ werden\ soll\n
+comment1.params=spieler
+comment1.target=boolean\ hatSpielerGewonnen(int)
+comment1.text=\n\ Ueberprueft,\ ob\ ein\ Spieler\ gewonnen\ hat.\n
+comment2.params=
+comment2.target=Kombination\ gibVierer()
+comment2.text=\n\ Gibt\ die\ letzte\ gefundene\ Vierer-Kombination.\n
+comment3.params=spieler
+comment3.target=void\ pruefeVierer(int)
+comment4.params=spieler\ zeile\ spalte\ zeile2\ spalte2\ dZeile\ dSpalte
+comment4.target=void\ pruefeVierer(int,\ int,\ int,\ int,\ int,\ int,\ int)
+comment5.params=spieler\ zeile\ spalte\ dZeile\ dSpalte
+comment5.target=void\ pruefeVierer(int,\ int,\ int,\ int,\ int)
+numComments=6

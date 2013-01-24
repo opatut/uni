@@ -1,0 +1,21 @@
+#BlueJ class context
+comment0.params=bibliotheksdatei
+comment0.target=TitelBibliothek(java.lang.String)
+comment0.text=\n\ Initialisiert\ die\ TitelBibliothek\ aus\ der\ angegebenen\ Datei\n\ \n\ @param\ bibliotheksdatei\n\ \ \ \ \ \ \ \ \ \ \ \ der\ Name\ einer\ Datei\ mit\ Titelinformationen\n
+comment1.params=
+comment1.target=TitelBibliothek()
+comment1.text=\n\ Initialisiert\ die\ TitelBibliothek\ aus\ der\ Datei\ JazzMix.txt\n
+comment2.params=
+comment2.target=Titel\ gibZufaelligenTitel()
+comment2.text=\n\ Liefere\ einen\ zufaelligen\ Titel\ aus\ dieser\ Bibliothek.\n
+comment3.params=
+comment3.target=void\ ausgebenAufKonsole()
+comment3.text=\n\ Gib\ alle\ Titel\ in\ dieser\ Bibliothek\ auf\ die\ Konsole\ aus.\n
+comment4.params=dateiName
+comment4.target=void\ einlesenAusDatei(java.lang.String)
+comment4.text=\n\ Liest\ Titelinformationen\ aus\ einer\ Textdatei\ ein.\ Jeder\ Titel\ steht\ in\n\ einer\ eigenen\ Zeile.\n\ \n\ @param\ dateiName\n\ \ \ \ \ \ \ \ \ \ \ \ der\ Dateiname\ der\ Textdatei\n
+comment5.params=zeile
+comment5.target=void\ verarbeiteZeile(java.lang.String)
+comment6.params=closeable
+comment6.target=void\ closeSilently(java.io.Closeable)
+numComments=7

@@ -1,0 +1,14 @@
+#BlueJ class context
+comment0.params=
+comment0.target=void\ test1()
+comment0.text=\n\ Schreibt\ in\ diesen\ Kommenatr,\ was\ diese\ Methode\ testet\:\n\ \n\ \n
+comment1.params=
+comment1.target=void\ testIstVoll()
+comment1.text=\n\ Testet,\ ob\ ein\ nicht\ vollstaendig\ besetztes\ Spielfeld\n\ als\ nicht\ voll\ und\ ein\ vollstaendig\ besetztes\ Spielfeld\n\ als\ voll\ erkannt\ wird.\n
+comment2.params=
+comment2.target=void\ testIstNichtVoll()
+comment2.text=\n\ Macht\ die\ Gegenprobe,\ dass\ nur\ ein\ Spielfeld,\n\ dass\ an\ allen\ 9\ verschiedenen\ Positionen\ besetzt\ ist,\n\ als\ voll\ erkannt\ wird.\n
+comment3.params=
+comment3.target=Spielfeld\ neuesSpielfeld()
+comment3.text=\n\ @return\ ein\ neues\ Spielfeld.\n
+numComments=4

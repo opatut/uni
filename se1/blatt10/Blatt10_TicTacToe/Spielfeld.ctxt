@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.params=zeile\ spalte
+comment0.target=int\ gibBesitzer(int,\ int)
+comment0.text=\n\ Gibt\ den\ Besitzer\ der\ angegebenen\ Position\ auf\ dem\ Spielfeld.\n\ \n\ @param\ zeile\n\ \ \ \ \ \ \ \ \ \ \ \ vertikale\ Position\ (0-2)\n\ @param\ spalte\n\ \ \ \ \ \ \ \ \ \ \ \ horizontale\ Position\ (0-2)\n\ @return\ 0\ (unbesetzt),\ 1\ (Spieler\ 1),\ 2\ (Spieler\ 2)\n
+comment1.params=zeile\ spalte\ spieler
+comment1.target=void\ besetzePosition(int,\ int,\ int)
+comment1.text=\n\ Besetzt\ die\ angegebene\ Position\ auf\ dem\ Spielfeld\ fuer\ einen\ Spieler.\n\ \n\ @param\ zeile\n\ \ \ \ \ \ \ \ \ \ \ \ vertikale\ Position\ (0-2)\n\ @param\ spalte\n\ \ \ \ \ \ \ \ \ \ \ \ horizontale\ Position\ (0-2)\n\ @param\ spieler\n\ \ \ \ \ \ \ \ \ \ \ \ 1\ (Spieler\ 1),\ 2\ (Spieler\ 2)\n
+comment2.params=
+comment2.target=boolean\ istVoll()
+comment2.text=\n\ Gibt\ an,\ ob\ das\ Spielfeld\ an\ allen\ Positionen\ belegt\ ist.\n
+numComments=3

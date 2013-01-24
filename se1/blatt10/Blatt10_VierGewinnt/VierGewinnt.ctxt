@@ -1,0 +1,23 @@
+#BlueJ class context
+comment0.params=
+comment0.target=VierGewinnt()
+comment0.text=\n\ Erzeugt\ ein\ neues\ Vier-Gewinnt-Spiel\ mit\ einem\ leeren\ Spielfeld.\ Spieler\ 1\ ist\ als\ erster\n\ dran,\ und\ das\ Spiel\ ist\ noch\ nicht\ zu\ Ende.\n
+comment1.params=
+comment1.target=int\ gibAktuellenSpieler()
+comment1.text=\n\ Gibt\ an,\ welcher\ Spieler\ gerade\ dran\ ist\ oder\ gewonnen\ hat.\n\ \n\ @return\ 1\ (Spieler\ 1)\ oder\ 2\ (Spieler\ 2)\ oder\ 0\ (Spiel\ ist\ unentschieden\ ausgegangen)\n
+comment2.params=
+comment2.target=void\ wechsleSpieler()
+comment2.text=\n\ Wechselt\ den\ aktuellen\ Spieler\ von\ 1\ zu\ 2\ und\ umgekehrt.\n
+comment3.params=
+comment3.target=boolean\ istSpielZuEnde()
+comment3.text=\n\ Gibt\ an,\ ob\ das\ Spiel\ zu\ Ende\ ist.\ Falls\ es\ zu\ Ende\ ist,\ liefert\ gibAktuellenSpieler()\ den\n\ Gewinner.\n
+comment4.params=zeile\ spalte
+comment4.target=int\ gibBesitzer(int,\ int)
+comment4.text=\n\ Gibt\ den\ Besitzer\ der\ angegebenen\ Position\ auf\ dem\ Spielfeld.\n\ \n\ @param\ zeile\n\ \ \ \ \ \ \ \ \ \ \ \ vertikale\ Position\n\ @param\ spalte\n\ \ \ \ \ \ \ \ \ \ \ \ horizontale\ Position\n\ @return\ 0\ (unbesetzt),\ 1\ (Spieler\ 1),\ 2\ (Spieler\ 2)\n
+comment5.params=spalte
+comment5.target=boolean\ istSpalteVoll(int)
+comment5.text=\n\ Ist\ die\ angegebene\ Spalte\ voll?\n
+comment6.params=spalte
+comment6.target=void\ legeSpielsteinAb(int)
+comment6.text=\n\ Legt\ einen\ Spielstein\ in\ einer\ Spalte\ ab.\ Anschliessend\ wird\ geprueft,\ ob\ der\ aktuelle\n\ Spieler\ gewonnen\ hat,\ oder\ ob\ das\ Spielfeld\ voll\ ist.\ Ansonsten\ wird\ der\ aktuelle\ Spieler\n\ gewechselt.\n\ \n\ @param\ spalte\n\ \ \ \ \ \ \ \ \ \ \ \ horizontale\ Position\n
+numComments=7

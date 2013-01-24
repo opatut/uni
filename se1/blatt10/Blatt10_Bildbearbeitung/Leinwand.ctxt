@@ -1,0 +1,17 @@
+#BlueJ class context
+comment0.params=title\ width\ height
+comment0.target=Leinwand(java.lang.String,\ int,\ int)
+comment0.text=\n\ Erzeuge\ eine\ Leinwand\ mit\ einem\ (weissen)\ Standardhintergrund.\n\ \n\ @param\ title\n\ \ \ \ \ \ \ \ \ \ \ \ title\ to\ appear\ in\ Canvas\ Frame\n\ @param\ width\n\ \ \ \ \ \ \ \ \ \ \ \ the\ desired\ width\ for\ the\ canvas\n\ @param\ height\n\ \ \ \ \ \ \ \ \ \ \ \ the\ desired\ height\ for\ the\ canvas\n
+comment1.params=title\ width\ height\ bgColour
+comment1.target=Leinwand(java.lang.String,\ int,\ int,\ java.awt.Color)
+comment1.text=\n\ Erzeuge\ eine\ Leinwand.\n\ \n\ @param\ title\n\ \ \ \ \ \ \ \ \ \ \ \ title\ to\ appear\ in\ Canvas\ Frame\n\ @param\ width\n\ \ \ \ \ \ \ \ \ \ \ \ the\ desired\ width\ for\ the\ canvas\n\ @param\ height\n\ \ \ \ \ \ \ \ \ \ \ \ the\ desired\ height\ for\ the\ canvas\n\ @param\ bgClour\n\ \ \ \ \ \ \ \ \ \ \ \ the\ desired\ background\ colour\ of\ the\ canvas\n
+comment2.params=
+comment2.target=void\ sichtbarMachen()
+comment2.text=\n\ Diese\ Leinwand\ sichtbar\ machen.\ Diese\ Methode\ kann\ auch\ benutzt\ werden,\ um\ eine\ sichtbare\n\ Leinwand\ wieder\ vor\ andere\ Fenster\ zu\ holen.\n
+comment3.params=bild
+comment3.target=void\ zeichneBild(short[][])
+comment3.text=\n\ Zeichne\ ein\ Bild,\ das\ in\ unserem\ internen\ Format\ angegeben\ ist\ (ein\ zweidimensionales\ Array\n\ von\ Grauwerten\ als\ short-Werte).\n
+comment4.params=image\ x\ y
+comment4.target=boolean\ drawImage(java.awt.Image,\ int,\ int)
+comment4.text=\n\ Draws\ an\ image\ onto\ the\ canvas.\n\ \n\ @param\ image\n\ \ \ \ \ \ \ \ \ \ \ \ the\ Image\ object\ to\ be\ displayed\n\ @param\ x\n\ \ \ \ \ \ \ \ \ \ \ \ x\ co-ordinate\ for\ Image\ placement\n\ @param\ y\n\ \ \ \ \ \ \ \ \ \ \ \ y\ co-ordinate\ for\ Image\ placement\n\ @return\ returns\ boolean\ value\ representing\ whether\ the\ image\ was\ completely\ loaded\n
+numComments=5

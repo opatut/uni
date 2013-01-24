@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.params=
+comment0.target=SpielfeldArray()
+comment1.params=
+comment1.target=boolean\ istSpielfeldVoll()
+comment2.params=spalte
+comment2.target=boolean\ istSpalteVoll(int)
+comment3.params=zeile\ spalte
+comment3.target=int\ gibBesitzer(int,\ int)
+comment4.params=spalte\ spieler
+comment4.target=void\ legeSpielsteinAb(int,\ int)
+numComments=5

@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.params=
+comment0.target=SpielfeldArray()
+comment0.text=\n\ Konstruktor,\ erstellt\ ein\ leeres\ Spielfeld.\n
+comment1.params=zeile\ spalte
+comment1.target=int\ gibBesitzer(int,\ int)
+comment2.params=zeile\ spalte\ spieler
+comment2.target=void\ besetzePosition(int,\ int,\ int)
+comment3.params=
+comment3.target=boolean\ istVoll()
+numComments=4

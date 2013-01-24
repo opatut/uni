@@ -1,0 +1,20 @@
+#BlueJ class context
+comment0.params=titel\ position
+comment0.target=void\ fuegeEin(Titel,\ int)
+comment0.text=\n\ Fuege\ einen\ Titel\ an\ der\ Position\ <code>position</code>\ in\ die\ Titelliste\n\ ein.\ Alle\ folgenden\ Eintraege\ werden\ um\ eine\ Indexposition\ verschoben.\n\ Wenn\ <code>position</code>\ gleich\ der\ Laenge\ der\ Titelliste\ ist,\ dann\n\ fuege\ den\ <code>titel</code>\ am\ Ende\ an.\n\ \n\ @param\ titel\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ Ein\ Titel.\n\ @param\ position\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ Die\ Positon\ des\ Titels.\ Der\ gueltige\ Bereich\ ist\ von\ 0\ bis\ gibLaenge()-1.\n
+comment1.params=position
+comment1.target=void\ entferne(int)
+comment1.text=\n\ Entferne\ den\ Titel\ an\ der\ angegebenen\ Position.\ Alle\ folgenden\ Eintraege\n\ werden\ um\ eine\ Indexposition\ verschoben.<br>\n\ \n\ @param\ position\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ Eine\ Position\ in\ der\ Liste.\ Der\ gueltige\ Bereich\ ist\ von\ 0\ bis\ gibLaenge()-1.\n
+comment2.params=titel
+comment2.target=boolean\ enthaelt(Titel)
+comment2.text=\n\ Pruefe,\ ob\ ein\ Titel\ in\ der\ Liste\ enthalten\ ist.\n\ \n\ @param\ titel\n\ \ \ \ \ \ \ \ \ \ \ \ Ein\ Titel.\n\ @return\ Liefert\ <code>true</code>\ wenn\ der\ Titel\ in\ der\ Liste\ ist,\n\ \ \ \ \ \ \ \ \ ansonsten\ <code>false</code>.\n
+comment3.params=position
+comment3.target=Titel\ gibTitel(int)
+comment3.text=\n\ Gib\ den\ Titel\ an\ der\ angegebenen\ Position\ zurueck.\n\ \n\ @param\ position\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ Die\ Position\ des\ Titels,\ der\ zurueckgeben\ werden\ soll.\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ Der\ gueltige\ Bereich\ ist\ von\ 0\ bis\ gibLaenge()-1.\n\ @return\ Den\ Titel\ auf\ der\ Position\ <code>position</code>.\n
+comment4.params=
+comment4.target=int\ gibLaenge()
+comment4.text=\n\ Gib\ die\ Laenge\ der\ Liste\ zurueck.\n\ \n\ @return\ Anzahl\ der\ Titel\ in\ der\ Liste.\n
+comment5.params=
+comment5.target=void\ leere()
+comment5.text=\n\ Entferne\ alle\ Titel\ aus\ der\ Liste.\n
+numComments=6

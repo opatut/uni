@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.params=
+comment0.target=short[][]\ liesBilddaten()
+comment0.text=\n\ Lies\ eine\ GIF-Datei\ ein\ und\ liefere\ die\ Bilddaten\ als\ Array.\ Die\ Datei\ wird\ interaktiv\ vom\n\ Benutzer\ gewaehlt.\n
+comment1.params=dateiname
+comment1.target=short[][]\ liesBilddaten(java.lang.String)
+comment1.text=\n\ Lies\ eine\ GIF-Datei\ ein\ und\ liefere\ die\ Bilddaten\ als\ Array.\ Der\ Name\ der\ Datei\ wird\ im\n\ CLASSPATH\ gesucht,\ unter\ anderem\ auch\ im\ Projekt-Verzeichnis.\n
+comment2.params=image
+comment2.target=java.awt.image.BufferedImage\ toBufferedImage(java.awt.Image)
+comment3.params=image
+comment3.target=short[][]\ toByteArray(java.awt.image.BufferedImage)
+numComments=4

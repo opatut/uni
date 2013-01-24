@@ -1,0 +1,20 @@
+#BlueJ class context
+comment0.params=
+comment0.target=SpielfeldTest()
+comment0.text=\n\ Jede\ Testmethode\ wird\ auf\ einem\ frischen\ Exemplar\ aufgerufen.\n
+comment1.params=
+comment1.target=void\ testNeuesSpielfeldIstLeer()
+comment1.text=\n\ Stellt\ sicher,\ dass\ ein\ neues\ Spielfeld\ leer\ ist.\n
+comment2.params=
+comment2.target=void\ testSpielerWerdenBeruecksichtigt()
+comment2.text=\n\ Stellt\ sicher,\ dass\ die\ Spieler\ nicht\ ignoriert\ werden.\n
+comment3.params=
+comment3.target=void\ testSpaltenWerdenBeruecksichtigt()
+comment3.text=\n\ Stellt\ sicher,\ dass\ die\ Spalten\ nicht\ ignoriert\ werden.\n
+comment4.params=
+comment4.target=void\ testVollesSpielfeldIstVoll()
+comment4.text=\n\ Stellt\ sicher,\ dass\ ein\ volles\ Spielfeld\ voll\ ist.\n
+comment5.params=grenzSpalte
+comment5.target=void\ vollBisInklusive(int)
+comment5.text=\n\ Stellt\ sicher,\ dass\ alle\ Spalten\ von\ 0\ bis\ inkl.\ grenzSpalte\ voll\ sind\n\ und\ alle\ Spalten\ rechts\ von\ grenzSpalte\ frei.\n
+numComments=6
