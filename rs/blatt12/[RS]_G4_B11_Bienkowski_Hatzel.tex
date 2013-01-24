@@ -82,9 +82,86 @@ helper_label:
     \item[\textbf{5.}]
         \begin{enumerate}
             \item[a)]
+
+                \begin{verbatim}
+myst:
+    pushl   %ebx                | save ebx on stack
+    subl    $24, %esp           | esp -= 24 (6 words)
+    movl    32(%esp), %ebx      | ebx = first parameter
+    movl    36(%esp), %edx      | edx = second parameter
+    movl    $1, %eax            | eax = 1
+    testl   %edx, %edx          | ZF = (edx == 0)
+    je      .L2                 | jump to L2 if edx is 0
+    subl    $1, %edx            | edx--
+    movl    %edx,  4(%esp)      | second paramter = edx
+    movl    %ebx, (%esp)        | first parameter = ebx
+    call    myst                | recursive call: myst(edx, ebx)
+    imull   %ebx, %eax          | eax *= ebx
+.L2:
+    addl    $24, %esp           | reset stack pointer
+    popl    %ebx                | reset ebx from stack
+    ret                         | return to caller
+\end{verbatim}
+
+                Dies ergibt folgenden C-Code:
+
+                \begin{verbatim}
+int myst(int a, int b) {
+    int c = 1;
+    if(b == 0) {
+        return 1;
+    }
+    b--;
+    c = myst(a, b) * a;
+    return c;
+}
+\end{verbatim}
+
+                Eine noch kompaktere Schreibweise wäre:
+
+                \begin{verbatim}
+int myst(int a, int b) {
+    if(b == 0) return 1;
+    return myst(a, b - 1) * a;
+}
+\end{verbatim}
+
             \item[b)]
+                Es ist klar zu erkennen, dass das Unterprogramm/die Funktion die Potenz $a^b$ berechnet.
+
             \item[c)]
+                \begin{tabular}[t]{|c|}
+                \hline
+                \texttt{b = 2} \\ \hline
+                \texttt{a = 5} \\ \hline
+                \texttt{\%eip main} \\ \hline
+                \texttt{\%ebx main} \\ \hline
+                \texttt{b = 1} \\ \hline
+                \texttt{a = 5} \\ \hline
+                \texttt{\%eax myst-1} \\ \hline
+                \texttt{\%eip myst-1} \\ \hline
+                \texttt{\%ebx myst-1} \\ \hline
+                \texttt{b = 0} \\ \hline
+                \texttt{a = 5} \\ \hline
+                \texttt{\%eax myst-2} \\ \hline
+                \texttt{\%eip myst-3} \\ \hline
+                \texttt{\%ebx myst-3} \\ \hline
+                \texttt{0} \\ \hline
+                \texttt{0} \\ \hline
+                \texttt{0} \\ \hline
+                \end{tabular}
+
+
             \item[d)]
+                Die Abbruchbedingung wird nicht sofort erreicht. Bei 16 bit Wortbreite werden
+                $2^{16} - 3 = 65533$ Rekursionsaufrufe (nach \emph{integer underflow}) gestartet.
+                Bei jedem Aufruf wird der Stack jeweils um 5 Worte (10 Byte) größer, damit
+                wird ein Stack von 655.33 KB benötigt. Ist der Stack dafür zu klein, wird ein
+                \emph{stack overflow} vermutlich vom Kernel erkannt und das Programm
+                abbrechen. Ansonsten wird das Ergebnis von $3^{65533}$ berechnet (etwa $1.5 \cdot 10^{31267}$),
+                welches selbst mehrmals überläuft und somit $3^{65533} \text{ mod } 2^{16} = 55827$
+                ergibt.
+
         \end{enumerate}
 \end{enumerate}
 \end{document}
