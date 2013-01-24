@@ -41,6 +41,8 @@
 
 \newcommand*{\oline}[1]{\overline{\vphantom{A}#1}}
 
+\renewcommand{\familydefault}{\sfdefault}
+
 \begin{document}
 \setcounter{secnumdepth}{0}
 \maketitle
@@ -52,25 +54,37 @@
         \begin{multicols}{5}
         \begin{enumerate}
             \item[a)]
-            \item[b)] 
-            \item[c)] 
-            \item[d)] 
-            \item[e)] 
+            \item[b)]
+            \item[c)]
+            \item[d)]
+            \item[e)]
             \item[f)]
         \end{enumerate}
         \end{multicols}
-    \item[\textbf{2.}]
 
+    \item[\textbf{2.}]
+        Da ein beliebiges Bit per XOR mit sich selbst kombiniert immer 0 ergibt,
+        lässt sich auch einfach schreiben:
+        \begin{verbatim}xor %eax, %eax\end{verbatim}
 
     \item[\textbf{3.}]
- 
+        Um den Program-Counter zu erhalten, wird ein Hilfssprung als Funktionsaufruf
+        ausgeführt. Der \texttt{call}-Befehl schreibt dabei den Programmzähler auf
+        den Stack und springt zum Label (\texttt{jmp}). Danach kann man den Zähler
+        manuell vom Stack holen:
+
+        \begin{verbatim}
+    call helper_label:
+helper_label:
+    pop %eax\end{verbatim}
+
     \item[\textbf{4.}]
     \item[\textbf{5.}]
         \begin{enumerate}
-            \item[a)] 
-            \item[b)] 
-            \item[c)] 
-            \item[d)] 
+            \item[a)]
+            \item[b)]
+            \item[c)]
+            \item[d)]
         \end{enumerate}
 \end{enumerate}
 \end{document}
