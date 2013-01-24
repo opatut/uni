@@ -1,0 +1,76 @@
+\newcommand{\authorinfo}{Paul Bienkowski, Hans Ole Hatzel}
+\newcommand{\titleinfo}{RS 12 (HA) zum 25.01.2013}
+
+% PREAMBLE ===============================================================
+
+\documentclass[a4paper,10pt]{scrartcl}
+\usepackage[german,ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{enumerate}
+\usepackage{pgffor}
+\usepackage{array}
+\usepackage{listings}
+\usepackage{fullpage}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{tikz}
+\usepackage{circuitikz}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{multicol}\usepackage{multicol}
+
+\usetikzlibrary{calc,decorations.markings}
+
+\author{\authorinfo}
+\title{\titleinfo}
+\date{\today}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\authorinfo}
+\fancyhead[R]{\titleinfo}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+\renewcommand{\headheight}{12pt}
+\renewcommand{\headsep}{12pt}
+
+\newcommand*{\oline}[1]{\overline{\vphantom{A}#1}}
+
+\begin{document}
+\setcounter{secnumdepth}{0}
+\maketitle
+
+% DOCUMENT ===============================================================
+
+\begin{enumerate}
+    \item[\textbf{1.}]
+        \begin{multicols}{5}
+        \begin{enumerate}
+            \item[a)]
+            \item[b)] 
+            \item[c)] 
+            \item[d)] 
+            \item[e)] 
+            \item[f)]
+        \end{enumerate}
+        \end{multicols}
+    \item[\textbf{2.}]
+
+
+    \item[\textbf{3.}]
+ 
+    \item[\textbf{4.}]
+    \item[\textbf{5.}]
+        \begin{enumerate}
+            \item[a)] 
+            \item[b)] 
+            \item[c)] 
+            \item[d)] 
+        \end{enumerate}
+\end{enumerate}
+\end{document}
