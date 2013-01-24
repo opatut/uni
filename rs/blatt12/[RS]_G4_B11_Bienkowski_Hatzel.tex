@@ -53,17 +53,17 @@
     \item[\textbf{1.}]
         \begin{enumerate}
             \item[a)]
-                0x100 = 0x0000 CB02
+                \texttt{MEM[0x0000 0100] = 0x0000 CB02}
             \item[b)]
-                \%ecx = 0x0000 00CB - 0x0000 000C = 0x0000 00BF
+                \texttt{MEM[0x0000 0104] = 0x0000 00BF}
             \item[c)]
-                0x108 = 0x0024 6000
+                \texttt{MEM[0x0000 0108] = 0x0024 6000}
             \item[d)]
-                0x10C = 0x0000 0043
+                \texttt{MEM[0x0000 010C] = 0x0000 0043}
             \item[e)]
-                \%ecx = 0x0000 000B
+                \texttt{\%ecx = 0x0000 000B}
             \item[f)]
-                \%eax = 0x0000 0100 - 0x0000 0004 = 0x0000 00FC
+                \texttt{\%eax = 0x0000 00FC}
         \end{enumerate}
 
     \item[\textbf{2.}]
@@ -83,28 +83,44 @@ helper_label:
     pop %eax\end{verbatim}
 
     \item[\textbf{4.}]
+                \begin{verbatim}
+f2c:
+    pushl   %ebp                ; standard-setup
+    movl    %esp, %ebp
+
+    movl    8(%ebp), %eax       ; eax = f (first and only argument)
+    subl    $0x20, %eax         ; eax = (f - 32)
+    imull   $0x8E, %eax         ; eax = (f - 32) * 142
+    sarl    $8, %eax            ; eax = (f - 32) * 142 / 256
+
+    movl    %ebp, %esp          ; standard-return
+    popl    %ebp
+    ret
+\end{verbatim}
+
+    \newpage
     \item[\textbf{5.}]
         \begin{enumerate}
             \item[a)]
 
                 \begin{verbatim}
 myst:
-    pushl   %ebx                | save ebx on stack
-    subl    $24, %esp           | esp -= 24 (6 words)
-    movl    32(%esp), %ebx      | ebx = first parameter
-    movl    36(%esp), %edx      | edx = second parameter
-    movl    $1, %eax            | eax = 1
-    testl   %edx, %edx          | ZF = (edx == 0)
-    je      .L2                 | jump to L2 if edx is 0
-    subl    $1, %edx            | edx--
-    movl    %edx,  4(%esp)      | second paramter = edx
-    movl    %ebx, (%esp)        | first parameter = ebx
-    call    myst                | recursive call: myst(edx, ebx)
-    imull   %ebx, %eax          | eax *= ebx
+    pushl   %ebx                ; save ebx on stack
+    subl    $24, %esp           ; esp -= 24 (6 words)
+    movl    32(%esp), %ebx      ; ebx = first parameter
+    movl    36(%esp), %edx      ; edx = second parameter
+    movl    $1, %eax            ; eax = 1
+    testl   %edx, %edx          ; ZF = (edx == 0)
+    je      .L2                 ; jump to L2 if edx is 0
+    subl    $1, %edx            ; edx--
+    movl    %edx,  4(%esp)      ; second paramter = edx
+    movl    %ebx, (%esp)        ; first parameter = ebx
+    call    myst                ; recursive call: myst(edx, ebx)
+    imull   %ebx, %eax          ; eax *= ebx
 .L2:
-    addl    $24, %esp           | reset stack pointer
-    popl    %ebx                | reset ebx from stack
-    ret                         | return to caller
+    addl    $24, %esp           ; reset stack pointer
+    popl    %ebx                ; reset ebx from stack
+    ret                         ; return to caller
 \end{verbatim}
 
                 Dies ergibt folgenden C-Code:
@@ -133,6 +149,7 @@ int myst(int a, int b) {
             \item[b)]
                 Es ist klar zu erkennen, dass das Unterprogramm/die Funktion die Potenz $a^b$ berechnet.
 
+            \begin{multicols}{2}
             \item[c)]
                 \begin{tabular}[t]{|c|}
                 \hline
@@ -162,9 +179,10 @@ int myst(int a, int b) {
                 Bei jedem Aufruf wird der Stack jeweils um 5 Worte (10 Byte) größer, damit
                 wird ein Stack von 655.33 KB benötigt. Ist der Stack dafür zu klein, wird ein
                 \emph{stack overflow} vermutlich vom Kernel erkannt und das Programm
-                abbrechen. Ansonsten wird das Ergebnis von $3^{65533}$ berechnet (etwa $1.5 \cdot 10^{31267}$),
+                abbrechen. Ansonsten wird das Ergebnis von $3^{65533}$ berechnet (etwa $1,5 \cdot 10^{31267}$),
                 welches selbst mehrmals überläuft und somit $3^{65533} \text{ mod } 2^{16} = 55827$
                 ergibt.
+            \end{multicols}
 
         \end{enumerate}
 \end{enumerate}
