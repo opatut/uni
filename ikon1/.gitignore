@@ -1,0 +1,5 @@
+folien/
+*.aux
+*.log
+*.out
+*.toc

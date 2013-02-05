@@ -1,0 +1,40 @@
+\documentclass[a4paper,10pt]{scrartcl}
+\usepackage[german,ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{fullpage}
+\usepackage{tikz}
+\usepackage{multicol}
+\usepackage{wrapfig}
+\usepackage{droid}
+\usepackage[colorlinks, pdfpagelabels, pdfstartview = FitH, bookmarksopen = true,bookmarksnumbered = true, linkcolor = black, plainpages = false, hypertexnames = false, citecolor = black] {hyperref}
+
+\author{Ein Subset des inf12-Jahrgangs}
+\title{Was man über IKON 1 wissen sollte}
+\date{Irgendwann zwischen Vorlesungen und Klausur}
+
+\pagestyle{plain}
+
+\renewcommand{\headheight}{12pt}
+\renewcommand{\headsep}{12pt}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.6em}
+\linespread{1.2}
+
+\begin{document}
+\setcounter{secnumdepth}{0}
+
+\maketitle
+\tableofcontents
+\newpage
+
+\input{kapitel-01.tex}
+\input{kapitel-02.tex}
+\input{kapitel-03.tex}
+\input{kapitel-04.tex}
+\input{kapitel-05.tex}
+\input{glossar.tex}
+
+\end{document}
