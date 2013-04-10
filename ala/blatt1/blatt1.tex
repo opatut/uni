@@ -1,0 +1,65 @@
+\documentclass [a4paper,11pt]{article}
+\usepackage[german,ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{enumerate}
+\usepackage{breqn}
+\usepackage{fancyhdr}
+\pagestyle{fancyplain}
+\lhead{Hans Ole Hatzel (6416555), Paul Bienkowski}
+\rhead{7.11.12}
+\title{\textbf{ALA, Blatt 1}}
+\date{\today}
+\begin{document}
+\maketitle
+	\begin {enumerate}
+		%Aufgabe 1
+		\item [1.]
+			$$\frac{2}{x+5} \geq 3$$
+
+			Für $x > -2$:
+				\[ \frac{2}{x+5} \geq 3 \leftrightarrow 2 \geq 3 \cdot (x+5) \]
+				\[ \leftrightarrow 2 \geq 3x + 15 \]
+				\[ \leftrightarrow -13 \geq 3x \]
+				\[ \leftrightarrow \frac{-13}{3} \geq x \]
+				Intervallschreibweise: $[-\frac{13}{3},\infty)$
+			Für $x < -2$:
+				\[ \frac{2}{x+5} \geq 3 \leftrightarrow 2 \geq 3 \cdot (x+5) \]
+				\[ \leftrightarrow 2 \leq 3x + 15 \]
+				\[ \leftrightarrow -13 \leq 3x \]
+				\[ \leftrightarrow \frac{-13}{3} \leq x \]
+				Intervallschreibweise: $[-\frac{13}{3},-\infty)$
+
+			Insgesamt erfüllen also folgende $x \in \mathbb{R} \backslash \{-5\}$ die Ungleichung:
+			$$[-\frac{13}{3},-\infty) \cup [-\frac{13}{3},\infty)$$
+		%Aufgabe 3
+		\item[3.]
+			\begin{enumerate}
+				\item[a)]
+					\[|a_n - a| = \Big| \frac{2n-1}{n+3}-2 \Big| =\Big| \frac{2n-1}{n+3}-\frac{2 \cdot (n+3)}{n+3}\Big|= \Big| \frac{2n-1}{n+3}-\frac{2n+6}{n+3} \Big| = \Big|-\frac{7}{n+3} \Big| =\frac{7}{n+3}\]
+				\item[b)]
+					Es sei $\mathcal{E} > 0$ folgilich ergibt sich aus a:
+					\[|a_{n}-a| < \mathcal{E} \leftrightarrow \frac{7}{n+3} < \mathcal{E}\]
+					Durch Umformen ergibt sich daraus:
+					\[n+3> \frac{7}{\mathcal{E}} \leftrightarrow n> \frac{7}{\mathcal{E}}-3\]
+					Entsprechend kann man ein $N$ wählen sodass $|a_{n}-a| < \mathcal{E}$ für $n \geq N$ wie in der Definition von Konvergenz gefordert.
+				\item[c)]
+					Hier muss die oben berechnete Gleichung benutzt werden. 
+					Zum Beispiel so: $n> \frac{7}{\frac{1}{10}}-3$ daraus folgt $n > 67$ folglich muss das kleinstmögliche $N = 68$ sein (da $n$ \em{größer als} $67$).
+
+					\begin{tabular}{c|c}
+						$\mathcal{E}$ & $N$ \\ \hline
+						$\frac{1}{10}$ & $68$ \\ [1.5ex]
+						$\frac{1}{100}$ & $698$ \\ [1.5ex]
+						$\frac{1}{100000}$ & $699998$ \\ [1.5ex]
+
+					\end{tabular}
+			\end{enumerate}
+	\end {enumerate}
+      
+
+\end{document}
