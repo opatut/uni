@@ -1,3 +1,8 @@
+\newcommand{\authorinfo}{Paul Bienkowski, Hans Ole Hatzel}
+\newcommand{\titleinfo}{ALA 01 (HA) zum 04.11.2013}
+
+% PREAMBLE ===============================================================
+
 \documentclass [a4paper,11pt]{article}
 \usepackage[german,ngerman]{babel}
 \usepackage[utf8]{inputenc}
@@ -9,57 +14,128 @@
 \usepackage{enumerate}
 \usepackage{breqn}
 \usepackage{fancyhdr}
-\pagestyle{fancyplain}
-\lhead{Hans Ole Hatzel (6416555), Paul Bienkowski}
-\rhead{7.11.12}
-\title{\textbf{ALA, Blatt 1}}
+\usepackage{multicol}
+
+\author{\authorinfo}
+\title{\titleinfo}
 \date{\today}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\authorinfo}
+\fancyhead[R]{\titleinfo}
+\fancyfoot[C]{\thepage}
+
 \begin{document}
 \maketitle
 	\begin {enumerate}
-		%Aufgabe 1
-		\item [1.]
-			$$\frac{2}{x+5} \geq 3$$
+		% Aufgabe 1
+		\item[\textbf{1.}]
+			$$\begin{array}{lrcl}
+							& \frac{2}{x+5} &\geq& 3 \\
+			\Leftrightarrow & 2 			&\geq& 3 \cdot (x + 5) \\
+			\Leftrightarrow & 2 			&\geq& 3x + 15 \\
+			\Leftrightarrow & -13 			&\geq& 3x \\
+			\Leftrightarrow & -\frac{13}{3} &\geq& x
+			\end{array}$$
 
-			Für $x > -2$:
-				\[ \frac{2}{x+5} \geq 3 \leftrightarrow 2 \geq 3 \cdot (x+5) \]
-				\[ \leftrightarrow 2 \geq 3x + 15 \]
-				\[ \leftrightarrow -13 \geq 3x \]
-				\[ \leftrightarrow \frac{-13}{3} \geq x \]
-				Intervallschreibweise: $[-\frac{13}{3},\infty)$
-			Für $x < -2$:
-				\[ \frac{2}{x+5} \geq 3 \leftrightarrow 2 \geq 3 \cdot (x+5) \]
-				\[ \leftrightarrow 2 \leq 3x + 15 \]
-				\[ \leftrightarrow -13 \leq 3x \]
-				\[ \leftrightarrow \frac{-13}{3} \leq x \]
-				Intervallschreibweise: $[-\frac{13}{3},-\infty)$
+			$$L = \Big(-\infty,-\frac{13}{3}\Big]$$
 
-			Insgesamt erfüllen also folgende $x \in \mathbb{R} \backslash \{-5\}$ die Ungleichung:
-			$$[-\frac{13}{3},-\infty) \cup [-\frac{13}{3},\infty)$$
-		%Aufgabe 3
-		\item[3.]
+		% Aufgabe 2
+		\item[\textbf{2.}]
+			\begin{multicols}{2}
+				\textbf{Fall 1}: $x \geq \frac{4}{3}$
+
+				$$\begin{array}{lrcl}
+								& 3x - 4 &\geq& 2 \\
+				\Leftrightarrow & 3x &\geq& 6 \\
+				\Leftrightarrow & x &\geq& 2
+				\end{array}$$
+
+				\textbf{Fall 2}: $x < \frac{4}{3}$
+
+				$$\begin{array}{lrcl}
+								& - 3x + 4 &\geq& 2 \\
+				\Leftrightarrow & - 3x &\geq& -2 \\
+				\Leftrightarrow & - 3x &\geq& -2 \\
+				\Leftrightarrow & x &\leq& \frac{2}{3}
+				\end{array}$$
+			\end{multicols}
+
+			$$L=\Big(-\infty, \frac{2}{3}\Big] \cup \Big[2, \infty\Big)$$
+
+		% Aufgabe 3
+		\item[\textbf{3.}]
 			\begin{enumerate}
 				\item[a)]
-					\[|a_n - a| = \Big| \frac{2n-1}{n+3}-2 \Big| =\Big| \frac{2n-1}{n+3}-\frac{2 \cdot (n+3)}{n+3}\Big|= \Big| \frac{2n-1}{n+3}-\frac{2n+6}{n+3} \Big| = \Big|-\frac{7}{n+3} \Big| =\frac{7}{n+3}\]
+					\[|a_n - a| = \Big| \frac{2n-1}{n+3}-2 \Big| =\Big| \frac{2n-1}{n+3}-\frac{2 \cdot (n+3)}{n+3}\Big|= \Big| \frac{2n-1}{n+3}-\frac{2n+6}{n+3} \Big|\]
+					\[ = \Big|-\frac{7}{n+3} \Big| =\frac{7}{n+3}\]
+
 				\item[b)]
-					Es sei $\mathcal{E} > 0$ folgilich ergibt sich aus a:
-					\[|a_{n}-a| < \mathcal{E} \leftrightarrow \frac{7}{n+3} < \mathcal{E}\]
-					Durch Umformen ergibt sich daraus:
-					\[n+3> \frac{7}{\mathcal{E}} \leftrightarrow n> \frac{7}{\mathcal{E}}-3\]
-					Entsprechend kann man ein $N$ wählen sodass $|a_{n}-a| < \mathcal{E}$ für $n \geq N$ wie in der Definition von Konvergenz gefordert.
+					Es sei $\epsilon > 0$ folglich ergibt sich aus a:
+					\[|a_{n}-a| < \epsilon \Leftrightarrow \frac{7}{n+3} < \epsilon \Leftrightarrow n> \frac{7}{\epsilon}-3\]
+					Entsprechend kann man ein $N$ wählen sodass $|a_{n}-a| < \epsilon$ für $n \geq N$ wie in der Definition von Konvergenz gefordert: $N > \frac{7}{\epsilon} - 3$.
+
 				\item[c)]
-					Hier muss die oben berechnete Gleichung benutzt werden. 
-					Zum Beispiel so: $n> \frac{7}{\frac{1}{10}}-3$ daraus folgt $n > 67$ folglich muss das kleinstmögliche $N = 68$ sein (da $n$ \em{größer als} $67$).
+					Hier muss die oben berechnete Unleichung benutzt werden.
+					Beispiel: $N > \frac{7}{\epsilon} - 3 \Rightarrow n > 67$, folglich muss das kleinstmögliche $N = 68$ sein (da $N$ \em{größer als} $67$ sein soll).
 
 					\begin{tabular}{c|c}
-						$\mathcal{E}$ & $N$ \\ \hline
+						$\epsilon$ & $N$ \\ \hline
 						$\frac{1}{10}$ & $68$ \\ [1.5ex]
 						$\frac{1}{100}$ & $698$ \\ [1.5ex]
 						$\frac{1}{100000}$ & $699998$ \\ [1.5ex]
 
 					\end{tabular}
 			\end{enumerate}
+
+		% Aufgabe 4
+		\item[\textbf{4.}]
+
+			\textbf{Beschränktheit:}
+
+			Induktionsannahme (IA): $0 \leq a_n < \frac{1}{2}$
+
+			Induktionsanfang: $0 \leq \frac{2}{5} < \frac{1}{2}$ gilt.
+
+			Induktionsschritt: Es ist zu zeigen:
+
+			$$0 \leq a_{n+1} \leq \frac{1}{2}$$
+
+			$$0 \leq a_n^2 + \frac{1}{4} \leq \frac{1}{2}$$
+
+			Der erste Teil der Ungleichung gilt immer, da $a_n^2$ nie negativ (und damit
+			auch nicht kleiner als $\frac{1}{4}$) sein kann.
+
+			Der zweite Teil der Ungleichung lautet:
+
+			$$a_n^2 + \frac{1}{4} < \frac{1}{2}
+			\Leftrightarrow a_n^2 < \frac{1}{4}
+			\Leftrightarrow a_n < \frac{1}{2}$$
+
+			Dies gilt laut der Induktionsannahme, damit ist die Beschränktheit von
+			$a$ gezeigt.
+
+			\textbf{Monotonie:}
+
+			Es ist zu zeigen, dass gilt:
+
+			$$a_n^2 + \frac{1}{4} \geq a_n$$
+
+			Angenommen, die Folge sei nicht monoton, so müsse demnach für mindestens
+			ein $a_n$ gelten:
+
+			$$\begin{array}{lrcl}
+							& a_n^2 + \frac{1}{4} &<& a_n \\[2pt]
+			\Leftrightarrow & a_n^2 - a_n + \frac{1}{4} &<& 0 \\[2pt]
+			\Leftrightarrow & (a_n - \frac{1}{2})^2 &<& 0
+			\end{array}$$
+
+			Dies ist nicht möglich, da ein Quadrat niemals negativ ist. Also existiert
+			kein $a_n$, welches kleiner ist, als sein Nachfolger $a_{n+1}$, somit
+			ist die Folge Monoton. $\Box$
+
 	\end {enumerate}
-      
+
 
 \end{document}
