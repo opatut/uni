@@ -1,0 +1,126 @@
+\documentclass[a4paper]{scrartcl}
+\usepackage[german,ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{enumerate}
+\usepackage{scrpage2}\pagestyle{scrheadings}
+\usepackage{tikz}
+\usetikzlibrary{patterns}
+\usetikzlibrary{arrows}
+
+\author{Paul Bienkowski, Hans Ole Hatzel}
+\title{ALA (HA) zum 18.4.2013}
+\date{\today}
+\begin{document}
+\setcounter{secnumdepth}{0}
+\maketitle
+
+\begin{enumerate}
+% Aufgabe 1
+    \item[\textbf{1.}]
+        \begin{enumerate}
+            \item[i]
+                $$\lim\limits_{n \rightarrow \infty}{\left(\frac{-3n^4+2n^2+n+1}{-7n^4+25}\right)} \Leftrightarrow\lim\limits_{n \rightarrow \infty}{\left(\frac{-3+\frac{2}{n^2}+\frac{1}{n^3}+\frac{1}{n^4}}{-7+\frac{25}{n^4}}\right)}$$ 
+                $$\Leftrightarrow\lim\limits_{n \rightarrow \infty}{\left(\frac{-3}{-7}\right)}=\frac{3}{7}$$
+            \item[ii]
+                $$\lim\limits_{n \rightarrow \infty}{\left(\frac{-3n^4+2n^2+n+1}{-7n^5+25}\right)} \Leftrightarrow\lim\limits_{n \rightarrow \infty}{\left(\frac{-3+\frac{2}{n^2}+\frac{1}{n^3}+\frac{1}{n^4}}{-7n+\frac{25}{n^4}}\right)}$$ 
+                $$\Leftrightarrow\lim\limits_{n \rightarrow \infty}{\left(\frac{3}{n \cdot 7}\right)}=0$$
+            \item[iii]
+                $$\lim\limits_{n \rightarrow \infty}{\left(\frac{-3n^5+2n^2+n+1}{-7n^4+25}\right)} \Leftrightarrow\lim\limits_{n \rightarrow \infty}{\left(\frac{-3n+\frac{2}{n^2}+\frac{1}{n^3}+\frac{1}{n^4}}{-7+\frac{25}{n^4}}\right)}$$ 
+                $$\Leftrightarrow\lim\limits_{n \rightarrow \infty}{\left(\frac{n \cdot 3}{7}\right)}=\infty$$ 
+        \end{enumerate}                             
+% Aufgabe 2
+    \item[\textbf{2.}]
+        \begin{enumerate}
+            \item[a)]
+            \begin{enumerate}
+                \item[i)]
+                    Glieder und Partialsummen:
+
+                    \begin{minipage}[b]{0.3\textwidth}
+                    $$a_0 = 1$$
+                    $$a_1 = \frac{2}{5}$$
+                    $$a_2 = \frac{4}{25}$$
+                    $$a_3 = \frac{8}{125}$$
+                    $$a_4 = \frac{16}{625}$$
+                    \end{minipage}
+                    \begin{minipage}[b]{0.3\textwidth}
+                    $$s_0 = 1$$
+                    $$s_1 = \frac{7}{5}$$
+                    $$s_2 = \frac{39}{25}$$
+                    $$s_3 = \frac{203}{125}$$
+                    $$s_4 = \frac{1031}{625}$$
+                    \end{minipage}
+                    
+                    Da es sich um eine geometrisch Reihe handelt lässt sich einfach die entsprechende Regel anwenden solange $|q| < 1$.
+                    $$\frac{1}{1-\frac{2}{5}}=\frac{5}{3}$$
+                    Die Reihe konvergiert gegen $\frac{5}{3}$.
+                \item[ii)]
+                    Glieder und Partialsummen:
+                    
+                    \begin{minipage}[b]{0.3\textwidth}
+                    $$a_0 = 1$$
+                    $$a_1 = \frac{5}{2}$$
+                    $$a_2 = \frac{25}{4}$$
+                    $$a_3 = \frac{125}{8}$$
+                    $$a_4 = \frac{625}{16}$$
+                    \end{minipage}
+                    \begin{minipage}[b]{0.3\textwidth}
+                    $$s_0 = 1$$
+                    $$s_1 = \frac{7}{2}$$
+                    $$s_2 = \frac{39}{4}$$
+                    $$s_3 = \frac{203}{8}$$
+                    $$s_4 = \frac{1031}{16}$$
+                    \end{minipage}
+                    Die Reihe divergiert, da das $|q| > 1$, gemäß der Regel zur geometrischen Reihe.
+                \item[iii]
+
+            \end{enumerate}
+            \item[b)]
+                \begin{enumerate}
+                    \item[i]
+                        geometrische Reihe $|q| < 1$
+                        $$\sum_{i=0}^{\infty}\left( -\frac{3}{10}\right)^i = \frac{1}{1+\frac{3}{10}}=\frac{10}{13}$$
+                    \item[ii]
+                        Die Formel ist nach q aufzulösen:
+                        $$\frac{1}{1-q}=\frac{5}{8} \Leftrightarrow q=-\frac{3}{5}$$
+                        Man wähle $x=-\frac{3}{5}$ dann konvergiert die Reihe gegen $\frac{5}{8}$
+                \end{enumerate}   
+
+        \end{enumerate}
+        % Aufgabe 3
+    \item[\textbf{3.}]
+        \begin{enumerate}
+            \item[i)]
+                Es handelt sich um eine geometrische Reihe die gegen $\frac{9}{2}$
+                konvergiert (da $|q| < 1$).
+                $$\sum_{i=0}^{\infty}\left(\frac{7}{9}\right)^i = \frac{1}{1-\frac{7}{9}}= \frac{9}{2}$$
+            \item[ii)]
+                Es handelt sich um eine geometrische Reihe die gegen $-\frac{7}{16}$
+                konvergiert (da $|q| < 1$).
+                $$\sum_{i=1}^{\infty}\left(-\frac{7}{9}\right)^i = \sum_{i=0}^{\infty}\left(-\frac{7}{9})\right)^i -1 
+                = \frac{1}{1-(- \frac{7}{9}) }= -\frac{7}{16}$$
+        \end{enumerate}
+        
+    % Aufgabe 4
+    \item[\textbf{4.}]
+        \begin{enumerate}
+            \item[iii)]
+                $$\lim\limits_{n \rightarrow \infty}\left(1+ \frac{1}{n} \right)^3 \Leftrightarrow$$
+                $$\lim\limits_{n \rightarrow \infty}\left(1+ \frac{1}{n} \right) \cdot \lim\limits_{n \rightarrow \infty}\left(1+ \frac{1}{n} \right) \cdot \lim\limits_{n \rightarrow \infty}\left(1+ \frac{1}{n} \right) = 1 \cdot 1 \cdot 1$$
+                Da $\frac{1}{n}$ gegen 0 konvergiert konvergiert der Ausdruck $\lim\limits_{n \rightarrow \infty}\left(1+ \frac{1}{n} \right)$ gegen 1.
+                Entsprechend konvergiert der gesamte ausdruck gegen 1.
+            \item[iv)]
+                $$\lim\limits_{n \rightarrow \infty}\left(1+ \frac{1}{3n} \right)^3n \Leftrightarrow$$
+                $$\lim\limits_{n \rightarrow \infty}\left(1+ \frac{1}{3n} \right)^3 \cdot \lim\limits_{n \rightarrow \infty}\left(1+ \frac{1}{3n} \right)^n \Leftrightarrow $$
+                $$1^3 \cdot e = e$$
+                Da es sich beim ersten Teil des Ausdrucks um den gleichen Grenzwert wie oben handelt (lediglich ,,schneller'' wachsend) und beim zweiten Teil um die abgewandelte Definition der eulerschen Konstanten (ebenfalls ,,schneller'' wachsend) ergibt sich als Grenzwert $e$.
+
+
+        \end{enumerate}
+\end{enumerate}
+
+\end{document}
