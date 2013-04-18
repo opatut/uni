@@ -1,0 +1,187 @@
+\newcommand{\authorinfo}{Paul Bienkowski, Hans Ole Hatzel}
+\newcommand{\titleinfo}{ALA 02 (HA) zum 18.04.2013}
+
+% PREAMBLE ===============================================================
+
+\documentclass[a4paper,11pt]{scrartcl}
+\usepackage[german,ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{enumerate}
+\usepackage{fancyhdr}
+
+\author{\authorinfo}
+\title{\titleinfo}
+\date{\today}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\authorinfo}
+\fancyhead[R]{\titleinfo}
+\fancyfoot[C]{\thepage}
+
+\newcommand{\bra}[1]{\left(#1\right)}
+\newcommand{\limn}[1]{\lim\limits_{n \rightarrow \infty}\bra{#1}}
+\newcommand{\rowi}[1]{\sum_{i=#1}^{\infty}}
+\newcommand{\row}{\rowi{0}}
+
+\begin{document}
+\maketitle
+\begin{enumerate}
+% Aufgabe 1
+    \item[\textbf{1.}]
+        \begin{enumerate}
+            \item[(i)]
+                $\limn{\frac{-3n^4+2n^2+n+1}{-7n^4+25}} =
+                \limn{\frac{-3+\frac{2}{n^2}+\frac{1}{n^3}+\frac{1}{n^4}}{-7+\frac{25}{n^4}}} =
+                \limn{\frac{-3}{-7}} =
+                \frac{3}{7}$
+            \item[(ii)]
+                $\limn{\frac{-3n^4+2n^2+n+1}{-7n^5+25}} =
+                \limn{\frac{-3+\frac{2}{n^2}+\frac{1}{n^3}+\frac{1}{n^4}}{-7n+\frac{25}{n^4}}} =
+                \limn{\frac{3}{n \cdot 7}} = 0$
+            \item[(iii)]
+                $\limn{\frac{-3n^5+2n^2+n+1}{-7n^4+25}} =
+                \limn{\frac{-3n+\frac{2}{n^2}+\frac{1}{n^3}+\frac{1}{n^4}}{-7+\frac{25}{n^4}}} =
+                \limn{\frac{n \cdot 3}{7}}=\infty$
+            \item[(iv)]
+                $\limn{\frac{6n^3+2n-3}{9n^2+2}-\frac{2n^3+5n^2+7}{3n^2+3}}$
+
+                $= \limn{\frac{18n^5+6n^3-9n^2+18n^3+6n-9-18n^5-45n^4-63n^2-4n^3-10n^2-14}{(9n^2+2)\cdot(3n^2+3)}}$
+
+                $= \limn{\frac{-45n^4+20n^3-82n^2+6n-23}{27n^4+33n^2+6}} =
+                \limn{\frac{-45+\frac{20}{n}-\frac{82}{n^2}+\frac{6}{n^3}-\frac{23}{n^4}}{27+\frac{33}{n^2}+\frac{6}{n^4}}} =
+                -\frac{45}{27} = -\frac{5}{3}$
+
+            \item[(v)]
+                $\limn{\frac{\sqrt{9n^4+n^2+1}-2n^2+3}{\sqrt{2n^2+1}\cdot \sqrt{2n^2+n+1}}}
+                = \limn{\frac{\sqrt{9n^4+n^2+1}-2n^2+3}{\sqrt{4n^4+2n^3+4n^2+n+1}}}$
+
+                $= \limn{\frac{\sqrt{9+\frac{1}{n^2}+\frac{1}{n^4}}-2+\frac{3}{n^2}}{\sqrt{4+\frac{2}{n}+\frac{4}{n^2}+\frac{1}{n}+\frac{1}{n^4}}}}
+                =\frac{1}{2}$
+
+        \end{enumerate}
+
+    \item[\textbf{2.}]
+        \begin{enumerate}
+            \item[a)]
+            \begin{tabular}[t]{|r|rl|rl|rl|}
+            \hline
+              & (i) $a_n$ & $s_n$ & (ii) $a_n$ & $s_n$ & (iii) $a_n$ & $s_n$ \\ \hline
+            0 & $1$              & $1$                & $1$              & $1$               & $1$              & $1$ \\[0.5em]
+            1 & $\frac{2}{5}$    & $\frac{7}{5}$      & $\frac{5}{2}$    & $\frac{7}{2}$     & $-\frac{2}{5}$   & $\frac{3}{5}$ \\[0.5em]
+            2 & $\frac{4}{25}$   & $\frac{39}{25}$    & $\frac{25}{4}$   & $\frac{39}{4}$    & $\frac{4}{25}$   & $\frac{19}{25}$ \\[0.5em]
+            3 & $\frac{8}{125}$  & $\frac{203}{125}$  & $\frac{125}{8}$  & $\frac{203}{8}$   & $-\frac{8}{125}$ & $\frac{87}{125}$ \\[0.5em]
+            4 & $\frac{16}{625}$ & $\frac{1031}{625}$ & $\frac{625}{16}$ & $\frac{1031}{16}$ & $\frac{16}{625}$ & $\frac{451}{625}$ \\[0.5em]
+            \hline
+            \end{tabular}
+
+            \begin{enumerate}
+                \item[(i)]
+                    Geometrische Reihe mit $q = \frac{2}{5} \Rightarrow |q| < 1$:
+                    $$\row\bra{\frac{2}{5}}^i = \frac{1}{1 - \frac{2}{5}} = \frac{5}{3}$$
+
+                \item[(ii)]
+                    Geometrische Reihe mit $q = \frac{5}{2} \Rightarrow |q| > 1$,
+                    gemäß der Regel zur geometrischen Reihe divergiert diese also.
+
+                \item[(iii)]
+                    Geometrische Reihe mit $q = -\frac{2}{5} \Rightarrow |q| < 1$:
+                    $$\row\bra{-\frac{2}{5}}^i = \frac{1}{1 + \frac{2}{5}} = \frac{5}{7}$$
+
+
+            \end{enumerate}
+            \item[b)]
+                \begin{enumerate}
+                    \item[(i)]
+                        Es handelt sich auch hier um die geometrische Reihe mit $q = x$,
+                        und $|q| = |-\frac{3}{10}| < 1$, daher konvergiert sie gegen
+                        $$\frac{1}{1 + \frac{3}{10}} = \frac{10}{13}$$
+
+                    \item[(ii)]
+                        Die Formel ist nach q aufzulösen:
+                        $$\frac{1}{1-q}=\frac{5}{8} \Leftrightarrow q=-\frac{3}{5}$$
+                        Man wähle $x=-\frac{3}{5}$, dann konvergiert die Reihe gegen $\frac{5}{8}$
+                \end{enumerate}
+
+        \end{enumerate}
+        % Aufgabe 3
+    \item[\textbf{3.}]
+        \begin{enumerate}
+            \item[(i)]
+                Es handelt sich um eine geometrische Reihe die gegen $\frac{9}{2}$
+                konvergiert (da $|q| < 1$).
+                $\displaystyle
+                \sum_{i=0}^{\infty}\left(\frac{7}{9}\right)^i
+                = \frac{1}{1-\frac{7}{9}}= \frac{9}{2}
+                $
+
+            \item[(ii)]
+                Es handelt sich um eine geometrische Reihe die gegen $-\frac{7}{16}$
+                konvergiert (da $|q| < 1$).
+
+                $\displaystyle
+                \rowi{1}\bra{-\frac{7}{9}}^i
+                = \row\bra{-\frac{7}{9}}^i - 1
+                = \frac{1}{1 + \frac{7}{9}} - 1
+                = -\frac{7}{16}
+                $
+
+            \item[(iii)]
+                $\displaystyle
+                \rowi{2}(-1)^i \cdot \bra{\frac{7}{9}}^{i+1}
+                = \frac{7}{9} \cdot \rowi{2}\bra{-\frac{7}{16}}^i
+                % = \frac{7}{9} \cdot \bra{ \row\bra{-\frac{7}{16}}^i - \bra{-\frac{7}{16}}^0 - \bra{-\frac{7}{16}}^1 }
+                = \frac{7}{9} \cdot \bra{ \frac{1}{1 + \frac{7}{16}} - 1 + \frac{7}{16}}
+                = -\frac{343}{1296}
+                $
+
+            \item[(iv)]
+                $\displaystyle
+                \rowi{2}\frac{1}{(i + 1)i}
+                = \rowi{2}\frac{1}{i} \cdot \frac{1}{i - 1}
+                = \rowi{2}\frac{1}{i} \cdot \rowi{2}\frac{1}{i - 1}
+                = \rowi{2}\frac{1}{i} \cdot \rowi{3}\frac{1}{i}
+                = \infty \cdot \infty = \infty
+                $
+
+        \end{enumerate}
+
+    % Aufgabe 4
+    \item[\textbf{4.}]
+        \begin{enumerate}
+            \item[(i)]
+                $\displaystyle
+                \limn{1 + \frac{1}{n}}^{n+3}
+                = \limn{1 + \frac{1}{n}}^n \cdot \limn{1 + \frac{1}{n}}^3
+                = e \cdot 1 = e
+                $
+
+            \item[(ii)]
+                $\displaystyle
+                \limn{1 + \frac{1}{n}}^{3n}
+                = \bra{\limn{1 + \frac{1}{n}}^n}^3
+                = e^3
+                $
+
+            \item[(iii)]
+                $\displaystyle
+                \limn{1 + \frac{1}{n}}^3
+                = \limn{1 + \frac{1}{n}} \cdot \limn{1 + \frac{1}{n}} \cdot \limn{1 + \frac{1}{n}}
+                = 1 \cdot 1 \cdot 1
+                = 1
+                $
+
+            \item[(iv)]
+                $\displaystyle
+                \limn{1 + \frac{1}{3n}}^{3n}
+                = \limn{1 + \frac{1}{3n}}^3 \cdot \limn{1 + \frac{1}{3n}}^n
+                = 1 \cdot e = e
+                $
+        \end{enumerate}
+\end{enumerate}
+
+\end{document}
