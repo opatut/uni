@@ -1,0 +1,26 @@
+#BlueJ class context
+comment0.params=
+comment0.target=StackTest()
+comment0.text=\n\ Jede\ Testmethode\ arbeitet\ auf\ einem\ frisch\ erzeugten\ Exemplar.\n
+comment1.params=
+comment1.target=void\ testNeuerStackIstLeer()
+comment1.text=\n\ Stellt\ sicher,\ dass\ ein\ neuer\ Stack\ leer\ ist.\n
+comment2.params=
+comment2.target=void\ testNachPushNichtLeer()
+comment2.text=\n\ Stellt\ sicher,\ dass\ ein\ Stack\ nach\ einem\ Push\ nicht\ mehr\ leer\ ist.\n
+comment3.params=
+comment3.target=void\ testNachPushUndPopWiederLeer()
+comment3.text=\n\ I\ am\ not\ going\ to\ comment\ this.\n
+comment4.params=
+comment4.target=void\ testPeekEntferntKeinElement()
+comment4.text=\n\ Read\ the\ method\ name\ and\ understand.\n
+comment5.params=
+comment5.target=void\ testPeekAufLeeremStackLiefertNull()
+comment5.text=\n\ Are\ you\ serious\ about\ this?\n
+comment6.params=
+comment6.target=void\ testPopAufLeeremStackLiefertNull()
+comment6.text=\n\ No\ I\ do\ not\ want\ to\ comment\ any\ further.\n
+comment7.params=
+comment7.target=void\ testLastInFirstOutReihenfolge()
+comment7.text=\n\ Enough\ of\ this.\n
+numComments=8

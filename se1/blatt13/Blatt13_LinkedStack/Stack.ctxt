@@ -1,0 +1,14 @@
+#BlueJ class context
+comment0.params=
+comment0.target=boolean\ isEmpty()
+comment0.text=\n\ Gib\ an,\ ob\ der\ Stack\ leer\ ist.\n\ \n\ @return\ true,\ wenn\ der\ Stack\ leer\ ist,\ ansonsten\ false.\n
+comment1.params=
+comment1.target=java.lang.String\ peek()
+comment1.text=\n\ Liefere\ den\ obersten\ String\ auf\ dem\ Stack,\ ohne\ ihn\ zu\ entfernen.<br>\n\ Wird\ diese\ Operation\ auf\ einem\ leeren\ Stack\ ausgefuehrt,\ gibt\ sie\n\ null\ zurueck.\n\ \n\ @return\ der\ oberste\ String\ des\ Stacks,\ oder\ null,\ wenn\n\ \ \ \ \ \ \ \ \ der\ Stack\ leer\ ist.\n
+comment2.params=
+comment2.target=java.lang.String\ pop()
+comment2.text=\n\ Entferne\ den\ obersten\ String\ des\ Stacks\ und\ gib\ ihn\ zurueck.<br>\n\ Wird\ diese\ Operation\ auf\ einem\ leeren\ Stack\ ausgefuehrt,\ gibt\ sie\n\ null\ zurueck.\n\ \n\ @return\ der\ oberste\ String\ des\ Stacks,\ oder\ null,\ wenn\n\ \ \ \ \ \ \ \ \ der\ Stack\ leer\ ist.\n
+comment3.params=string
+comment3.target=void\ push(java.lang.String)
+comment3.text=\n\ Lege\ einen\ String\ auf\ den\ Stack.\n\ \n\ @param\ string\ der\ String,\ der\ auf\ den\ Stack\ gelegt\ werden\ soll\n
+numComments=4

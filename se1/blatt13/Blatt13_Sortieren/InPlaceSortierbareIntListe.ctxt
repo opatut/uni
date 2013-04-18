@@ -1,0 +1,14 @@
+#BlueJ class context
+comment0.params=
+comment0.target=int\ gibLaenge()
+comment0.text=\n\ Gib\ die\ Anzahl\ der\ Werte\ in\ der\ Liste\ zurueck.\n\ \n\ @return\ die\ Anzahl\ der\ Werte\ in\ der\ Liste\n
+comment1.params=position
+comment1.target=boolean\ existiert(int)
+comment1.text=\n\ Pruefe,\ ob\ der\ gegebene\ Index\ eine\ gueltige\ Position\n\ in\ der\ Liste\ darstellt.\n\ \n\ @param\ position\ die\ zu\ pruefende\ Position\n\ @return\ true,\ falls\ (position\ >\=\ 0)\ &&\ (position\ <\ gibLaenge())\n
+comment2.params=position
+comment2.target=int\ gib(int)
+comment2.text=\n\ Gib\ den\ Wert\ an\ der\ angegebenen\ Position\ zurueck.\n\ \n\ @param\ position\ die\ Position\ des\ int-Werts,\ der\ zurueckgegeben\ werden\ soll\n\ @throws\ IndexOutOfBoundsException\ falls\ \!existiert(position)\n\ @return\ den\ Wert\ an\ der\ angegebenen\ Position\n
+comment3.params=i\ k
+comment3.target=void\ vertausche(int,\ int)
+comment3.text=\n\ Vertausche\ die\ beiden\ Elemente\ an\ den\ angegebenen\ Positionen\ in\ der\ Liste.\n\ \n\ @param\ i\ die\ Position\ des\ ersten\ Elements\n\ @param\ k\ die\ Position\ des\ zweiten\ Elements\n\ @throws\ IndexOutOfBoundsException\ falls\ \!(existiert(i)\ &&\ existiert(k))\n
+numComments=4

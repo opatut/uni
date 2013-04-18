@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.params=
+comment0.target=boolean\ isEmpty()
+comment1.params=
+comment1.target=java.lang.String\ peek()
+comment2.params=
+comment2.target=java.lang.String\ pop()
+comment3.params=string
+comment3.target=void\ push(java.lang.String)
+numComments=4

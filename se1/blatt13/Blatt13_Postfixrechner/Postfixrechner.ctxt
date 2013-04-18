@@ -1,0 +1,5 @@
+#BlueJ class context
+comment0.params=ausdruck
+comment0.target=int\ werteAus(java.lang.String)
+comment0.text=\n\ Wertet\ einen\ Ausdruck\ in\ Postfixnotation\ aus.\n\ Beispielsweise\ liefert\ werteAus("1\ 2\ +\ 3\ *")\ die\ Zahl\ 9.\n\ \n\ M\u00F6gliche\ Fehler\:\ \n\ \ -\ Strings\ oder\ unbekannte\ Operatoren\ als\ Eingaben\n\ \ -\ Dezimalzahlen\n\ \ -\ Falsch\ geformte\ Ausdr\u00FCcke\ (sodass\ der\ Stack\ leer\ wird,\ z.B.\ "3\ 2\ +\ +",\ was\ in\ Infix-Notation\n\ \ \ \ "(3\ +\ 2)\ +"\ und\ somit\ ung\u00FCltig\ w\u00E4re\n\ \n\ @param\ ausdruck\ der\ auszuwertende\ Ausdruck\ in\ Postfixnotation\n\ @return\ des\ ausgewertete\ Ergebnis\ des\ Ausdrucks\n
+numComments=1

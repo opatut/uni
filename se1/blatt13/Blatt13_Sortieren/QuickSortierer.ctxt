@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.params=liste
+comment0.target=void\ sortiere(InPlaceSortierbareIntListe)
+comment0.text=\n\ Sortiere\ die\ angegebene\ InPlaceSortierbareIntListe\ aufsteigend\ in\ situ.\n\ \n\ @param\ liste\ die\ zu\ sortierende\ Liste\n
+comment1.params=liste\ von\ bis
+comment1.target=void\ sortiere(InPlaceSortierbareIntListe,\ int,\ int)
+comment1.text=\n\ Sortiere\ den\ Ausschnitt\ der\ InPlaceSortierbareIntListe\ aufsteigend\ in\ situ.\n\ \n\ @param\ liste\ die\ zu\ sortierende\ Liste\n\ @param\ von\ der\ Anfang\ des\ Ausschnitts\n\ @param\ bis\ das\ Ende\ des\ Ausschnitts\n
+numComments=2
