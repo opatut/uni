@@ -1,0 +1,91 @@
+\newcommand{\authorinfo}{Paul Bienkowski, Hans Ole Hatzel}
+\newcommand{\titleinfo}{ALA 02 (HA) zum 18.04.2013}
+
+% PREAMBLE ===============================================================
+
+\documentclass[a4paper,11pt]{scrartcl}
+\usepackage[german,ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{enumerate}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+
+\author{\authorinfo}
+\title{\titleinfo}
+\date{\today}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\authorinfo}
+\fancyhead[R]{\titleinfo}
+\fancyfoot[C]{\thepage}
+
+\newcommand{\bra}[1]{\left(#1\right)}
+\newcommand{\limn}[1]{\lim\limits_{n \rightarrow \infty}\bra{#1}}
+\newcommand{\rowi}[1]{\sum_{i=#1}^{\infty}}
+\newcommand{\row}{\rowi{0}}
+
+\begin{document}
+\maketitle
+\begin{enumerate}
+% Aufgabe 1
+    \item[\textbf{1.}]
+        \begin{enumerate}
+            \item[(a)]
+                \begin{tikzpicture}[>=stealth]
+                    \begin{axis}[
+                        ymin=0,ymax=9,
+                        axis x line=middle,
+                        axis y line=middle,
+                        axis line style=->,
+                        xlabel={$x$},
+                        ylabel={$y$},
+                        ]
+                    \addplot[no marks, black, -] expression[domain=0:2,samples=100]{(3/2)*x+2} 
+                                    node[pos=0.65,anchor=north]{};
+                    \addplot[no marks, black, -] expression[domain=2:4,samples=100]{-x+5} 
+                                    node[pos=0.65,anchor=north]{};
+                    \addplot[no marks, black, -] expression[domain=4:6,samples=100]{(1/2)*x-1} 
+                                    node[pos=0.65,anchor=north]{};
+                    \addplot[no marks, black, -] expression[domain=6:8,samples=100]{x-3} 
+                                    node[pos=0.65,anchor=north]{};
+                    \addplot[no marks, mark repeat=20, black, -] expression[domain=8:10,samples=100]{2*x-11} 
+                                    node[pos=0.65,anchor=north]{};
+                    \end{axis}
+                \end{tikzpicture}
+                Unstetigkeitsstellen: 2,4,6,8
+            \item[(b)]
+                \begin{tikzpicture}[>=stealth]
+                    \begin{axis}[
+                        ymin=0,ymax=9,
+                        axis x line=middle,
+                        axis y line=middle,
+                        axis line style=->,
+                        xlabel={$x$},
+                        ylabel={$y$},
+                        ]
+                         \addplot[no marks, black, -] expression[domain=0:10,samples=100]{x) - floor(x};
+                    \end{axis}
+                \end{tikzpicture}
+                TODO: stetigkeit für $x \notin \mathbb{Z}$ nachweisen
+        \end{enumerate}
+
+    \item[\textbf{2.}]
+        \begin{enumerate}
+            \item[a]
+
+        \end{enumerate}
+        % Aufgabe 3
+    \item[\textbf{3.}]
+        \begin{enumerate}
+            Zu zeigen ist das $g(f(x_n)) \rightarrow g(f(x_0))$ die Nacheinanderausführung also stetig sind.
+            Eine Folge $x_n \rightarrow x_0$ wobei $x_n$ und $x_0$ jeweils im Definitionsbereich von $g \circ f$ liegen. Da $f$ in $x_0$ stetig ist folgt daraus das $f(x_n) \rightarrow f(x_0)$ g ist für $f(x_0)$ stetig also gilt: $$g(f(x_n)) \rightarrow g(f(x_0))$$
+            Stetigkeit der Nacheinanderausführung ist somit bewiesen.
+        \end{enumerate}
+\end{enumerate}
+
+\end{document}
