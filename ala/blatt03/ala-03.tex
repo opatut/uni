@@ -13,6 +13,7 @@
 \usepackage{enumerate}
 \usepackage{fancyhdr}
 \usepackage{pgfplots}
+\usetikzlibrary{calc}
 
 \author{\authorinfo}
 \title{\titleinfo}
@@ -25,6 +26,7 @@
 \fancyfoot[C]{\thepage}
 
 \newcommand{\bra}[1]{\left(#1\right)}
+\newcommand{\limnn}[2]{\lim\limits_{n \rightarrow #1}\bra{#2}}
 \newcommand{\limn}[1]{\lim\limits_{n \rightarrow \infty}\bra{#1}}
 \newcommand{\rowi}[1]{\sum_{i=#1}^{\infty}}
 \newcommand{\row}{\rowi{0}}
@@ -36,56 +38,127 @@
     \item[\textbf{1.}]
         \begin{enumerate}
             \item[(a)]
+                Graph:
+
                 \begin{tikzpicture}[>=stealth]
                     \begin{axis}[
                         ymin=0,ymax=9,
+                        x=1em,
+                        y=1em,
                         axis x line=middle,
                         axis y line=middle,
                         axis line style=->,
                         xlabel={$x$},
                         ylabel={$y$},
                         ]
-                    \addplot[no marks, black, -] expression[domain=0:2,samples=100]{(3/2)*x+2} 
+                    \addplot[no marks, black, -] expression[domain=0:2,samples=100]{(3/2)*x+2}
                                     node[pos=0.65,anchor=north]{};
-                    \addplot[no marks, black, -] expression[domain=2:4,samples=100]{-x+5} 
+                    \addplot[no marks, black, -] expression[domain=2:4,samples=100]{-x+5}
                                     node[pos=0.65,anchor=north]{};
-                    \addplot[no marks, black, -] expression[domain=4:6,samples=100]{(1/2)*x-1} 
+                    \addplot[no marks, black, -] expression[domain=4:6,samples=100]{(1/2)*x-1}
                                     node[pos=0.65,anchor=north]{};
-                    \addplot[no marks, black, -] expression[domain=6:8,samples=100]{x-3} 
+                    \addplot[no marks, black, -] expression[domain=6:8,samples=100]{x-3}
                                     node[pos=0.65,anchor=north]{};
-                    \addplot[no marks, mark repeat=20, black, -] expression[domain=8:10,samples=100]{2*x-11} 
+                    \addplot[no marks, mark repeat=20, black, -] expression[domain=8:10,samples=100]{2*x-11}
                                     node[pos=0.65,anchor=north]{};
+
+                    \fill[black] (0em, 2em) circle (2pt);
+                    \fill[black] (2em, 3em) circle (2pt);
+                    \fill[black] (6em, 3em) circle (2pt);
                     \end{axis}
                 \end{tikzpicture}
-                Unstetigkeitsstellen: 2,4,6,8
+
+                unstetig bei $x = 2$ und $x = 6$
             \item[(b)]
+                Graph:
+
                 \begin{tikzpicture}[>=stealth]
                     \begin{axis}[
-                        ymin=0,ymax=9,
+                        ymin=0,ymax=5,
                         axis x line=middle,
                         axis y line=middle,
                         axis line style=->,
+                        x=1em,
+                        y=1em,
                         xlabel={$x$},
-                        ylabel={$y$},
+                        ylabel={$y$}
                         ]
-                         \addplot[no marks, black, -] expression[domain=0:10,samples=100]{x) - floor(x};
+
+                        \foreach \n in {0,...,9}{
+                            \addplot[no marks, black, -] expression[domain=\n:\n+1,samples=100]{x - \n};
+                        }
+
+                        \fill[black] (0em, 0em) circle (2pt);
+                        \fill[black] (1em, 0em) circle (2pt);
+                        \fill[black] (2em, 0em) circle (2pt);
+                        \fill[black] (3em, 0em) circle (2pt);
+                        \fill[black] (4em, 0em) circle (2pt);
+                        \fill[black] (5em, 0em) circle (2pt);
+                        \fill[black] (6em, 0em) circle (2pt);
+                        \fill[black] (7em, 0em) circle (2pt);
+                        \fill[black] (8em, 0em) circle (2pt);
+                        \fill[black] (9em, 0em) circle (2pt);
                     \end{axis}
                 \end{tikzpicture}
-                TODO: stetigkeit für $x \notin \mathbb{Z}$ nachweisen
+
+                Für $x     \in \mathbb{N}$ gilt:
+                $$\lim\limits_{x \rightarrow n}\bra{g(x)} = n - \lfloor n \rfloor = n - (n - 1) = 1$$
+
+                Für $x     \in \mathbb{N}$ gilt:
+                $$g(x) = x - \lfloor x \rfloor = x - x = 0$$
         \end{enumerate}
 
+    \newpage
     \item[\textbf{2.}]
         \begin{enumerate}
-            \item[a]
+            \item[a)]
+
+                $\limn{\frac{\sqrt{3n^2-2n+5} - \sqrt{n}}{\sqrt{n^2 - n + 1} + 4n}}
+                = \limn{\frac{\sqrt{3-\frac{2}{n}+\frac{5}{n^2}} - \sqrt{\frac{1}{n}}}{\sqrt{1 - \frac{1}{n} + \frac{1}{n^2}} + 4}}
+                = \frac{\sqrt{3}}{\sqrt{1} + 4} \stackrel{*}{=} \frac{\sqrt{3}}{5}$
+
+                Im mit * markierten Schritt wird die Stetigkeit der Wurzelfunktion vorausgesetzt.
+
+            \item[b)]
+
+                $\limn{\cos\bra{\frac{\sqrt{10n^2-n}-n}{2n + 3}}}
+                \stackrel{*}{=} \cos\bra{\limn{\frac{\sqrt{10 - \frac{1}{n}} - 1}{2 - \frac{3}{n}}}}
+                \stackrel{**}{=} \cos\bra{\frac{\sqrt{10} - 1}{2}}
+                \approx 0.4703$
+
+                Im mit ** markierten Schritt wird die Stetigkeit der Wurzelfunktion vorausgesetzt.
+                Im mit * markierten Schritt wird die Stetigkeit der Cosinusfunktion vorausgesetzt.
 
         \end{enumerate}
-        % Aufgabe 3
+
     \item[\textbf{3.}]
-        \begin{enumerate}
-            Zu zeigen ist das $g(f(x_n)) \rightarrow g(f(x_0))$ die Nacheinanderausführung also stetig sind.
-            Eine Folge $x_n \rightarrow x_0$ wobei $x_n$ und $x_0$ jeweils im Definitionsbereich von $g \circ f$ liegen. Da $f$ in $x_0$ stetig ist folgt daraus das $f(x_n) \rightarrow f(x_0)$ g ist für $f(x_0)$ stetig also gilt: $$g(f(x_n)) \rightarrow g(f(x_0))$$
-            Stetigkeit der Nacheinanderausführung ist somit bewiesen.
-        \end{enumerate}
+        Zu zeigen ist, dass $g(f(x_n)) \rightarrow g(f(x_0))$, die Nacheinanderausführung also stetig ist.
+        Eine Folge $x_n \rightarrow x_0$ wobei $x_n$ und $x_0$ jeweils im Definitionsbereich von $g \circ f$ liegen.
+        Da $f$ in $x_0$ stetig ist folgt daraus das $f(x_n) \rightarrow f(x_0)$ g ist für $f(x_0)$ stetig
+        also gilt:
+
+        $$g(f(x_n)) \rightarrow g(f(x_0))$$
+
+        Stetigkeit der Nacheinanderausführung ist somit bewiesen.
+
+    \item[\textbf{4.}]
+
+        $$\lim\limits_{x \rightarrow 0}\bra{g(x)} =
+        \lim\limits_{x \rightarrow 0}\bra{x^2 \cdot \sin\bra{\frac{1}{x}}} = 0$$
+
+        Der erste Teil ($x^2$) konvergiert gegen 0, der zweite Teil ($\sin\bra{\frac{1}{x}}$)
+        gegen $\sin(\infty)$, was zwar nicht definiert ist, jedoch im Intervall
+        zwischen -1 und 1 liegen muss (Sinusfunktion). Daher konvergiert die ganze Funktion
+        für $x \rightarrow 0$ gegen 0. Da für $x = 0$ der Funktionswert ebenfalls
+        $0$ ist, ist die Funktion an dieser Stelle stetig.
+
+        $$\lim\limits_{x \rightarrow 0}\bra{h(x)} =
+        \lim\limits_{x \rightarrow 0}\bra{\sin\bra{\frac{1}{x}}} = \sin(\infty)$$
+
+        Die Funktion alterniert immer schneller, je kleiner $|x|$ wird, da $\frac{1}{x}$
+        immer schneller wächst, und die Sinusfunktion eine konstant lange Periode
+        hat. Also ist die Funktion nicht stetig an der Stelle $x = 0$.
+
 \end{enumerate}
 
 \end{document}
