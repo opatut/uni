@@ -1,0 +1,99 @@
+\newcommand{\authorinfo}{Paul Bienkowski, Hans Ole Hatzel}
+\newcommand{\titleinfo}{ALA 04 (HA) zum 02.05.2013}
+
+% PREAMBLE ===============================================================
+
+\documentclass[a4paper,11pt]{scrartcl}
+\usepackage[german,ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{enumerate}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usetikzlibrary{calc}
+
+\author{\authorinfo}
+\title{\titleinfo}
+\date{\today}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\authorinfo}
+\fancyhead[R]{\titleinfo}
+\fancyfoot[C]{\thepage}
+
+\newcommand{\bra}[1]{\left(#1\right)}
+\newcommand{\limnn}[2]{\lim\limits_{n \rightarrow #1}\bra{#2}}
+\newcommand{\limn}[1]{\lim\limits_{n \rightarrow \infty}\bra{#1}}
+\newcommand{\rowi}[1]{\sum_{i=#1}^{\infty}}
+\newcommand{\row}{\rowi{0}}
+
+\begin{document}
+\maketitle
+\begin{enumerate}
+    \item[\textbf{1.}]
+    \begin{enumerate}
+        \item[a)]
+        \begin{enumerate}
+            \item[(i)]  \( f'(x) = 35x^4 + 9x^2 + 1 \)
+            \item[(ii)] \( f'(x) = 8(3x^7 - 4x^3 + x^2 - 3x + 1)^7 \cdot (21x^6 - 12x^2 + 2x -3) \)
+            \item[(iii)]\( f'(x) = (3x^4 + 2x)(\frac{x}{\sqrt{x^2+1}}) + (12x^3 + 2) \sqrt{x^2 + 1} \)
+            \item[(iv)] \( f'(x) = (x^3 + 1)(\frac{4x^3+6x}{x^4+3x^2+1}) + 3x \cdot \ln\bra{x^4+3x^2+1} \)
+            \item[(v)]  \( f'(x) = e^{x^3 + x^2 +1} \bra{\frac{1}{2\sqrt{x}} + 3x^2\sqrt{x} + 2x\sqrt{x}} \)
+            \item[(vi)] \( f'(x) = \frac{4x^3}{2\sqrt{x^4+1}} \cdot \ln(x) + \frac{1}{x} \sqrt{x^4 + 1} \)
+        \end{enumerate}
+
+        \item[b)]
+            \( q(x) = \frac{5x^2+1}{x-3} \)
+
+            \( q'(x) = \frac{10x(x - 3) - (5x^2 + 1)}{(x-3)^2} = \frac{5x^2 - 30x - 1}{(x-3)^2} \)
+
+            \( q''(x) = \frac{(10x - 30)(x-3)^2 - (5x^2 - 30x - 1) \cdot 2(x-3)}{(x-3)^4}
+            = \frac{10 (x-3)^2 - 10x^2 + 60x + 2}{(x-3)^3} \)
+
+            \( q'''(x) = \frac{\bra{20(x-3)-20x+60}(x-3)^3 - \bra{10(x-3)^2-10x^2+60x+2} \cdot 3(x-3)^2}{(x-3)^6}
+            = -\frac{21}{(x-3)^4} \)
+    \end{enumerate}
+
+    \item[\textbf{2.}]
+        \[
+            \lim\limits_{x \rightarrow 6}\bra{\frac{f(x) - f(6)}{x-6}} =
+            \lim\limits_{x \rightarrow 6}\bra{\frac{|3 - \frac{1}{2}x| - |3 - \frac{1}{2} \cdot 6}{x-6}} =
+            \lim\limits_{x \rightarrow 6}\bra{\frac{|3 - \frac{1}{2}x|}{x-6}} = \]
+        \[
+            \lim\limits_{x \rightarrow 6}\bra{\sqrt{\frac{(3 - \frac{1}{2}x)^2}{(x-6)^2}}} =
+            \sqrt{\lim\limits_{x \rightarrow 6}\bra{\frac{9 - 3x + \frac{1}{4}x^2}{x^2 - 2x + 36}}} =
+            \sqrt{\frac{1}{4}} = \frac{1}{2}
+        \]
+
+        \begin{center}\begin{tikzpicture}[>=stealth]
+            \begin{axis}[
+                ymin=0,ymax=4,
+                xmin=-1,xmax=8,
+                x=1cm, y=1cm,
+                axis x line=middle,
+                axis y line=middle,
+                axis line style=->,
+                xlabel={$x$},
+                ylabel={$y$},
+                ]
+                \addplot[no marks, black, -] expression[domain=-1:6,samples=4]{3-(1/2)*x} node[pos=0.65,anchor=north]{};
+                \addplot[no marks, black, -] expression[domain=6:9,samples=4]{-3+(1/2)*x} node[pos=0.65,anchor=north]{};
+            \end{axis}
+        \end{tikzpicture}\end{center}
+
+    \item[\textbf{3.}]
+    \begin{enumerate}
+        \item[a)]
+    \end{enumerate}
+
+    \item[\textbf{4.}]
+    \begin{enumerate}
+        \item[a)]
+    \end{enumerate}
+\end{enumerate}
+
+\end{document}
