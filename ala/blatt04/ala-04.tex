@@ -30,6 +30,7 @@
 \newcommand{\limn}[1]{\lim\limits_{n \rightarrow \infty}\bra{#1}}
 \newcommand{\rowi}[1]{\sum_{i=#1}^{\infty}}
 \newcommand{\row}{\rowi{0}}
+\newcommand{\step}[1]{\textbf{#1}}
 
 \begin{document}
 \maketitle
@@ -88,11 +89,151 @@
     \item[\textbf{3.}]
     \begin{enumerate}
         \item[a)]
+            \( f(x) = (x^4 + 1)^{x+2} = e^{\ln\bra{(x^4 + 1)^{x+2}}} = e^{\ln\bra{x^4 + 1} (x + 2)} \)
+
+            \( f'(x) = e^{\ln\bra{x^4 + 1} (x + 2)} \cdot \bra{\ln\bra{x^4+1} + (x+2)\frac{4x^3}{x^4+1}} \)
+
+            \( =  (x^4 + 1)^{x+2} \cdot \bra{\ln\bra{x^4+1} + \frac{4x^4 + 8x^3}{x^4+1}} \)
+
+        \item[b)]
+            \( f(x) = x^{\frac{1}{2}} = e^{\ln\bra{x^{\frac{1}{2}}}} = e^{\frac{1}{2} \cdot \ln x} \)
+
+            \( f'(x) = e^{\frac{1}{2} \cdot \ln x} \cdot \frac{1}{2x} = x^{\frac{1}{2}} \cdot x^{-1} \cdot \frac{1}{2} =
+            \frac{1}{2} \cdot x^{-\frac{1}{2}} = \frac{1}{2 \sqrt{x}} \)
+
+            \( g(x) = \bra{\frac{1}{2}}^x = e^{\ln\bra{\bra{\frac{1}{2}}^x}} = e^{x \ln\frac{1}{2}} \)
+
+            \( g'(x) = e^{x \ln\frac{1}{2}} \cdot \ln\frac{1}{2} = \bra{e^{\ln\frac{1}{2}}}^x \cdot \ln\frac{1}{2} =  \bra{\frac{1}{2}}^x \cdot \ln \frac{1}{2} \)
+
+        \item[c)]
+        \begin{enumerate}
+            \item[(i)]
+                \( g(x) = \bra{x^2 + 1}^{4x + 1} = e^{\ln\bra{(x^2+1)^{4x+1}}} = e^{(4x + 1) \ln\bra{x^2 + 1}} \)
+
+                \( g'(x) = \bra{e^{\ln\bra{x^2 + 1}}}^{4x + 1} \cdot \bra{ 4 \ln\bra{x^2+1} + \bra{4x+1}\bra{\frac{2x}{x^2+1}}) } \)
+
+                \( = \bra{x^2+1}^{4x+1} \bra{4\ln\bra{x^2+1} + \frac{8x^2+2x}{x^2+1} } \)
+
+            \item[(ii)]
+                \( h(x) = \bra{x-3}^{3x^4 + 5} = e^{\ln\bra{x-3} \cdot \bra{3x^4 + 5}} \)
+
+                \( h'(x) = \bra{x-3}^{3x^4+5} \cdot \bra{ 12x^3 \cdot \ln\bra{x-3} + \frac{1}{x-3}\bra{3x^4 + 5} } \)
+
+        \end{enumerate}
+
     \end{enumerate}
 
+    \newpage
     \item[\textbf{4.}]
     \begin{enumerate}
         \item[a)]
+            \( g(p) = 10^5 \bra{\frac{1}{p} - \frac{3}{p^2}} \)
+
+            \( g'(p) = 10^5 \bra{-\frac{1}{p^2} + \frac{3 \cdot 2p}{p^4}} = 10^5 \bra{\frac{6}{p^3} - \frac{1}{p^2}} \)
+
+            \( g''(p) = 10^5 \bra{-\frac{18 p^2}{p^6} + \frac{2p}{p^4}} = 10^5 \bra{\frac{2}{p^3} - \frac{18}{p^4}} \)
+
+            Es ist das Maximum der Funktion $g(p)$ zu bestimmen. Am Maximum gilt $g'(p) = 0$ und $g''(p) < 0$.
+
+            \[ g'(p) = 0
+            \Leftrightarrow 0 = 10^5 \bra{\frac{6}{p^3} - \frac{1}{p^2}}
+            \Leftrightarrow \frac{6}{p^3} = \frac{1}{p^2}
+            \Leftrightarrow 6p^2 = p^3
+            \Leftrightarrow p = 6 \]
+
+            Der Wert $p=6$ liegt zunächst im zulässigen Intervall von $[3, 100]$.
+            Um zu zeigen, dass es sich wirklich um ein Maximum handelt, wird gezeigt,
+            dass $g''(p)$ für $p = 6$ kleiner als $0$ ist:
+
+            \[ g''(6) = 10^5 \bra{\frac{2}{6^3} - \frac{18}{6^4}} = 10^5 \bra{\frac{1}{108} - \frac{1}{72}} = - \frac{12500}{27} < 0.
+            \hspace{1em} \Box \]
+
+        \item[b)]
+        \begin{enumerate}
+            \item[(i)]
+                \step{Ableitungen:}
+
+                \( f(x) = -2x^3-x+25 \)\\
+                \( f'(x) = -6x^2-1 \)\\
+                \( f''(x) = -12x \)
+
+                \step{Stellen mit Steigung 0:}
+
+                \[ 0 = -6x^2 - 1
+                \Leftrightarrow 6x^2 = -1
+                \Leftrightarrow x \not\in \mathbb{R} \]
+
+                \step{Funktionswerte an Intervallgrenzen:}
+
+                \( f(5) = - 2 \cdot 5^3 - 5 + 25 = -250-5+25 = -230  \)\\
+                \( f(-5) = - 2 \cdot (-5)^3 + 5 + 25 = 250+5+25 = 280  \)
+
+                Die Funktion hat keinen Punkt mit Steigung 0, ist also streng monoton.
+                Die globalen Extremwerte liegen daher an den Grenzen des Definitionsintervalls,
+                das globale Maximum bei $x = -5$, das globale Minimum bei $x = 5$.
+
+            \newpage
+            \item[(ii)]
+                \step{Ableitungen:}
+
+                \( g(x) = x^3-6x^2+3x+8 \)\\
+                \( g'(x) = 3x^2-12x+3 \)\\
+                \( g''(x) = 6x-12 \)
+
+                \step{Stellen mit Steigung 0 bestimmen:}
+
+                \(\begin{array}{rrcl}& 0 &=& 3x^2 - 12x + 3 \\
+                \Leftrightarrow& 0 &=& x^2 - 4x + 1 \\
+                \Leftrightarrow& 0 &=& (x - 2)^2 - 3 \\
+                \Leftrightarrow& x - 2 &=& \pm \sqrt{3} \\
+                \Leftrightarrow& x_1 &=& 2 - \sqrt{3} \approx 0.2679 \\
+                               & x_2 &=& 2 + \sqrt{3} \approx 3.7321 \\
+                \end{array}\)
+
+                Nur die Stelle $x_1 = 2 - \sqrt{3}$ liegt im Definitionsbereich.
+
+                \step{Art der berechneten Extremstelle:}
+
+                \( g''(2 - \sqrt{3}) = 6 \bra{2 - \sqrt{3}} - 12 = 12 - 6\sqrt{3} - 12 = - 6 \sqrt{3} < 0 \)
+
+                \step{Funktionswerte an Intervallgrenzen:}
+
+                \( g(0) = 0^3 - 6 \cdot 0^2 + 3 \cdot 0 + 8 = 8 \)\\
+                \( g(3) = 3^3 - 6 \cdot 3^2 + 3 \cdot 3 + 8 = 27 - 54 + 9 + 8 = -10 \)
+
+                An der Stelle $x = 2 - \sqrt{3}$ liegt das globale Maximum der Funktion
+                vor. Das globale Minimum liegt am rechten Rand des Defintionsintervalles,
+                bei $x = 3$.
+
+            \item[(iii)]
+                \step{Ableitungen:}
+
+                \( h(x) = e^{2x-3} - e^{x+2} \)\\
+                \( h'(x) = 2e^{2x-3} - e^{x+2} \)\\
+                \( h''(x) = 4e^{2x-3} - e^{x+2} \)
+
+                \step{Stellen mit Steigung 0 bestimmen:}
+
+                \(\begin{array}{rrcl}& 0 &=& 2e^{2x-3} - e^{x+2} \\
+                \Leftrightarrow& 2e^{2x-3} &=& e^{x+2}\\
+                \Leftrightarrow& \ln 2 + 2x - 3 &=& \bra{x+2} \\
+                \Leftrightarrow& x &=& 5 - \ln 2 \approx 4.3069
+                \end{array}\)
+
+                \step{Art der berechneten Extremstelle:}
+
+                \( h''(5 - \ln 2) \approx 548.317 > 0 \)
+
+                \step{Funktionswerte an Intervallgrenzen:}
+
+                \( h(0) = e^{2\cdot0 - 3} - e^{0 + 2} = e^{-3} - e^2 \approx -7.3393 \)\\
+                \( h(5) = e^{2\cdot5 - 3} - e^{5 + 2} = 0 \)\\
+
+                Die einzige Stelle mit Steigung 0 liegt an bei $x = 5 - \ln 2$, es handelt
+                sich hierbei um das globale Minumum. Das globale Maximum der Funktion
+                liegt an der rechten Grenze des Definitionsintervalls bei $x = 5$.
+
+        \end{enumerate}
     \end{enumerate}
 \end{enumerate}
 
