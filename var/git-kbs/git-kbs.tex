@@ -1,0 +1,438 @@
+\documentclass[compress,t]{beamer}
+% \documentclass[compress,notes]{beamer}
+% \documentclass[compress,notes=only]{beamer}
+
+\newif\iffinal
+\finalfalse
+
+\usetheme{Paul}
+% \setbeamercovered{transparent}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage{floatflt}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{xcolor}
+\usepackage{listings}
+\usetikzlibrary{shapes,arrows,calc,decorations.markings}
+
+\usepackage{mdframed}
+
+\newcommand{\qq}[1]{\symbol{34}#1\symbol{34}}
+\newcommand{\bash}[1]{
+    \begin{mdframed}[backgroundcolor=black!80,
+            innerbottommargin=1pt,
+            innertopmargin=3pt,
+            innerleftmargin=3pt,
+            innerrightmargin=3pt,
+            linewidth=0]
+        \textcolor{white}{\texttt{\small #1}}
+    \end{mdframed}
+}
+
+\title{Git}
+\author{Paul Bienkowski (2bienkow)}
+\institute{KunterBuntesSeminar}
+\date{2013-05-29}
+\setbeamerfont{note page}{size=\small}
+
+\tikzset{
+    onslide/.code args={<#1>#2}{% http://tex.stackexchange.com/a/6155/16595
+        \only<#1>{\pgfkeysalso{#2}}
+    }
+}
+
+\tikzset{
+    commit/.style={
+        draw,
+        fill=cyan!30,
+        ellipse,
+        font=\tiny,
+        minimum height=1.5em,
+        text centered,
+        minimum width=2em,
+    },
+    branch/.style={
+        draw,
+        fill=brown!30,
+        rectangle,
+        rounded corners=1pt,
+        font=\tiny,
+        minimum height=1.1em,
+        text centered,
+        minimum width=2em,
+    },
+    current/.style={
+        fill=orange!50
+    },
+    child/.style={
+        latex-,
+        thick
+    },
+    pointer/.style={
+        pointer'
+    },
+    pointer'/.style={
+        draw=gray,
+        thick,
+        densely dotted
+    },
+    repo/.style={
+        draw,
+        fill=cyan!30,
+        circle,
+        font=\tiny,
+        minimum height=3em,
+        minimum width=3em,
+        text centered,
+    },
+    remote/.style={
+        decoration={
+            markings,
+            mark={
+                at position 0
+                with {
+                    \fill circle [xshift=1pt,radius=1pt];
+                }
+            }
+        },
+        postaction=decorate,
+        -latex,
+        thick
+    }
+}
+
+%\AtBeginSection[]{
+    %\frame{
+    %\frametitle{Outline}
+    %\tableofcontents[current]
+    %}
+%}
+
+\begin{document}
+\frame{
+    \titlepage
+}
+
+\frame{
+    \frametitle{Gliederung}
+    \tableofcontents
+}
+
+\section{Einleitung}
+\subsection{Wozu Git?}
+\frame {
+    \frametitle{Wozu Git?}
+
+    \uncover<0->{Lasst uns zusammen ein Programm schreiben!}
+    \uncover<2->{\textit{(Evolution eines Hackers)}}
+
+    \begin{enumerate}
+        \item<3-> Wir arbeiten im Etherpad!
+        \item<4-> Wir arbeiten auf \texttt{rzssh1}!
+        \item<5-> Du schickst mir dann die neue Version per Mail!
+        \item<6-> Du schickst mir dann ein Diff per Mail!
+        \item<7-> Wir nehmen Versionskontrolle!
+    \end{enumerate}
+
+    \uncover<8> {
+        $\rightarrow$ gilt auch für Hausaufgaben in \LaTeX
+    }
+
+    \vspace{0.2cm}
+
+    \makebox[\textwidth][c]{
+        \begin{tikzpicture}[x=1cm,y=1cm]
+            \uncover<3->{
+                \node[anchor=south west,inner sep=0,opacity=0.2] (human-01) at (0,0) {\includegraphics[scale=0.5]{gfx/human-01.png}};
+            }
+            \uncover<4->{
+                \node[anchor=south west,inner sep=0,opacity=0.2] (human-02) at (1.2,0) {\includegraphics[scale=0.5]{gfx/human-02.png}};
+            }
+            \uncover<5->{
+                \node[anchor=south west,inner sep=0,opacity=0.2] (human-03) at (2.1,0) {\includegraphics[scale=0.5]{gfx/human-03.png}};
+            }
+            \uncover<6->{
+                \node[anchor=south west,inner sep=0,opacity=0.2] (human-04) at (2.9,0) {\includegraphics[scale=0.5]{gfx/human-04.png}};
+            }
+            \uncover<7->{
+                \node[anchor=south west,inner sep=0,opacity=0.2] (human-05) at (4.0,0) {\includegraphics[scale=0.5]{gfx/human-05.png}};
+            }
+        \end{tikzpicture}
+    }
+}
+
+\frame{
+    \frametitle{Was ist Versionierung?}
+
+    \begin{itemize}
+        \item \emph{Snapshots} einzelner Dateiversionen speichern
+        \item History aufbewahren und wiederherstellbar machen
+        \item verschiedene Versionen zusammenführen
+        \item \emph{(optional)} Synchronisation mit entfernten Kopien (Kollaboration)
+    \end{itemize}
+    $\rightarrow$ mehr als nur ein Backup
+}
+
+\subsection{Warum gerade git?}
+\frame{
+    \frametitle{Warum gerade git?}
+
+    Vorteile:
+    \begin{itemize}
+        \item verteilt (serverunabhängig, jeder \emph{clone} ist eigenständig/vollständig)
+        \item schnell (lokal, Implementation in C)
+        \item optimal für Quelltext
+        \item FOSS
+    \end{itemize}
+
+    Nachteile:
+    \begin{itemize}
+        \item wenig geeignet für Binärdateien
+        \item gesamte History kann groß werden
+    \end{itemize}
+}
+
+\section{Git Internals}
+\subsection{Objekte}
+\frame{
+    \frametitle{Objekte}
+    \begin{itemize}
+        \item Git als map-type storage
+        \item Hashes bilden auf Daten ab
+        \item Speicherung in einzelnen Dateien (``der Kernel macht das'')
+        \item jedes Objekt in git ist eine Datei
+            \begin{itemize}
+                \item Versions-Snapshot von Dateien (\emph{blob})
+                \item Versions-Snapshot von Verzeichnissen (\emph{tree})
+                \item Commit-Informationen (\emph{commit})
+            \end{itemize}
+        \item \emph{tree} und \emph{commit} enthalten Informationen in Klartext,  \emph{blob} den Dateiinhalt
+    \end{itemize}
+
+    \pause
+    \vspace{0.5em}
+    \makebox[\textwidth][c]{
+        \begin{tikzpicture}[x=1cm,y=1cm]
+            \node (rect) at (0, 0) [draw,thick,minimum width=2cm,minimum height=0.6cm] {type};
+            \node (rect) at (2, 0) [draw,thick,minimum width=2cm,minimum height=0.6cm] {length};
+            \node (rect) at (5, 0) [draw,thick,minimum width=4cm,minimum height=0.6cm] {data};
+            \node (rect) at (3, -0.1) [draw,thick,minimum width=8.2cm,minimum height=1cm,label=below:\emph{zlib compress}] {};
+        \end{tikzpicture}
+    }
+}
+
+\subsection{Remotes}
+\frame {
+    \frametitle{Clones}
+
+    \begin{itemize}
+        \item in einem Repository entstehen nur neue Objekte (Dateien), sie werden
+            nicht verändert
+        \item jede Datei hat einen eindeutigen Namen (SHA kollidiert
+            \textit{praktisch} nicht)
+        \item $\rightarrow$ Synchronisation ohne zentrale Verwaltung möglich
+    \end{itemize}
+
+    Einzige Ausnahme: Branch-Referenzen verändern sich.
+}
+
+\frame {
+    \frametitle{Remotes}
+
+    \vspace{0.5em}
+    \makebox[\textwidth][c]{
+        \begin{tikzpicture}[x=1cm,y=1cm]
+            \node[repo] (github) at (0, 2) {\textit{github}};
+            \node[repo] (paul) at (-1, 0) {\textit{paul}};
+            \node[repo] (rzssh1) at (1, 0) {\textit{rzssh1}};
+
+            \draw[remote] (paul) -- node[midway, left]
+                {\tiny \textbf{origin} $\rightarrow$ git@github.com:opatut/repo.git} (github);
+            \draw[remote] (rzssh1) -- node[midway, right]
+                {\tiny \textbf{origin} $\rightarrow$ git@github.com:opatut/repo.git} (github);
+
+            %\draw[remote] (paul) -- node[midway, below] {\tiny{}ssh://2bienkow@rzssh1.informatik.uni-hamburg.de:/home/scratch/2bienkow/repo} (rzssh1);
+        \end{tikzpicture}
+    }
+}
+
+\section{Basics}
+
+\subsection{Working copy}
+\frame{
+    \frametitle{Working copy}
+    \begin{itemize}
+        \item In \texttt{.git/} liegen alle Versionen aller Dateien als \emph{blob} vor
+        \item Wie soll man damit arbeiten?
+        \item $\rightarrow$ aktuelle Version (\emph{HEAD}) liegt im Hauptverzeichnis
+        \item verständliche Dateinamen (statt Hashes)
+        \item wechseln der Version per \textsc{checkout}
+            \bash{git checkout 4b5c8e2f95a4407c4d0c596565b367eaca07af57}
+            $\rightarrow$ nicht möglich, wenn unversionierte Änderungen vorliegen
+    \end{itemize}
+
+}
+
+\subsection{Branching}
+\frame{
+    \frametitle{Branching}
+
+    \begin{itemize}
+        \item Commits liegen ungeordnet vor
+        \item $\rightarrow$ Welche ist die ``aktuelle'' Version?
+        \item Ein \textbf{Branch} kann auf einen Commit zeigen (``Pointer'')
+        \item Branches haben \textbf{Namen} (z.B. \textit{master} oder \textit{my-feature})
+        \item Man kann zwischen Branches wechseln wie zwischen Commits (\textsc{checkout})
+        \item Nach dem committen zeigt der aktuelle Branch auf den neuen Commit
+    \end{itemize}
+}
+
+\frame{
+    \frametitle{Branching}
+
+    \only<1>{\bash{git status}}
+    \only<2>{\bash{git checkout -b foobar}}
+    \only<3>{\bash{git commit -m \qq{D}}}
+    \only<4>{\bash{git checkout master}}
+    \only<5>{\bash{git checkout -b hotfix}}
+    \only<6>{\bash{git commit -m \qq{E}}}
+    \only<7>{\bash{git checkout master}}
+    \only<8>{\bash{git merge hotfix}}
+    \only<9>{\bash{git branch -d hotfix}}
+    \only<10>{\bash{git checkout foobar}}
+    \only<11-12>{\bash{git commit -m \qq{F}}}
+    \only<13>{\bash{git checkout master}}
+    \only<14>{\bash{git merge foobar}}
+    \only<15>{\bash{git branch -d foobar}}
+
+    \vspace{1em}
+
+\iffinal
+    \makebox[\textwidth][c]{
+        \begin{tikzpicture}[x=3em,y=2em]
+            \uncover<1-> {
+                \node[commit] (a) at (0, 0) {A};
+                \node[commit] (b) at (1, 0) {B};
+                \node[commit] (c) at (2, 0) {C};
+
+                \draw[child] (a) -> (b);
+                \draw[child] (b) -> (c);
+            }
+
+            \uncover<1-7> {
+                \node[branch,onslide=<1>current,onslide=<4>current,onslide=<7>current] (master) at (2, 1) {master};
+                \draw[pointer] (master) -> (c);
+            }
+
+            \uncover<2> {
+                \node[branch,current] (foobar) at (2, -1) {foobar};
+                \draw[pointer] (foobar) -> (c);
+            }
+
+            \uncover<3-> {
+                \node[commit] (d) at (3, -1) {D};
+                \draw[child,onslide=<12-13>{red}] (c) -> (d);
+            }
+
+            \uncover<3-10> {
+                \node[branch,onslide=<3>current,onslide=<10>current] (foobar) at (3, -2) {foobar};
+                \draw[pointer] (foobar) -> (d);
+            }
+
+            \uncover<5> {
+                \node[branch,current] (hotfix) at (2, 2) {hotfix};
+                \draw[pointer'] (hotfix) -- (master);
+            }
+
+            \uncover<6-> {
+                \node[commit] (e) at (3, 0) {E};
+                \draw[child,onslide=<12-13>{green}] (c) -> (e);
+            }
+
+            \uncover<6-8> {
+                \node[branch,onslide=<6>{current}] (hotfix) at (3, 1) {hotfix};
+                \draw[pointer] (hotfix) -> (e);
+            }
+
+            \uncover<8> {
+                \node[branch,current] (master) at (3, 2) {master};
+                \draw[pointer'] (master) -> (hotfix);
+            }
+
+            \uncover<9-13> {
+                \node[branch,onslide=<9>current,onslide=<13>current] (master) at (3, 1) {master};
+                \draw[pointer] (master) -> (e);
+            }
+
+
+            \uncover<11-> {
+                \node[commit] (f) at (4, -1) {F};
+                \draw[child,onslide=<12-13>{red}] (d) -> (f);
+            }
+
+            \uncover<11-14> {
+                \node[branch,onslide=<-12>current] (foobar) at (4, -2) {foobar};
+                \draw[pointer] (foobar) -> (f);
+            }
+
+            \uncover<14-> {
+                \node[commit] (g) at (5, 0) {G*};
+                \draw[child] (e) -> (g);
+                \draw[child] (f) -> (g);
+            }
+
+            \uncover<14-> {
+                \node[branch,current] (master) at (5, 1) {master};
+                \draw[pointer] (master) -> (g);
+            }
+
+            \uncover<15> {}
+        \end{tikzpicture}
+    }
+\else
+    -- tikz picture here, finaltrue to show --
+\fi
+}
+
+\subsection{Merging}
+\frame{
+    \frametitle{Merging}
+
+    Was passiert?
+    \begin{itemize}
+        \item gemeinsamen Vorgänger finden
+        \item Änderungen ermitteln
+        \item beide Änderungssätze auf gemeinsamen Vorgänger anwenden
+        \item neuen Commit erstellen (automatische \emph{message})
+    \end{itemize}
+
+    Konflikte
+    \begin{itemize}
+        \item bei Änderung gleicher Zeile kann git nicht entscheiden, welche
+            Änderung übernommen werden soll
+        \item
+            {\scriptsize
+            \texttt{Auto-merging <filename>}\\
+            \texttt{CONFLICT (content): Merge conflict in <filename>}\\
+            \texttt{Automatic merge failed; fix conflicts and then commit the result.}\\
+            }
+    \end{itemize}
+}
+
+\begin{frame}[fragile]
+    \frametitle{Merging - Konflikte}
+
+    \begin{verbatim}
+vor dem Konflikt
+<<<<<<< HEAD
+meine Änderungen
+=======
+deine Änderungen
+>>>>>>> fremder-branch
+nach dem Konflikt
+    \end{verbatim}
+
+\end{frame}
+
+\end{document}
