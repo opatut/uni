@@ -13,6 +13,7 @@
 \usepackage{enumerate}
 \usepackage{fancyhdr}
 \usepackage{pgfplots}
+\usepackage{multicol}
 \usetikzlibrary{calc}
 
 \author{\authorinfo}
@@ -47,7 +48,7 @@
                 \(f'(x)= 2 \cdot sin(x) \cdot cos(x)\)
             \item[(iv)]
                 \(f'(x)= cos(x)^2 + sin(x) \cdot - sin(x)\)
-            \item[(v)]  
+            \item[(v)]
                 \(f'(x)= \frac{1}{\sqrt{1-\sqrt{x^2}}} \cdot \frac{1}{2 \sqrt{x}} = \frac{1}{2 \sqrt{x-x^2}}\)
             \item[(vi)]
                 \(f'(x)= (x^3 - 1)^{arctan(x)} \cdot \frac{1}{1+x^2} \cdot ln(x^3 - 1) + arctan(x) \cdot \left( \frac{1}{x^3-1} \cdot 3x^2 \right) \)
@@ -56,7 +57,9 @@
     \item[\textbf{2.}]
         \begin{enumerate}
             \item[1.]
-                $f$ ist definiert in in $\mathbb{R}$, denn im Nenner kann keine $0$ stehen da $x^2$ nie negativ wird.
+                $f$ ist definiert in $\mathbb{R}$, denn dadurch kann im Nenner nie
+                $0$ stehen, da $x^2$ nie negativ wird.
+
             \item[2.]
                 \(f(x) =  \frac{2x}{1+x^2}\) \\
                 \(f'(x) =  -\frac{2(x^2-1)}{(1+x^2)^2}\) \\
@@ -71,24 +74,29 @@
                 \(\lim\limits_{x \rightarrow -\infty}f(x) = 0\)
             \item[4.]
                 Aus 3. folgt:
-                \begin{itemize}
-                    \item $f(x) > 0$ für alle $x \in (0,\infty)$
-                    \item $f(x) < 0$ für alle $x \in (-\infty,0)$  
-                \end{itemize}
-                \begin{itemize}
-                    \item $f'(x) > 0$ für alle $x \in (-1,1)$
-                    \item $f'(x) < 0$ für alle $x \in (1,\infty)$
-                    \item $f'(x) < 0$ für alle $x \in (-\infty,-1)$  
-                \end{itemize}
+                \begin{multicols}{2}
+                    \begin{itemize}
+                        \item $f(x) > 0$ für alle $x \in (0,\infty)$
+                        \item $f(x) < 0$ für alle $x \in (-\infty,0)$
+                    \end{itemize}
 
-                \begin{itemize}
-                    \item $f''(x) < 0$ für alle $x \in (0,1)$
-                    \item $f''(x) > 0$ für alle $x \in (-1,0)$
-                    \item $f''(x) < 0$ für alle $x \in (-\infty,-1)$
-                    \item $f''(x) > 0$ für alle $x \in (\infty,1)$        
-                \end{itemize}
-                Diese Ergebebnisse lassen sich nun folgendermaßen darstellen:
-                \begin{center} \begin{tikzpicture} 
+                    \begin{itemize}
+                        \item $f'(x) > 0$ für alle $x \in (-1,1)$
+                        \item $f'(x) < 0$ für alle $x \in (1,\infty)$
+                        \item $f'(x) < 0$ für alle $x \in (-\infty,-1)$
+                    \end{itemize}
+
+                    \begin{itemize}
+                        \item $f''(x) < 0$ für alle $x \in (0,1)$
+                        \item $f''(x) > 0$ für alle $x \in (-1,0)$
+                        \item $f''(x) < 0$ für alle $x \in (-\infty,-1)$
+                        \item $f''(x) > 0$ für alle $x \in (\infty,1)$
+                    \end{itemize}
+                \end{multicols}
+
+                Diese Ergebnisse lassen sich nun folgendermaßen darstellen:
+
+                \begin{center} \begin{tikzpicture}
                     \draw[-](0,2)--(10,2);
                     \draw[-](3.33,2.2)--(3.33,1.8);
                     \draw[-](6.66,2.2)--(6.66,1.8);
@@ -116,72 +124,81 @@
                     \node[align=center, below] at (6.25,0){$f$ ist \\ streng konvex};
                     \node[align=center, below] at (8.75,0){$f$ ist \\ streng konkav};
                 \end{tikzpicture} \end{center}
+
             \item[5.]
-                Aus 4. ergibt sich: \\
-                $f$ hat bei x = 1 ein Maximum \\
-                $f$ hat bei x = -1 ein Minimum \\ 
-                $f$ hat bei x = 0 einen Wendepunkt
+                Aus 4. ergibt sich:
+
+                \begin{itemize}
+                    \item $f$ hat bei x = 1 ein Maximum
+                    \item $f$ hat bei x = -1 ein Minimum
+                    \item $f$ hat bei x = 0 einen Wendepunkt
+                \end{itemize}
 
             \item[6.]
-                Asymptote: 
+                Asymptote:
                 $g(x) = ax + b$ für $x \to \infty$ :
 
-                \begin{align*} 
-                        a&= &\limx{\frac{f(x)}{x}}&= &\limx{\frac{2x}{x+x^{3}}}   &=& 0 \\ 
-                        b&= &\limx{f(x)-ax}       &= &\limx{\frac{2x}{1+x^{2}}-0} &=& 0 
+                \begin{align*}
+                        a&= &\limx{\frac{f(x)}{x}}&= &\limx{\frac{2x}{x+x^{3}}}   &=& 0 \\
+                        b&= &\limx{f(x)-ax}       &= &\limx{\frac{2x}{1+x^{2}}-0} &=& 0
                 \end{align*}
                 Für $x \to \infty$ ist die Asymptote also $g(x)=0$.
                 Enstsprechend kann man einfach zeigen, dass $f$ für \( x \to -\infty \) ebenso eine Asymptote \( g(x)=0 \) hat.
-                
+
                 Da $g(x)$ immer gleich 0 ist befindet sich der Snittpunkt mit $f(x)$ bei der bereits gefundenen Nullstelle der Funktion, also $x = 0$.
 
             \item[7.]
-            \vspace{10em}
-            \begin{tikzpicture}
-                \begin{axis}[
-                    ymin=-2,ymax=2,
-                    xmin=-5,xmax=5,
-                    x=1cm, y=1cm,
-                    axis x line=middle,
-                    axis y line=middle,
-                    axis line style=->,
-                    xlabel={$x$},
-                    ylabel={$y$},
-                    ]
-                    \addplot[no marks, black, -] expression[domain=-10:10,samples=400]{(2*x)/(1+x^2)};
-                \end{axis}
-            \end{tikzpicture}
+                \begin{tikzpicture}[baseline=(current bounding box.north)]
+                    \begin{axis}[
+                        ymin=-2,ymax=2,
+                        xmin=-5,xmax=5,
+                        x=1cm, y=1cm,
+                        axis x line=middle,
+                        axis y line=middle,
+                        axis line style=->,
+                        xlabel={$x$},
+                        ylabel={$y$},
+                        ]
+                        \addplot[no marks, black, -] expression[domain=-10:10,samples=400]{(2*x)/(1+x^2)};
+                    \end{axis}
+                \end{tikzpicture}
 
-            \begin{tabular}{c | c | c | c | c | c | c | c}
-                $x$    & 0 & 0.5 & 1 & 4 & -0.5 & -1 & -4  \\ \hline
-                $f(x)$ & 0 & 0.8 & 1 & 8/17 & -0.6 & -1 & -8/17 
-            \end{tabular}
+                \def\arraystretch{1.5}
+                \begin{tabular}{c || c | c | c | c | c | c | c}
+                    \hline
+                    $x$    & $0$ & $0.5$ & $1$ & $4$ & $-0.5$ & $-1$ & $-4$  \\ \hline
+                    $f(x)$ & $0$ & $0.8$ & $1$ & $\frac{8}{17}$ & $-0.6$ & $-1$ & $-\frac{8}{17}$ \\ \hline
+                \end{tabular}
         \end{enumerate}
-            
-    \item[\textbf{3.}]
-        \( f(1) = -1 \) \\
-        \( f(2) = 17 \) 
 
-        Die werte von $f(x)$ haben im Intervall $[1,2]$ einen Vorzeichenwechsel. Da die Funktion (wie alle Polynome) stetig ist, muss es dementsprechend eine Nullstelle im Intervall geben.
+    \item[\textbf{3.}]
+        \( f(1) = -1 \)
+
+        \( f(2) = 17 \)
+
+        Die Werte von $f(x)$ haben im Intervall $[1,2]$ einen Vorzeichenwechsel. Da die Funktion (wie alle Polynome) stetig ist, muss es dementsprechend eine Nullstelle im Intervall geben.
 
         \[ x_1 = \frac{2 - 4 \cdot 2^3 - (10 \cdot 2) + 5}{24 - 10} = 1.5526316\]
         Entsprechend berechnen sich weitere \(x_n\) Werte.
 
+        \begin{multicols}{2}
+            \(\begin{array}{rl}
+            x_0 &= 2 \\
+            x_1 &= 1.5526316 \\
+            x_2 &= 1.3177844 \\
+            x_3 &= 1.2277567 \\
+            \end{array}\)
 
-        \begin{align*}
-        x_0 &= 2 \\
-        x_1 &= 1.5526316 \\
-        x_2 &= 1.3177844 \\
-        x_3 &= 1.2277567 \\
-        x_4 &= 1.2122722 \\
-        x_5 &= 1.2118115 \\
-        x_6 &= 1.2118111 \\
-        x_7 &= 1.2118111 \\
-        \end{align*}
+            \(\begin{array}{rl}
+            x_4 &= 1.2122722 \\
+            x_5 &= 1.2118115 \\
+            x_6 &= 1.2118111 \\
+            x_7 &= 1.2118111 \\
+            \end{array}\)
+        \end{multicols}
 
         Das Newtensche Näherungsverfahren gibt uns also einen ungefähren Wert von 1.2118111 für die Nullstelle zurück.
 
-    \newpage
     \item[\textbf{4.}]
         Die Seitenlängen des Rechtecks seien $a$ und $b$ Seitenlängen des Rechtecks, und $F$ seine Fläche.
         Dabei haben die sich gegenüberliegenden Seiten die beide Teil des Seils sind beide die Länge $a$.
@@ -191,19 +208,58 @@
         \(L = 2a + b\) \\
         \(b = L - 2a\) \\
         \(F = a \cdot (L - 2a) = aL - 2a^2\) \\
+
         Diese Funktion zeigt nun die Fläche in Abhängikeit der Seitenlänge $a$. Nun ist das Maximum zu suchen. \\
+
         \(f(a) = aL - 2a^2\) \\
         \(f'(a) = L - 4a\) \\
+
         Nullstelle der 1. Ableitung suchen: \\
+
         \(L - 4a = 0\) \\
         \(a = \frac{L}{4}\) \\
+
         Da es sich um eine quadratische Funktion handelt haben wir damit bereits das Maximum gefunden.
         Das Rechteck ist also maximal groß wenn wir $a = \frac{L}{4}$ und folglich $b = \frac{L}{2}$ wählen.
     \item[\textbf{5.}]
+        Die Einheit $cm$ wurde weggelassen.
+
+        \( V = 1000 = \pi r^2 h \Leftrightarrow h = \frac{1000}{\pi r^2} \)
+
         \begin{enumerate}
             \item[a)]
+                \( A(r) = 2 \pi r^2 + 2 \pi r h = 2 \pi r^2 + 2 \pi r \frac{1000}{\pi r^2} = 2 \pi r^2 + \frac{500}{r} \)
+
+                \( A'(r) = 4 \pi r - \frac{500}{r^2} \)
+
+                \( A''(r) = 4 \pi + \frac{1000}{r^3} \)
+
+                Am Minimum für die Fläche $A$ gilt $A'(r) = 0$ und $A''(r) > 0$:
+
+                \( A'(r) = 0 \Leftrightarrow 4 \pi r = \frac{500}{r^2} \Leftrightarrow r^3 = \frac{125}{\pi} \Leftrightarrow r = \sqrt[3]{\frac{125}{\pi}} \approx 3.4139 \)
+
+                \( A''(r) = 4 \pi + \frac{1000}{\sqrt[3]{\frac{125}{\pi}}} > 0 \)
+
+                Die Höhe muss dann so gewählt werden:
+
+                \( h = \frac{1000}{2 \pi \sqrt[3]{\frac{125}{\pi}}} \approx 27.3114 \)
 
             \item[b)]
+                \( A(r) = \pi r^2 + 2 \pi r h = \pi r^2 + 2 \pi r \frac{1000}{\pi r^2} = \pi r^2 + \frac{500}{r} \)
+
+                \( A'(r) = 2 \pi r - \frac{500}{r^2} \)
+
+                \( A''(r) = 2 \pi + \frac{1000}{r^3} \)
+
+                Am Minimum für die Fläche $A$ gilt $A'(r) = 0$ und $A''(r) > 0$:
+
+                \( A'(r) = 0 \Leftrightarrow 2 \pi r = \frac{500}{r^2} \Leftrightarrow r^3 = \frac{250}{\pi} \Leftrightarrow r = \sqrt[3]{\frac{250}{\pi}} \approx 4.3013 \)
+
+                \( A''(r) = 2 \pi + \frac{1000}{\sqrt[3]{\frac{250}{\pi}}} > 0 \)
+
+                Die Höhe muss dann so gewählt werden:
+
+                \( h = \frac{1000}{\pi \sqrt[3]{\frac{125}{\pi}}} \approx 17.2051 \)
         \end{enumerate}
     \end{enumerate}
 
