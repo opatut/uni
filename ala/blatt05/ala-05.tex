@@ -1,5 +1,5 @@
 \newcommand{\authorinfo}{Paul Bienkowski, Hans Ole Hatzel}
-\newcommand{\titleinfo}{ALA 05 (HA) zum 15.05.2013}
+\newcommand{\titleinfo}{ALA 05 (HA) zum 16.05.2013}
 
 % PREAMBLE ===============================================================
 
@@ -12,8 +12,8 @@
 \usepackage{amsmath}
 \usepackage{enumerate}
 \usepackage{fancyhdr}
-%\usepackage{pgfplots}
-%\usetikzlibrary{calc}
+\usepackage{pgfplots}
+\usetikzlibrary{calc}
 
 \author{\authorinfo}
 \title{\titleinfo}
@@ -28,6 +28,7 @@
 \newcommand{\bra}[1]{\left(#1\right)}
 \newcommand{\limnn}[2]{\lim\limits_{n \rightarrow #1}\bra{#2}}
 \newcommand{\limn}[1]{\lim\limits_{n \rightarrow \infty}\bra{#1}}
+\newcommand{\limx}[1]{\lim\limits_{x \rightarrow \infty}\bra{#1}}
 \newcommand{\rowi}[1]{\sum_{i=#1}^{\infty}}
 \newcommand{\row}{\rowi{0}}
 \newcommand{\step}[1]{\textbf{#1}}
@@ -53,7 +54,110 @@
         \end{enumerate}
 
     \item[\textbf{2.}]
+        \begin{enumerate}
+            \item[1.]
+                $f$ ist definiert in in $\mathbb{R}$, denn im Nenner kann keine $0$ stehen da $x^2$ nie negativ wird.
+            \item[2.]
+                \(f(x) =  \frac{2x}{1+x^2}\) \\
+                \(f'(x) =  -\frac{2(x^2-1)}{(1+x^2)^2}\) \\
+                \(f''(x) =  \frac{4x \cdot (-1+x^2)}{(1+x^2)^3}\) \\
+                Nullstellen von $f$: 0 \\
+                Nullstellen von $f'$: 0 \\
+                Nullstellen von $f''$: 0, 1 und -1
+            \item[3.]
+                \( \limx{\frac{2x}{1+x^2}}=\limx{\frac{x \cdot 2}{x^2 \cdot (\frac{1}{x^2})}} =\limx{\frac{2}{x \cdot (\frac{1}{x^2})}} \) \\
+                Folglich gilt für die gesuchten Grenzwerte: \\
+                \(\lim\limits_{x \rightarrow \infty}f(x) = 0\) \\
+                \(\lim\limits_{x \rightarrow -\infty}f(x) = 0\)
+            \item[4.]
+                Aus 3. folgt:
+                \begin{itemize}
+                    \item $f(x) > 0$ für alle $x \in (0,\infty)$
+                    \item $f(x) < 0$ für alle $x \in (-\infty,0)$  
+                \end{itemize}
+                \begin{itemize}
+                    \item $f'(x) > 0$ für alle $x \in (-1,1)$
+                    \item $f'(x) < 0$ für alle $x \in (1,\infty)$
+                    \item $f'(x) < 0$ für alle $x \in (-\infty,-1)$  
+                \end{itemize}
 
+                \begin{itemize}
+                    \item $f''(x) < 0$ für alle $x \in (0,1)$
+                    \item $f''(x) > 0$ für alle $x \in (-1,0)$
+                    \item $f''(x) < 0$ für alle $x \in (-\infty,-1)$
+                    \item $f''(x) > 0$ für alle $x \in (\infty,1)$        
+                \end{itemize}
+                Diese Ergebebnisse lassen sich nun folgendermaßen darstellen:
+                \begin{center} \begin{tikzpicture} 
+                    \draw[-](0,2)--(10,2);
+                    \draw[-](3.33,2.2)--(3.33,1.8);
+                    \draw[-](6.66,2.2)--(6.66,1.8);
+                    \node[above] at (3.33,2.35){-1};
+                    \node[above] at (6.66,2.35){1};
+                    \node[align=center, below] at (1.66,2){$f$ ist streng \\ monoton fallend};
+                    \node[align=center, below] at (5,2){$f$ ist streng \\ monoton wachsend};
+                    \node[align=center, below] at (8.33,2){$f$ ist streng \\ monoton fallend};
+
+                    \draw[-](0,4)--(10,4);
+                    \draw[-](5,4.2)--(5,3.8);
+                    \node[below] at (5,3.75){0};
+                    \node[align=right, below] at (2.5,4){$f$ ist negativ};
+                    \node[align=right, below] at (7.5,4){$f$ ist positiv};
+
+                    \draw[-](0,0)--(10,0);
+                    \draw[-](2.5,0.2)--(2.5,-.2);
+                    \draw[-](5,0.2)--(5,-.2);
+                    \draw[-](7.5,0.2)--(7.5,-.2);
+                    \node[above] at (2.5,.25){-1};
+                    \node[above] at (5,.25){0};
+                    \node[above] at (7.5,.25){1};
+                    \node[align=center, below] at (1.25,0){$f$ ist \\ streng konvex};
+                    \node[align=center, below] at (3.75,0){$f$ ist \\ streng konkav};
+                    \node[align=center, below] at (6.25,0){$f$ ist \\ streng konvex};
+                    \node[align=center, below] at (8.75,0){$f$ ist \\ streng konkav};
+                \end{tikzpicture} \end{center}
+            \item[5.]
+                Aus 4. ergibt sich: \\
+                $f$ hat bei x = 1 ein Maximum \\
+                $f$ hat bei x = -1 ein Minimum \\ 
+                $f$ hat bei x = 0 einen Wendepunkt
+
+            \item[6.]
+                Asymptote: 
+                $g(x) = ax + b$ für $x \to \infty$ :
+
+                \begin{align*} 
+                        a&= &\limx{\frac{f(x)}{x}}&= &\limx{\frac{2x}{x+x^{3}}}   &=& 0 \\ 
+                        b&= &\limx{f(x)-ax}       &= &\limx{\frac{2x}{1+x^{2}}-0} &=& 0 
+                \end{align*}
+                Für $x \to \infty$ ist die Asymptote also $g(x)=0$.
+                Enstsprechend kann man einfach zeigen, dass $f$ für \( x \to -\infty \) ebenso eine Asymptote \( g(x)=0 \) hat.
+                
+                Da $g(x)$ immer gleich 0 ist befindet sich der Snittpunkt mit $f(x)$ bei der bereits gefundenen Nullstelle der Funktion, also $x = 0$.
+
+            \item[7.]
+            
+            \vspace{10em}
+            \begin{tikzpicture}
+                \begin{axis}[
+                    ymin=-2,ymax=2,
+                    xmin=-5,xmax=5,
+                    x=1cm, y=1cm,
+                    axis x line=middle,
+                    axis y line=middle,
+                    axis line style=->,
+                    xlabel={$x$},
+                    ylabel={$y$},
+                    ]
+                    \addplot[no marks, black, -] expression[domain=-10:10,samples=400]{(2*x)/(1+x^2)};
+                \end{axis}
+            \end{tikzpicture}
+
+            \begin{tabular}{c | c | c | c | c | c | c | c}
+                $x$    & 0 & 0.5 & 1 & 4 & -0.5 & -1 & -4  \\ \hline
+                $f(x)$ & 0 & 0.8 & 1 & 8/17 & -0.6 & -1 & -8/17 
+            \end{tabular}
+        \end{enumerate}
             
     \item[\textbf{3.}]
         \( f(1) = -1 \) \\
@@ -99,6 +203,7 @@
     \item[\textbf{5.}]
         \begin{enumerate}
             \item[a)]
+
             \item[b)]
         \end{enumerate}
     \end{enumerate}
