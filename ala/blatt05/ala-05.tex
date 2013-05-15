@@ -12,8 +12,8 @@
 \usepackage{amsmath}
 \usepackage{enumerate}
 \usepackage{fancyhdr}
-\usepackage{pgfplots}
-\usetikzlibrary{calc}
+%\usepackage{pgfplots}
+%\usetikzlibrary{calc}
 
 \author{\authorinfo}
 \title{\titleinfo}
@@ -37,31 +37,43 @@
 \begin{enumerate}
     \item[\textbf{1.}]
         \begin{enumerate}
-            \item[(i)] 
-            \item[(ii)] 
+            \item[(i)]
+                \(f(x) = x^{-\frac{5}{4}} + x^\frac{7}{6}\) \\
+                \(f'(x)= -\frac{1}{12}x^{-\frac{13}{12}}\)
+            \item[(ii)]
+                \(f'(x)= cos(x^2) \cdot 2x\)
             \item[(iii)]
-            \item[(iv)] 
+                \(f'(x)= 2 \cdot sin(x) \cdot cos(x)\)
+            \item[(iv)]
+                \(f'(x)= cos(x)^2 + sin(x) \cdot - sin(x)\)
             \item[(v)]  
-            \item[(vi)] 
+                \(f'(x)= \frac{1}{\sqrt{1-\sqrt{x^2}}} \cdot \frac{1}{2 \sqrt{x}} = \frac{1}{2 \sqrt{x-x^2}}\)
+            \item[(vi)]
+                \(f'(x)= (x^3 - 1)^{acrtan(x)} \cdot \frac{1}{1+x^2} \cdot ln(x^3 - 1) + arctan(x) \cdot \left( \frac{1}{x^3-1} \cdot 3x^2 \right) \)
         \end{enumerate}
 
     \item[\textbf{2.}]
-
-
+            
     \item[\textbf{3.}]
-        \[ f(1) = -1 \]
-        \[ f(2) = 17 \]
+        \( f(1) = -1 \) \\
+        \( f(2) = 17 \) 
 
-        Die werte von $f(x)$ haben im Intervall $[1,2]$ einen Vorzeichenwechsel. Da die FUnktion (wie alle Polynome) stetig ist,
-        muss es dementsprechend eine Nullstelle im Intervall geben.
+        Die werte von $f(x)$ haben im Intervall $[1,2]$ einen Vorzeichenwechsel. Da die Funktion (wie alle Polynome) stetig ist, muss es dementsprechend eine Nullstelle im Intervall geben.
 
-        \[ x_0 = \frac{2 - 42^3 - 10 \cdot 2 + 5} = 1.5526316\]
-        \[ x_1 = 1.3177844\]
-        \[ x_2 = 1.2277567\]
-        \[ x_3 = 1.2122722\]
-        \[ x_4 = 1.2118115\]
-        \[ x_5 = 1.2118111\]
-        \[ x_6 = 1.2118111 = x_5\]
+        \[ x_1 = \frac{2 - 4 \cdot 2^3 - (10 \cdot 2) + 5}{24 - 10} = 1.5526316\]
+        Entsprechend berechnen sich weitere \(x_n\) Werte.
+
+
+        \begin{align*}
+        x_0 &= 2 \\
+        x_1 &= 1.5526316 \\
+        x_2 &= 1.3177844 \\
+        x_3 &= 1.2277567 \\
+        x_4 &= 1.2122722 \\
+        x_5 &= 1.2118115 \\
+        x_6 &= 1.2118111 \\
+        x_7 &= 1.2118111 \\
+        \end{align*}
 
         Das Newtensche Näherungsverfahren gibt uns also einen ungefähren Wert von 1.2118111 für die Nullstelle zurück.
 
