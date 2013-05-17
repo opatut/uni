@@ -1,0 +1,48 @@
+\mode<presentation>
+
+\useoutertheme{infolines}
+
+%\useoutertheme[subsection=false]{miniframes}
+\useoutertheme{miniframes}
+%\useoutertheme[width=2.1cm,height=0cm]{sidebar}
+\useinnertheme{rectangles}
+\usecolortheme{beaver}
+
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd{\slideentry}{\advance\beamer@tempdim by -.05cm}{\advance\beamer@tempdim by\beamer@vboxoffset\advance\beamer@tempdim by\beamer@boxsize\advance\beamer@tempdim by 1.2\pgflinewidth}{}{}
+\patchcmd{\slideentry}{\kern\beamer@tempdim}{\advance\beamer@tempdim by 2pt\advance\beamer@tempdim by\wd\beamer@sectionbox\kern\beamer@tempdim}{}{}
+\makeatother
+
+\setbeamerfont{block title}{size={}}
+\setbeamerfont{subsection in toc}{size=\scriptsize}
+
+\setbeamercolor{title}{fg=white,bg=cyan}
+\setbeamercolor{itemize item}{fg=cyan}
+\setbeamercolor{itemize subitem}{fg=cyan}
+\setbeamercolor{itemize subsubitem}{fg=cyan}
+%\useinnertheme{circles}
+\setbeamercolor{enumerate item}{fg=cyan}
+\setbeamercolor{enumerate subitem}{fg=cyan}
+\setbeamercolor{enumerate subsubitem}{fg=cyan}
+\setbeamercolor{section number projected}{bg=cyan}
+\setbeamercolor{subsection number projected}{bg=cyan}
+\setbeamercolor{subsubsection number projected}{bg=cyan}
+\setbeamercolor{section in head/foot}{fg=white,bg=cyan}
+\setbeamercolor{subsection in head/foot}{fg=black,bg=white!90!}
+\setbeamercolor{frametitle}{fg=black,bg=white!95!black}
+%\setbeamercolor{upper separation line head}{bg=cyan}
+%\setbeamercolor{middle separation line head}{bg=cyan}
+%\setbeamercolor{lower separation line head}{bg=cyan}
+\setbeamercolor{block title}{fg=white,bg=cyan}
+\setbeamercolor{block body}{fg=black,bg=white!90!black}
+
+\setbeamercolor{section in sidebar}{bg=black!60}
+\setbeamercolor{section in sidebar projected}{bg=black!80}
+\setbeamercolor{subsection in sidebar}{bg=white!80!black}
+\setbeamercolor{subsection in sidebar projected}{bg=black}
+
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}[frame number]
+
+\mode<all>

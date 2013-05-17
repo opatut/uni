@@ -9,6 +9,9 @@ stinewatch
 *.gz
 *.vrb
 *.out
+*.snm
+*.nav
+*.toc
 *.kate-swp
 *.backup
 *-converted-to.pdf

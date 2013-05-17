@@ -1,0 +1,263 @@
+\documentclass[compress,t]{beamer}
+
+\newif\iffinal
+\finalfalse
+
+\usetheme{Custom}
+
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage{floatflt}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{mdframed}
+
+\usetikzlibrary{shapes,arrows,calc,decorations.markings}
+
+\newcommand{\qq}[1]{\symbol{34}#1\symbol{34}}
+\newcommand{\bash}[1]{
+    \begin{mdframed}[backgroundcolor=black!80,
+            innerbottommargin=1pt,
+            innertopmargin=3pt,
+            innerleftmargin=3pt,
+            innerrightmargin=3pt,
+            linewidth=0]
+        \textcolor{white}{\texttt{\small #1}}
+    \end{mdframed}
+}
+
+\title{Lustre}
+\author{Paul Bienkowski \\[0.2em] \scriptsize 2bienkow@informatik.uni-hamburg.de}
+\institute{Proseminar ``Ein-/Ausgabe - Stand der Wissenschaft''}
+\date{2013-06-10}
+\setbeamerfont{note page}{size=\small}
+
+\tikzset{
+    onslide/.code args={<#1>#2}{% http://tex.stackexchange.com/a/6155/16595
+        \only<#1>{\pgfkeysalso{#2}}
+    }
+}
+
+\tikzset{
+    o/.style={
+        decoration={
+            markings,
+            mark={
+                at position 0
+                with {
+                    \fill circle [xshift=1pt,radius=1pt];
+                }
+            }
+        },
+        postaction=decorate,
+        -latex,
+        thick
+    }
+}
+
+%\AtBeginSection[]{
+\newcommand{\sectiontoc}{
+    \begin{frame}{\textbf{\insertsectionhead}}
+        \tableofcontents[current]
+    \end{frame}
+
+    \addtocounter{framenumber}{-1}% If you don't want them to affect the slide number
+}
+
+
+\newcommand{\OutlineColumnNumbers}{2}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\iffinal\else
+\begin{frame}{TODO}
+    \begin{itemize}
+        \item Caching?
+    \end{itemize}
+\end{frame}
+\fi
+
+\begin{frame}
+    \titlepage
+\end{frame}
+
+\begin{frame}{\textbf{Outline}}
+    \tableofcontents
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Introduction}
+
+\begin{frame}{What is Lustre}
+    parallel, scaling, for clusters, based within linux kernel...
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{The Project}
+\sectiontoc
+
+\subsection{Goals and Priorities}
+\begin{frame}{Goals}
+    2007: performance \textgreater features \textgreater stability
+
+    ``it\'s a science project''
+
+    2010: stability \textgreater performance \textgreater features
+
+    used in high-performance production environments
+\end{frame}
+
+\subsection{History}
+\begin{frame}{History}
+    ?
+\end{frame}
+
+\subsection{Involved Companies}
+\begin{frame}{Involved Companies}
+    Sun, Oracle, Cray, ... (what do they do, why do they do it?)
+\end{frame}
+\begin{frame}{Supercomputers}
+    Titan \& Co. use it!
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Lustre Architecture}
+\sectiontoc
+
+\subsection{Network Architecture}
+\begin{frame}{Network Structure}
+    What data is stored where? (graph)
+\end{frame}
+\begin{frame}{Metadata Server}
+    Where are they? How to access?
+\end{frame}
+\begin{frame}{Object Storage Server}
+    Contain OSTs (Object storage targets)
+\end{frame}
+\begin{frame}{Network Capabilities}
+    How is data transfered?
+
+    Protocol stack (TCP, ...)
+
+    Different network types (ethernet, infiniband, ...)
+\end{frame}
+\begin{frame}{Failover}
+    Failover mechanism and typical setups (graphs)
+
+    Why are is a failover mechanism cool? Live-Upgrades!
+\end{frame}
+
+\subsection{Data Storage and Access}
+\begin{frame}{Excursion: INodes}
+    ... because MDS do something similar (metadata records)
+
+    (graph)
+
+    compare this on next slide
+\end{frame}
+\begin{frame}{Metadata}
+    how metadata is stored in the MDS
+
+    what metadata is stored?
+
+    how metadata is fetched from the MDS
+\end{frame}
+\begin{frame}{Striping}
+    [repeat] what is striping (RAID 0)
+
+    why do they use it in lustre -- speed advantage
+\end{frame}
+
+\subsection{Software Architecture}
+\begin{frame}{Software Architecture}
+    what software is running where?
+\end{frame}
+\begin{frame}{Interversion Compatibility}
+    Sun ``guarantees'' [citation needed] compatibbility between
+    minor versions
+
+    $\rightarrow$ on-line upgrade-ability using failover systems
+\end{frame}
+\begin{frame}{ldiskfs - Customized ext3}
+    why we need a customized filesystem to work ON TOP of
+\end{frame}
+\begin{frame}{Kernel patching (serverside)}
+    just tell them the kernel needs to be patched (2.6.*) and what that means
+\end{frame}
+\begin{frame}{Patchfree Client}
+    How can clients access the data? (lustre-fs, liblustre, NFS)
+
+    (kernel-independent)
+
+    even NFS, that works everywhere!
+\end{frame}
+\begin{frame}{Limitations}
+    \textbf{Server}
+
+    very platform dependent
+
+    needs compatible kernel
+
+    \textbf{Client}
+
+    all linux kernel \textgreater2.6 supported
+
+    NFS for Windows, MacOS
+
+    even FUSE support on the way
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Performance}
+\sectiontoc
+
+\subsection{Throughput Examples}
+\begin{frame}{Throughput Examples}
+    Yes, the speeds add up!
+
+    There are systems with 5000 OSS.
+
+    Up to 160 OSS / file.
+
+    16 OST/OSS is quite normal.
+
+    1 TiB/OST
+\end{frame}
+
+\subsection{Scalability}
+\begin{frame}{Scalability}
+    Just multiply. Works as long as your network supports it (e.g. InfiniBand \textgreater WiFi ... )
+\end{frame}
+
+\subsection{???}
+\begin{frame}{???}
+    Maybe I can find some more data samples -- where is the interesting stuff?
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Conclusion}
+
+\begin{frame}{\textbf{Conclusion}}
+    ...
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{References}
+
+\begin{frame}{\textbf{References}}
+    ...
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}
