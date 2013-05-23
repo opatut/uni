@@ -1,0 +1,42 @@
+\begin{frame}{Software Architecture}
+    what software is running where?
+\end{frame}
+
+\begin{frame}{Interversion Compatibility}
+    Sun ``guarantees'' [citation needed] compatibbility between
+    minor versions
+
+    $\rightarrow$ on-line upgrade-ability using failover systems
+\end{frame}
+
+\begin{frame}{ldiskfs - Customized ext3}
+    why we need a customized filesystem to work ON TOP of
+\end{frame}
+
+\begin{frame}{Kernel patching (serverside)}
+    just tell them the kernel needs to be patched (2.6.*) and what that means
+\end{frame}
+
+\begin{frame}{Patchfree Client}
+    How can clients access the data? (lustre-fs, liblustre, NFS)
+
+    (kernel-independent)
+
+    even NFS, that works everywhere!
+\end{frame}
+
+\begin{frame}{Limitations}
+    \textbf{Server}
+
+    very platform dependent
+
+    needs compatible kernel
+
+    \textbf{Client}
+
+    all linux kernel \textgreater2.6 supported
+
+    NFS for Windows, MacOS
+
+    even FUSE support on the way
+\end{frame}
