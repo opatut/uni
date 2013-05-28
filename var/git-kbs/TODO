@@ -1,22 +1,25 @@
-- Einleitung
-    - Wozu git?
-    - Warum gerade git?
+== Geplante Gliederung ==
 
-- Git Internals
-    - Objekte
-    - HEAD Commit, Working Directory, Staging Area
-    - Leben einer Datei
+x Einleitung
+    x Wozu git?
+    x Warum gerade git?
 
-- Local history
-    - status
-    - add/commit
-    - push/pull
-    - branching/merging
+o Git Internals
+    x Objekte
+    o HEAD Commit, Working Directory, Staging Area
+    ~ Leben einer Datei
 
-- Collaboration workflow
-    - Remotes
-    - pull-edit-commit-push
-    - zentrales Repository
-    - gitflow
+o Local history
+    o status
+    o add/commit
+    ~ branching/merging
 
-- Übersicht
+o Collaboration workflow
+    x Clones
+    x Remotes
+    o push/pull
+    o pull-edit-commit-push
+    o zentrales Repository
+    o gitflow
+
+x Übersicht

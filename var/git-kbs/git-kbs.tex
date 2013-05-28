@@ -1,4 +1,4 @@
-\documentclass[compress,t]{beamer}
+\documentclass[compress,t,usenames,dvipsnames]{beamer}
 
 \newif\iffinal
 \finalfalse
@@ -9,7 +9,6 @@
 \usepackage{floatflt}
 \usepackage{graphicx}
 \usepackage{tikz}
-\usepackage{xcolor}
 \usepackage{listings}
 \usepackage{multicol}
 \usetikzlibrary{shapes,arrows,calc,decorations.markings}
@@ -26,6 +25,7 @@
             linewidth=0]
         \textcolor{white}{\texttt{\small #1}}
     \end{mdframed}
+    \vspace{0.5mm}
 }
 
 \title{Git}
@@ -228,21 +228,170 @@
 \end{frame}
 
 \begin{frame}{Remotes}
-    \vspace{0.5em}
+\iffinal
+    \tikzset{
+        repo/.style={
+            rectangle,
+            minimum width=1.7cm,
+            minimum height=2cm,
+            rounded corners=3pt,
+            fill=black!10!white,
+            draw=black!50!white,
+        },
+        commit/.style = {
+            circle,
+            fill,
+            thick,
+            draw=black!80!white,
+            inner sep=1mm,
+        },
+        arrow/.style = {
+            draw,
+            thick
+        },
+        connection/.style = {
+            very thick,
+            draw=black!30!white,
+            fill=black!30!white,
+            -latex,
+        },
+        biconnection/.style = {
+            connection,
+            latex-latex,
+        }
+    }
+
+    \colorlet{c1}{Plum!70!white}
+    \colorlet{c2}{cyan}
+    \colorlet{c3}{green}
+    \colorlet{c4}{orange}
+    \colorlet{c5}{yellow}
+    \colorlet{c6}{Red}
+
     \makebox[\textwidth][c]{
-        \begin{tikzpicture}[x=1cm,y=1cm]
-            \node[repo] (github) at (0, 2) {\textit{github}};
-            \node[repo] (paul) at (-1, 0) {\textit{paul}};
-            \node[repo] (rzssh1) at (1, 0) {\textit{rzssh1}};
+        \begin{tikzpicture}[x=1cm,y=-1cm]
+            \node[repo] (br) at ( 3,  2) {};
+            \node[repo] (tr) at ( 3, -2) {};
+            \node[repo] (tl) at (-3, -2) {};
+            \node[repo] (bl) at (-3,  2) {};
 
-            \draw[remote] (paul) -- node[midway, left]
-                {\tiny \textbf{origin} $\rightarrow$ git@github.com:opatut/repo.git} (github);
-            \draw[remote] (rzssh1) -- node[midway, right]
-                {\tiny \textbf{origin} $\rightarrow$ git@github.com:opatut/repo.git} (github);
+            % Top left
+            \node[commit,fill=c1] (tl1) at ($(tl)+(-0.2,-0.5)$) {};
+            \node[commit,fill=c2] (tl2) at ($(tl)+(-0.2, 0.0)$) {};
+            \node[commit,fill=c4] (tl4) at ($(tl)+(+0.2, 0.0)$) {};
+            \draw[arrow] (tl1) -- (tl2);
+            \draw[arrow] (tl1) -- (tl4);
+            \uncover<2-> {
+                \node[commit,fill=c5] (tl5) at ($(tl)+(+0.2, 0.5)$) {};
+                \draw[arrow] (tl4) -- (tl5);
+            }
 
-            %\draw[remote] (paul) -- node[midway, below] {\tiny{}ssh://2bienkow@rzssh1.informatik.uni-hamburg.de:/home/scratch/2bienkow/repo} (rzssh1);
+            % Top right
+            \node[commit,fill=c1] (tr1) at ($(tr)+(-0.2,-0.5)$) {};
+            \node[commit,fill=c2] (tr2) at ($(tr)+(-0.2, 0.0)$) {};
+            \node[commit,fill=c4] (tr4) at ($(tr)+(+0.2, 0.0)$) {};
+            \draw[arrow] (tr1) -- (tr2);
+            \draw[arrow] (tr1) -- (tr4);
+            \uncover<3->{
+                \node[commit,fill=c6] (tr6) at ($(tr)+(+0.2, 0.5)$) {};
+                \draw[arrow] (tr4) -- (tr6);
+            }
+
+            % Bottom left
+            \node[commit,fill=c1] (bl1) at ($(bl)+(-0.2,-0.5)$) {};
+            \node[commit,fill=c2] (bl2) at ($(bl)+(-0.2, 0.0)$) {};
+            \node[commit,fill=c4] (bl4) at ($(bl)+(+0.2, 0.0)$) {};
+            \draw[arrow] (bl1) -- (bl2);
+            \draw[arrow] (bl1) -- (bl4);
+            \uncover<4-> {
+                \node[commit,fill=c3] (bl3) at ($(bl)+(-0.2,+0.5)$) {};
+                \draw[arrow] (bl2) -- (bl3);
+            }
+
+            % Bottom right
+            \node[commit,fill=c1] (br1) at ($(br)+(-0.2,-0.5)$) {};
+            \node[commit,fill=c2] (br2) at ($(br)+(-0.2, 0.0)$) {};
+            \node[commit,fill=c4] (br4) at ($(br)+(+0.2, 0.0)$) {};
+            \draw[arrow] (br1) -- (br2);
+            \draw[arrow] (br1) -- (br4);
+
+            \uncover<5> {
+                \draw[biconnection] (br) -- (bl);
+                \draw[biconnection] (br) -- (tl);
+                \draw[biconnection] (br) -- (tr);
+                \draw[biconnection] (bl) -- (tr);
+                \draw[biconnection] (bl) -- (tl);
+                \draw[biconnection] (tr) -- (tl);
+            }
+
+            % Center
+            \uncover<7-> {
+                \node[repo] (cc) at ( 0,  0) {};
+            }
+            \uncover<8-> {
+                % push from br
+                \node[commit,fill=c1] (cc1) at ($(cc)+(-0.4,-0.5)$) {};
+                \node[commit,fill=c2] (cc2) at ($(cc)+(-0.4, 0.0)$) {};
+                \node[commit,fill=c4] (cc4) at ($(cc)+( 0.0, 0.0)$) {};
+                \draw[arrow] (cc1) -- (cc2);
+                \draw[arrow] (cc1) -- (cc4);
+                \draw[connection,onslide=<12>biconnection] (br) -- (cc);
+            }
+            \uncover<9-> {
+                % push from bl
+                \node[commit,fill=c3] (cc3) at ($(cc)+(-0.4,+0.5)$) {};
+                \draw[arrow] (cc2) -- (cc3);
+                \draw[connection,onslide=<12>biconnection] (bl) -- (cc);
+            }
+            \uncover<10-> {
+                % push from tl
+                \node[commit,fill=c5] (cc5) at ($(cc)+( 0.0, 0.5)$) {};
+                \draw[arrow] (cc4) -- (cc5);
+                \draw[connection,onslide=<12>biconnection] (tl) -- (cc);
+            }
+            \uncover<11-> {
+                % push from tr
+                \node[commit,fill=c6] (cc6) at ($(cc)+(+0.4, 0.5)$) {};
+                \draw[arrow] (cc4) -- (cc6);
+                \draw[connection,onslide=<12>biconnection] (tr) -- (cc);
+            }
         \end{tikzpicture}
     }
+\else
+    GRAPH!
+\fi
+\end{frame}
+
+\begin{frame}{Remotes}
+    \begin{itemize}
+        \item Referenz auf entferntes Repository (clone)
+        \item Erstellen mit
+            \bash{git remote add <name> <url>}
+        \item ``Standard''-Remote \emph{origin} wird beim \emph{clone}n erstellt
+        \item Operationen
+            \begin{description}
+                \item[fetch] Objekte herunterladen
+                \item[pull] \emph{fetch} + \emph{merge}
+                \item[push] Objekte hochladen + Referenzen aktualisieren (branches)
+            \end{description}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Pull / Push}
+    \textbf{Push}\\[0.5em]
+
+    \bash{git push [options] <remote> <from-ref>:<to-ref>}
+    \bash{git push -u origin master}
+    \bash{git push -u origin :useless-branch}
+    \bash{git push}
+
+    \vspace{1em}
+
+    \textbf{Pull}\\[0.5em]
+
+    \bash{git pull <remote> <branch>}
+    \bash{git pull origin master}
+    \bash{git pull}
 \end{frame}
 
 \begin{frame}{Das Leben einer Datei}
@@ -257,7 +406,7 @@
             font=\small,
             align=center
         },
-        statearrow/.style = {
+        arrow/.style = {
             draw,
             thick,
             -latex,
@@ -272,12 +421,12 @@
             \node[state,fill=yellow!30!white] (staged) at (5, 0) {staged\\[-3pt]\tiny staging area};
             \node[state,fill=gray!30!white] (untracked) at (0, -3) {untracked\\[-3pt]\tiny working copy};
 
-            \draw[statearrow] (unmodified) to[bend left=5] node[midway,above] {edit} (modified);
-            \draw[statearrow] (modified) to[bend left=5] node[midway,below] {checkout} (unmodified);
-            \draw[statearrow] (modified) to node[midway,above] {add} (staged);
-            \draw[statearrow] (staged) to[bend right=20] node[midway,above] {commit} (unmodified);
-            \draw[statearrow] (untracked) to node[midway,below] {add} (staged);
-            \draw[statearrow] (unmodified) to node[midway,below] {rm} (untracked);
+            \draw[arrow] (unmodified) to[bend left=5] node[midway,above] {edit} (modified);
+            \draw[arrow] (modified) to[bend left=5] node[midway,below] {checkout} (unmodified);
+            \draw[arrow] (modified) to node[midway,above] {add} (staged);
+            \draw[arrow] (staged) to[bend right=20] node[midway,above] {commit} (unmodified);
+            \draw[arrow] (untracked) to node[midway,below] {add} (staged);
+            \draw[arrow] (unmodified) to node[midway,below] {rm} (untracked);
         \end{tikzpicture}
     }
 
