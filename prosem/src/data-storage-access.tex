@@ -1,3 +1,5 @@
+\subsection{Data Storage and Access}
+
 \begin{frame}{Traditional INodes}
     \begin{itemize}
         \item used in many file system structures (e.g. ext3)
@@ -12,14 +14,14 @@
         \item lustre uses similar structure
         \item INodes are stored on MDT
         \item INodes point to objects on OSTs
-        \item up to 160 OSTs per file possible (\emph{striping})
+        \item file is \emph{striped} across multiple OSTs (limit was 160, now
     \end{itemize}
 \end{frame}
 
 \begin{frame}{Striping}
     \begin{itemize}
         \item RAID-0 type striping
-        \item data is split in blocks
+        \item data is split into blocks
         \item block size adjustable per file/directory
         \item OSTs store every n-th block (with n being number of OSTs involved)
         \item speed advantage (multiple simultaneous OSS/OST connections)

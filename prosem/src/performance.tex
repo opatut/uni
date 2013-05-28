@@ -1,3 +1,6 @@
+\section{Performance}
+\sectiontoc
+
 \subsection{Theoretical Limits}
 \begin{frame}{Theoretical Limits}
     \begin{quote}
@@ -12,8 +15,8 @@
     \textbf{Example}
 
     \begin{itemize}
-        \item<+-> 160 OSS, 16 OST each, 8 TiB each
-        \item<+-> $\rightarrow$ 20 PiB (Pebibyte) total storage
+        \item<+-> 160 OSS, 16 OST each, 2 TiB each (old limits)
+        \item<+-> $\rightarrow$ 2.5 PiB (Pebibyte) total storage
         \item<+-> each OST delivers 50 MiB/s
         \item<+-> $\rightarrow$ 800 MiB/s combined throughput per OSS
         \item<+-> stripe size 16 MiB
@@ -141,7 +144,8 @@
 \begin{frame}{Scalability}
     \begin{itemize}
         \item Lustre distributes bandwidth evenly over OSS (striping)
-        \item different networks simultaneously
+        \item different network types simultaneously (InfiniBand, TCP: GigE)
         \item more OSS can always be added (for more bandwidth and/or capacity)
+        \item current bottleneck: MDS
     \end{itemize}
 \end{frame}

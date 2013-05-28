@@ -61,8 +61,6 @@
 
 \begin{document}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \iffinal\else
 \begin{frame}{TODO}
     \begin{itemize}
@@ -79,92 +77,13 @@
     \tableofcontents
 \end{frame}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\section{Introduction}
-
-\begin{frame}{What is Lustre}
-    parallel, scaling, for clusters, based within linux kernel...
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\section{The Project}
-\sectiontoc
-
+\input{src/introduction.tex}
 \input{src/project.tex}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\section{Lustre Architecture}
-\sectiontoc
-\subsection{Network Architecture}
-%\input{src/network-architecture.tex}
-
-\subsection{Data Storage and Access}
-%\input{src/data-storage-access.tex}
-
-\subsection{Software Architecture}
-%\input{src/software-architecture.tex}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\section{Performance}
-\sectiontoc
-%\input{src/performance.tex}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\section{Conclusion}
-\begin{frame}{\textbf{Conclusion}}
-    \begin{itemize}
-        \item still heavyly developed
-        \item many interested/involved companies
-        \item actively used in HPC clusters
-        \item well scalable
-        \item throughput depends on network
-        \item Linux 2.6 (Redhat Enterprise Linux, CentOS) only
-    \end{itemize}
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\section{References}
-\begin{frame}{\textbf{References}}
-    \scriptsize
-    \begin{thebibliography}{1}
-        %\setbeamertemplate{bibliography item}[online]
-        %\beamertemplatearticlebibitems
-        \beamertemplatetextbibitems
-
-        \bibitem{whitepaper}
-            \url{http://www.raidinc.com/assets/documents/lustrefilesystem_wp.pdf}\\
-            2013-05-17
-
-        \bibitem{rock-hard}
-            \url{http://www.opensfs.org/wp-content/uploads/2011/11/Rock-Hard1.pdf}\\
-            2013-05-17
-
-        \bibitem{10-intel}
-            \url{http://www.hpcadvisorycouncil.com/events/2013/Switzerland-Workshop/Presentations/Day_3/10_Intel.pdf}\\
-            2013-05-21
-
-        \bibitem{metadata-scaling}
-            \url{http://storageconference.org/2012/Presentations/T01.Dilger.pdf}\\
-            2013-05-21
-
-        %\beamertemplateonlinebibitems
-        \bibitem{faq-installation}
-            \url{http://wiki.lustre.org/index.php/FAQ_-_Installation}\\
-            2013-05-12
-
-        \bibitem{why-use-lustre}
-            \url{https://wiki.hpdd.intel.com/display/PUB/Why+Use+Lustre}\\
-            2013-05-21
-
-    \end{thebibliography}
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{src/network-architecture.tex}
+\input{src/data-storage-access.tex}
+\input{src/software-architecture.tex}
+\input{src/performance.tex}
+\input{src/conclusion.tex}
+\input{src/references.tex}
 
 \end{document}
