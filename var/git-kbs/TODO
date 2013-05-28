@@ -4,21 +4,27 @@ x Einleitung
     x Wozu git?
     x Warum gerade git?
 
-o Git Internals
+x Git Internals
     x Objekte
-    o HEAD Commit, Working Directory, Staging Area
-    ~ Leben einer Datei
+    x Working Directory / HEAD
+    x Staging Area
+    x Vom Leben einer Datei
 
-o Local history
-    o status
-    o add/commit
-    ~ branching/merging
+x Local history
+    x status
+    x diff
+    x add/commit
+    x checkout
+    x log
+    x branching/merging
 
-o Collaboration workflow
+x Entfernte Operationen
     x Clones
     x Remotes
-    o push/pull
-    o pull-edit-commit-push
+    x push/pull
+    x pull-edit-commit-push
+
+o Workflows
     o zentrales Repository
     o gitflow
 

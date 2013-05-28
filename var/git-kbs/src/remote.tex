@@ -1,0 +1,204 @@
+\section{Entfernte Operationen}
+\subsection{Remotes}
+\begin{frame}{Clones}
+    \begin{itemize}
+        \item in einem Repository entstehen nur neue Objekte (Dateien)
+        \item bestehende werden nicht verändert
+        \item jedes Objekt hat einen eindeutigen Namen (SHA kollidiert
+            \textit{praktisch} nicht)
+        \item $\rightarrow$ Synchronisation ohne zentrale Verwaltung möglich
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Remotes}
+\iffinal
+    \tikzset{
+        repo/.style={
+            rectangle,
+            minimum width=1.7cm,
+            minimum height=2cm,
+            rounded corners=3pt,
+            fill=black!10!white,
+            draw=black!50!white,
+        },
+        commit/.style = {
+            circle,
+            fill,
+            thick,
+            draw=black!80!white,
+            inner sep=1mm,
+        },
+        arrow/.style = {
+            draw,
+            thick
+        },
+        connection/.style = {
+            very thick,
+            draw=black!30!white,
+            fill=black!30!white,
+            -latex,
+        },
+        biconnection/.style = {
+            connection,
+            latex-latex,
+        }
+    }
+
+    \colorlet{c1}{Plum!70!white}
+    \colorlet{c2}{cyan}
+    \colorlet{c3}{green}
+    \colorlet{c4}{orange}
+    \colorlet{c5}{yellow}
+    \colorlet{c6}{Red}
+
+    \makebox[\textwidth][c]{
+        \begin{tikzpicture}[x=1cm,y=-1cm]
+            \node[repo] (br) at ( 3,  2) {};
+            \node[repo] (tr) at ( 3, -2) {};
+            \node[repo] (tl) at (-3, -2) {};
+            \node[repo] (bl) at (-3,  2) {};
+
+            \node[font=\tiny] at ($(br)-(0,0.85cm)$) {Horst};
+            \node[font=\tiny] at ($(tr)-(0,0.85cm)$) {Ronny};
+            \node[font=\tiny] at ($(tl)-(0,0.85cm)$) {Heidi};
+            \node[font=\tiny] at ($(bl)-(0,0.85cm)$) {Dimitri};
+
+            % Top left
+            \node[commit,fill=c1] (tl1) at ($(tl)+(-0.2,-0.5)$) {};
+            \node[commit,fill=c2] (tl2) at ($(tl)+(-0.2, 0.0)$) {};
+            \node[commit,fill=c4] (tl4) at ($(tl)+(+0.2, 0.0)$) {};
+            \draw[arrow] (tl1) -- (tl2);
+            \draw[arrow] (tl1) -- (tl4);
+            \uncover<2-> {
+                \node[commit,fill=c5] (tl5) at ($(tl)+(+0.2, 0.5)$) {};
+                \draw[arrow] (tl4) -- (tl5);
+            }
+
+            % Top right
+            \node[commit,fill=c1] (tr1) at ($(tr)+(-0.2,-0.5)$) {};
+            \node[commit,fill=c2] (tr2) at ($(tr)+(-0.2, 0.0)$) {};
+            \node[commit,fill=c4] (tr4) at ($(tr)+(+0.2, 0.0)$) {};
+            \draw[arrow] (tr1) -- (tr2);
+            \draw[arrow] (tr1) -- (tr4);
+            \uncover<3->{
+                \node[commit,fill=c6] (tr6) at ($(tr)+(+0.2, 0.5)$) {};
+                \draw[arrow] (tr4) -- (tr6);
+            }
+
+            % Bottom left
+            \node[commit,fill=c1] (bl1) at ($(bl)+(-0.2,-0.5)$) {};
+            \node[commit,fill=c2] (bl2) at ($(bl)+(-0.2, 0.0)$) {};
+            \node[commit,fill=c4] (bl4) at ($(bl)+(+0.2, 0.0)$) {};
+            \draw[arrow] (bl1) -- (bl2);
+            \draw[arrow] (bl1) -- (bl4);
+            \uncover<4-> {
+                \node[commit,fill=c3] (bl3) at ($(bl)+(-0.2,+0.5)$) {};
+                \draw[arrow] (bl2) -- (bl3);
+            }
+
+            % Bottom right
+            \node[commit,fill=c1] (br1) at ($(br)+(-0.2,-0.5)$) {};
+            \node[commit,fill=c2] (br2) at ($(br)+(-0.2, 0.0)$) {};
+            \node[commit,fill=c4] (br4) at ($(br)+(+0.2, 0.0)$) {};
+            \draw[arrow] (br1) -- (br2);
+            \draw[arrow] (br1) -- (br4);
+
+            \uncover<5> {
+                \draw[biconnection] (br) -- (bl);
+                \draw[biconnection] (br) -- (tl);
+                \draw[biconnection] (br) -- (tr);
+                \draw[biconnection] (bl) -- (tr);
+                \draw[biconnection] (bl) -- (tl);
+                \draw[biconnection] (tr) -- (tl);
+            }
+
+            % Center
+            \uncover<7-> {
+                \node[repo] (cc) at ( 0,  0) {};
+                \node[font=\tiny] at ($(cc)-(0,0.85cm)$) {origin};
+            }
+            \uncover<8-> {
+                % push from br
+                \node[commit,fill=c1] (cc1) at ($(cc)+(-0.4,-0.5)$) {};
+                \node[commit,fill=c2] (cc2) at ($(cc)+(-0.4, 0.0)$) {};
+                \node[commit,fill=c4] (cc4) at ($(cc)+( 0.0, 0.0)$) {};
+                \draw[arrow] (cc1) -- (cc2);
+                \draw[arrow] (cc1) -- (cc4);
+                \draw[connection,onslide=<12>biconnection] (br) -- (cc);
+            }
+            \uncover<9-> {
+                % push from bl
+                \node[commit,fill=c3] (cc3) at ($(cc)+(-0.4,+0.5)$) {};
+                \draw[arrow] (cc2) -- (cc3);
+                \draw[connection,onslide=<12>biconnection] (bl) -- (cc);
+            }
+            \uncover<10-> {
+                % push from tl
+                \node[commit,fill=c5] (cc5) at ($(cc)+( 0.0, 0.5)$) {};
+                \draw[arrow] (cc4) -- (cc5);
+                \draw[connection,onslide=<12>biconnection] (tl) -- (cc);
+            }
+            \uncover<11-> {
+                % push from tr
+                \node[commit,fill=c6] (cc6) at ($(cc)+(+0.4, 0.5)$) {};
+                \draw[arrow] (cc4) -- (cc6);
+                \draw[connection,onslide=<12>biconnection] (tr) -- (cc);
+            }
+        \end{tikzpicture}
+    }
+\else
+    GRAPH!
+\fi
+\end{frame}
+
+\begin{frame}{Remotes}
+    \begin{itemize}
+        \item Referenz auf entferntes Repository (clone)
+        \item Erstellen mit
+            \bash{git remote add <name> <url>}
+        \item ``Standard''-Remote \emph{origin} wird beim \emph{clone}n erstellt
+        \item Operationen
+            \begin{description}
+                \item[fetch] Objekte herunterladen
+                \item[pull] \emph{fetch} + \emph{merge}
+                \item[push] Objekte hochladen + Referenzen aktualisieren (branches)
+            \end{description}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Pull / Push}
+    \textbf{Push}\\[0.5em]
+
+    \bash{git push [options] <remote> <from-ref>:<to-ref>}
+    \bash{git push -u origin master}
+    \bash{git push -u origin :useless-branch}
+    \bash{git push}
+
+    \vspace{1em}
+
+    \textbf{Pull}\\[0.5em]
+
+    \bash{git pull <remote> <branch>}
+    \bash{git pull origin master}
+    \bash{git pull}
+\end{frame}
+
+\begin{frame}{Und wann mach ich das jetzt?}
+    \pause
+
+    \begin{itemize}
+        \item vor dem Arbeiten: \textbf{pull} (am aktuellen Stand arbeiten)
+        \item Änderungen durchführen
+        \item nach jeder Einheit (z.B. ein Bugfix, ein kleines Feature): \textbf{commit}
+        \item möglichst häufig: \textbf{push} (minimiert Merge-Konflikte)
+    \end{itemize}
+
+    \pause
+
+    \vspace{1cm}
+
+    \begin{quote}
+        Commit often and early!
+    \end{quote}
+\end{frame}
+

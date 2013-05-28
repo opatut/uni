@@ -1,0 +1,70 @@
+\section{Einleitung}
+\subsection{Wozu Git?}
+
+\begin{frame}{Wozu Git?}
+    \uncover<0->{Lasst uns zusammen ein Programm schreiben!}
+    \uncover<2->{\textit{(Evolution eines Hackers)}}
+
+    \begin{enumerate}
+        \item<3-> Wir arbeiten im Etherpad!
+        \item<4-> Wir arbeiten auf \texttt{rzssh1}!
+        \item<5-> Du schickst mir dann die neue Version per Mail!
+        \item<6-> Du schickst mir dann ein Diff per Mail!
+        \item<7-> Wir nehmen Versionskontrolle!
+    \end{enumerate}
+
+    \uncover<8> {
+        $\rightarrow$ gilt auch für Hausaufgaben in \LaTeX
+    }
+
+\iffinal
+    \vspace{0.2cm}
+
+    \makebox[\textwidth][c]{
+        \begin{tikzpicture}[x=1cm,y=1cm]
+            \uncover<3->{
+                \node[anchor=south west,inner sep=0,opacity=0.2] (human-01) at (0,0) {\includegraphics[scale=0.5]{gfx/human-01.png}};
+            }
+            \uncover<4->{
+                \node[anchor=south west,inner sep=0,opacity=0.2] (human-02) at (1.2,0) {\includegraphics[scale=0.5]{gfx/human-02.png}};
+            }
+            \uncover<5->{
+                \node[anchor=south west,inner sep=0,opacity=0.2] (human-03) at (2.1,0) {\includegraphics[scale=0.5]{gfx/human-03.png}};
+            }
+            \uncover<6->{
+                \node[anchor=south west,inner sep=0,opacity=0.2] (human-04) at (2.9,0) {\includegraphics[scale=0.5]{gfx/human-04.png}};
+            }
+            \uncover<7->{
+                \node[anchor=south west,inner sep=0,opacity=0.2] (human-05) at (4.0,0) {\includegraphics[scale=0.5]{gfx/human-05.png}};
+            }
+        \end{tikzpicture}
+    }
+\fi
+\end{frame}
+
+\begin{frame}{Was ist Versionierung?}
+    \begin{itemize}
+        \item \emph{Snapshots} einzelner Dateiversionen speichern
+        \item History aufbewahren und wiederherstellbar machen
+        \item verschiedene Versionen zusammenführen
+        \item \emph{(optional)} Synchronisation mit entfernten Kopien (Kollaboration)
+    \end{itemize}
+    $\rightarrow$ mehr als nur ein Backup
+\end{frame}
+
+\subsection{Warum gerade git?}
+\begin{frame}{Warum gerade git?}
+    Vorteile:
+    \begin{itemize}
+        \item verteilt (serverunabhängig, jeder \emph{clone} ist eigenständig/vollständig)
+        \item schnell (lokal, Implementation in C)
+        \item optimal für Quelltext
+        \item FOSS
+    \end{itemize}
+
+    Nachteile:
+    \begin{itemize}
+        \item wenig geeignet für Binärdateien
+        \item gesamte History kann groß werden
+    \end{itemize}
+\end{frame}

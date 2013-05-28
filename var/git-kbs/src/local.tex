@@ -1,0 +1,218 @@
+\section{Lokale Operationen}
+
+\subsection{Status}
+\begin{frame}{Status / Diff}
+    Aktuellen Status des Working Directories:\\[1em]
+
+    \bash{git status}
+
+    \vspace{1em}
+
+    Änderungen zwischen Versionen:\\[1em]
+
+    \bash{git diff}
+    \bash{git diff myfile.txt}
+    \bash{git diff some-ref other-ref}
+\end{frame}
+
+\againframe{life}
+
+\subsection{Staging \& Committing}
+\begin{frame}{Staging \& Committing}
+    Dateien zum Index (Stage) hinzufügen:\\[1em]
+
+    \bash{git add <files/directories>}
+    \bash{git add -i}
+
+    \vspace{1em}
+
+    Commit-Objekt erzeugen:\\[1em]
+
+    \bash{git commit}
+    \bash{git commit -m "Message"}
+    \bash{git commit -a -m "Message"}
+\end{frame}
+
+\againframe{life}
+
+\subsection{Checkout}
+\begin{frame}{Checkout}
+    \begin{itemize}
+        \item Erinnerung: aktuelle Version liegt im Working Directory
+        \item diese können wir mit per \textsc{checkout} wechseln
+            \bash{git checkout 4b5c8e2f95a4407c4d0c596565b367eaca07af57}
+            \bash{git checkout other-branch}
+            $\rightarrow$ nicht möglich, wenn unversionierte Änderungen vorliegen
+        \item einzelne Dateien können auch auf HEAD (oder speziellen commit)
+            zurückgesetzt werden
+            \bash{git checkout edited-file.txt}
+            \bash{git checkout aa5bcd5a some-file.txt}
+    \end{itemize}
+\end{frame}
+
+\againframe{life}
+
+\subsection{Log}
+\begin{frame}{Log}
+    \begin{itemize}
+        \item zeigt History an
+        \item nur von HEAD rückwärts
+        \item enthält Commit-Nachricht, Datum, Autor, ...
+        \item Befehl:
+            \bash{git log}
+    \end{itemize}
+\end{frame}
+
+\subsection{Branching}
+\begin{frame}{Branching}
+    \begin{itemize}
+        \item Commit-Objekte liegen ungeordnet vor
+        \item $\rightarrow$ welche ist die neueste Version?
+        \item ein \textbf{Branch} kann auf einen Commit zeigen (``Pointer'')
+        \item Branches haben \textbf{Namen} (z.B. \textit{master} oder \textit{my-feature})
+        \item man kann zwischen Branches wechseln wie zwischen Commits (\textsc{checkout})
+        \item nach dem committen zeigt der aktuelle Branch auf den neuen Commit
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Branching}
+    \only<1>{\bash{git status}}
+    \only<2>{\bash{git checkout -b foobar}}
+    \only<3>{\bash{git commit -m \qq{D}}}
+    \only<4>{\bash{git checkout master}}
+    \only<5>{\bash{git checkout -b hotfix}}
+    \only<6>{\bash{git commit -m \qq{E}}}
+    \only<7>{\bash{git checkout master}}
+    \only<8>{\bash{git merge hotfix}}
+    \only<9>{\bash{git branch -d hotfix}}
+    \only<10>{\bash{git checkout foobar}}
+    \only<11-12>{\bash{git commit -m \qq{F}}}
+    \only<13>{\bash{git checkout master}}
+    \only<14>{\bash{git merge foobar}}
+    \only<15>{\bash{git branch -d foobar}}
+
+    \vspace{1em}
+
+\iffinal
+    \makebox[\textwidth][c]{
+        \begin{tikzpicture}[x=3em,y=2em]
+            \uncover<1-> {
+                \node[commit] (a) at (0, 0) {A};
+                \node[commit] (b) at (1, 0) {B};
+                \node[commit] (c) at (2, 0) {C};
+
+                \draw[child] (a) -> (b);
+                \draw[child] (b) -> (c);
+            }
+
+            \uncover<1-7> {
+                \node[branch,onslide=<1>current,onslide=<4>current,onslide=<7>current] (master) at (2, 1) {master};
+                \draw[pointer] (master) -> (c);
+            }
+
+            \uncover<2> {
+                \node[branch,current] (foobar) at (2, -1) {foobar};
+                \draw[pointer] (foobar) -> (c);
+            }
+
+            \uncover<3-> {
+                \node[commit] (d) at (3, -1) {D};
+                \draw[child,onslide=<12-13>{red}] (c) -> (d);
+            }
+
+            \uncover<3-10> {
+                \node[branch,onslide=<3>current,onslide=<10>current] (foobar) at (3, -2) {foobar};
+                \draw[pointer] (foobar) -> (d);
+            }
+
+            \uncover<5> {
+                \node[branch,current] (hotfix) at (2, 2) {hotfix};
+                \draw[pointer'] (hotfix) -- (master);
+            }
+
+            \uncover<6-> {
+                \node[commit] (e) at (3, 0) {E};
+                \draw[child,onslide=<12-13>{green}] (c) -> (e);
+            }
+
+            \uncover<6-8> {
+                \node[branch,onslide=<6>{current}] (hotfix) at (3, 1) {hotfix};
+                \draw[pointer] (hotfix) -> (e);
+            }
+
+            \uncover<8> {
+                \node[branch,current] (master) at (3, 2) {master};
+                \draw[pointer'] (master) -> (hotfix);
+            }
+
+            \uncover<9-13> {
+                \node[branch,onslide=<9>current,onslide=<13>current] (master) at (3, 1) {master};
+                \draw[pointer] (master) -> (e);
+            }
+
+
+            \uncover<11-> {
+                \node[commit] (f) at (4, -1) {F};
+                \draw[child,onslide=<12-13>{red}] (d) -> (f);
+            }
+
+            \uncover<11-14> {
+                \node[branch,onslide=<-12>current] (foobar) at (4, -2) {foobar};
+                \draw[pointer] (foobar) -> (f);
+            }
+
+            \uncover<14-> {
+                \node[commit] (g) at (5, 0) {G*};
+                \draw[child] (e) -> (g);
+                \draw[child] (f) -> (g);
+            }
+
+            \uncover<14-> {
+                \node[branch,current] (master) at (5, 1) {master};
+                \draw[pointer] (master) -> (g);
+            }
+
+            \uncover<15> {}
+        \end{tikzpicture}
+    }
+\else
+    -- tikz picture here, finaltrue to show --
+\fi
+\end{frame}
+
+\subsection{Merging}
+\begin{frame}{Merging}
+    Was passiert?
+    \begin{itemize}
+        \item gemeinsamen Vorgänger finden
+        \item Änderungen ermitteln
+        \item beide Änderungssätze auf gemeinsamen Vorgänger anwenden
+        \item neuen Commit erstellen (automatische \emph{message})
+    \end{itemize}
+
+    Konflikte
+    \begin{itemize}
+        \item bei Änderung gleicher Zeile kann git nicht entscheiden, welche
+            Änderung übernommen werden soll
+        \item
+            {\scriptsize
+            \texttt{Auto-merging <filename>}\\
+            \texttt{CONFLICT (content): Merge conflict in <filename>}\\
+            \texttt{Automatic merge failed; fix conflicts and then commit the result.}\\
+            }
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Merging - Konflikte}
+
+    \begin{verbatim}
+vor dem Konflikt
+<<<<<<< HEAD
+meine Änderungen
+=======
+deine Änderungen
+>>>>>>> fremder-branch
+nach dem Konflikt
+    \end{verbatim}
+\end{frame}
+
