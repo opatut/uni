@@ -1,0 +1,22 @@
+- Einleitung
+    - Wozu git?
+    - Warum gerade git?
+
+- Git Internals
+    - Objekte
+    - HEAD Commit, Working Directory, Staging Area
+    - Leben einer Datei
+
+- Local history
+    - status
+    - add/commit
+    - push/pull
+    - branching/merging
+
+- Collaboration workflow
+    - Remotes
+    - pull-edit-commit-push
+    - zentrales Repository
+    - gitflow
+
+- Übersicht

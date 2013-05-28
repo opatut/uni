@@ -1,12 +1,9 @@
 \documentclass[compress,t]{beamer}
-% \documentclass[compress,notes]{beamer}
-% \documentclass[compress,notes=only]{beamer}
 
 \newif\iffinal
 \finalfalse
 
 \usetheme{Paul}
-% \setbeamercovered{transparent}
 \usepackage[utf8]{inputenc}
 \usepackage[ngerman]{babel}
 \usepackage{floatflt}
@@ -14,6 +11,7 @@
 \usepackage{tikz}
 \usepackage{xcolor}
 \usepackage{listings}
+\usepackage{multicol}
 \usetikzlibrary{shapes,arrows,calc,decorations.markings}
 
 \usepackage{mdframed}
@@ -31,7 +29,7 @@
 }
 
 \title{Git}
-\author{Paul Bienkowski (2bienkow)}
+\author{Paul Bienkowski (2bienkow)  \LaTeX}
 \institute{KunterBuntesSeminar}
 \date{2013-05-29}
 \setbeamerfont{note page}{size=\small}
@@ -114,16 +112,14 @@
     \titlepage
 }
 
-\frame{
-    \frametitle{Gliederung}
+\begin{frame}{Gliederung}
     \tableofcontents
-}
+\end{frame}
 
 \section{Einleitung}
 \subsection{Wozu Git?}
-\frame {
-    \frametitle{Wozu Git?}
 
+\begin{frame}{Wozu Git?}
     \uncover<0->{Lasst uns zusammen ein Programm schreiben!}
     \uncover<2->{\textit{(Evolution eines Hackers)}}
 
@@ -160,11 +156,9 @@
             }
         \end{tikzpicture}
     }
-}
+\end{frame}
 
-\frame{
-    \frametitle{Was ist Versionierung?}
-
+\begin{frame}{Was ist Versionierung?}
     \begin{itemize}
         \item \emph{Snapshots} einzelner Dateiversionen speichern
         \item History aufbewahren und wiederherstellbar machen
@@ -172,12 +166,10 @@
         \item \emph{(optional)} Synchronisation mit entfernten Kopien (Kollaboration)
     \end{itemize}
     $\rightarrow$ mehr als nur ein Backup
-}
+\end{frame}
 
 \subsection{Warum gerade git?}
-\frame{
-    \frametitle{Warum gerade git?}
-
+\begin{frame}{Warum gerade git?}
     Vorteile:
     \begin{itemize}
         \item verteilt (serverunabhängig, jeder \emph{clone} ist eigenständig/vollständig)
@@ -191,21 +183,23 @@
         \item wenig geeignet für Binärdateien
         \item gesamte History kann groß werden
     \end{itemize}
-}
+\end{frame}
 
 \section{Git Internals}
 \subsection{Objekte}
-\frame{
-    \frametitle{Objekte}
+\begin{frame}{Objekte}
     \begin{itemize}
         \item Git als map-type storage
         \item Hashes bilden auf Daten ab
         \item Speicherung in einzelnen Dateien (``der Kernel macht das'')
-        \item jedes Objekt in git ist eine Datei
+        \item jedes Objekt in git ist eine solche Datei, jeweils ein ``Snapshot''
+            einer Version
             \begin{itemize}
-                \item Versions-Snapshot von Dateien (\emph{blob})
-                \item Versions-Snapshot von Verzeichnissen (\emph{tree})
-                \item Commit-Informationen (\emph{commit})
+                \item \emph{blob} für Dateien
+                \item \emph{tree} für Verzeichnisse\\
+                    $\rightarrow$ Referenzen auf einzelne \emph{blobs} + Metadaten
+                \item \emph{commit} für das ganze Repository\\
+                    $\rightarrow$ Wurzelverzeichnis als \emph{tree} + Metadaten
             \end{itemize}
         \item \emph{tree} und \emph{commit} enthalten Informationen in Klartext,  \emph{blob} den Dateiinhalt
     \end{itemize}
@@ -216,30 +210,24 @@
         \begin{tikzpicture}[x=1cm,y=1cm]
             \node (rect) at (0, 0) [draw,thick,minimum width=2cm,minimum height=0.6cm] {type};
             \node (rect) at (2, 0) [draw,thick,minimum width=2cm,minimum height=0.6cm] {length};
-            \node (rect) at (5, 0) [draw,thick,minimum width=4cm,minimum height=0.6cm] {data};
+            \node (rect) at (5, 0) [draw,thick,minimum width=4cm,minimum height=0.6cm] {payload};
             \node (rect) at (3, -0.1) [draw,thick,minimum width=8.2cm,minimum height=1cm,label=below:\emph{zlib compress}] {};
         \end{tikzpicture}
     }
-}
+\end{frame}
 
 \subsection{Remotes}
-\frame {
-    \frametitle{Clones}
-
+\begin{frame}{Clones}
     \begin{itemize}
-        \item in einem Repository entstehen nur neue Objekte (Dateien), sie werden
-            nicht verändert
-        \item jede Datei hat einen eindeutigen Namen (SHA kollidiert
+        \item in einem Repository entstehen nur neue Objekte (Dateien)
+        \item bestehende werden nicht verändert
+        \item jedes Objekt hat einen eindeutigen Namen (SHA kollidiert
             \textit{praktisch} nicht)
         \item $\rightarrow$ Synchronisation ohne zentrale Verwaltung möglich
     \end{itemize}
+\end{frame}
 
-    Einzige Ausnahme: Branch-Referenzen verändern sich.
-}
-
-\frame {
-    \frametitle{Remotes}
-
+\begin{frame}{Remotes}
     \vspace{0.5em}
     \makebox[\textwidth][c]{
         \begin{tikzpicture}[x=1cm,y=1cm]
@@ -255,13 +243,50 @@
             %\draw[remote] (paul) -- node[midway, below] {\tiny{}ssh://2bienkow@rzssh1.informatik.uni-hamburg.de:/home/scratch/2bienkow/repo} (rzssh1);
         \end{tikzpicture}
     }
-}
+\end{frame}
+
+\begin{frame}{Das Leben einer Datei}
+    \tikzset{
+        state/.style = {
+            rectangle,
+            minimum width=2cm,
+            minimum height=1cm,
+            draw=black,
+            thick,
+            rounded corners=3pt,
+            font=\small,
+            align=center
+        },
+        statearrow/.style = {
+            draw,
+            thick,
+            -latex,
+        }
+    }
+
+    \vspace{1cm}
+    \makebox[\textwidth][c]{
+        \begin{tikzpicture}[x=0.9cm,y=0.9cm]
+            \node[state,fill=green!30!white] (unmodified) at (-5, 0) {unmodified\\[-3pt]\tiny HEAD commit};
+            \node[state,fill=red!30!white] (modified) at (0, 0) {modified\\[-3pt]\tiny working copy};
+            \node[state,fill=yellow!30!white] (staged) at (5, 0) {staged\\[-3pt]\tiny staging area};
+            \node[state,fill=gray!30!white] (untracked) at (0, -3) {untracked\\[-3pt]\tiny working copy};
+
+            \draw[statearrow] (unmodified) to[bend left=5] node[midway,above] {edit} (modified);
+            \draw[statearrow] (modified) to[bend left=5] node[midway,below] {checkout} (unmodified);
+            \draw[statearrow] (modified) to node[midway,above] {add} (staged);
+            \draw[statearrow] (staged) to[bend right=20] node[midway,above] {commit} (unmodified);
+            \draw[statearrow] (untracked) to node[midway,below] {add} (staged);
+            \draw[statearrow] (unmodified) to node[midway,below] {rm} (untracked);
+        \end{tikzpicture}
+    }
+
+\end{frame}
 
 \section{Basics}
 
 \subsection{Working copy}
-\frame{
-    \frametitle{Working copy}
+\begin{frame}{Working copy}
     \begin{itemize}
         \item In \texttt{.git/} liegen alle Versionen aller Dateien als \emph{blob} vor
         \item Wie soll man damit arbeiten?
@@ -271,13 +296,10 @@
             \bash{git checkout 4b5c8e2f95a4407c4d0c596565b367eaca07af57}
             $\rightarrow$ nicht möglich, wenn unversionierte Änderungen vorliegen
     \end{itemize}
-
-}
+\end{frame}
 
 \subsection{Branching}
-\frame{
-    \frametitle{Branching}
-
+\begin{frame}{Branching}
     \begin{itemize}
         \item Commits liegen ungeordnet vor
         \item $\rightarrow$ Welche ist die ``aktuelle'' Version?
@@ -286,11 +308,9 @@
         \item Man kann zwischen Branches wechseln wie zwischen Commits (\textsc{checkout})
         \item Nach dem committen zeigt der aktuelle Branch auf den neuen Commit
     \end{itemize}
-}
+\end{frame}
 
-\frame{
-    \frametitle{Branching}
-
+\begin{frame}{Branching}
     \only<1>{\bash{git status}}
     \only<2>{\bash{git checkout -b foobar}}
     \only<3>{\bash{git commit -m \qq{D}}}
@@ -393,12 +413,10 @@
 \else
     -- tikz picture here, finaltrue to show --
 \fi
-}
+\end{frame}
 
 \subsection{Merging}
-\frame{
-    \frametitle{Merging}
-
+\begin{frame}{Merging}
     Was passiert?
     \begin{itemize}
         \item gemeinsamen Vorgänger finden
@@ -418,10 +436,9 @@
             \texttt{Automatic merge failed; fix conflicts and then commit the result.}\\
             }
     \end{itemize}
-}
+\end{frame}
 
-\begin{frame}[fragile]
-    \frametitle{Merging - Konflikte}
+\begin{frame}[fragile]{Merging - Konflikte}
 
     \begin{verbatim}
 vor dem Konflikt
@@ -432,7 +449,57 @@ deine Änderungen
 >>>>>>> fremder-branch
 nach dem Konflikt
     \end{verbatim}
+\end{frame}
 
+\begin{frame}{Übersicht}
+    \textbf{Begriffe}\\[0.5em]
+
+    {\scriptsize
+        \begin{tabular}{p{2.5cm}l}
+            \textbf{commit}
+                & Versions-Snapshot\\
+            \textbf{working directory}
+                & Arbeitskopie der aktuell gewählten Version\\
+            \textbf{clone}
+                & Kopie eines Repositories\\
+            \textbf{remote}
+                & Referenz im lokalen Repository auf (entfernten) clone\\
+            \textbf{branch}
+                & Zeiger auf einen Zweig der History, wird aktualisiert\\
+        \end{tabular}
+    }\\[1em]
+
+    \textbf{Kommandos}\\[0.5em]
+
+    {\scriptsize
+        \begin{tabular}{p{2.5cm}l}
+            \textbf{clone}
+                & ein Repository von einer URL kopieren (init + remote add + pull)\\
+            \textbf{status}
+                & aktuellen Status des working directories anzeigen\\
+            \textbf{add}
+                & Dateien/Verzeichnisse stagen\\
+            \textbf{commit}
+                & Version in Kontrolle aufnehmen\\
+            \textbf{pull}
+                & commits auf remote übertragen und remote-branch updaten\\
+            \textbf{push}
+                & commits von remote empfangen und in aktuellen branch mergen\\
+            \textbf{log}
+                & Vorgänger-Versionen auflisten\\
+            \textbf{checkout}
+                & bestimmte Version für einzelne Dateien oder
+                das WD auswählen\\
+            \textbf{rm}
+                & Dateien löschen\\
+            \textbf{branch}
+                & Branches verwalten (auswählen mit \texttt{checkout})\\
+            \textbf{diff}
+                & Versionen vergleichen\\
+            \textbf{merge}
+                & zwei Änderungen zusammenführen\\
+        \end{tabular}
+    }
 \end{frame}
 
 \end{document}
