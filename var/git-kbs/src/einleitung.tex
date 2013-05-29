@@ -54,17 +54,36 @@
 
 \subsection{Warum gerade git?}
 \begin{frame}{Warum gerade git?}
-    Vorteile:
-    \begin{itemize}
-        \item verteilt (serverunabhängig, jeder \emph{clone} ist eigenständig/vollständig)
-        \item schnell (lokal, Implementation in C)
-        \item optimal für Quelltext
-        \item FOSS
-    \end{itemize}
+    \begin{quote}
+        Bitte keine flamewars!
+    \end{quote}
 
-    Nachteile:
-    \begin{itemize}
-        \item wenig geeignet für Binärdateien
-        \item gesamte History kann groß werden
-    \end{itemize}
+    \pause
+
+    \only<+> {
+        Vorteile:
+        \begin{itemize}
+            \item verteilt (serverunabhängig, jeder \emph{clone} ist eigenständig/vollständig)
+            \item schnell (lokal, Implementation in C)
+            \item optimal für Quelltext
+            \item FOSS
+        \end{itemize}
+
+        Nachteile:
+        \begin{itemize}
+            \item wenig geeignet für Binärdateien
+            \item gesamte History kann groß werden
+            \item Kritik am command-line interface (Benutzung)
+        \end{itemize}
+    }
+    \only<+> {
+        Andere Optionen:
+        \begin{itemize}
+            \item Subversion (SVN) / Concurrent Versions System (CVS)
+            \item Mercurial (HG)
+            \item Bazaar
+            \item Darcs
+            \item ... viele mehr, auch proprietär
+        \end{itemize}
+    }
 \end{frame}

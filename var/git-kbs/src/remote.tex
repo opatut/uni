@@ -124,25 +124,25 @@
                 \node[commit,fill=c4] (cc4) at ($(cc)+( 0.0, 0.0)$) {};
                 \draw[arrow] (cc1) -- (cc2);
                 \draw[arrow] (cc1) -- (cc4);
-                \draw[connection,onslide=<12>biconnection] (br) -- (cc);
+                \draw[connection] (br) -- (cc);
             }
             \uncover<9-> {
                 % push from bl
                 \node[commit,fill=c3] (cc3) at ($(cc)+(-0.4,+0.5)$) {};
                 \draw[arrow] (cc2) -- (cc3);
-                \draw[connection,onslide=<12>biconnection] (bl) -- (cc);
+                \draw[connection] (bl) -- (cc);
             }
             \uncover<10-> {
                 % push from tl
                 \node[commit,fill=c5] (cc5) at ($(cc)+( 0.0, 0.5)$) {};
                 \draw[arrow] (cc4) -- (cc5);
-                \draw[connection,onslide=<12>biconnection] (tl) -- (cc);
+                \draw[connection] (tl) -- (cc);
             }
             \uncover<11-> {
                 % push from tr
                 \node[commit,fill=c6] (cc6) at ($(cc)+(+0.4, 0.5)$) {};
                 \draw[arrow] (cc4) -- (cc6);
-                \draw[connection,onslide=<12>biconnection] (tr) -- (cc);
+                \draw[connection] (tr) -- (cc);
             }
         \end{tikzpicture}
     }
@@ -163,9 +163,17 @@
                 \item[pull] \emph{fetch} + \emph{merge}
                 \item[push] Objekte hochladen + Referenzen aktualisieren (branches)
             \end{description}
+        \item ``entfernt'' über verschiedene Protokolle:
+            \begin{itemize}
+                \item lokales Dateisystem
+                \item SSH
+                \item HTTP/HTTPS
+                \item GIT-Protokoll
+            \end{itemize}
     \end{itemize}
 \end{frame}
 
+\subsection{Pull / Push}
 \begin{frame}{Pull / Push}
     \textbf{Push}\\[0.5em]
 
@@ -181,6 +189,15 @@
     \bash{git pull <remote> <branch>}
     \bash{git pull origin master}
     \bash{git pull}
+\end{frame}
+
+\begin{frame}{Push rejected}
+    \begin{itemize}
+        \item Objekte hochladen geht eigentlich immer
+        \item Referenzen (branches) updaten eventuell nicht \pause
+        \item der Remote kann nicht mergen (Konflikte etc.)
+        \item dann erst pullen, mergen, committen, pushen
+    \end{itemize}
 \end{frame}
 
 \begin{frame}{Und wann mach ich das jetzt?}
@@ -201,4 +218,3 @@
         Commit often and early!
     \end{quote}
 \end{frame}
-

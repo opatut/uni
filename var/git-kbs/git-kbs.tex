@@ -12,6 +12,7 @@
 \usepackage{tikz}
 \usepackage{listings}
 \usepackage{multicol}
+\usepackage{hyperref}
 \usetikzlibrary{shapes,arrows,calc,decorations.markings}
 
 \usepackage{mdframed}
@@ -30,7 +31,7 @@
 }
 
 \title{Git}
-\author{Paul Bienkowski (2bienkow)  \LaTeX}
+\author{Paul Bienkowski (2bienkow)}
 \institute{KunterBuntesSeminar}
 \date{2013-05-29}
 \setbeamerfont{note page}{size=\small}
@@ -107,6 +108,15 @@
     %\tableofcontents[current]
     %}
 %}
+
+\AtBeginSection[]{
+%\newcommand{\sectiontoc}{
+    \begin{frame}{\textbf{\insertsectionhead}}
+        \tableofcontents[current]
+    \end{frame}
+
+    \addtocounter{framenumber}{-1}% If you don't want them to affect the slide number
+}
 
 \begin{document}
 \frame{

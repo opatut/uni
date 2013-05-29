@@ -1,5 +1,10 @@
 \section{Lokale Operationen}
 
+\begin{frame}{}
+    \vspace{2cm}
+    \center \Huge \texttt{git init}
+\end{frame}
+
 \subsection{Status}
 \begin{frame}{Status / Diff}
     Aktuellen Status des Working Directories:\\[1em]
@@ -7,6 +12,7 @@
     \bash{git status}
 
     \vspace{1em}
+    \pause
 
     Änderungen zwischen Versionen:\\[1em]
 
@@ -216,3 +222,49 @@ nach dem Konflikt
     \end{verbatim}
 \end{frame}
 
+\subsection{Rebasing}
+\begin{frame}{Rebasing}
+    \only<1>{\bash{git checkout foobar}}
+    \only<2>{\bash{git rebase master}}
+
+    \vspace{1em}
+
+\iffinal
+    \makebox[\textwidth][c]{
+        \begin{tikzpicture}[x=3em,y=2em]
+            \node[commit] (a) at (0, 0) {A};
+            \node[commit] (b) at (1, 0) {B};
+            \node[commit] (c) at (2, 0) {C};
+            \node[commit] (e) at (3, 0) {E};
+            \draw[child] (a) -> (b);
+            \draw[child] (b) -> (c);
+
+            \uncover<1> {
+                \node[commit] (d) at (3, -1) {D};
+                \node[commit] (f) at (4, -1) {F};
+                \draw[child,green] (c) -> (e);
+                \draw[child,red] (c) -> (d);
+                \draw[child,red] (d) -> (f);
+
+                \node[branch,current] (foobar) at (4, -2) {foobar};
+                \draw[pointer] (foobar) -> (f);
+            }
+            \uncover<2-> {
+                \node[commit] (d) at (4, 0) {D'};
+                \node[commit] (f) at (5, 0) {F'};
+                \draw[child,green] (c) -> (e);
+                \draw[child,red] (e) -> (d);
+                \draw[child,red] (d) -> (f);
+
+                \node[branch,current] (foobar) at (5, 1) {foobar};
+                \draw[pointer] (foobar) -> (f);
+            }
+
+            \node[branch] (master) at (3, 1) {master};
+            \draw[pointer] (master) -> (e);
+        \end{tikzpicture}
+    }
+\else
+    -- tikz picture here, finaltrue to show --
+\fi
+\end{frame}
