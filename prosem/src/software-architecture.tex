@@ -1,0 +1,42 @@
+\subsection{Software Architecture}
+
+\begin{frame}{Software Architecture - Server}
+    \begin{itemize}
+        \item MDS/OSS has mkfs.lustre-formatted space
+        \item ldiskfs kernel module required (based on ext3)
+        \item kernel requires patching (not available for Linux \textgreater~2.6)
+    \end{itemize}
+
+    \textbf{Limitations}
+
+    \begin{itemize}
+        \item very platform dependent
+        \item needs compatible kernel
+        \item not a problem when using independent storage solution
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Software Architecture - Client}
+    \begin{itemize}
+        \item ``patchfree'' client: kernel module for Linux 2.6
+        \item userspace library (liblustre)
+        \item userspace filesystem (FUSE) drivers
+        \item NFS access (legacy support)
+    \end{itemize}
+
+    \textbf{Platform Support}
+    \begin{itemize}
+        \item all Linux kernel versions \textgreater~2.6 supported
+        \item NFS for Windows
+        \item NFS/FUSE MacOS
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Interversion Compatibility}
+    \begin{itemize}
+        \item Lustre usually supports \textbf{interoperability} \cite{interoperability}.
+        \item e.g. 1.8 clients $\leftrightarrow$ 2.0 servers and vice versa
+        \item $\rightarrow$ on-line upgrade-ability using failover systems
+    \end{itemize}
+\end{frame}
+

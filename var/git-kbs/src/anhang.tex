@@ -1,0 +1,89 @@
+\section{Anhang}
+
+\subsection{Tipps und Tricks}
+\begin{frame}[fragile]{Tipps und Tricks}
+    \begin{itemize}
+        \item Log mit Änderungen (diff) zeigen:
+            \bash{git log -p}
+        \item Bunter Log mit Baum-Struktur:
+
+{\scriptsize\begin{verbatim}
+git log --graph --all --format=format:'%C(yellow)%h%C(reset) -
+    %C(cyan)%ci%C(reset) %C(green)(%cr)%C(reset) %C(bold yellow)%d%C(reset)%n
+    %C(white)%s%C(reset) %C(bold white)- %cn%C(reset)%n'
+    --abbrev-commit --date=relative
+\end{verbatim}}
+        \item \texttt{$\sim$/.gitconfig} anpassen!
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{$\sim$/.gitconfig}
+\begin{verbatim}
+[user]
+    name = Firstname Lastname
+    email = user@host.tld
+
+[color]
+    diff = auto
+    status = auto
+    branch = auto
+    interactive = auto
+    ui = true
+
+[push]
+    default = simple
+\end{verbatim}
+\end{frame}
+
+
+\subsection{Übersicht}
+\begin{frame}{Übersicht}
+    \textbf{Begriffe}\\[0.5em]
+
+    {\scriptsize
+        \begin{tabular}{p{2.5cm}l}
+            \textbf{commit}
+                & Versions-Snapshot\\
+            \textbf{working directory}
+                & Arbeitskopie der aktuell gewählten Version\\
+            \textbf{clone}
+                & Kopie eines Repositories\\
+            \textbf{remote}
+                & Referenz im lokalen Repository auf (entfernten) clone\\
+            \textbf{branch}
+                & Zeiger auf einen Zweig der History, wird aktualisiert\\
+        \end{tabular}
+    }\\[1em]
+
+    \textbf{Kommandos}\\[0.5em]
+
+    {\scriptsize
+        \begin{tabular}{p{2.5cm}l}
+            \textbf{clone}
+                & ein Repository von einer URL kopieren (init + remote add + pull)\\
+            \textbf{status}
+                & aktuellen Status des working directories anzeigen\\
+            \textbf{add}
+                & Dateien/Verzeichnisse stagen\\
+            \textbf{commit}
+                & Version in Kontrolle aufnehmen\\
+            \textbf{pull}
+                & commits auf remote übertragen und remote-branch updaten\\
+            \textbf{push}
+                & commits von remote empfangen und in aktuellen branch mergen\\
+            \textbf{log}
+                & Vorgänger-Versionen auflisten\\
+            \textbf{checkout}
+                & bestimmte Version für einzelne Dateien oder
+                das WD auswählen\\
+            \textbf{rm}
+                & Dateien löschen\\
+            \textbf{branch}
+                & Branches verwalten (auswählen mit \texttt{checkout})\\
+            \textbf{diff}
+                & Versionen vergleichen\\
+            \textbf{merge}
+                & zwei Änderungen zusammenführen\\
+        \end{tabular}
+    }
+\end{frame}

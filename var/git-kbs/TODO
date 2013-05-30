@@ -1,0 +1,31 @@
+== Geplante Gliederung ==
+
+x Einleitung
+    x Wozu git?
+    x Warum gerade git?
+
+x Git Internals
+    x Objekte
+    x Working Directory / HEAD
+    x Staging Area
+    x Vom Leben einer Datei
+
+x Local history
+    x status
+    x diff
+    x add/commit
+    x checkout
+    x log
+    x branching/merging
+
+x Entfernte Operationen
+    x Clones
+    x Remotes
+    x push/pull
+    x pull-edit-commit-push
+
+o Workflows
+    o zentrales Repository
+    o gitflow
+
+x Übersicht

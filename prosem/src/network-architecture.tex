@@ -1,0 +1,270 @@
+\section{Lustre Architecture}
+\sectiontoc
+
+\subsection{Network Architecture}
+
+\begin{frame}<1-5>[label=network]{Network Structure}
+\iffinal
+    \tikzset{
+        area/.style=    { draw=black!30!white, dashed, very thick, rounded corners=3pt },
+        highlight/.style = { fill=yellow!50!white, rounded corners=3pt },
+        node/.style =   { circle, inner sep=0pt, minimum size=15pt },
+        client/.style = { node, fill=RoyalBlue },
+        mds/.style =    { node, fill=YellowGreen },
+        mdt/.style =    { node, fill=Dandelion },
+        oss/.style =    { node, fill=OliveGreen },
+        ost/.style =    { node, fill=BrickRed },
+        link/.style =   { line width=1.5pt, line cap=rect },
+        olink/.style =  { link, draw=Red },
+        mlink/.style =  { link, draw=Dandelion!50!white },
+        net/.style =    { link, line width=2pt },
+        net1/.style =   { net, draw=black!20!white },
+        net2/.style =   { net, draw=black!50!white },
+        failover/.style={
+            %decoration={markings,mark=at position 1 with {\arrow{triangle 60}},scale=0.5},
+            %postaction=decorate,
+            line width=1.0pt,
+            -stealth,
+        },
+        failover'/.style={
+            failover,
+            stealth-stealth
+        },
+    }
+
+    \makebox[\textwidth][c] {
+        \begin{tikzpicture}[y=-0.9cm,x=0.9cm]
+
+            \uncover<1-> {
+                \draw[area]
+                    (-5.5, -0.5) rectangle (2.5, 0.5)
+                    (-5.5, 1) rectangle (-3.4, 4.0)
+                    (-5.5, 4.5) rectangle (4.5, 6.5)
+                    ;
+
+                \node[anchor=west] (clients)  at (-5.5, 0.0) {\scriptsize CLIENTS};
+                \node[anchor=west,align=left] (objects)  at (-5.5, 5.5) {\scriptsize{}OBJECT\\[-0.5em]\scriptsize{}STORAGE};
+                \node[anchor=west] (metadata) at (-5.5, 1.3) {\scriptsize METADATA};
+            }
+
+            \uncover<5-> {
+                \node[anchor=south] (mds)     at (-4.0, 2.1) {\tiny MDS};
+            }
+            \uncover<6-> {
+                \node[anchor=east] (oss)      at (-3.5, 5.0) {\tiny OSS};
+            }
+            \uncover<7-> {
+                \node[anchor=south] (mdt)     at (-5.0, 2.1) {\tiny MDT};
+                \node[anchor=east] (ost)      at (-3.5, 6.0) {\tiny OST};
+            }
+
+            \uncover<4-> {
+                \node[align=left,anchor=south west] (net) at (-2.7, 3.7) {\tiny different network types: any TCP/GigE, InfiniBand, \\[-0.5em]
+                \tiny{}Cray Seastar, Myrinet MX, RapidArray ra, Quadrics Elan \cite{operations-manual}};
+            }
+
+            \uncover<5> {
+                \fill[highlight] (-4.4, 2.1) rectangle (-3.6, 3.9);
+            }
+            \uncover<6> {
+                \fill[highlight] (-2.9, 4.6) rectangle (4.4, 5.4);
+            }
+
+            \uncover<3-> {
+                \draw[net1]
+                    ( 0.0, 1) -- (-3.0, 1) -- (-3.0, 4) -- (3.9, 4)
+
+                    (-2.0, 0) -- (-2.0, 1) %client1
+                    (-1.0, 0) -- (-1.0, 1) %client2
+                    ( 0.0, 0) -- ( 0.0, 1) %client3
+                    %( 0.9, 0) -- ( 0.9, 1) %client4
+                    %( 1.9, 0) -- ( 1.9, 1) %client5
+
+                    (-4.0, 2.6) -- (-3.0, 2.6) %mds1
+                    (-4.0, 3.6) -- (-3.0, 3.6) %mds2
+
+                    (-2.6, 5) -- (-2.6, 4) %oss1
+                    (-1.1, 5) -- (-1.1, 4) %oss2
+                    (-0.1, 5) -- (-0.1, 4) %oss3
+                    ( 1.9, 5) -- ( 1.9, 4) %oss4
+                    ( 2.9, 5) -- ( 2.9, 4) %oss5
+                    ( 3.9, 5) -- ( 3.9, 4) %oss6
+                    ;
+            }
+
+            \uncover<4-> {
+                \draw[net2]
+                    (2.0, 1.2) -- (-2.8, 1.2) -- (-2.8, 3.8) -- (4.1, 3.8)
+
+                    ( 1.0, 0) -- (1.0, 1.2) %client4
+                    ( 2.0, 0) -- (2.0, 1.2) %client5
+
+                    (-4.0, 2.4) -- (-2.8, 2.4) %mds1
+                    (-4.0, 3.4) -- (-2.8, 3.4) %mds2
+
+                    (-2.4, 5) -- (-2.4, 3.8) %oss1
+                    (-0.9, 5) -- (-0.9, 3.8) %oss2
+                    ( 0.1, 5) -- ( 0.1, 3.8) %oss3
+                    ( 2.1, 5) -- ( 2.1, 3.8) %oss4
+                    ( 3.1, 5) -- ( 3.1, 3.8) %oss5
+                    ( 4.1, 5) -- ( 4.1, 3.8) %oss6
+                    ;
+            }
+
+            \uncover<7-> {
+                \path[mlink]
+                    (-4, 2.5) -- (-5, 3) %mds1
+                    (-4, 3.5) -- (-5, 3) %mds2
+                    ;
+
+                \path[olink]
+                    (-2.5, 5) -- (-3, 6) %oss1
+                    (-2.5, 5) -- (-2, 6) %oss1
+
+                    (-1, 5) -- (-1, 6) %oss2
+                    (-1, 5) -- (0, 6) %oss2
+                    (0, 5) -- (-1, 6) %oss3
+                    (0, 5) -- (0, 6) %oss3
+
+                    (2, 5) -- (3, 6) %oss4
+                    (3, 5) -- (3, 6) %oss5
+                    (4, 5) -- (3, 6) %oss6
+                    ;
+            }
+
+            \uncover<2-> {
+                \node[client] (client1) at (-2, 0) {\includegraphics[width=10pt]{gfx/client.png}};
+                \node[client] (client2) at (-1, 0) {\includegraphics[width=10pt]{gfx/client.png}};
+                \node[client] (client3) at ( 0, 0) {\includegraphics[width=10pt]{gfx/client.png}};
+                \uncover<4-> {
+                    \node[client] (client4) at ( 1, 0) {\includegraphics[width=10pt]{gfx/client.png}};
+                    \node[client] (client5) at ( 2, 0) {\includegraphics[width=10pt]{gfx/client.png}};
+                }
+
+                \node[mds] (mds1) at (-4, 2.5) {\includegraphics[width=9pt]{gfx/server.png}};
+                \node[mds] (mds2) at (-4, 3.5) {\includegraphics[width=9pt]{gfx/server.png}};
+
+                \node[oss] (oss1) at (-2.5, 5) {\includegraphics[width=9pt]{gfx/server.png}};
+                \node[oss] (oss2) at (-1.0, 5) {\includegraphics[width=9pt]{gfx/server.png}};
+                \node[oss] (oss3) at ( 0.0, 5) {\includegraphics[width=9pt]{gfx/server.png}};
+                \node[oss] (oss4) at ( 2.0, 5) {\includegraphics[width=9pt]{gfx/server.png}};
+                \node[oss] (oss5) at ( 3.0, 5) {\includegraphics[width=9pt]{gfx/server.png}};
+                \node[oss] (oss6) at ( 4.0, 5) {\includegraphics[width=9pt]{gfx/server.png}};
+            }
+
+            \uncover<7-> {
+                \node[mdt] (mdt1) at (-5, 3.0) {\includegraphics[width=9pt]{gfx/database.png}};
+
+                \node[ost] (ost1) at (-3, 6) {\includegraphics[width=9pt]{gfx/database.png}};
+                \node[ost] (ost2) at (-2, 6) {\includegraphics[width=9pt]{gfx/database.png}};
+                \node[ost] (ost3) at (-1, 6) {\includegraphics[width=9pt]{gfx/database.png}};
+                \node[ost] (ost4) at ( 0, 6) {\includegraphics[width=9pt]{gfx/database.png}};
+                \node[ost] (ost5) at ( 3, 6) {\includegraphics[width=9pt]{gfx/database.png}};
+            }
+
+            \uncover<8-> {
+                \draw[failover]  (mds1) to[bend left=30] (mds2);
+                \draw[failover]  (oss4) to[bend left=30] (oss5);
+                \draw[failover]  (oss5) to[bend left=30] (oss6);
+                \draw[failover]  (oss6) to[bend left=30] (oss4);
+                \draw[failover'] (oss2) to[bend left=30] (oss3);
+            }
+        \end{tikzpicture}
+    }
+
+    \hfill{\scriptsize\emph{graph reproduced from \cite{whitepaper}}}
+\else
+    (graph here, finaltrue to show)
+    \uncover<1-> {1}
+    \uncover<2-> {2}
+    \uncover<3-> {3}
+    \uncover<4-> {4}
+    \uncover<5-> {5}
+    \uncover<6-> {6}
+    \uncover<7-> {7}
+    \uncover<8-> {8}
+\fi
+\end{frame}
+
+\begin{frame}{Metadata Server (\textbf{MDS})}
+    \begin{itemize}
+        \item store file information (metadata)
+        \item accessed by clients to access files
+        \item \emph{manage} data storage
+        \item at least one required
+        \item up to $\sim$100 possible (failovers)
+    \end{itemize}
+\end{frame}
+
+\againframe<5-6>{network}
+
+\begin{frame}{Object Storage Server (\textbf{OSS})}
+    \begin{itemize}
+        \item store file content (objects)
+        \item accessed by clients directly
+        \item at least one required
+        \item $>10000$ OSS are used in large scale computers
+        \item multiple targets per server
+        \item multiple servers per target
+    \end{itemize}
+\end{frame}
+
+\againframe<6-7>{network}
+
+\begin{frame}{Targets}
+    \begin{itemize}
+        \item two types
+            \begin{itemize}
+                \item object storage target (OST)
+                \item metadata target (MDT)
+            \end{itemize}
+        \item can be any block device
+            \begin{itemize}
+                \item normal hard disk / flash drive / SSD
+                \item advanced storage arrays
+            \end{itemize}
+        \item will be formatted for lustre
+        \item up to 8 TiB / target (ext3 limit)
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Failover}
+    \begin{itemize}
+        \item if one server failes, another one takes over
+        \item backup server needs access to targets
+        \item enabled on-line software upgrades (one-by-one)
+    \end{itemize}
+\end{frame}
+
+\againframe<7-8>{network}
+
+\begin{frame}{System characteristics}
+    \scriptsize
+    \begin{tabularx}{\textwidth}{@{}XXXXX@{}}
+    %\begin{tabular}{|+*{5}{p{\dimexpr(\textwidth-2\tabcolsep)/6\relax}|}}
+        \toprule
+        \textbf{Subsystem}
+        & Typical number of systems
+        & Performance
+        & Required attached storage
+        & Desirable hardware characteristics\\\midrule
+        \textbf{Clients}
+        & 1 - 100,000
+        & 1 GB/sec I/O, 1000 metadata ops
+        & None
+        & None \\[30pt]
+        \textbf{Object Storage}
+        & 1 - 1000
+        & 500 - 2.5 GB/sec
+        & total capacity / OSS count
+        & Good bus bandwidth \\[20pt]
+        \textbf{Metadata Storage}
+        & 1 + backup (up to 100 with Lustre 2.4+)
+        & 3000 - 15000 metadata ops
+        & 1 - 2\% of file system capacity
+        & Adequate CPU power, plenty of memory \\\bottomrule
+    \end{tabularx}
+
+    \vspace{0.3cm}
+    \hfill{\scriptsize\emph{table reproduced from \cite{whitepaper}}}
+\end{frame}
