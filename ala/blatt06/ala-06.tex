@@ -42,16 +42,14 @@
     \item[\textbf{1.}]
         \begin{enumerate}
             \item[(a)]
-                Wir berechnen $\lim\limits_{n \to \infty} O_n$. Es gilt:
+                Wir berechnen $\lim\limits_{n \to \infty} O_n$:
                 \begin{eqnarray}
                 O_n &=& \frac{b-a}{n}\sum_{i=1}^n f(x_i)=\frac{3}{n}\sum_{i=1}^n f\left(\frac{3i}{n}\right)=\frac{3}{n}\sum_{i=1}^n\left(\frac{3i}{n}\right)^3=\frac{3 \cdot 3^3}{n^4}\sum_{i=1}^n i^3 \\ \nonumber
                 &=& \frac{81}{n^4} \cdot \frac{n^2\cdot\left(n+1\right)^2}{4}=\frac{81n^4+192n^3+81n^2}{4n^4}
                 \end{eqnarray}
                 Also gilt $\lim\limits_{n\to \infty} O_n = \lim \limits_{n\to\infty}\left(\frac{81n^4+192n^3+81n^2}{4n^4}\right)= \lim \limits_{n\to\infty}\left(\frac{n^4}{n^4}\cdot\frac{81+\frac{192}{n}+\frac{81}{n^2}}{4}\right)=\frac{81}{4}$
             \item[(b)]
-                \begin{eqnarray*}
-                    \int\limits_0^3 f(x) \dx = \int\limits_0^3\frac{1}{4}x^4 \, dx = \frac{1}{4}3^4 - \frac{1}{4}0^4= \frac{81}{4}
-                \end{eqnarray*}
+                    \[\int\limits_0^3 f(x) \dx = \int\limits_0^3\frac{1}{4}x^4 \, dx = \frac{1}{4}3^4 - \frac{1}{4}0^4= \frac{81}{4}\]
         \end{enumerate}
     \item[\textbf{2.}]
         \begin{enumerate}
