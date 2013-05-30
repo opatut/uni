@@ -1,0 +1,225 @@
+\newcommand{\authorinfo}{Paul Bienkowski, Hans Ole Hatzel}
+\newcommand{\titleinfo}{ALA 06 (HA) zum 30.05.2013}
+
+% PREAMBLE ===============================================================
+
+\documentclass[a4paper,11pt]{scrartcl}
+\usepackage[german,ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{enumerate}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{multicol}
+\usetikzlibrary{calc}
+\usetikzlibrary{patterns}
+
+\author{\authorinfo}
+\title{\titleinfo}
+\date{\today}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\authorinfo}
+\fancyhead[R]{\titleinfo}
+\fancyfoot[C]{\thepage}
+
+\newcommand{\bra}[1]{\left(#1\right)}
+\newcommand{\limnn}[2]{\lim\limits_{n \rightarrow #1}\bra{#2}}
+\newcommand{\limn}[1]{\lim\limits_{n \rightarrow \infty}\bra{#1}}
+\newcommand{\limx}[1]{\lim\limits_{x \rightarrow \infty}\bra{#1}}
+\newcommand{\rowi}[1]{\sum_{i=#1}^{\infty}}
+\newcommand{\row}{\rowi{0}}
+\newcommand{\step}[1]{\textbf{#1}}
+\newcommand{\dx}[0]{\, \mathrm{d}x}
+
+\begin{document}
+\maketitle
+\begin{enumerate}
+    \item[\textbf{1.}]
+        \begin{enumerate}
+            \item[(a)]
+                Wir berechnen $\lim\limits_{n \to \infty} O_n$. Es gilt:
+                \begin{eqnarray}
+                O_n &=& \frac{b-a}{n}\sum_{i=1}^n f(x_i)=\frac{3}{n}\sum_{i=1}^n f\left(\frac{3i}{n}\right)=\frac{3}{n}\sum_{i=1}^n\left(\frac{3i}{n}\right)^3=\frac{3 \cdot 3^3}{n^4}\sum_{i=1}^n i^3 \\ \nonumber
+                &=& \frac{81}{n^4} \cdot \frac{n^2\cdot\left(n+1\right)^2}{4}=\frac{81n^4+192n^3+81n^2}{4n^4}
+                \end{eqnarray}
+                Also gilt $\lim\limits_{n\to \infty} O_n = \lim \limits_{n\to\infty}\left(\frac{81n^4+192n^3+81n^2}{4n^4}\right)= \lim \limits_{n\to\infty}\left(\frac{n^4}{n^4}\cdot\frac{81+\frac{192}{n}+\frac{81}{n^2}}{4}\right)=\frac{81}{4}$
+            \item[(b)]
+                \begin{eqnarray*}
+                    \int\limits_0^3 f(x) \dx = \int\limits_0^3\frac{1}{4}x^4 \, dx = \frac{1}{4}3^4 - \frac{1}{4}0^4= \frac{81}{4}
+                \end{eqnarray*}
+        \end{enumerate}
+    \item[\textbf{2.}]
+        \begin{enumerate}
+            \item[(i)]
+                $\int\limits_1^3 f(x) \dx = [\frac{1}{3}x^3 - \frac{1}{2}x^2 - 6x]_1^3= \left( \frac{1}{3}3^3 - \frac{1}{2}3^2 - 18 \right)- \left( \frac{1}{3} - \frac{1}{2} - 6\right) = - \frac{27}{2}$
+
+            \item[(ii)]
+                $\int\limits_1^3 f(x) \dx = [\sqrt[3]{x}]_1^3 = \sqrt[3]{3}-\sqrt[3]{1} \approx 0.442$
+
+            \item[(iii)]
+                
+                $\int\limits_1^3 f(x) \dx =[\arctan(x)]_1^3=\arctan(3) - \arctan(1) \approx 26.565$
+            \item[(iv)]
+                $\int\limits_1^3 f(x) \dx = [x \cdot \ln(x) - x]_1^3 = \left( 3 \cdot \ln (3) -3 \right)-\left(1 \cdot \ln (1) - 1 \right) \approx 1.296$
+              
+            \item[(v)]
+                $\int\limits_1^3 f(x) \dx = [-e^{-x}]_1^3 = -e^{-3} - \left( -e^{-1} \right) \approx 0.318$
+
+            \begin{multicols}{2}
+                \item[(i)]
+                    \begin{tikzpicture}[baseline=(current bounding box.north)]
+                        \begin{axis}[
+                            ymin=-7,ymax=5,
+                            xmin=-5,xmax=5,
+                            x=0.3cm, y=0.3cm,
+                            axis x line=middle,
+                            axis y line=middle,
+                            axis line style=->,
+                            xlabel={$x$},
+                            ylabel={$y$},
+                            ]
+                            \addplot[no marks, black, -] expression[domain=-10:10,samples=200]{x^2 - x - 6};
+                            \addplot[pattern=north east lines, pattern color=red, no marks] expression[domain=1:3,samples=200]{x^2 - x - 6} \closedcycle;
+                        \end{axis}
+                    \end{tikzpicture}
+                \item[(ii)]
+                    \begin{tikzpicture}[baseline=(current bounding box.north)]
+                        \begin{axis}[
+                            ymin=-1,ymax=5,
+                            xmin=-1,xmax=5,
+                            x=0.5cm, y=0.5cm,
+                            axis x line=middle,
+                            axis y line=middle,
+                            axis line style=->,
+                            xlabel={$x$},
+                            ylabel={$y$},
+                            ]
+                            \addplot[no marks, black, -] expression[domain=-10:10,samples=400]{x^(1/3)};
+                            \addplot[pattern=north east lines, pattern color=red, no marks, -] expression[domain=1:3,samples=400]{x^(1/3)} \closedcycle;
+                        \end{axis}
+                    \end{tikzpicture}
+                \item[(iii)]
+                    \begin{tikzpicture}[baseline=(current bounding box.north)]
+                        \begin{axis}[
+                            ymin=0,ymax=2,
+                            xmin=0,xmax=5,
+                            x=1cm, y=1cm,
+                            axis x line=middle,
+                            axis y line=middle,
+                            axis line style=->,
+                            xlabel={$x$},
+                            ylabel={$y$},
+                            ]
+                            \addplot[no marks, black, -] expression[domain=0:10,samples=400]{1/(1+x^2)};
+                            \addplot[pattern=north east lines, pattern color=red, no marks, -] expression[domain=1:3,samples=400]{1/(1+x^2)} \closedcycle;
+                        \end{axis}
+                    \end{tikzpicture}
+                \item[(iv)]
+                    \begin{tikzpicture}[baseline=(current bounding box.north)]
+                        \begin{axis}[
+                            ymin=0,ymax=2,
+                            xmin=0,xmax=5,
+                            x=1cm, y=1cm,
+                            axis x line=middle,
+                            axis y line=middle,
+                            axis line style=->,
+                            xlabel={$x$},
+                            ylabel={$y$},
+                            ]
+                            \addplot[no marks, black, -] expression[domain=0:10,samples=400]{ln(x)};
+                            \addplot[pattern=north east lines, pattern color=red, no marks, -] expression[domain=1:3,samples=400]{ln(x)} \closedcycle;
+                        \end{axis}
+                    \end{tikzpicture}
+                \item[(v)]
+                    \begin{tikzpicture}[baseline=(current bounding box.north)]
+                        \begin{axis}[
+                            ymin=0,ymax=2,
+                            xmin=0,xmax=5,
+                            x=1cm, y=1cm,
+                            axis x line=middle,
+                            axis y line=middle,
+                            axis line style=->,
+                            xlabel={$x$},
+                            ylabel={$y$},
+                            ]
+                            \addplot[no marks, black, -] expression[domain=0:5,samples=50]{e^(-x)};
+                            \addplot[pattern=north east lines, pattern color=red, no marks, -] expression[domain=1:3,samples=50]{e^(-x)} \closedcycle;
+                        \end{axis}
+                    \end{tikzpicture}
+            \end{multicols}
+        \end{enumerate}
+    \item[\textbf{3.}]
+        \begin{enumerate}
+            \item[(i)]
+                $F(x) = \frac{1}{5}x^5 + \frac{1}{2}x^2 + 5x$ 
+
+            \item[(ii)]
+                $\int x^{-\frac{3}{2}} \dx = \frac{2}{5} x^{-\frac{5}{2}}$
+
+            \item[(iii)]
+                $f'(x)=\sin (3x) , g(x)=x \textnormal{. Dann ist } f(x)= -\frac{1}{3} \cos 3x \textnormal{ und } g'(x)=1$
+            
+            \begin{eqnarray}
+                \int x\cdot\sin 3x \, dx &=& -\frac{1}{3}\sin 3x \cdot x - \int - \frac{1}{3} \sin 3x \cdot 1 \, dx \nonumber  \\
+                &=& -\frac{1}{3}\sin 3x \cdot x - \frac{1}{3} \int -\sin 3x \, dx \nonumber \\ 
+                &=&-\frac{1}{3} x \cdot \sin 3x  -\frac{1}{9} \cdot \cos 3x \nonumber \nonumber
+            \end{eqnarray}
+            Probe: $\left( -\frac{1}{3} x \cdot \sin 3x  -\frac{1}{9} \cdot \cos 3x \right)' = x\cdot\sin (3x)$
+
+            \item[(iv)]
+            \begin{eqnarray}
+                f'(x)=x^3 , g(x)&=&ln x \textnormal{. Dann ist} f(x)= \frac{1}{4}x^4 \textnormal{ und } g'(x)=\frac{1}{x} \nonumber \\
+                \int x^3 \cdot ln x \, dx &=& \frac{1}{4}x^4 \cdot \frac{1}{x} - \int \frac{1}{4}x^4 \cdot \frac{1}{x} \, dx \nonumber  \\ 
+                &=& \frac{1}{4}x^3 - \frac{1}{16} x^4 \nonumber
+            \end{eqnarray}
+            Probe: $\left( \frac{1}{4}x^3 - \frac{1}{16} x^4 \right)' = x^3 \cdot ln(x)$
+
+            \item[(v)]
+            \begin{eqnarray}
+                \int x^2e^x\, \mathrm{d}x &=& x^2e^x - \int 2xe^x \dx \\
+                &=& x^2e^x - 2 \int xe^x \dx \\
+                &=& x^2e^x - 2 \left( xe^x - \int e^x \dx \right) \\
+                &=& x^2e^x - 2xe^x + 2e^x \\
+                &=& e^x(x^2 - 2x + 2)
+            \end{eqnarray}
+            Probe: $(e^x(x^2 - 2x + 2))' = x^2e^x$
+        \end{enumerate}
+    \item[\textbf{5.}]
+        \begin{enumerate}
+            \item[(i)]
+            \begin{multicols}{2}
+            Nullstellen der ersten Ableitung: $2,6$ \\
+            $f''(2) = -12$ \\
+            $f''(6) = 12$
+
+            Grenzen überprüfen: \\
+            $f(6) = 1$ \\
+            $f(0) = 1$
+
+            Extremwerte berechnen: \\
+            $f(2) = 26$ \\
+            $f(6) = 1$ \\
+            \\
+            \end{multicols}
+            Bei $x = 6$ befindet sich somit ein lokales minimum und bei $x = 2$ ein lokales maximum.
+            Die Tageshöchsttemperatur lässt sich am Maximum der Funktion im Intervall $[0,6]$ erkennen sie liegt also bei x = 2.
+            Also beträgt die Tageshöchsttemperatur $26\,^{\circ}\mathrm{C}.$
+            
+            \item[(ii)]
+            Die Tagestiefsttemperatur lässt sich am Minimum der Funktion im Intervall $[0,6]$ erkennen, aus (i) folg somit das sie zweimal gemessen wurde (bei $x = 6$ und $x = 0$).
+            Die Tagestiefsttemperatur beträgt also: $1\,^{\circ}\mathrm{C}$
+            \item[(iii)]
+            \[ F(x) = \frac{1}{4}x^4 - \frac{12}{3}x^3 + 18x^2 + 1x\]
+            \[ \int_0^6 x^3 - 12x^2 + 36x + 1 \, \mathrm{d}x = F(6) - F(0) = 114\] \\
+            \[ \frac{114}{6} = 19 \]
+
+            Die Durchschnittstemperatur beträgt also $19\,^{\circ}\mathrm{C}$.
+        \end{enumerate}
+\end{enumerate}
+
+\end{document}
