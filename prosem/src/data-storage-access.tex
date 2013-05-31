@@ -1,6 +1,6 @@
 \subsection{Data Storage and Access}
 
-\begin{frame}{Traditional INodes}
+\begin{frame}{Traditional Inodes}
     \begin{itemize}
         \item used in many file system structures (e.g. ext3)
         \item each node has an index
@@ -9,12 +9,13 @@
     \end{itemize}
 \end{frame}
 
-\begin{frame}{Metadata (Lustre INodes)}
+\begin{frame}{Metadata (Lustre Inodes)}
     \begin{itemize}
-        \item lustre uses similar structure
-        \item INodes are stored on MDT
-        \item INodes point to objects on OSTs
-        \item file is \emph{striped} across multiple OSTs (limit was 160, now
+        \item Lustre uses similar structure
+        \item inodes are stored on MDT
+        \item inodes point to objects on OSTs
+        \item file is \emph{striped} across multiple OSTs
+        \item inode stores information to these OSTs
     \end{itemize}
 \end{frame}
 
@@ -25,6 +26,7 @@
         \item block size adjustable per file/directory
         \item OSTs store every n-th block (with n being number of OSTs involved)
         \item speed advantage (multiple simultaneous OSS/OST connections)
+        \item capacity advantage (file bigger than single OST)
     \end{itemize}
 
     \tikzset{
@@ -81,14 +83,24 @@
     }
 \end{frame}
 
-\begin{frame}{Data safety}
+\begin{frame}{Data Safety \& Integrity}
     \begin{itemize}
-        \item striping does \textbf{not} backup any data
-        \item \emph{but} for the targets, a software \emph{or} hardware RAID can be used
-        \item in target RAIDs, a drive may fail (depends on RAID type)
-        \item with failovers, server availability is ensured
-        \item for data consistency: lustre log (similar to journal)
-        \item for simultaneous write protection: LDLM (Lustre Distributed Lock Manager),
-            distributed across OSS
+        \item data safety
+            \begin{itemize}
+                \item striping does \textbf{not} backup any data
+                \item \emph{but} for the targets, a RAID can be used
+                \item in target RAIDs, a drive may fail (depends on RAID type)
+            \end{itemize}
+        \item availability
+            \begin{itemize}
+                \item failovers ensure target reachability
+                \item multiple network types/connections
+            \end{itemize}
+        \item consistency
+            \begin{itemize}
+                \item lustre log (similar to journal)
+                \item simultaneous write protection: LDLM (Lustre Distributed Lock Manager),
+                    distributed across OSS
+            \end{itemize}
     \end{itemize}
 \end{frame}

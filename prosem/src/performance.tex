@@ -1,6 +1,14 @@
 \section{Performance}
 \sectiontoc
 
+\tikzset {
+    graph/.style = {
+        mark=x,
+        line width=1pt,
+        line cap=round,
+    },
+}
+
 \subsection{Theoretical Limits}
 \begin{frame}{Theoretical Limits}
     \begin{quote}
@@ -15,7 +23,7 @@
     \textbf{Example}
 
     \begin{itemize}
-        \item<+-> 160 OSS, 16 OST each, 2 TiB each (old limits)
+        \item<+-> 160 OSS, 16 OST each, 2 TiB each
         \item<+-> $\rightarrow$ 2.5 PiB (Pebibyte) total storage
         \item<+-> each OST delivers 50 MiB/s
         \item<+-> $\rightarrow$ 800 MiB/s combined throughput per OSS
@@ -26,11 +34,36 @@
     \end{itemize}
 \end{frame}
 
-\subsection{Bottlenecks}
-\begin{frame}{Metadata overhead}
+\subsection{Recent Improvements}
+\begin{frame}{Recent Improvements}
+    \begin{itemize}
+        \item ``wide striping''
+            \begin{itemize}
+                \item OST/file limit extended
+                \item $> 160$ OST possible
+                \item inode xattrs
+            \end{itemize}
+        \item ZFS support
+            \begin{itemize}
+                \item instead of ldiskfs on targets
+                \item better kernel support
+                \item more widely used $\rightarrow$ better developed
+                \item all advantages of ZFS (checksums, up to 256 ZiB\footnote{kibi, mebi, gibi, tebi, pebi, exbi, \textbf{zebi}, yobi}/OST, compression, copy-on-write)
+            \end{itemize}
+        \item directory traversal and stat'ing
+        \item multiple MDS
+            \begin{itemize}
+                \item metadata striping / namespacing
+                \item metadata performance as bottleneck
+            \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}<1>[label=statdir]{Metadata overhead}
     \textbf{Common Task}
     \begin{itemize}
-        \item directory traversal and \textbf{stat} (\texttt{ls -l})
+        \item \textbf{readdir} (directory traversal) and \textbf{stat} (file information)
+        \item \texttt{ls -l}
     \end{itemize}
 
     \textbf{Problem}
@@ -41,8 +74,15 @@
 
     \textbf{Solution}
     \begin{itemize}
-        \item kernel detects traversal+stat and requests all stats from OSS in advance (parallel)
+        \item Lustre detects readdir+stat and requests all stats from OSS in advance (parallel)
         \item a combined RPC reply is sent (up to 1 MB)
+    \end{itemize}
+
+    \pause
+
+    \textbf{Alternative}
+    \begin{itemize}
+        \item \texttt{readdirplus} from POSIX HPC I/O Extensions \cite{posix-ext}
     \end{itemize}
 \end{frame}
 
@@ -56,15 +96,18 @@
                 ylabel={Tranversal time (sec)},
                 yticklabel=\pgfmathparse{10^\tick}\pgfmathprintnumber{\pgfmathresult},
                 log basis y=10,
-                legend pos=north west,
-                title={\texttt{ls -l} with subdir items}
+                legend style={at={(0.02,0.98)},anchor=north west,cells={anchor=west}},
+                legend columns=3,
+                title={\texttt{ls -l} with subdir items},
+                ymajorgrids,
+                ymin=0,ymax=10000,
                 ]
                 %\axispath\draw
                         %(7.49165,-10.02171)
                     %|-  (8.31801,-11.32467)
                     %node[near start,left] {$\frac{dy}{dx} = -1.58$};
 
-                \addplot plot coordinates {
+                \addplot[graph,color=red] plot coordinates {
                     (1, 3)
                     (2, 6)
                     (4, 12)
@@ -74,7 +117,7 @@
                 %
                 \addlegendentry{improved}
 
-                \addplot plot coordinates {
+                \addplot[graph,color=blue] plot coordinates {
                     (1, 12)
                     (2, 25)
                     (4, 52)
@@ -93,15 +136,18 @@
                 ylabel={Tranversal time (sec)},
                 yticklabel=\pgfmathparse{10^\tick}\pgfmathprintnumber{\pgfmathresult},
                 log basis y=10,
-                legend pos=north west,
+                legend style={at={(0.02,0.98)},anchor=north west,cells={anchor=west}},
+                legend columns=3,
                 title={\texttt{ls -l} with 4-striped files},
+                ymajorgrids,
+                ymin=0,ymax=10000,
                 ]
                 %\axispath\draw
                         %(7.49165,-10.02171)
                     %|-  (8.31801,-11.32467)
                     %node[near start,left] {$\frac{dy}{dx} = -1.58$};
 
-                \addplot plot coordinates {
+                \addplot[graph,color=red] plot coordinates {
                     (1, 16)
                     (2, 33)
                     (4, 69)
@@ -110,7 +156,7 @@
                 };
                 \addlegendentry{improved}
 
-                \addplot plot coordinates {
+                \addplot[graph,color=blue] plot coordinates {
                     (1, 38)
                     (2, 116)
                     (4, 410)
@@ -126,19 +172,64 @@
     \hfill{\scriptsize\emph{graph data from \cite{metadata-scaling}}}
 \end{frame}
 
-\subsection{Improvements}
-\begin{frame}{Improvements}
-    \textbf{Recently implemented}
+\againframe<2>{statdir}
+
+\begin{frame}{SSDs as MDT}
     \begin{itemize}
-        \item OSS/file limit extended (wide striping, $> 160$ OSS possible)
+        \item Metadata often bottleneck
+        \item SSDs have higher throughput
+        \item SSDs achieve way more IOPS (important for metadata)
+        \item only small capacity required (expensiveness!)
     \end{itemize}
 
-    \textbf{Planned features}
+    \pause
+    Following Graphs:
     \begin{itemize}
-        \item ZFS instead of ldiskfs
-        \item metadata striping / namespacing (multiple MDS)
+        \item plot metadata access (create, stat, unlink)
+        \item 8 processes per client-node
+        \item HDD/SSD/RAM
+        \item shared / per-process directory
+        \item ldiskfs / ZFS (Orion-Lustre branch)
+        \item data from \cite{mds-eval}
     \end{itemize}
 \end{frame}
+
+\newcommand{\ssd}[2]{
+    \begin{frame}{SSDs as MDT}
+        \scriptsize
+        \center
+        \begin{tikzpicture}
+            \begin{semilogxaxis}[
+                xlabel={Client nodes},
+                log basis x=2,
+                ylabel={#1 per second},
+                legend style={font=\tiny,at={(0.02,0.98)},anchor=north west,cells={anchor=west}},
+                legend columns=3,
+                scaled ticks=false,
+                ymajorgrids,
+                %xticklabel=\pgfmathparse{2^\tick}\pgfmathprintnumber{\pgfmathresult},
+                xtick={0.5,1,2,4,8,16},
+                xticklabels={Single Node,1,2,4,8,16},
+                width=\textwidth,
+                height=7.5cm,
+                ]
+                %\axispath\draw
+                        %(7.49165,-10.02171)
+                    %|-  (8.31801,-11.32467)
+                    %node[near start,left] {$\frac{dy}{dx} = -1.58$};
+                \addplot[graph,unbounded coords=jump,color=red]    table [y index=1] {data/#2.csv}; \addlegendentry{ldiskfs-HDD}
+                \addplot[graph,unbounded coords=jump,color=Dandelion] table [y index=2] {data/#2.csv}; \addlegendentry{ldiskfs-SSD}
+                \addplot[graph,unbounded coords=jump,color=green]  table [y index=3] {data/#2.csv}; \addlegendentry{ldiskfs-RAM}
+                \addplot[graph,unbounded coords=jump,color=purple] table [y index=5] {data/#2.csv}; \addlegendentry{ldiskfs-SSD-SD}
+                \addplot[graph,unbounded coords=jump,color=blue]   table [y index=6] {data/#2.csv}; \addlegendentry{ZFS-SSD}
+            \end{semilogxaxis}
+        \end{tikzpicture}
+    \end{frame}
+}
+
+\ssd{Creates}{ssd-create}
+\ssd{Stats}{ssd-stat}
+\ssd{Unlinks}{ssd-unlink}
 
 \subsection{Scalability}
 \begin{frame}{Scalability}
@@ -146,6 +237,12 @@
         \item Lustre distributes bandwidth evenly over OSS (striping)
         \item different network types simultaneously (InfiniBand, TCP: GigE)
         \item more OSS can always be added (for more bandwidth and/or capacity)
-        \item current bottleneck: MDS
+    \end{itemize}
+    \vspace{1cm}
+    \pause
+    \begin{itemize}
+        \item still current bottleneck: MDS
+        \item \dots not much data on 2.4 available yet
+        \item ZFS improvements required
     \end{itemize}
 \end{frame}

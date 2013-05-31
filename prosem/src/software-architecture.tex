@@ -3,8 +3,8 @@
 \begin{frame}{Software Architecture - Server}
     \begin{itemize}
         \item MDS/OSS has mkfs.lustre-formatted space
-        \item ldiskfs kernel module required (based on ext3)
-        \item kernel requires patching (not available for Linux \textgreater~2.6)
+        \item ldiskfs kernel module required (based on ext4)
+        \item kernel requires patching (only available for some Enterprise Linux 2.6 kernels, e.g. Red Hat)
     \end{itemize}
 
     \textbf{Limitations}
@@ -26,7 +26,7 @@
 
     \textbf{Platform Support}
     \begin{itemize}
-        \item all Linux kernel versions \textgreater~2.6 supported
+        \item most Linux kernel versions \textgreater~2.6 supported
         \item NFS for Windows
         \item NFS/FUSE MacOS
     \end{itemize}
