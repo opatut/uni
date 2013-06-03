@@ -50,7 +50,6 @@
                 \item more widely used $\rightarrow$ better developed
                 \item all advantages of ZFS (checksums, up to 256 ZiB\footnote{kibi, mebi, gibi, tebi, pebi, exbi, \textbf{zebi}, yobi}/OST, compression, copy-on-write) \cite{zfs}
             \end{itemize}
-        \item directory traversal and stat'ing
         \item multiple MDS
             \begin{itemize}
                 \item metadata striping / namespacing
@@ -188,7 +187,7 @@
         \item plot metadata access (create, stat, unlink)
         \item 8 processes per client-node
         \item HDD/SSD/RAM
-        \item shared / per-process directory
+        %\item shared / per-process directory
         \item ldiskfs / ZFS (Orion-Lustre branch)
         \item data from \cite{mds-eval}
     \end{itemize}
@@ -204,7 +203,7 @@
                 log basis x=2,
                 ylabel={#1 per second},
                 legend style={font=\tiny,at={(0.02,0.98)},anchor=north west,cells={anchor=west}},
-                legend columns=3,
+                legend columns=2,
                 scaled ticks=false,
                 ymajorgrids,
                 %xticklabel=\pgfmathparse{2^\tick}\pgfmathprintnumber{\pgfmathresult},
@@ -220,7 +219,7 @@
                 \addplot[graph,unbounded coords=jump,color=red]    table [y index=1] {data/#2.csv}; \addlegendentry{ldiskfs-HDD}
                 \addplot[graph,unbounded coords=jump,color=Dandelion] table [y index=2] {data/#2.csv}; \addlegendentry{ldiskfs-SSD}
                 \addplot[graph,unbounded coords=jump,color=green]  table [y index=3] {data/#2.csv}; \addlegendentry{ldiskfs-RAM}
-                \addplot[graph,unbounded coords=jump,color=purple] table [y index=5] {data/#2.csv}; \addlegendentry{ldiskfs-SSD-SD}
+                %\addplot[graph,unbounded coords=jump,color=purple] table [y index=5] {data/#2.csv}; \addlegendentry{ldiskfs-SSD-SD}
                 \addplot[graph,unbounded coords=jump,color=blue]   table [y index=6] {data/#2.csv}; \addlegendentry{ZFS-SSD}
             \end{semilogxaxis}
         \end{tikzpicture}
@@ -230,19 +229,3 @@
 \ssd{Creates}{ssd-create}
 \ssd{Stats}{ssd-stat}
 \ssd{Unlinks}{ssd-unlink}
-
-\subsection{Scalability}
-\begin{frame}{Scalability}
-    \begin{itemize}
-        \item Lustre distributes bandwidth evenly over OSS (striping)
-        \item different network types simultaneously (InfiniBand, TCP: GigE)
-        \item more OSS can always be added (for more bandwidth and/or capacity)
-    \end{itemize}
-    \vspace{1cm}
-    \pause
-    \begin{itemize}
-        \item still current bottleneck: MDS
-        \item \dots not much data on 2.4 available yet
-        \item ZFS improvements required
-    \end{itemize}
-\end{frame}
