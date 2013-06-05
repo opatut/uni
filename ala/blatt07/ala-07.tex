@@ -70,8 +70,10 @@
                 \( \frac{1}{5} \ln |x+2| + \frac{4}{5} \ln |x-3| = \frac{1}{5} \cdot \frac{1}{x+2} + \frac{4}{5} \cdot \frac{1}{x-3} = \frac{(x-3)+4(x+2)}{5(x+2)(x-3)} = \frac{x + 1}{(x+2)(x-3)} \;\;\Box \)
 
             \item[(ii)]
+                TODO
 
             \item[(iii)]
+                TODO
         \end{enumerate}
     \item[\textbf{2.}]
         \begin{enumerate}
@@ -143,28 +145,101 @@
 
                 \[ A = 2 \cdot \int_0^1 \frac{1}{\sqrt{1-x^2}} \dx = 2 \left[ \arcsin(x) \right]_0^1 = 2 \bra{\arcsin(1)-\arcsin(0)} = 2(\frac{\pi}{2} - 0) = \pi \]
 
-
         \end{enumerate}
     \item[\textbf{3.}]
         \begin{enumerate}
             \item[(i)]
+                \( \frac{1}{8} \bra{ \sin(0) + 2\sin(0.25) + 2\sin(0.5)  + 2\sin(0.75)  + \sin(1) } \approx 0.45720099376 \)
+
             \item[(ii)]
+                \( \frac{1}{10} \bra{ \sin(0) + 2\sin(0.2) + \cdots + 2\sin(0.8) + \sin(1) } \approx 0.458164346 \)
+
             \item[(iii)]
+                \( \frac{1}{20} \bra{ \sin(0) + 2\sin(0.1) + \cdots + 2\sin(0.9) + \sin(1) } \approx 0.4593145489 \)
         \end{enumerate}
     \item[\textbf{4.}]
         \begin{enumerate}
             \item[(a)]
+                \( f( 1) =  10 \cdot e^{-\frac{ 2}{5}} \approx 6.7032 \)\\
+                \( f( 2) =  20 \cdot e^{-\frac{ 4}{5}} \approx 8.9866 \)\\
+                \( f( 6) =  60 \cdot e^{-\frac{12}{5}} \approx 5.4431 \)\\
+                \( f(12) = 120 \cdot e^{-\frac{24}{5}} \approx 0.9876 \)\\
+
             \item[(b)]
+                \( f'(x) = 10x \cdot e^{-\frac{2}{5}x} \cdot \bra{-\frac{2}{5}} + 10 e^{-\frac{2}{5}x} = 10e^{-\frac{2}{5}x} \bra{1-\frac{2}{5}} = 0 \Leftrightarrow x = \frac{5}{2} \)
+
+                \( f(\frac{5}{2}) =  25 e \approx 9.1970 \)
+
+                Die maximale Konzentration von etwa $9.1970 \frac{mg}{l}$ wird nach zweieinhalb Stunden erreicht.
+
             \item[(c)]
+                \begin{eqnarray*}
+                    \int e^{-\frac{2}{5}x} \cdot 10x \dx &=& -\frac{5}{2} e^{-\frac{2}{5}x} \cdot 10x - \int -\frac{5}{2} e^{-\frac{2}{5}x} \cdot 10 \dx \\
+                    &=& -25x \cdot e^{-\frac{2}{5}x} + 25 \int e^{-\frac{2}{5}x} \dx \\
+                    &=& -25x \cdot e^{-\frac{2}{5}x} + 25 \cdot \bra{-\frac{5}{2}} \cdot e^{-\frac{2}{5}x} \\
+                    &=& -25x \cdot e^{-\frac{2}{5}x} \bra{x+\frac{5}{2}}
+                \end{eqnarray*}
+
+                \[ \frac{1}{6} \left[ -25x \cdot e^{-\frac{2}{5}x} \bra{x+\frac{5}{2}} \right]_0^6 \approx 7.2037 \]
+
             \item[(d)]
+                \[ \frac{1}{6} \left[ -25x \cdot e^{-\frac{2}{5}x} \bra{x+\frac{5}{2}} \right]_6^{12} \approx 2.7157 \]
+
             \item[(e)]
+                Skizze:
+
+                \begin{tikzpicture}[scale=0.9]
+                    \begin{axis}[
+                        ymin=0,ymax=10,
+                        xmin=0,xmax=14.5,
+                        x=1cm, y=0.5cm,
+                        axis x line=middle,
+                        axis y line=middle,
+                        axis line style=->,
+                        xlabel={$x$},
+                        ylabel={$y$},
+                        ]
+                        \addplot[very thick, no marks, black, -] expression[domain=0:12,samples=100]{10*x*e^(-0.4*x)};
+                        \addplot[very thick, no marks, black, -, dotted] expression[domain=12:14,samples=20]{10*x*e^(-0.4*x)};
+                    \end{axis}
+
+                    \node[fill, inner sep=2pt, circle, label=above right:{\small Stärkster Abbau/Wendepunkt}] at (5,3.3834) {};
+                \end{tikzpicture}
+
+                \( f'(x) = 10 e^{-\frac{2}{5}x} \bra{1 - \frac{2}{5}x} \)
+
+                \( f''(x) = e^{-\frac{2}{5}x} \bra{-8 + \frac{8}{5}x} = 0 \Rightarrow -8 + \frac{8}{5}x = 0 \Rightarrow x = 5 \)
+
+
         \end{enumerate}
     \item[\textbf{5.}]
         \begin{enumerate}
             \item[(a)]
+                \[ h(x) = \bra{x^2+1}^{\cos x} = e^{\ln \bra{x^2+1}^{\cos x}} = e^{\cos x \cdot \ln \bra{x^2+1}}) \]
+
+                \[ h'(x) = \bra{x^2+1}^{\cos x} \cdot \bra{ -\sin x \cdot \ln \bra{x^2+1} + \cos x \cdot \frac{2x}{x^2+1} } \]
+
             \item[(b)]
+                Es sei
+
+                \[ t = \sqrt{\frac{x}{4} + 3} \Leftrightarrow x = 4t^2-12 \Rightarrow \frac{dt}{dx} = 8t  \]
+
+                Dann gilt
+
+                \begin{eqnarray*}
+                    \int \sin\bra{\sqrt{\frac{x}{4} + 3}} \dx &=& \int \sin t \cdot 8t \dt\\
+                    &=& - \cos t \cdot 8t - \int -8 cos t \dt \\
+                    &=& -8t \cdot \cos t + 8 \sin t\\
+                    &=& -8 \sqrt{\frac{x}{4} + 3} \cdot \cos \bra{\sqrt{\frac{x}{4} + 3}} + 8 \sin \bra{\sqrt{\frac{x}{4} + 3}}\\
+                \end{eqnarray*}
+
+
+
             \item[(c)]
+                TODO
+
             \item[(d)]
+                TODO
         \end{enumerate}
 \end{enumerate}
 
