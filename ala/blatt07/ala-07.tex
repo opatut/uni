@@ -1,0 +1,103 @@
+\newcommand{\authorinfo}{Paul Bienkowski, Hans Ole Hatzel}
+\newcommand{\titleinfo}{ALA 07 (HA) zum 06.06.2013}
+
+% PREAMBLE ===============================================================
+
+\documentclass[a4paper,11pt,fleqn]{scrartcl}
+\usepackage[german,ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{enumerate}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{multicol}
+\usetikzlibrary{calc}
+\usetikzlibrary{patterns}
+
+\author{\authorinfo}
+\title{\titleinfo}
+\date{\today}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\authorinfo}
+\fancyhead[R]{\titleinfo}
+\fancyfoot[C]{\thepage}
+
+\newcommand{\bra}[1]{\left(#1\right)}
+\newcommand{\limnn}[2]{\lim\limits_{n \rightarrow #1}\bra{#2}}
+\newcommand{\limn}[1]{\lim\limits_{n \rightarrow \infty}\bra{#1}}
+\newcommand{\limx}[1]{\lim\limits_{x \rightarrow \infty}\bra{#1}}
+\newcommand{\rowi}[1]{\sum_{i=#1}^{\infty}}
+\newcommand{\row}{\rowi{0}}
+\newcommand{\step}[1]{\textbf{#1}}
+\newcommand{\dX}[1]{\, \mathrm{d}#1}
+\newcommand{\dx}[0]{\dX{x}}
+\newcommand{\dt}[0]{\dX{t}}
+
+\begin{document}
+\maketitle
+\begin{enumerate}
+    \item[\textbf{1.}]
+        \begin{enumerate}
+            \item[(i)]
+                \[ \frac{x+1}{x^2-x-6} = \frac{A}{x+2} + \frac{B}{x-3} = \frac{(A+B)x + (2B - 3A)}{(x+2)(x-3)} \]
+                \begin{multicols}{3}
+                    \[\begin{array}{lrcl}
+                        \Rightarrow & A + B &=& 1\\
+                        & 2B - 3A &=& 1
+                    \end{array}\]
+
+                    \[\begin{array}{lrcl}
+                        \Rightarrow & A &=& 1 - B\\
+                        & 4 &=& 5B
+                    \end{array}\]
+
+                    \[\begin{array}{lrcl}
+                        \Rightarrow & A &=& 1 / 5\\
+                        & B &=& 4 / 5
+                    \end{array}\]
+                \end{multicols}
+
+                \[ \int \frac{x+1}{x^2-x-6} \dx = \int \frac{1}{5(x+2)} + \frac{4}{5(x-3)} \dx = \frac{1}{5} \ln |x+2| + \frac{4}{5} \ln |x-3| \]
+
+                Probe:
+
+                \( \frac{1}{5} \ln |x+2| + \frac{4}{5} \ln |x-3| = \frac{1}{5} \cdot \frac{1}{x+2} + \frac{4}{5} \cdot \frac{1}{x-3} = \frac{(x-3)+4(x+2)}{5(x+2)(x-3)} = \frac{x + 1}{(x+2)(x-3)} \;\;\Box \)
+
+            \item[(ii)]
+            \item[(iii)]
+        \end{enumerate}
+    \item[\textbf{2.}]
+        \begin{enumerate}
+            \item[(a)]
+            \item[(b)]
+            \item[(c)]
+        \end{enumerate}
+    \item[\textbf{3.}]
+        \begin{enumerate}
+            \item[(i)]
+            \item[(ii)]
+            \item[(iii)]
+        \end{enumerate}
+    \item[\textbf{4.}]
+        \begin{enumerate}
+            \item[(a)]
+            \item[(b)]
+            \item[(c)]
+            \item[(d)]
+            \item[(e)]
+        \end{enumerate}
+    \item[\textbf{5.}]
+        \begin{enumerate}
+            \item[(a)]
+            \item[(b)]
+            \item[(c)]
+            \item[(d)]
+        \end{enumerate}
+\end{enumerate}
+
+\end{document}
