@@ -46,8 +46,45 @@
     \item[\textbf{1.}]
         \begin{enumerate}
             \item[(a)]
+
+                \[\begin{array}{lllllllll}
+                    T_8(x) &= T_9(x) &= 1 &- \frac{x^2}{2!} &+ \frac{x^4}{4!} &- \frac{x^6}{6!} &+ \frac{x^8}{8!}\\[1em]
+                    T_{10}(x) &= T_{11}(x) &= 1 &- \frac{x^2}{2!} &+ \frac{x^4}{4!} &- \frac{x^6}{6!} &+ \frac{x^8}{8!} &- \frac{x^{10}}{10!}\\[1em]
+                    T_{12}(x) &= T_{13}(x) &= 1 &- \frac{x^2}{2!} &+ \frac{x^4}{4!} &- \frac{x^6}{6!} &+ \frac{x^8}{8!} &- \frac{x^{10}}{10!} &+ \frac{x^{12}}{12!}
+                \end{array}\]
+
+                \[\begin{array}{llll}
+                    T_9(1) &= \frac{1}{1} - \frac{1}{2!} + \frac{1}{4!} - \frac{1}{6!} + \frac{1}{8!} &= \frac{4357}{8064} &\approx 0.540302579365\\[1em]
+                    T_{11}(1) &= \frac{1}{1} - \frac{1}{2!} + \frac{1}{4!} - \frac{1}{6!} + \frac{1}{8!} - \frac{1}{10!} &= \frac{1960649}{3628800} &\approx 0.540302303791\\[1em]
+                    T_{13}(1) &= \hspace{1em}\cdots &= \hspace{1em}\cdots &\approx 0.540302305879
+                \end{array}\]
+
             \item[(b)]
+                Taylorpolynome für $f(x)$ und $g(x)$ an $x_0 = 0$:
+                \begin{multicols}{2}
+                    \(\begin{array}{ll}
+                        f(x)   &= \sqrt{1+x} \\[0.6em]
+                        T_0(x) &= 1 \\[0.3em]
+                        T_1(x) &= 1 + \frac{x}{2} \\[0.3em]
+                        T_2(x) &= 1 + \frac{x}{2} - \frac{x^2}{4 \cdot 2!} \\[0.3em]
+                        T_3(x) &= 1 + \frac{x}{2} - \frac{x^2}{4 \cdot 2!} + \frac{x^3}{2 \cdot 3!} \\[0.3em]
+                        T_4(x) &= 1 + \frac{x}{2} - \frac{x^2}{4 \cdot 2!} + \frac{x^3}{2 \cdot 3!} - \frac{5x^4}{4 \cdot 4!}
+                    \end{array}\)
+
+                    \(\begin{array}{ll}
+                        g(x)   &= \frac{1}{\sqrt[3]{1+x}} \\[0.6em]
+                        T_0(x) &= 1 \\[0.3em]
+                        T_1(x) &= 1 - \frac{x}{3} \\[0.3em]
+                        T_2(x) &= 1 - \frac{x}{3} + \frac{4x^2}{9 \cdot 2!} \\[0.3em]
+                        T_3(x) &= 1 - \frac{x}{3} + \frac{4x^2}{9 \cdot 2!} - \frac{28x^3}{27 \cdot 3!} \\[0.3em]
+                        T_4(x) &= 1 - \frac{x}{3} + \frac{4x^2}{9 \cdot 2!} - \frac{28x^3}{27 \cdot 3!} + \frac{280x^4}{81 \cdot 4!}
+                    \end{array}\)
+                \end{multicols}
+
             \item[(c)]
+                Taylorpolynom für $f(x) = e^x \cdot \sin x$ an $x_0 = 0$:
+                \[ T_5(x) = x + x^2 + \frac{x^3}{3} - \frac{x^4}{6} - \frac{x^5}{30} \]
+
         \end{enumerate}
     \item[\textbf{2.}]
         \begin{enumerate}
