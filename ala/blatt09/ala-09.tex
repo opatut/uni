@@ -31,6 +31,7 @@
 \newcommand{\limnn}[2]{\lim\limits_{n \rightarrow #1}\bra{#2}}
 \newcommand{\limn}[1]{\lim\limits_{n \rightarrow \infty}\bra{#1}}
 \newcommand{\limx}[1]{\lim\limits_{x \rightarrow \infty}\bra{#1}}
+\newcommand{\limxx}[2]{\lim\limits_{x \rightarrow #1}\bra{#2}}
 \newcommand{\limz}[1]{\lim\limits_{z \rightarrow \infty}\bra{#1}}
 \newcommand{\rowi}[1]{\sum_{i=#1}^{\infty}}
 \newcommand{\row}{\rowi{0}}
@@ -51,9 +52,17 @@
     \item[\textbf{2.}]
         \begin{enumerate}
             \item[(i)]
+                \[ \limxx{1}{\frac{x^3 - 3x^2 + x + 2}{x^2 - 5x + 6}} = \frac{1}{2}\]
             \item[(ii)]
+                Es handelt sich um den Typ $\frac{0}{0}$ entsprechend lässt sich der Nenner vom Zähler getrennt ableiten.
+                Man erhält so die Funktion: \[ \limxx{2}{\frac{3x^2 - 6x + 1}{2x - 5}} = -1\]
             \item[(iii)]
+                \[ \limxx{0}{(1+3x)^\frac{1}{2x}} \limxx{0}{e^{ln(1+3x)^\frac{1}{2x}}} = e^{\limxx{0}{\frac{ln(1+3x)}{2x}}} \]
+                Dabei handelt es sich um den Typ $\frac{0}{0}$, Ableiten von Zähler und Nenner:
+                \[ \limxx{0}{\frac{ \frac{1}{1+3x} \cdot 3 }{2}} = e^{\frac{3}{2}} \approx 4,482 \]
             \item[(iv)]
+                \[ \limxx{0}{ \frac{1}{e^x - 1} - \frac{1}{sin(x)}} = \limxx{0}{\frac{sin(x) - e^x - 1}{(sin(x)) \cdot (e^x-1)}} \]
+                Da der Nenner gegen Null strebt während der Zähler gegen 1 strebt, strebt der gesamte Wert trivialerweise gegen $- \infty$
         \end{enumerate}
     \item[\textbf{3.}]
         \begin{enumerate}
