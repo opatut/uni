@@ -29,6 +29,7 @@
 
 \newcommand{\bra}[1]{\left(#1\right)}
 \newcommand{\limnn}[2]{\lim\limits_{n \rightarrow #1}\bra{#2}}
+\newcommand{\limxn}[2]{\lim\limits_{x \rightarrow #1}\bra{#2}}
 \newcommand{\limn}[1]{\lim\limits_{n \rightarrow \infty}\bra{#1}}
 \newcommand{\limx}[1]{\lim\limits_{x \rightarrow \infty}\bra{#1}}
 \newcommand{\limxx}[2]{\lim\limits_{x \rightarrow #1}\bra{#2}}
@@ -104,9 +105,37 @@
     \item[\textbf{3.}]
         \begin{enumerate}
             \item[(a)]
+                \( f(x) = 3^x \)\\
+                \( f'(x) = 3^x \ln 3 \)\\
+                \( f'(2) = 9 \ln 3 \approx 9.887510598 \)\\
+                \( x_0 = 2 - \frac{9}{9 \ln 3} \approx 1.08761 \)
+
+                Der Schnittpunkt befindet sich an $S(0, x_0)$.
+
             \item[(b)]
+                \[\begin{array}{ll}
+                    T_0(x) &= \sqrt[7]{2} \\[0.5em]
+                    T_1(x) &= \sqrt[7]{2} + \frac{x}{7 \sqrt[7]{2^6}} \\[0.5em]
+                    T_2(x) &= \sqrt[7]{2} + \frac{x}{7 \sqrt[7]{2^6}} - \frac{3x^2}{49 \sqrt[7]{2^{13}} }
+                \end{array}\]
+
             \item[(c)]
+                Für Stetigkeit ist zu zeigen, dass $\limxn{0}{\cos\bra{\frac{1}{x}}} = 0$
+                ist. Hierfür eignet sich die Folge $(a_n) = (\frac{1}{n})$, also:
+                \[ \limn{\cos\bra{\frac{1}{(a_n)}}} =
+                \limn{\cos\bra{\frac{1}{\frac{1}{n}}}} =
+                \limn{\cos\bra{n}} \]
+                Es existiert kein Grenzwert, also konvergiert $\cos\bra{\frac{1}{x}}$
+                für $x \rightarrow 0$ \textbf{nicht} gegen $0$, somit ist die
+                Funktion nicht stetig.
+
             \item[(d)]
+                Bei $\mathcal{B}$ handelt es sich um alle beschränkten Folgen, da
+                es in jedem Fall ein (beliebiges) Limit für den Abstand geben
+                muss. Allerdings sind nicht alle dieser Folgen konvergent, sie
+                können z.B. auch innerhalb der Schranken oszillieren (z.B.
+                $f(x) = \sin x$, $\varepsilon = 2$, $a = 0$).
+
         \end{enumerate}
     \item[\textbf{4.}]
         \begin{enumerate}
