@@ -143,9 +143,26 @@
                 \[ \limx{ \frac{a^x}{x^n} }\] Dabei handelt es sich um den Typ $\frac{\infty}{\infty}$ (Sowohl die Folge im Nenner als auch die im Zähler divergieren.)
                 Also können Nenner und Zähler getrennt abgeleitet werden. 
                 \[\limx{\frac{ln(a) \cdot a^x}{n \cdot x^{n-1}}}\] Dabei handelt es sich offensichtlich wieder um den Typ $\frac{\infty}{\infty}$ das gilt solange im Nenner der Exponent von $x$ großer 0 bleibt somit darf man die Ableitungen bis zur n-te Ableitung Bilden:
+
                 \[\limx{\frac{ln(a)^n \cdot a^x}{n! \cdot x^{n-n}}} = \limx{\frac{ln(a)^n \cdot a^x}{n!}} = \frac{\limx{ln(a)^n \cdot a^x}}{n!} = \infty\]
                 Hier wird offensichtilich, dass im Nenner eine Konstante steht während der Zähler weiterhin divergiert. Der Grenzwert beträgt $\infty$. Also wächst $f(x)$ schneller.
             \item[(b)]
+                Hierbei handelt es sich wieder um den Typen $\frac{\infty}{\infty}$:
+
+                \( \limx{ \frac{x^r}{\ln^k x} }\)
+
+                Also können Nenner und Zähler getrennt abgeleitet werden.
+
+                \( \limx{\frac{x^r}{\ln^k x}} = \limx{\frac{r \cdot x^{r-1}}{k\bra{\ln x}^{k-1} \cdot \frac{1}{x}}} =
+                \frac{r}{k} \limx{ \frac{x^r}{\bra{\ln x}^{k-1}} } =
+                \frac{r}{k} \limx{ \bra{\ln x} \cdot \frac{x^r}{\ln^k x} } \)
+
+                Da der erste Teil im Limes ($\ln x$) gegen $\infty$ konvergiert,
+                und der Rest identisch mit dem Ausgansbruch ist (und somit beliebig
+                oft auf die gleiche Weise umgeformt werden könnte), konvertiert
+                der gesamte Bruch gegen $\infty$. Also wächst $g(x)$ schneller als
+                $h(x)$.
+
             \item[(c)]
                 \begin{enumerate}
                 \item[(i)]
