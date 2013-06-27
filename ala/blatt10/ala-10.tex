@@ -1,0 +1,172 @@
+\newcommand{\authorinfo}{Paul Bienkowski, Hans Ole Hatzel}
+\newcommand{\titleinfo}{ALA 10 (HA) zum 27.06.2013}
+
+% PREAMBLE ===============================================================
+
+\documentclass[a4paper,11pt,fleqn]{scrartcl}
+\usepackage[german,ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{enumerate}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{multicol}
+\usetikzlibrary{calc}
+\usetikzlibrary{patterns}
+
+\author{\authorinfo}
+\title{\titleinfo}
+\date{\today}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\authorinfo}
+\fancyhead[R]{\titleinfo}
+\fancyfoot[C]{\thepage}
+
+\newcommand{\bra}[1]{\left(#1\right)}
+\newcommand{\limnn}[2]{\lim\limits_{n \rightarrow #1}\bra{#2}}
+\newcommand{\limxn}[2]{\lim\limits_{x \rightarrow #1}\bra{#2}}
+\newcommand{\limn}[1]{\lim\limits_{n \rightarrow \infty}\bra{#1}}
+\newcommand{\limx}[1]{\lim\limits_{x \rightarrow \infty}\bra{#1}}
+\newcommand{\limxx}[2]{\lim\limits_{x \rightarrow #1}\bra{#2}}
+\newcommand{\limz}[1]{\lim\limits_{z \rightarrow \infty}\bra{#1}}
+\newcommand{\rowi}[1]{\sum_{i=#1}^{\infty}}
+\newcommand{\row}{\rowi{0}}
+\newcommand{\step}[1]{\textbf{#1}}
+\newcommand{\dX}[1]{\, \mathrm{d}#1}
+\newcommand{\dx}[0]{\dX{x}}
+\newcommand{\dt}[0]{\dX{t}}
+\newcommand{\partx}[0]{\frac{\partial f}{\partial x}  (x,y)}
+\newcommand{\party}[0]{\frac{\partial f}{\partial y}  (x,y)}
+\newcommand{\partxp}[1]{\frac{\partial^#1 f}{\partial x^#1}  (x,y)}
+\newcommand{\partyp}[1]{\frac{\partial^#1 f}{\partial y^#1}  (x,y)}
+\newcommand{\partxy}[1]{\frac{\partial^#1 f}{\partial xy}  (x,y)}
+\newcommand{\partyx}[1]{\frac{\partial^#1 f}{\partial yx}  (x,y)}
+\begin{document}
+\maketitle
+\begin{enumerate}
+    \item[\textbf{1.}]
+        \begin{enumerate}
+            \item[(a)]
+                \[\partx = 4xy^2 - 3y + 4\]
+                \[\party = 4x^2 y - 3x\]  
+            \item[(b)]
+                \[\partx = (-sin(x^2y) \cdot 2xy) \cdot e^{xy} + cos(x^2y) \cdot (e^{xy} \cdot y)\]
+                \[\party = (-sin(x^2y) \cdot x^2) \cdot e^{xy} + cos(x^2y) \cdot (e^{xy} \cdot x)\]
+            \item[(c)]
+                \[\partx = \frac{cos(x) \cdot (x^2 + y^2) - (2x + y^2) \cdot (sin(x) + cos(x))}{(x^2 + y^2)^2}\]
+                \[\party = \frac{-sin(y) \cdot (x^2 + y^2) - (x^2 + 2y) \cdot (sin(x) + cos(x))}{(x^2 + y^2)^2}\]
+            \item[(d)]
+                \[f(x,y) = (1 - x^2 - y^2)^{\frac{1}{2}}\]
+                \[\partx = \frac{(1 - x^2 -y^2)^{-\frac{1}{2}}}{2} \cdot (1 - 2x)\]
+                \[\party = \frac{(1 - x^2 -y^2)^{-\frac{1}{2}}}{2} \cdot (1 - 2y)\] 
+        \end{enumerate}
+    \item[\textbf{2.}]
+        \[\partx = 4xy^3 + ye^{x^2 y} \cdot 2xy\]
+        \[\party = 6x^2y^2 + e^{x^2 y} \cdot x^2\]
+        \[\partxy{2} = 6xy^2 + ((e^{x^2 y} * x^2) + (2xy * 2x)) \]
+        \[\partyx{2} = 6xy^2 + e^{x^2 y} * 2xy + 2x * x^2\]
+
+    \item[\textbf{3.}]
+        \begin{enumerate}
+            \item[(i)]
+            Ableitungen bestimmen:
+                \begin{multicols}{2}
+                \[\partx = 4x -2y -2\]
+                \[\party = 2y -2x -4\]
+                \[\partxp{2} = 4\]
+
+
+                \[\partyp{2} = 2\]
+                \[\partxy{2} = \partyx{2} = -2\]
+                \end{multicols}
+                Hessesche Matrix: $                
+                \begin{pmatrix}
+                     4 & -2 \\
+                    -2 &  2
+                \end{pmatrix}
+                $
+
+                $4 > 0$,
+                $\Delta = 4 > 0$
+
+                Es handelt sich somit um ein strenges lokales Minimum, denn $H_f$ ist positiv definiert.
+            \item[(ii)]
+            \begin{multicols}{2}
+                \[\partx = 2x -3y -1\]
+                \[\party = 4y -3x -1\]
+                \[\partxp{2} = 2\]
+
+
+                \[\partyp{2} = 4\]
+                \[\partxy{2} = \partyx{2} = -3\]
+            \end{multicols}
+                Hessesche Matrix: $                
+                \begin{pmatrix}
+                     2 & -3 \\
+                    -3 &  4
+                \end{pmatrix}
+                $
+
+                $2 > 0$,
+                $\Delta = -1 < 0$
+
+                Es ist keien Aussage über das maximum möglich, denn $H_f$ ist indefinit.
+            \item[(iii)]
+            \begin{multicols}{2}
+                \[\partx = 6x^2 - 12\]
+                \[\party = 3y^2 - 27\]
+                \[\partxp{2} = 12x\]
+
+
+                \[\partyp{2} = 6y\]
+                \[\partxy{2} = \partyx{2} = 0\]
+            \end{multicols}
+                kritische Stellen bestimmen:
+                \begin{eqnarray*}
+                    3y^2 - 27 &=& 0 \\
+                    6x^2 - 12 &=& 0 
+                \end{eqnarray*}
+
+                \begin{eqnarray*}
+                    y &=& \sqrt{\frac{27}{3}} = 3\\
+                    x &=& \sqrt{2} 
+                \end{eqnarray*}
+                Hessesche Matrix: $               
+                \begin{pmatrix}
+                     12 \cdot \sqrt{2} & 0 \\
+                    0 &  18
+                \end{pmatrix}
+                $
+
+                $\approx 16,97 > 0$,
+                $\Delta \approx 305,470 > 0$
+
+                Es handelt sich somit um ein strenges lokales Minimum, denn $H_f$ ist positiv definiert.
+        \end{enumerate}
+    \item[\textbf{4.}]
+        \begin{enumerate}
+            \item[(a)]
+                Sei $G(x,y)$ eine Funktion die den Gewinn darstellt. 
+                Der Gewinn erechnet sich aus dem Abziehen der Kosten vom Erlös.
+                $G(x,y) = 12x + 28y - C(x,y)$
+                Von dieser Funktion ist nun ein Maximum zu suchen.
+            \item[(b)]
+                \[x = 320 - 2y\]
+                Wir setzen die Zusatzbedingung in die Funktion aus a ein. \\
+                $7(320 - 2y) + 22y - 0,01(320 - 2y)^2 - 0,02(320 - 2y)y - 0,16y^2 -120 =$
+                $-0,16y^2 + 14,4y + 1096$
+
+                Extrempunkt suchen: \\
+                Es handelt sich um ein Polynom zweiten Grades, also besitzt es genau einen Extrempunkt. Durch ausprobieren kommt man leicht auf 45. \\
+                Der Gewinn bei mit dieser Zusatzbedingung ist also bei 45 verkauften Einheiten des Gutes B maximal (also 230 Einheiten des Gutes A).
+            \item[(c)]
+                b: $-0,16(45)^2 + 14,4 \cdot 45 + 1096 = 1420$
+        \end{enumerate}
+\end{enumerate}
+
+\end{document}
