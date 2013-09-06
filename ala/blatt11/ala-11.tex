@@ -1,0 +1,170 @@
+\newcommand{\authorinfo}{Paul Bienkowski, Hans Ole Hatzel}
+\newcommand{\titleinfo}{ALA 11 (HA) zum 4.07.2013}
+
+% PREAMBLE ===============================================================
+
+\documentclass[a4paper,11pt,fleqn]{scrartcl}
+\usepackage[german,ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{enumerate}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{multicol}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usetikzlibrary{patterns}
+
+\author{\authorinfo}
+\title{\titleinfo}
+\date{\today}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\authorinfo}
+\fancyhead[R]{\titleinfo}
+\fancyfoot[C]{\thepage}
+
+\newcommand{\bra}[1]{\left(#1\right)}
+\newcommand{\limnn}[2]{\lim\limits_{n \rightarrow #1}\bra{#2}}
+\newcommand{\limxn}[2]{\lim\limits_{x \rightarrow #1}\bra{#2}}
+\newcommand{\limn}[1]{\lim\limits_{n \rightarrow \infty}\bra{#1}}
+\newcommand{\limx}[1]{\lim\limits_{x \rightarrow \infty}\bra{#1}}
+\newcommand{\limxx}[2]{\lim\limits_{x \rightarrow #1}\bra{#2}}
+\newcommand{\limz}[1]{\lim\limits_{z \rightarrow \infty}\bra{#1}}
+\newcommand{\rowi}[1]{\sum_{i=#1}^{\infty}}
+\newcommand{\row}{\rowi{0}}
+\newcommand{\step}[1]{\textbf{#1}}
+\newcommand{\dX}[1]{\, \mathrm{d}#1}
+\newcommand{\dx}[0]{\dX{x}}
+\newcommand{\dt}[0]{\dX{t}}
+\newcommand{\partx}[0]{\frac{\partial f}{\partial x}  (x,y)}
+\newcommand{\party}[0]{\frac{\partial f}{\partial y}  (x,y)}
+\newcommand{\partxp}[1]{\frac{\partial^#1 f}{\partial x^#1}  (x,y)}
+\newcommand{\partyp}[1]{\frac{\partial^#1 f}{\partial y^#1}  (x,y)}
+\newcommand{\partxy}[1]{\frac{\partial^#1 f}{\partial xy}  (x,y)}
+\newcommand{\partyx}[1]{\frac{\partial^#1 f}{\partial yx}  (x,y)}
+\begin{document}
+\maketitle
+\begin{enumerate}
+    \item[\textbf{2.}]
+        \item[a)]
+            Spaltenzahl A ungleich Zeilenzahl C, die Multiplikation AC ist also nicht m"oglich.
+
+            \[AB = 
+            \begin{pmatrix}
+                -1 \\
+                4i-1
+            \end{pmatrix}
+            \]
+
+            \[BC = 
+            \begin{pmatrix}
+                1 & -1 \\
+                -i + 1 & i-1
+            \end{pmatrix}
+            \]
+
+            \[CB = 
+                i
+            \]
+        \item[b)]
+            \[\overline{z} = \frac{3+2i}{4-3i} = \frac{12-6}{16+9} + i \frac{8+9}{16+9}\]
+            \[z = \frac{12-6}{16+9} + i \cdot -\frac{8+9}{16+9}\]
+            \[a = \frac{6}{25} \\
+            b = - \frac{17}{25}\]
+        \item[c)]
+        Gaußsche Zahlenebene:\\
+        \begin{tikzpicture}
+            \begin{scope}[thick,font=\scriptsize]
+            \draw [->] (-3,0) -- (3,0) node [above left]  {$\R$};
+            \draw [->] (0,-3) -- (0,3) node [below right] {$\I$};
+
+            \draw (1,-3pt) -- (1,3pt)   node [above] {$1$};
+            \draw (-1,-3pt) -- (-1,3pt) node [above] {$-1$};
+            \draw (-3pt,1) -- (3pt,1)   node [right] {$i$};
+            \draw (-3pt,-1) -- (3pt,-1) node [right] {$-i$};
+
+            \draw (2,-3pt) -- (2,3pt)   node [above] {$2$};
+            \draw (-2,-3pt) -- (-2,3pt) node [above] {$-2$};
+            \draw (-3pt,2) -- (3pt,2)   node [right] {$i$};
+            \draw (-3pt,-2) -- (3pt,-2) node [right] {$-2i$};
+
+            \end{scope}
+            \draw [->, green] (0,0) -- (-1,-1) node [below] {$z_1$};
+            \draw [->, orange] (0,0) -- (-1,1) node [above] {$z_4$};
+            \draw [->, red] (0,0) -- (0,-2) node [left] {$z_3$};
+            \draw [->, blue] (0,0) -- (1,1) node [left] {$z_2$};
+            %\draw [->] (0,0) -- (1,1) node [below right] {$z_3$};
+        \end{tikzpicture} 
+
+        \item[d)]
+            Bei $M_2$ handelt es sich um die Menge der Punkte die einen Kreis um den Punkt i+1 bilden der den Radius 1 hat.
+    \item[\textbf{3.}]
+        \begin{enumerate}
+            \item[a)]
+                Abelitungen der Nebenbedingungen in die Matrix einsetzen:
+                \[ 
+                \begin{pmatrix}
+                    0.2 & 1 \\
+                \end{pmatrix}
+                \]
+                Matrix des Ranges 1. Die Regularitätsbedingung ist erfüllt.
+
+                Es lässt sich also einfach eine Lagrange Funktion aufstellen. \\
+                $L(x,y,\lambda) = -0.2x^2 - xy - 2.5y^2 + 48x + 235y - 88 \lambda(0.2x+y-40)$ \\
+                Daraus ergibt sich das folgende Gleichungssystem:
+                \begin{eqnarray*}
+                    -0.4x - y+48 + 0.2 \lambda &=& 0\\
+                    -x - 5y + 235 + \lambda &=& 0\\
+                    0.2x\lambda + \lambda y -40\lambda &=& 0 
+                \end{eqnarray*} 
+                Daraus ergeben sich durch l"osen zwei Punkte.
+                \[x = 5  \\ 
+                y = 39 \\
+                \lambda = -35\]
+                \[x = 5  \\ 
+                y = 46 \\
+                \lambda = 0\]     
+                Einsetzen ergibt das nur der erste Punkt auch die Nebenbedingung erfüllt $(5,39)$ ist somit uns vermutet maximum, dies gilt es nun in b zu best"atigen.
+            \item[b)]
+                \[H_f(5, 39) =
+                \begin{pmatrix}
+                    0.2 & 0.1 \\
+                    0.1 & -5
+                \end{pmatrix} \]
+                \[
+                \Delta_1 = -0.4 < 0 \\
+                \Delta_2 = 1 > 0
+                \]
+                Die Matrix ist negativ definit, der gefundene Punkt ist also ein strenges lokales Maximum.
+        \end{enumerate}
+    \item[\textbf{4.}]
+        \begin{enumerate}
+            \item[(a)]
+                \begin{eqnarray*}
+                    0.2x+y &=& 40\\
+                    0.2x &=& 40-y\\
+                    x &=& 200 - 5y 
+                \end{eqnarray*}
+
+                Einsetzen und umformen:
+                $$f(y) = 27.5y^2 - 605y + 1512$$
+                $$f'(y) = 55y - 605$$
+
+
+                \begin{eqnarray*}
+                    55y - 605 &=& 0\\
+                    55y &=& 605\\
+                    y &=& 11
+                \end{eqnarray*}
+                Nullstelle von $f'$: $11$ \\
+                Der Extrempunkt befindet sich also bei $y = 11$ und $0.2x = 29$ also $x = 145$.
+                Leider stimmt das nicht mit den anderen Ergebnissen überein, obwohl es das natürlich sollte.
+        \end{enumerate}
+\end{enumerate}
+
+\end{document}
