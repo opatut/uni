@@ -1,0 +1,49 @@
+\section{Software Architecture}
+
+\subsection{Server Software}
+
+The Lustre servers have a variety of requirements and limitations to consider
+before installation.
+
+The object and metadata storage targets are formatted using \texttt{mkfs.lustre},
+which is using the ldiskfs filesystem. This filesystem is based on ext4, and
+requires some kernel patches only available for a limited number of Enterprise
+Linux 2.6 kernels, for example Red Hat.
+
+This makes the server software very platform dependent, a normal Linux user
+cannot simply run a Lustre storage cluster ``at home''. This is not that much of
+a problem in HPC environments, though, since the kernel that runs on the storage
+servers is independent of the actual computing environment, allowing the clients
+to run the kernels required/desired for the computations.
+
+Starting with Lustre 2.4, ZFS support has finally been implemented. This is a
+new and promising feature, that may not yet perform as well as the old ldiskfs
+versions, but supports a wider range of systems, more data integrity features
+\footnote{See \url{http://zfsonlinux.org/lustre.html} for detailled description
+on ZFS features} and is actively being developed and improved.
+
+\subsection{Client Software}
+
+For Lustre clients, there is a broad variety of solutions available to access
+the data. The basic implementation is a ``patchfree'' kernel module, available
+for any Linux 2.6 kernel. This module lets the user mount the remote file system
+using a native implementation, yielding the best performance results.
+
+Other implementations include a userspace library (liblustre), that can be used
+to develop custom applications that directly interact with the storage system,
+a userspace filesystem driver (FUSE), which is important for OSX support, and
+NFS access for MS Windows support and legacy versions, as well as any operating
+system not supporting any of the above solutions.
+Thus, the Lustre client is available cross-platform, with best performances
+using the native filesystem module on Linux 2.6 or later.
+
+\subsection{Interversion Compatibility}
+
+The Lustre project usually supports some level of version \textbf{interoperability}
+\cite{interoperability}. This means for example that clients of version 1.8 can
+connect to servers running version 2.0 and vice versa.
+This feature is mainly used to be able to upgrade a Lustre storage system without
+taking it off-line, using the failover system, and upgrading the versions
+sequentially. During this process, some devices still run the old version while
+others run the new, in which case interoparability comes in handy.
+

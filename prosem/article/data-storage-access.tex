@@ -1,0 +1,43 @@
+\newpage
+\subsection{Data Storage and Access}
+
+Traditional filesystems like ext2 use so-called \textbf{inodes} (from
+``index node'') to manage their file structure. The nodes are stored in a flat,
+non-hierarchical array, each accessed with its index. The nodes contain all the
+metadata of a file, as well as the location on the block device (disk). Every
+node corresponds to exactly one file, creating a bijective mapping.
+
+Lustre uses similar nodes for metadata storage. The Lustre inodes contain
+information about the OSTs on which the file objects are located, as well as
+the object location inside the target. This information is partially stored in
+the \textbf{xattr} (``extended attributes'') section of the inode, allowing for
+many referenced objects across all targets. The inode array itself is stored
+on the MDT.
+
+\subsection{Data Safety \& Integrity}
+
+The safety and integrity of the stored data is an important aspect of HPC storage
+solutions. While the striping mechanism itself does not backup any data, other
+means of data protection can be implemented. The easiest available solution is
+to protect the targets, for example using RAID technology. Because Lustre supports
+any type of block device, the targets can not only be simple hardware drives,
+but may also be hardware or software RAID systems or even professional high-end
+storage solutions. These provide their own data safety mechanism, so the Lustre
+system does not require to manage data safety.
+
+To ensure high availability, Lustre has two main features. The measure against
+server failure is the simple failover mechanism. This makes sure that each
+target is available in case of a single server failing. To counter network failures,
+caused for example by broken switches or routers, Lustre has support for multiple
+simultaneous network types. If a Lustre server is connected to a client via two
+or more networks, e.g. Ethernet and Infiniband, either one of them may fail
+without impeding the reachability.
+
+The third problem in large, parallel computing environments is data consistency.
+Lustre implements simultaneous write protection using the Lustre Distributed Lock
+Manager (LDLM), which runs on the OSSs, allowing only one client to write a
+single file at any time.
+
+For further consistency and integrity, the Lustre log, which is similar to the
+ext4 journal, can restore the file state in case of write failure, caused for
+example by a defect client or connection failure.

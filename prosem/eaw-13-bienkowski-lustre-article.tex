@@ -1,0 +1,104 @@
+\documentclass[a4paper,11pt,fleqn,oneside]{scrartcl}
+\usepackage[usenames,dvipsnames]{xcolor}
+%\usepackage[ngerman]{babel}
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{floatflt}
+\usepackage{lmodern}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{enumerate}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{multicol}
+\usepackage{tikz}
+\usepackage[hidelinks]{hyperref}
+\usepackage{listings}
+\usepackage{mdframed}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{blindtext}
+\usepackage{etoolbox}
+\usepackage{lastpage}
+\usepackage{tocloft}
+\usepackage[asymmetric,top=1.5in,bottom=1.5in,left=1.4in,right=1.2in]{geometry}
+
+\usetikzlibrary{shapes,arrows,calc,patterns,decorations.markings,shadows.blur}
+
+\title{Lustre}
+\author{Paul Bienkowski \\[0.2em] \scriptsize 2bienkow@informatik.uni-hamburg.de}
+\date{\today}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{Proseminar ``Ein-/Ausgabe - Stand der Wissenschaft'' 2013}
+\fancyhead[R]{Lustre File System}
+%\setlength{\footskip}{2em}
+%\setlength{\footrulewidth}{0.4pt}
+\fancyfoot[L]{\small{}Paul Bienkowski}
+\fancyfoot[R]{\small{}Page \thepage  \:of \pageref{LastPage}}
+
+\newif\iffinal
+\finaltrue
+
+\renewcommand{\arraystretch}{1.5}
+\renewcommand{\familydefault}{\sfdefault}
+
+\let\stdsection\section
+\renewcommand\section{\newpage\stdsection}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{1.8ex}
+
+\begin{document}
+
+%\maketitle
+
+\begin{titlepage}
+    \begin{center}
+    \vspace*{\fill}
+
+    \textsc{\Large Proseminar 2013}\\[0.0cm]
+    \textsc{\small ``Ein-/Ausgabe - Stand der Wissenschaft''}\\[0.5cm]
+    \textsc{\today}\\[0.5cm]
+
+    % Title
+    \rule{0.8\textwidth}{0.4pt}
+    \\[0.4cm]
+    {\huge \bfseries Lustre File System}
+    \\[0.0cm]
+    \rule{0.8\textwidth}{0.4pt}\\[1.2cm]
+
+    % Author and supervisor
+    \begin{minipage}{0.4\textwidth}
+        \begin{flushleft} \large
+            Paul \textsc{Bienkowski}\\
+            {\small Author}
+        \end{flushleft}
+    \end{minipage}
+    \begin{minipage}{0.4\textwidth}
+        \begin{flushright} \large
+            Michael \textsc{Kuhn}\\
+            {\small Supervisor}
+        \end{flushright}
+    \end{minipage}
+
+    \vfill
+
+    \end{center}
+\end{titlepage}
+
+\input{article/introduction.tex}
+\input{article/project.tex}
+\input{article/network-architecture.tex}
+\input{article/data-storage-access.tex}
+\input{article/software-architecture.tex}
+\input{article/performance.tex}
+\input{article/conclusion.tex}
+\input{article/references.tex}
+
+\end{document}
