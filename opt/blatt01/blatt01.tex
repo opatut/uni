@@ -68,7 +68,7 @@
         Skizze:
 
         \begin{tikzpicture}
-            \path[fill = gray!50] (16/5,6-16/5)--(30/7,1/3 * 30/7+3)--(9/4,6-9/4)--cycle;
+            \path[fill = gray!30] (18/5,6-18/5)--(36/7,1/3 * 36/7+3)--(9/4,6-9/4)--cycle;
             \begin{axis}[
                 ymin = 0,ymax = 8.5,
                 xmin = 0,xmax = 8.5,
@@ -79,16 +79,16 @@
                 xlabel={$x_1$},
                 ylabel={$x_2$},
                 ]
-                \addplot[very thick, no marks, black!50] {3*x/2 - 2}; \addlegendentry{NB 1};
-                \addplot[very thick, no marks, blue!50] {-x + 6}; \addlegendentry{NB 2};
-                \addplot[very thick, no marks, red!50] {(1/3) * x +3}; \addlegendentry{NB 3};
-                \addplot[very thick, no marks, black, dotted] {2/5 * x};
-                \addplot[very thick, no marks, black, dotted] {2/5 * x + 57/20};
+                \addplot[domain=0:8, very thick, no marks, black!50] {3/2*x - 3}; \addlegendentry{NB 1};
+                \addplot[domain=0:8, very thick, no marks, blue!50] {-x + 6}; \addlegendentry{NB 2};
+                \addplot[domain=0:8, very thick, no marks, red!50] {(1/3) * x +3}; \addlegendentry{NB 3};
+                \addplot[domain=0:8, very thick, no marks, black, dotted] {-2/5 * x + 2};
+                \addplot[domain=0:8, very thick, no marks, black, dotted] {-2/5 * x + 237/35 };
                     \addlegendentry{$2x_1+5x_2+c$};
             \end{axis}
         \end{tikzpicture}
 
-        Damit ist das Maximum bei ca \(2x_1 + 5x_2 + 2.8\) erreicht und liegt bei ca. \(P(2,25|3,75)\).
+        Damit ist das Maximum bei ca \(2x_1 + 5x_2 + \frac{237}{35} \) erreicht und liegt bei ca. \(x_1=5\frac{1}{7}, x_2=4\frac{5}{7}\).
     \end{enumerate}
 
 \newpage
