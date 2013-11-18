@@ -1,0 +1,175 @@
+\newcommand{\authorinfo}{Paul Bienkowski, Arne Struck}
+\newcommand{\titleinfo}{Optimierung Blatt 05 zum 18.11.2013}
+
+% PREAMBLE ===============================================================
+
+\documentclass[a4paper,11pt]{article}
+\usepackage[german,ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[top=1.3in, bottom=1in, left=1.0in, right=0.6in]{geometry}
+\usepackage{lmodern}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{enumerate}
+\usepackage{pgfplots}
+\usepackage{breqn}
+\usepackage{tikz}
+\usepackage{fancyhdr}
+\usepackage{multicol}
+
+\usetikzlibrary{calc}
+\usetikzlibrary{patterns}
+
+\author{\authorinfo}
+\title{\titleinfo}
+\date{\today}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\authorinfo}
+\fancyhead[R]{\titleinfo}
+\fancyfoot[C]{\thepage}
+
+\begin{document}
+\maketitle
+\begin{enumerate}
+\item[\textbf{1.}]
+    \begin{enumerate}
+    \item[a)]
+        maximiere \( x_{47} + x_{37} + x_{57} + x_{67} \)\\
+        unter den Nebenbedingungen\footnote{hier ist kein LP-Problem in Standardform
+        gefordert, daher kommen hier Gleichungen als Nebenbedingungen vor}\\
+        \(\begin{array}{rcr}
+            x_{47} + x_{37} + x_{57} + x_{67} - x_{04} - x_{03} - x_{02} - x_{01} &=& 0\\
+            x_{01} + x_{21} - x_{16} &=& 0 \\
+            x_{02} - x_{21} - x_{25} &=& 0 \\
+            x_{01} - x_{34} - x_{35} - x_{37} &=& 0 \\
+            x_{04} + x_{34} - x_{47} &=& 0 \\
+            x_{25} + x_{35} - x_{56} - x_{57} &=& 0 \\
+            x_{16} + x_{56} - x_{67} &=& 0 \\
+            x_{03} &\leq& 1\\
+            x_{01}, x_{56}, x_{37} &\leq& 2\\
+            x_{02}, x_{35}, x_{47}, x_{67} &\leq& 3\\
+            x_{21}, x_{25}, x_{34} &\leq& 4\\
+            x_{16} &\leq& 5\\
+            x_{04} &\leq& 7\\
+            x_{57} &\leq& 8\\
+            x_{01}, x_{02}, x_{03}, x_{04}, x_{16}, x_{21}, x_{25}, x_{34}, x_{35}, x_{37}, x_{47}, x_{56}, x_{57}, x_{67} &\geq& 0
+        \end{array}\)
+
+    \item[b)]
+        \textbf{Hinweis:} Da dies nicht genau angegeben ist, interpretieren wir die Kostenangabe
+        als ,,Geldeinheiten pro benutzter Energieeinheit'', also als Faktor für
+        die benutzte Kapazität. Eine Kante mit Notation ,,4 | 3'', durch die
+        jedoch nur 2 Energieeinheiten geschickt werden, kostet somit 6
+        Geldeinheiten.
+
+        minimiere \( 5x_{01} + 4x_{02} + 3x_{03} + 3x_{16} + 6x_{21} + 1x_{23} + 5x_{24} + 5x_{35} + 3x_{45} + 4x_{46} + 2x_{56} \)\\
+        unter den Nebenbedingungen\\
+        \(\begin{array}{rcr}
+            x_{01} + x_{02} + x_{03} &=& 6\\
+            x_{16} + x_{46} + x_{56} &=& 6\\
+            x_{01} + x_{21} - x_{16} &=& 0\\
+            x_{02} - x_{21} - x_{24} - x_{23} &=& 0\\
+            x_{03} + x_{23} - x_{35} &=& 0\\
+            x_{24} - x_{45} - x_{46} &=& 0\\
+            x_{35} + x_{45} - x_{56} &=& 0\\
+            x_{16}, x_{45} &\leq& 1\\
+            x_{35} &\leq& 2\\
+            x_{01} &\leq& 3\\
+            x_{02}, x_{24}, x_{56} &\leq& 4\\
+            x_{03} &\leq& 5\\
+            x_{21} &\leq& 6\\
+            x_{23}, x_{46} &\leq& 7\\
+
+            x_{01}, x_{02}, x_{03}, x_{16}, x_{21}, x_{23}, x_{24}, x_{35}, x_{45}, x_{46}, x_{56} &\geq& 0
+        \end{array}\)
+
+    \item[c)]
+        Die Variable $x_{ij}$ gibt an, ob der Bewerber $i$ die Stelle $j$ bekommt.
+        Es handelt sich dabei um einen binären Wert (0 oder 1), da Bewerber und
+        Stellen nicht geteilt werden können. Somit handelt es sich um ein
+        binäres Problem. \\[1em]
+
+        minimiere $\sum\limits_{i=1}^3\sum\limits_{j=1}^5 c_{ij} \cdot x_{ij}$\\
+        unter den Nebenbedingungen\\
+        \(\begin{array}{rclll}
+            \sum\limits_{i=1}^3 x_{ij} &\leq& 1 \hspace{2cm} & \text{für jedes} & 1 \leq j \leq 5\\
+            \sum\limits_{j=1}^5 x_{ij} &=& 1 & \text{für jedes} & 1 \leq i \leq 3 \\
+            x_{ij} &\in& \{0, 1\} & \text{für jedes} & 1 \leq i \leq 3, 1 \leq j \leq 5\\
+        \end{array}\)
+
+    \end{enumerate}
+
+\item[\textbf{2.}]
+        \textbf{Hilfsproblem (als unzulässiges Tableau):}
+
+        \[\begin{array}{rcrcrcrcr}
+            x_3 & = & -3 & + & 2x_1 & + & x_2 & + & x_0 \\[3pt]
+            x_4 & = & -5 & + & 2x_1 & + & 2x_2 & + & x_0 \\[3pt]
+            x_5 & = & -4 & + & x_1 & + & 4x_2 & + & x_0 \\[3pt] \hline
+              w & = & & & & & & - & x_0\\
+        \end{array}\]
+
+        Eingangsvariable: $x_0$, Ausgangsvariable: $x_4$
+
+        \textbf{Zulässiges Starttableau}:
+
+        \[\begin{array}{rcrcrcrcr}
+            x_0 & = & 5 & - & 2x_1 & - & 2x_2 & + & x_4 \\[3pt]
+            x_3 & = & 2 &   &  & - & x_2 & + & x_4 \\[3pt]
+            x_5 & = & 1 & - & x_1 & + & 2x_2 & + & x_4 \\[3pt] \hline
+              w & = & -5& + & 2x_1 & + & 2x_2 & - & x_4\\
+        \end{array}\]
+
+        Eingangsvariable: $x_1$, Ausgangsvariable: $x_5$
+
+        \textbf{Tableau nach 1. Iteration}:
+
+        \[\begin{array}{rcrcrcrcr}
+            x_1 & = & 1 & + & 2x_2 & + & x_4 & - &  x_5 \\[3pt]
+            x_0 & = & 3 & - & 6x_2 & - & x_4 & + & 2x_5 \\[3pt]
+            x_3 & = & 2 & - &  x_2 & + & x_4 &   &      \\[3pt] \hline
+              w & = &-3 & + & 6x_2 & + & x_4 & - & 2x_5 \\[3pt]
+        \end{array}\]
+
+        Eingangsvariable: $x_2$, Ausgangsvariable: $x_0$
+
+        \( w = -3 + 6 \left(  \frac{3}{6} - \frac{1}{6}x_4 + \frac{2}{6}x_5 - \frac{1}{6}x_0 \right) + x_4 - 2x_5
+             = -3 + 3 - x_4 + 2x_5 - x_0 + x_4 - 2x_5 = -x_0 \)
+
+        \textbf{Tableau nach 2. Iteration}:
+
+        \[\begin{array}{rcrcrcrcr}
+            x_2 & = & \frac{1}{2} & - & \frac{1}{6}x_4 & + & \frac{1}{3}x_5 & - & \frac{1}{6}x_0 \\[3pt]
+            x_1 & = &           2 & + & \frac{2}{3}x_4 & - & \frac{1}{3}x_5 & - & \frac{1}{3}x_0 \\[3pt]
+            x_3 & = & \frac{3}{2} & + & \frac{7}{6}x_4 & - & \frac{1}{3}x_5 & + & \frac{1}{6}x_0 \\[3pt] \hline
+              w & = & & & & & & - & x_0 \\[3pt]
+        \end{array}\]
+
+        Dies ist die optimale Lösung des Hilfsproblems:
+
+        \( x_0 = 0, x_1 = 2, x_2 = \frac{1}{2}, x_3 = \frac{3}{2}, x_4 = 0, x_5 = 0, w = 0 \)
+
+        Einsetzen in die Original-Zielfunktion:
+
+        \( z = -3 x_1 - 5x_2 = -3\left( 2 + \frac{2}{3}x_4 - \frac{1}{3}x_5 \right) - 5 \left( \frac{1}{2} - \frac{1}{6}x_4 + \frac{1}{3}x_5 \right)
+             = - \frac{17}{2} - \frac{7}{6}x_4 - \frac{2}{3} x_5 =  \)
+
+        Damit ergibt sich folgendes \textbf{Starttableau für das Originalproblem}:
+
+        \[\begin{array}{rcrcrcrcr}
+            x_2 & = & \frac{1}{2} & - & \frac{1}{6}x_4 & + & \frac{1}{3}x_5 \\[3pt]
+            x_1 & = &           2 & + & \frac{2}{3}x_4 & - & \frac{1}{3}x_5 \\[3pt]
+            x_3 & = & \frac{3}{2} & + & \frac{7}{6}x_4 & - & \frac{1}{3}x_5 \\[3pt] \hline
+              z & = &-\frac{17}{2}& - & \frac{7}{6}x_4 & - & \frac{2}{3}x_5 \\[3pt]
+        \end{array}\]
+
+        Diese Lösung ist optimal, es ergibt sich:
+
+        \( x_1 = 2, x_2 = \frac{1}{2}, x_3 = \frac{3}{2}, x_4 = 0, x_5 = 0, z = -\frac{17}{2} \).
+
+\end{enumerate}
+\end{document}
