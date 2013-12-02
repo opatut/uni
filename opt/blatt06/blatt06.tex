@@ -1,0 +1,240 @@
+\newcommand{\authorinfo}{Paul Bienkowski, Arne Struck}
+\newcommand{\titleinfo}{Optimierung Blatt 06 zum 25.11.2013}
+
+% PREAMBLE ===============================================================
+
+\documentclass[a4paper,11pt]{article}
+\usepackage[german,ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[top=1.3in, bottom=1in, left=1.0in, right=0.6in]{geometry}
+\usepackage{lmodern}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{enumerate}
+\usepackage{pgfplots}
+\usepackage{breqn}
+\usepackage{tikz}
+\usepackage{fancyhdr}
+\usepackage{multicol}
+
+\usetikzlibrary{calc}
+\usetikzlibrary{patterns}
+
+\newcommand{\bra}[1]{\left(#1\right)}
+
+\author{\authorinfo}
+\title{\titleinfo}
+\date{\today}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\authorinfo}
+\fancyhead[R]{\titleinfo}
+\fancyfoot[C]{\thepage}
+
+\renewcommand\arraystretch{1.2}
+
+\begin{document}
+\maketitle
+\begin{enumerate}
+\item[\textbf{1.}]
+    \begin{enumerate}
+    \item[a)]
+        minimiere \( 5y_1 + 11y_2 + 8y_3 \)\\
+        unter den Nebenbedingungen \\
+        \(\begin{array}{rcrcrcrcr}
+            2y_1 & + & 4y_2 & + & 3y_3 & \geq & 5\\
+            3y_1 & + &  y_2 & + & 4y_3 & \geq & 4\\
+             y_1 & + & 2y_2 & + & 2y_3 & \geq & 3\\
+            &&&& y_{1..3} & \geq & 0
+        \end{array}\)
+
+    \item[b)]
+        \( y^* = (1, 0, 1) \) \footnote{diese Notation wird ab sofort an Stelle von $(y_1^*, y_2^*, ...)$ verwendet}
+
+    \item[c)]
+        Einsetzen in die Nebenbedingungen:
+
+        \( 2 \cdot 1 + 4 \cdot 0 + 3 \cdot 1 = 5 \geq 5 \)\\
+        \( 3 \cdot 1 + 1 \cdot 0 + 4 \cdot 1 = 7 \geq 4 \)\\
+        \( 1 \cdot 1 + 2 \cdot 0 + 2 \cdot 1 = 3 \geq 3 \)
+
+    \item[d)]
+        Nach dem Dualitätssatz müssen die Zielfunktionswerte übereinstimmen:
+
+        \( z =  5 \cdot 2 + 4 \cdot 0 + 3 \cdot 1 = 13 \)\\
+        \( z' = 5 \cdot 1 + 11 \cdot 0 + 8 \cdot 1 = 13 \)
+
+    \item[e)]
+        \quad\begin{multicols}{3}
+            \( A = \begin{bmatrix} 2 & 3 & 1 \\ 4 & 1 & 2 \\ 3 & 4 & 2 \end{bmatrix}  \)
+
+            \( x^* = (2, 0, 1) \)\\
+            \( c = (5, 4, 3) \)\\
+            \( n = 3 \)
+
+            \( y^* = (1, 0, 1) \)\\
+            \( b = (5, 11, 8) \)\\
+            \( m = 3 \)
+        \end{multicols}
+
+        \(\begin{array}{llcrcl}
+            j = 1: & x_1 = 2 & \rightarrow & 2 \cdot 1 + 4 \cdot 0 + 3 \cdot 1 = 5 & = & c_1 \\
+            j = 2: & x_2 = 0 \\
+            j = 3: & x_3 = 1 & \rightarrow & 1 \cdot 1 + 2 \cdot 0 + 2 \cdot 1 = 3 & = & c_3 \\
+            i = 1: & y_1 = 1 & \rightarrow & 2 \cdot 2 + 3 \cdot 0 + 1 \cdot 1 = 5 & = & b_1 \\
+            i = 2: & y_2 = 0 \\
+            i = 3: & y_3 = 1 & \rightarrow & 3 \cdot 2 + 4 \cdot 0 + 2 \cdot 1 = 8 & = & b_3 \hspace{2em} \Box
+        \end{array}\)
+
+    \end{enumerate}
+
+\newpage
+\item[\textbf{2.}]
+    \begin{enumerate}
+    \item[a)]
+        \quad\begin{multicols}{3}
+            \( A = \begin{bmatrix} 1 & 3 & 1 \\ -1 & 0 & 3 \\ 2 & -1 & 2 \\ 2 & 3 & -1 \end{bmatrix}  \)
+
+            \( x^* = (\frac{32}{29}, \frac{8}{29}, \frac{30}{29}) \)\\
+            \( c = (5, 5, 3) \)\\
+            \( n = 3 \)
+
+            \( y^* = (0, 1, 1, 2) \)\\
+            \( b = (3, 2, 4, 2) \)\\
+            \( m = 4 \)
+        \end{multicols}
+
+        \(\begin{array}{llcrcl}
+            j = 1: & x_1 = \frac{32}{29} & \rightarrow & 1 \cdot 0 - 1 \cdot 1 + 2 \cdot 1 + 2 \cdot 2 = 5 & = & c_1 \\
+            j = 2: & x_2 =  \frac{8}{29} & \rightarrow & 3 \cdot 0 + 0 \cdot 1 - 1 \cdot 1 + 3 \cdot 2 = 5 & = & c_2 \\
+            j = 3: & x_3 = \frac{30}{29} & \rightarrow & 1 \cdot 0 + 3 \cdot 1 + 2 \cdot 1 - 1 \cdot 2 = 3 & = & c_3 \\
+            i = 1: & y_1 =             0 \\
+            i = 2: & y_2 =             1 & \rightarrow &-1 \cdot \frac{32}{29} + 0 \cdot \frac{8}{29} + 3 \cdot \frac{30}{29} = 2 & = & b_2 \\
+            i = 3: & y_3 =             1 & \rightarrow & 2 \cdot \frac{32}{29} - 1 \cdot \frac{8}{29} + 2 \cdot \frac{30}{29} = 4 & = & b_3 \\
+            i = 4: & y_4 =             2 & \rightarrow & 2 \cdot \frac{32}{29} + 3 \cdot \frac{8}{29} - 1 \cdot \frac{30}{29} = 2 & = & b_4 \hspace{2em} \Box
+        \end{array}\)
+
+    \item[b)]
+        minimiere \( 3y_1 + y_2 \)\\
+        unter den Nebenbedingungen \\
+        \(\begin{array}{rcrcrcr}
+             y_1 & - & 1y_2 & \geq & 1\\
+             y_1 & - & 3y_2 & \geq & -9\\
+            3y_1 & - & 7y_2 & \geq & -11\\
+             y_1 & + & 1y_2 & \geq & 3\\
+            && y_{1..2} & \geq & 0
+        \end{array}\)
+
+        Es lässt sich folgende Lösung aus dem Tableau ablesen:
+
+        \( y^* = (2, 1) \)
+
+        \begin{enumerate}
+        \item[(i)]
+            Dualitätssatz:
+
+            \( z = 1 \cdot 1 - 9 \cdot 0 - 11 \cdot 0 + 3 \cdot 2 = 7 \)\\
+            \( z' = 3 \cdot 2 + 1 \cdot 1 = 7 \)
+
+        \item[(ii)]
+            Komplementäre Schlupfbedingungen:
+
+            \begin{multicols}{3}
+                \( A = \begin{bmatrix} 1 & 1 & 3 & 1 \\ -1 & -3 & -7 & 1 \end{bmatrix}  \)
+
+                \( x^* = (1, 0, 0, 2) \)\\
+                \( c = (1, -9, 11, 3) \)\\
+                \( n = 4 \)
+
+                \( y^* = (2, 1) \)\\
+                \( b = (3, 1) \)\\
+                \( m = 2 \)
+            \end{multicols}
+
+            \(\begin{array}{llcrcl}
+                j = 1: & x_1 = 1 & \rightarrow & 1 \cdot 2 - 1 \cdot 1 = 1 & = & c_1 \\
+                j = 2: & x_2 = 0 \\
+                j = 3: & x_3 = 0 \\
+                j = 4: & x_4 = 1 & \rightarrow & 1 \cdot 2 + 1 \cdot 1 = 3 & = & c_4 \\
+                i = 1: & y_1 = 2 & \rightarrow & 1 \cdot 1 + 1 \cdot 0 + 3 \cdot 0 + 1 \cdot 2 = 3 & = & b_1 \\
+                i = 2: & y_2 = 1 & \rightarrow & -1 \cdot 1 - 3 \cdot 0 - 7 \cdot 0 + 1 \cdot 2 = 1 & = & b_2 \hspace{2em} \Box
+            \end{array}\)
+        \end{enumerate}
+
+    \newpage
+    \item[c)]
+        \textbf{Duales Problem (D):}
+
+        minimiere \( 5y_1 - 6y_2 - 10y_3 \)\\
+        unter den Nebenbedingungen \\
+        \(\begin{array}{rcrcrcrcr}
+             y_1 & - & 3y_2 & - & 11y_3 & \geq & -1 \\
+            -y_1 & - &  y_2 & - &   y_3 & \geq & -1 \\
+            &&&& y_{1..3} & \geq & 0
+        \end{array}\)
+
+        \textbf{Duales Problem in Standardform:}
+
+        maximiere \( - 5y_1 + 6y_2 + 10y_3 \)\\
+        unter den Nebenbedingungen \\
+        \(\begin{array}{rcrcrcrcr}
+            -y_1 & + & 3y_2 & + & 11y_3 & \leq & 1 \\
+             y_1 & + &  y_2 & + &   y_3 & \leq & 1 \\
+            &&&& y_{1..3} & \geq & 0
+        \end{array}\)
+
+        \textbf{Starttableau:}
+
+        \[\begin{array}{rcrcrcrcr}
+            y_4 & = & 1 & + &  y_1 & - & 3y_2 & - & 11y_3 \\
+            y_5 & = & 1 & - &  y_1 & - &  y_2 & - &   y_3 \\\hline
+              z & = &   & - & 5y_1 & + & 6y_2 & + & 10y_3 \\
+        \end{array}\]
+
+        Eingangsvariable: $y_3$,
+        Ausgangsvariable: $y_4$
+
+        \( y_3 = \frac{1}{11} + \frac{1}{11}y_1 - \frac{3}{11}y_2 - \frac{1}{11}y_4 \) \\
+        \( y_5 = 1 - y_1 - y_2 - \bra{ \frac{1}{11} + \frac{1}{11}y_1 - \frac{3}{11}y_2 - \frac{1}{11}y_4 }
+            = \frac{10}{11} - \frac{12}{11}y_1 - \frac{8}{11}y_2 + \frac{1}{11}y_4 \) \\
+        \( z = -5y_1 + 6y_2 + 10 \bra{ \frac{1}{11} + \frac{1}{11}y_1 - \frac{3}{11}y_2 - \frac{1}{11}y_4 }
+            = \frac{10}{11} - \frac{45}{11}y_1 + \frac{36}{11}y_2 - \frac{10}{11}y_4 \)
+
+        \textbf{Tableau nach 1. Iteration:}
+
+        \[\begin{array}{rcrcrcrcr}
+            y_3 & = &  \frac{1}{11} & + &  \frac{1}{11}y_1 & - &  \frac{3}{11}y_2 & - &  \frac{1}{11}y_4 \\
+            y_5 & = & \frac{10}{11} & - & \frac{12}{11}y_1 & - &  \frac{8}{11}y_2 & + &  \frac{1}{11}y_4 \\\hline
+              z & = & \frac{10}{11} & - & \frac{45}{11}y_1 & + & \frac{36}{11}y_2 & - & \frac{10}{11}y_4
+        \end{array}\]
+
+        Eingangsvariable: $y_3$,
+        Ausgangsvariable: $y_2$
+
+        \( y_2 = \frac{1}{3} + \frac{1}{3}y_1 - \frac{1}{3}y_4 - \frac{11}{3}y_3 \)\\
+        \( y_5 = \frac{10}{11} - \frac{12}{11}y_2 - \frac{8}{11}\bra{ \frac{1}{3} + \frac{1}{3}y_1 - \frac{1}{3}y_4 - \frac{11}{3}y_3 } + \frac{1}{11}y_4
+            = \frac{2}{3} - \frac{4}{3}y_1 + \frac{1}{3}y_4 + \frac{8}{3}y_3 \)\\
+        \( z = \frac{10}{11} - \frac{45}{11}y_1 + \frac{36}{11}\bra{ \frac{1}{3} + \frac{1}{3}y_1 - \frac{1}{3}y_4 - \frac{11}{3}y_3 } - \frac{10}{11}y_4
+            = 2 - 3y_1 - 2y_4 - 12y_3 \)
+
+        \textbf{Tableau nach 2. Iteration:}
+
+        \[\begin{array}{rcrcrcrcr}
+            y_2 & = &  \frac{1}{3} & + & \frac{1}{3}y_1 & - & \frac{1}{3}y_4 & - & \frac{11}{3}y_3 \\
+            y_5 & = & \frac{2}{3} & - & \frac{4}{3}y_1 & + &  \frac{1}{3}y_4 & + &  \frac{8}{3}y_3 \\\hline
+              z & = & 2 & - & 3y_1 & - & 2y_4 & - & 12y_3
+        \end{array}\]
+
+        Die optimale Lösung für das duale Problem lautet \( y^* = (0, \frac{1}{3}, 0) \),
+        die optimale Lösung des Originalproblems ist \( x^* = (2, 0) \). Dies lässt
+        sich mit dem Dualitätssatz zeigen:
+
+        \( z = - 2 - 0 = -2\)\\
+        \( z' = 5 \cdot 0 - 6 \cdot \frac{1}{3} - 10 \cdot 0 = - 2 \)
+
+    \end{enumerate}
+\end{enumerate}
+\end{document}

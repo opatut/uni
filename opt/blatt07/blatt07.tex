@@ -1,0 +1,171 @@
+\newcommand{\authorinfo}{Paul Bienkowski, Nils Rokita, Arne Struck}
+\newcommand{\titleinfo}{Optimierung Blatt 07 zum 02.12.2013}
+
+% PREAMBLE ===============================================================
+
+\documentclass[a4paper,11pt]{article}
+\usepackage[german,ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[top=1.3in, bottom=1in, left=1.0in, right=0.6in]{geometry}
+\usepackage{lmodern}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{enumerate}
+\usepackage{pgfplots}
+\usepackage{breqn}
+\usepackage{tikz}
+\usepackage{fancyhdr}
+\usepackage{multicol}
+
+\usetikzlibrary{calc}
+\usetikzlibrary{patterns}
+
+\newcommand{\bra}[1]{\left(#1\right)}
+
+\author{\authorinfo}
+\title{\titleinfo}
+\date{\today}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\authorinfo}
+\fancyhead[R]{\titleinfo}
+\fancyfoot[C]{\thepage}
+
+\renewcommand\arraystretch{1.2}
+
+\begin{document}
+\maketitle
+\begin{enumerate}
+
+\item[\textbf{1.}]
+    \begin{enumerate}
+    \item[a)]
+        \[\begin{array}{lrcrcrcrcr}
+        P_1:&         \frac{33}{4} &+&         0 &+& 3 \cdot \frac{3}{2} &=& 12\frac{3}{4} &<& 30 \\
+        P_2:& 2 \cdot \frac{33}{4} &+& 2 \cdot 0 &+& 5 \cdot \frac{3}{2} & &               &=& 24 \\
+        P_3:& 4 \cdot \frac{33}{4} &+&         0 &+& 2 \cdot \frac{3}{2} & &               &=& 36
+        \end{array}\]
+
+        Die Ungleichung $P_2$ und $P_3$ sind mit Gleichheit erfüllt, daher muss
+        $y_1^* = 0$ gelten.
+
+        Aus $x_1 \ne 0, x_3 \ne 0$ folgt, dass $D_1$ und $D_3$ mit Gleichheit
+        erfüllt sein müssen:
+
+        \[\begin{array}{rcrcrcr}
+         y_1 &+& 2y_2 &+& 4y_3 &=& 3 \\
+        3y_1 &+& 5y_2 &+& 2y_3 &=& 2
+        \end{array}\]
+
+        Durch Einsetzen von $y_1 = 0$ und Auflösen erhält man:
+
+        \[y^* = (0, \frac{1}{8}, \frac{11}{16}) \]
+
+        Dies muss eine gültige Lösung für $(D)$ sein, allerdings erhält man in
+        $D_2$:
+
+        \[ 0 + 2 \cdot \frac{1}{8} + \frac{11}{16} = \frac{15}{16} \geq 1 \]
+
+        Damit ist dies keine gültige Lösung für $(D)$, die vorgeschlagene Lösung
+        kann daher nicht optimal sein.
+
+    \newpage
+    \item[b)]
+        \textbf{Duales Problem (D):}
+
+        minimiere \( 7y_1 + 8y_2 + 12y_3 \)\\
+        unter den Nebenbedingungen \\
+        \[\begin{array}{rcrcrcrcr}
+             y_1 &   &      & + & 2y_3 & \geq & 2\\
+             y_1 & + &  y_2 & + &  y_3 & \geq & 3\\
+                 &   &  y_2 &   &      & \geq & 2\\
+            &&&& y_{1..3} & \geq & 0
+        \end{array}\]
+
+        Einsetzen von $x^* = (5, 2, 6)$ in $(P)$ erfüllt alle Ungleichungen mit
+        Gleichheit, also können wir keine Aussage über $y^*_{1..3}$ treffen:
+
+        \[\begin{array}{rcrcrcrcr}
+                5 &+& 2 & &   &=&  7\\
+                  & & 2 &+& 6 &=&  8\\
+        2 \cdot 5 &+& 2 & &   &=& 12\\
+        \end{array}\]
+
+        Da $x_1, x_2, x_3 \ne 0$ sind, müssen $D_{1..3}$ mit Gleichheit erfüllt
+        sein:
+
+        \[\begin{array}{rcrcrcrcr}
+            y1 & &      &+& 2y_3 &=& 2\\
+            y1 &+&  y_2 &+&  y_3 &=& 3\\
+               & &  y_2 & &      &=& 2\\
+        \end{array}\]
+
+        Die eindeutige Lösung für dieses Gleichungssystem ist $y^* = (0, 2, 1)$.
+        Da alle Ungleichungen am Gleichungssystem beteiligt sind, ist dies ebenfalls
+        eine zulässige Lösung für $(D)$. Damit ist die vorgeschlagene Lösung optimal.
+
+    \end{enumerate}
+
+\newpage
+\item[\textbf{2.}]
+        Der Index 1 bezieht sich auf einfache Einheiten, der Index 2 gibt die
+        in regulärer Arbeitszeit veredelten Einheiten, Index 3 in
+        "Uberstunden veredelten Einheiten.
+
+        Die vorgeschlagene Lösung lautet: \( a^*=(0, 400, 0), b^*=(440, 10, 30), c^*=(0, 10, 220) \).
+
+        \textbf{Primales Problem (P):}
+
+        maximiere \( 5a_1 + 13a_2 + 8a_3 + 9b_1 + 15b_2 + 12b_3 + 5c_1 + 14c_2 + 10c_3 \)\\
+        unter den Nebenbedingungen \\
+        \[\begin{array}{rcr}
+            a_1 + a_2 + a_3 &\leq& 400 \\
+            - a_1 - a_2 - a_3 &\leq& -400 \\
+            b_1 + b_2 + b_3 &\leq& 480 \\
+            - b_1 - b_2 - b_3 &\leq& -480 \\
+            c_1 + c_2 + c_3 &\leq& 230 \\
+            - c_1 - c_2 - c_3 &\leq& -230 \\
+            a_2 + b_2 + c_2 &\leq& 420 \\
+            a_3 + b_3 + c_3 &\leq& 250 \\
+            a_1, a_2, a_3, b_1, b_2, b_3, c_1, c_2, c_3 &\geq& 0
+        \end{array}\]
+
+        \textbf{Duales Problem (D):}
+
+        minimiere $400 y_1 - 400 y_2 + 480 y_3 - 480 y_4 + 230 y_5 - 230 y_6 + 420 y_7 + 250 y_8$\\
+        unter den Nebenbedingungen \\
+        \[\begin{array}{rcrcrcr}
+            y_1 & - & y_2 &   &     &\geq& 5 \\
+            y_1 & - & y_2 & + & y_7 &\geq& 13 \\
+            y_1 & - & y_2 & + & y_8 &\geq& 8 \\
+            y_3 & - & y_4 &   &     &\geq& 9 \\
+            y_3 & - & y_4 & + & y_7 &\geq& 15 \\
+            y_3 & - & y_4 & + & y_8 &\geq& 12 \\
+            y_5 & - & y_6 &   &     &\geq& 5 \\
+            y_5 & - & y_6 & + & y_7 &\geq& 14 \\
+            y_5 & - & y_6 & + & y_8 &\geq& 10 \\
+            y_{1..8} &\geq& 0
+        \end{array}\]
+
+        Aus $a_2, b_{1..3}, c_{2..3} \ne 0$ folgt, dass $D_{2,4,5,6,8,9}$
+        mit Gleichheit erfüllt sein müssen. Schaut man sich nur $D_{4, 5, 8, 9}$ an,
+        erhält man:
+
+        \[\begin{array}{rcrcrcr}
+        y_3 & - & y_4 &   &     & = & 9  \\
+        y_3 & - & y_4 & + & y_7 & = & 15 \\
+        y_5 & - & y_6 &   &     & = & 5  \\
+        y_5 & - & y_6 & + & y_7 & = & 14 \\
+        \end{array}\]
+
+        Die ersten 2 Gleichungen hiervon ergeben $y_7 = 6$, die letzten den
+        im Widerspruch stehenden Wert $y_7 = 9$. Damit gibt es keine gültige
+        Lösung $y^*$ für das duale Problem, die vorgeschlagene Lösung ist nicht
+        optimal.
+
+
+\end{enumerate}
+\end{document}
