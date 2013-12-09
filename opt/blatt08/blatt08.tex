@@ -1,0 +1,171 @@
+\newcommand{\authorinfo}{Paul Bienkowski, Nils Rokita, Arne Struck}
+\newcommand{\titleinfo}{Optimierung Blatt 08 zum 09.12.2013}
+
+% PREAMBLE ===============================================================
+
+\documentclass[a4paper,11pt]{article}
+\usepackage[german,ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[top=1.3in, bottom=1in, left=1.0in, right=0.6in]{geometry}
+\usepackage{lmodern}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{enumerate}
+\usepackage{pgfplots}
+\usepackage{breqn}
+\usepackage{tikz}
+\usepackage{fancyhdr}
+\usepackage{multicol}
+
+\usetikzlibrary{calc}
+\usetikzlibrary{patterns}
+
+\newcommand{\bra}[1]{\left(#1\right)}
+
+\author{\authorinfo}
+\title{\titleinfo}
+\date{\today}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\authorinfo}
+\fancyhead[R]{\titleinfo}
+\fancyfoot[C]{\thepage}
+
+\renewcommand\arraystretch{1.2}
+
+\begin{document}
+\maketitle
+\begin{enumerate}
+
+\item[\textbf{1.}]
+    \begin{enumerate}
+    \item[a)]
+        minimiere \( y_1 + 2y_2 + 3y_3 \)\\
+        unter den Nebenbedingungen \\
+        \(\begin{array}{rcrcrcr}
+            2y_1 & + & 3y_2 & + &  y_3 & \geq & 5 \\
+            3y_1 & + &  y_2 & + &  y_3 & \geq & -7 \\
+            -y_1 & + & 4y_2 & - & 2y_3 & \geq & 3 \\
+             y_1 & - & 2y_2 & - & 1y_3 & =    & 1 \\
+                 &   &      &   & y_{2,3} & \geq & 0
+        \end{array}\)
+
+    \item[b)]
+        maximiere \( -y_1 + 16y_2 + 5y_3 + 8y_4 + y_5 - 4y_6 - 10y_7 + 9y_8 \)\\
+        unter den Nebenbedingungen \\
+        \(\begin{array}{rcrcrcrcrcrcrcrcr}
+            2y_1 & + &  y_2 & + &  y_3 & + & 2y_4 & + &  y_5 & + & 4y_6 & - & 4y_7 & + &  y_8 & \leq & -2 \\
+           -4y_1 & + & 5y_2 &   &      & + & 4y_4 & - & 3y_5 & - & 3y_6 & + & 3y_7 & + & 2y_8 & =    & 3 \\
+             y_1 & + &  y_2 & + &  y_3 & - &  y_4 & + &  y_5 &   &      & - & 5y_7 & + &  y_8 & =    & 22 \\
+                 &   &      &   &      &   &      &   &      &   &      &   &      &   & y_{4,5,6,7} & \geq & 0
+        \end{array}\)
+    \end{enumerate}
+
+\item[\textbf{2.}]
+    \begin{enumerate}
+    \item[a)]
+        \begin{enumerate}
+        \item[(i)]
+            \textbf{Starttableau}:
+
+            \[\begin{array}{rcrcrcr}
+                x_3 & = &  100 & - &   x_1 & - &   x_2 \\
+                x_4 & = & 4000 & - & 10x_1 & - & 50x_2 \\ \hline
+                  z & = &      &   & 40x_1 & + & 70x_2\\
+            \end{array}\]
+
+            Eingangsvariable: $x_2$, Ausgangsvariable: $x_4$
+
+            \( x_2 = 80 - \frac{1}{5}x_1 - \frac{1}{50}x_4 \) \\
+            \( x_3 = 100 - x_1 - \bra{80 - \frac{1}{5}x_1 - \frac{1}{50}x_4} = 20 - \frac{4}{5}x_1 + \frac{1}{50}x_4 \)\\
+            \( z = 40x_1 + 70\bra{80 - \frac{1}{5}x_1 - \frac{1}{50}x_4} = 5600 + 26x_1 - \frac{7}{5}x_4 \)\\
+
+            \textbf{Tableau nach 1. Iteration}:
+
+            \[\begin{array}{rcrcrcr}
+                x_2 & = &   80 & - & \frac{1}{5}x_1 & - & \frac{1}{50}x_4 \\
+                x_3 & = &   20 & - & \frac{4}{5}x_1 & + & \frac{1}{50}x_4 \\ \hline
+                  z & = & 5600 & + &          26x_1 & - & \frac{7}{5}x_4\\
+            \end{array}\]
+
+            Eingangsvariable: $x_1$, Ausgangsvariable: $x_3$
+
+            \( x_1 = 25 + \frac{1}{40}x_4 - \frac{5}{4}x_3 \)\\
+            \( x_2 = 80 - \frac{1}{5}\bra{25 + \frac{1}{40}x_4 - \frac{5}{4}x_3} - \frac{1}{50}x_4 = 75 - \frac{1}{40}x_4 + \frac{1}{4}x_3 \)\\
+            \( z = 5600 + 26\bra{25 + \frac{1}{40}x_4 - \frac{5}{4}x_3} - \frac{7}{5}x_4 = 6250 - \frac{3}{4}x_4 - \frac{65}{2}x_3 \)\\
+
+            \textbf{Tableau nach 2. Iteration}:
+
+            \[\begin{array}{rcrcrcr}
+                x_1 & = &   25 & + & \frac{1}{40}x_4 & - & \frac{5}{4}x_3 \\
+                x_2 & = &   75 & - & \frac{1}{40}x_4 & + & \frac{1}{4}x_3 \\ \hline
+                  z & = & 6250 & - &  \frac{3}{4}x_4 & - & \frac{65}{2}x_3\\
+            \end{array}\]
+
+            Aus diesem Tableau kann man $x^* = (25, 75)$ sowie $y^* = (0.75, 32.5)$
+            ablesen. $\Box$
+
+        \item[(ii)]
+            \[\begin{array}{lclcll}
+                x_1^* \neq 0 &:&  1 \cdot 32.5 + 10 \cdot 0.75 &=& 40 \\
+                x_2^* \neq 0 &:&  1 \cdot 32.5 + 50 \cdot 0.75 &=& 70 \\
+                y_1^* \neq 0 &:&  1 \cdot   25 +  1 \cdot   75 &=& 100 \\
+                y_2^* \neq 0 &:& 10 \cdot   25 + 50 \cdot   75 &=& 4000 & \Box \\
+            \end{array}\]
+
+        \end{enumerate}
+
+    \item[b)]
+        \textbf{Starttableau}:
+
+        \[\begin{array}{rcrcrcr}
+            x_3 & = &  100 & - &   x_1 & - &   x_2 \\
+            x_4 & = & 4000+t & - & 10x_1 & - & 50x_2 \\ \hline
+              z & = &      &   & 40x_1 & + & 70x_2\\
+        \end{array}\]
+
+        Eingangsvariable: $x_2$, Ausgangsvariable: $x_4$
+
+        Die Ausgangsvariable $x_4$ kann gewählt werden, da im ,,schlechtesten'' Fall
+        von $t=1000$ diese Variable genauso schnell $0$ ist wie $x_3$, ansonsten schneller.
+
+        \( x_2 = 80 + \frac{t}{50} - \frac{1}{5}x_1 - \frac{1}{50}x_4 \) \\
+        \( x_3 = 100 - x_1 - \bra{80 + \frac{t}{50} - \frac{1}{5}x_1 - \frac{1}{50}x_4} = 20 - \frac{t}{50} - \frac{4}{5}x_1 + \frac{1}{50}x_4 \)\\
+        \( z = 40x_1 + 70\bra{80 + \frac{t}{50} - \frac{1}{5}x_1 - \frac{1}{50}x_4} = 5600 + \frac{7}{5}t + 26x_1 - \frac{7}{5}x_4 \)\\
+
+        \textbf{Tableau nach 1. Iteration}:
+
+        \[\begin{array}{rcrcrcr}
+            x_2 & = &   80+\frac{t}{50} & - & \frac{1}{5}x_1 & - & \frac{1}{50}x_4 \\
+            x_3 & = &   20-\frac{t}{50} & - & \frac{4}{5}x_1 & + & \frac{1}{50}x_4 \\ \hline
+              z & = & 5600+\frac{7}{5}t & + &          26x_1 & - & \frac{7}{5}x_4\\
+        \end{array}\]
+
+        Eingangsvariable: $x_1$, Ausgangsvariable: $x_3$
+
+        Die Ausgangsvariable $x_3$ kann gewählt werden, da im ,,schlechtesten'' Fall
+        von $t=0$ diese Variable schneller auf 0 ist.
+
+        \( x_1 = 25 - \frac{t}{40} + \frac{1}{40}x_4 - \frac{5}{4}x_3 \)\\
+        \( x_2 = 80 - \frac{1}{5}\bra{25 - \frac{t}{40} + \frac{1}{40}x_4 - \frac{5}{4}x_3} - \frac{1}{50}x_4 = 75 + \frac{t}{40} - \frac{1}{40}x_4 + \frac{1}{4}x_3 \)\\
+        \( z = 5600 + 26\bra{25 - \frac{t}{40} + \frac{1}{40}x_4 - \frac{5}{4}x_3} - \frac{7}{5}x_4 = 6250 + \frac{3}{4}t - \frac{3}{4}x_4 - \frac{65}{2}x_3 \)\\
+
+        \textbf{Tableau nach 2. Iteration}:
+
+        \[\begin{array}{rcrcrcr}
+            x_1 & = &   25-\frac{t}{40} & + & \frac{1}{40}x_4 & - & \frac{5}{4}x_3 \\
+            x_2 & = &   75+\frac{t}{40} & - & \frac{1}{40}x_4 & + & \frac{1}{4}x_3 \\ \hline
+              z & = & 6250+\frac{3}{4}t & - &  \frac{3}{4}x_4 & - & \frac{65}{2}x_3\\
+        \end{array}\]
+
+        Die optimale Lösung lässt sich ablesen als $x^* = (25 - \frac{t}{40}, 75 + \frac{t}{40})$.
+
+        Man sieht außerdem, dass der Zielfunktionswert im optimalen Fall $6250 + \frac{3}{4}t$
+        beträgt, also um genau $\frac{3}{4}t$ mehr Gewinn erzielt wird.
+
+    \end{enumerate}
+\end{enumerate}
+\end{document}
