@@ -174,7 +174,7 @@ def step_1(data):
 def step_2(data):
     data.yT_An = matrix([[ (data.y.T * col.T).item(0, 0) ] for col in data.An.T])
     vals = sorted([(data.cn[i] - data.y.T * col.T, i) for i, col in enumerate(data.An.T)], reverse=True)
-    if vals[0][0] < 0:
+    if vals[0][0] <= 0:
         print "Keiner der Werte aus $y^T A_N = "
         print_matrix(data.yT_An.T)
         print "$ ist kleiner als der korrespondierende Wert in $c_N^T = "
@@ -263,9 +263,9 @@ print '\\item[\\textbf{1.}]'
 print '\\begin{enumerate}'
 print '\\item[a)]'
 do_simplex(data_a)
+print '\\newpage'
 print '\\item[b)]'
-print 'Leider landet unser Script bei dieser Aufgabe in einer Endlosschleife, da müssen wir wohl noch einmal die Abbruchbedingungen überprüfen...'
-# do_simplex(data_b)
+do_simplex(data_b)
 print '\\end{enumerate}'
 print '\\newpage'
 print '\\item[\\textbf{2.}]'
