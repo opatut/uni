@@ -85,7 +85,7 @@ class StepData(object):
         self.cn = cn
         self.cb = cb
         self.xn = ["x_%s"%(i+1) for i in range(An.shape[1])]
-        self.xb = ["x_%s"%(i+1+An.shape[0]) for i in range(Ab.shape[1])]
+        self.xb = ["x_%s"%(i+1+An.shape[1]) for i in range(Ab.shape[1])]
         self.b = b
         self.x_B_ = x_B_ or b
         self.y = None
@@ -179,7 +179,18 @@ def step_2(data):
         print_matrix(data.yT_An.T)
         print "$ ist kleiner als der korrespondierende Wert in $c_N^T = "
         print_matrix(data.cn.T)
-        print "$, somit ist die Lösung optimal."
+        print "$, somit ist diese Lösung optimal:"
+
+        for x in range(data.An.shape[0]):
+            x_ = "x_%s"%(x+1)
+            print "$" + x_ + ' = ',
+            if x_ in data.xb:
+                print to_frac(data.x_B_[data.xb.index(x_)].item(0, 0)),
+            else:
+                print "0",
+            print "$",
+            print "." if x == data.An.shape[0]-1 else ", "
+
         return True
 
     # Find input variable and column
