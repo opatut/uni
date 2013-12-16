@@ -262,13 +262,13 @@ print '\\begin{enumerate}'
 print '\\item[\\textbf{1.}]'
 print '\\begin{enumerate}'
 print '\\item[a)]'
-# do_simplex(data_a)
+do_simplex(data_a)
 print '\\item[b)]'
-# print 'Leider landet unser Script bei dieser Aufgabe in einer Endlosschleife, da müssen wir wohl noch einmal die Abbruchbedingungen überprüfen...'
-do_simplex(data_b)
+print 'Leider landet unser Script bei dieser Aufgabe in einer Endlosschleife, da müssen wir wohl noch einmal die Abbruchbedingungen überprüfen...'
+# do_simplex(data_b)
 print '\\end{enumerate}'
 print '\\newpage'
 print '\\item[\\textbf{2.}]'
-# do_simplex(data_2)
+do_simplex(data_2)
 print '\\end{enumerate}'
 print '\\end{document}'
