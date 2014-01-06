@@ -1,0 +1,124 @@
+\newcommand{\authorinfo}{Paul Bienkowski, Nils Rokita, Arne Struck}
+\newcommand{\titleinfo}{Optimierung Blatt 10 zum 06.01.2014}
+
+% PREAMBLE ===============================================================
+
+\documentclass[a4paper,11pt]{article}
+\usepackage[german,ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[top=1.3in, bottom=1in, left=1.0in, right=0.6in]{geometry}
+\usepackage{lmodern}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{enumerate}
+\usepackage{pgfplots}
+\usepackage{breqn}
+\usepackage{tikz}
+\usepackage{fancyhdr}
+\usepackage{multicol}
+
+\usetikzlibrary{calc}
+\usetikzlibrary{patterns}
+
+\newcommand{\bra}[1]{\left(#1\right)}
+
+\author{\authorinfo}
+\title{\titleinfo}
+\date{\today}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\authorinfo}
+\fancyhead[R]{\titleinfo}
+\fancyfoot[C]{\thepage}
+
+\renewcommand\arraystretch{1.2}
+
+\begin{document}
+\maketitle
+\begin{enumerate}
+
+\item[\textbf{1.}]
+    s(-, $\infty$) \\
+    a(s, +, 3) \\
+    b(s, +, 5) \\
+    c(s, +, 6) \\
+    t(a, +, 3)
+
+    \texttt{s a t}: $d=3$
+
+    s(-, $\infty$)\\
+    b(s, +, 5)\\
+    c(s, +, 6)\\
+    d(b, +, 5)\\
+    e(b, +, 2)\\
+    t(d, +, 5)
+
+    \texttt{s b d t}: $d=5$
+
+
+    s(-, $\infty$)\\
+    c(s, +, 6)\\
+    d(c, +, 4)\\
+    b(d, -, 4)\\
+    e(b, +, 2)\\
+    t(e, +, 2)
+
+    \texttt{s c d b e t}: $d=2$
+
+    s(-, $\infty$)\\
+    c(s, +, 4)\\
+    d(c, +, 2)\\
+    b(d, -, 2)
+
+    \texttt{terminiert, Flusssumme: $10$}
+
+\newpage
+\item[\textbf{2.}]
+    \begin{enumerate}
+    \item[a)]
+        \begin{verbatim}
+maximize p=-67w -120k - 100 h - 60f - 97b -124n -22s -62m subject to
+8w +25k +30h + 22f + 3b+ 8n + 6s + 0m >= 75,
+1w +35k + 8h +  1f + 0b+33n +13s +98m >= 90,
+54k+ 0k + 0h +  0f +42b+ 4n +63s + 0m >= 300,
+w>=0, k>=0, h>=0, f>=0, b>=0, n>=0, s>=0, m>=0
+        \end{verbatim}
+
+    \item[b)]
+        \begin{verbatim}
+Optimal Solution: p = -6801/28; w = 0, k = 0, h = 0, f = 87/56,
+                  b = 0, n = 0, s = 381/56, m = 0
+        \end{verbatim}
+
+    \item[c)]
+        \begin{verbatim}
+minimize p=3a + 24b + 13c + 9d + 20e + 19f subject to
+110a+205b+160c+160d+420e+260f>=2000,
+4a+32b+13c+8d+4e+14f>=55,
+2a+12b+54c+285d+22e+80f>=800,
+a>=0,b>=0,c>=0,d>=0,e>=0,f>=0,
+a<=4,b<=3,c<=2,d<=8,e<=2,f<=2
+
+Optimal Solution: p = 185/2; a = 4, b = 0, c = 0, d = 9/2,
+                  e = 2, f = 0
+        \end{verbatim}
+
+    \item[d)]
+        \begin{verbatim}
+maximize p=5a+13b+8c+9d+15e+12f+5g+14h+10i subject to
+a+b+c=400,
+d+e+f=480,
+g+h+i=230,
+b+e+h<=420,
+c+f+i<=250,
+a>=0,b>=0,c>=0,d>=0,e>=0,f>=0,g>=0,h>=0,i>=0
+
+Optimal Solution: p = 12020; a = 0, b = 400, c = 0, d = 440,
+                  e = 0, f = 40, g = 0, h = 20, i = 210
+        \end{verbatim}
+    \end{enumerate}
+\end{enumerate}
+\end{document}
