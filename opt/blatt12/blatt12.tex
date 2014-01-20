@@ -1,0 +1,138 @@
+\newcommand{\authorinfo}{Paul Bienkowski, Nils Rokita, Arne Struck}
+\newcommand{\titleinfo}{Optimierung Blatt 12 zum 20.01.2014}
+
+% PREAMBLE ===============================================================
+
+\documentclass[a4paper,11pt]{article}
+\usepackage[german,ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[top=1.3in, bottom=1in, left=1.0in, right=0.6in]{geometry}
+\usepackage{lmodern}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{enumerate}
+\usepackage{pgfplots}
+\usepackage{breqn}
+\usepackage{tikz}
+\usepackage{fancyhdr}
+\usepackage{multicol}
+
+\usetikzlibrary{calc}
+\usetikzlibrary{patterns}
+
+\newcommand{\bra}[1]{\left(#1\right)}
+
+\author{\authorinfo}
+\title{\titleinfo}
+\date{\today}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\authorinfo}
+\fancyhead[R]{\titleinfo}
+\fancyfoot[C]{\thepage}
+
+\renewcommand\arraystretch{1.2}
+
+\tikzset{
+    n/.style={
+        circle,
+        draw,
+        minimum width=0.6cm,
+        minimum height=0.6cm,
+        inner sep=0
+    }
+}
+
+\begin{document}
+\maketitle
+\begin{enumerate}
+\item[\textbf{1.}]
+    \begin{enumerate}
+    \item[a)]
+    \begin{multicols}{2}
+        Dijkstra-Algorithmus:
+
+        \begin{tabular}{c|cccccc}
+            von & a & b & c & d & e & f \\ \hline
+            s & 6s & 5s & 2s & $\infty$ & $\infty$ & $\infty$ \\
+            c & 6s & 4c & 2s & $\infty$ & 3c & 5c \\
+            e & 5e & 4c & 2s & $\infty$ & 3c & 4e \\
+            b & 5e & 4c & 2s & 8b & 3c & 4e \\
+            f & 5e & 4c & 2s & 8b & 3c & 4e \\
+            a & 5e & 4c & 2s & 7a & 3c & 4e \\
+            d & 5e & 4c & 2s & 7a & 3c & 4e \\
+        \end{tabular}
+
+        An der letzten Zeile dieser Tabelle kann man die kürzesten s,v-Pfade
+        sowie deren Länge ablesen.
+
+        \begin{tikzpicture}
+            \node[n] (s) at (0, 0) {s};
+            \node[n] (c) at ($(s) + ( 0, -1.5)$) {c};
+            \node[n] (b) at ($(c) + (-1, -1.5)$) {b};
+            \node[n] (e) at ($(c) + ( 1, -1.5)$) {e};
+            \node[n] (a) at ($(e) + (-1, -1.5)$) {a};
+            \node[n] (f) at ($(e) + ( 1, -1.5)$) {f};
+            \node[n] (d) at ($(a) + ( 0, -1.5)$) {d};
+
+            \path[draw]
+                (s) -- node[midway,left]{2} (c)
+                (c) -- node[midway,left]{2} (b)
+                (c) -- node[midway,right]{1} (e)
+                (e) -- node[midway,left]{2} (a)
+                (e) -- node[midway,right]{1} (f)
+                (a) -- node[midway,left]{2} (d);
+        \end{tikzpicture}
+    \end{multicols}
+
+    \item[b)]
+        In diesem Graph gilt $C=1000$, damit wäre der untere Pfad $2001$ lang,
+        der obere nur $2000$. Dijkstra würde also den falschen Pfad finden.
+
+        \vspace{5mm}\begin{center}
+            \begin{tikzpicture}
+                \node[n] (s) at (0, 0) {s};
+                \node[n] (a) at (2, -1) {c};
+                \node[n] (b) at (4, -1) {b};
+                \node[n] (t) at (6, 0) {t};
+
+                \path[draw] (s) edge[->,bend left=30] node[midway,above]{1000} (t);
+                \path[draw] (s) edge[->,bend right=10] node[midway,below left]{-1000} (a);
+                \path[draw] (a) edge[->,bend right=10] node[midway,below]{1} (b);
+                \path[draw] (b) edge[->,bend right=10] node[midway,below right]{1000} (t);
+            \end{tikzpicture}
+        \end{center}
+    \end{enumerate}
+
+\item[\textbf{2.}]
+    \begin{enumerate}
+    \item[a)]
+        \begin{itemize}
+            \item $(a, e)$ oder $(e, f)$
+            \item $(e, f)$ oder $(a, e)$ -- bedingt durch vorherige Kante
+            \item $(e, b)$ oder $(f, b)$ -- die andere wird dadurch ausgeschlossen
+            \item $(f, g)$
+            \item $(g, h)$
+            \item $(g, c)$
+            \item $(g, d)$
+        \end{itemize}
+
+        Die Unterschiede in der Reihenfolge entstehen also durch Wahl der ersten
+        Kante. Es können 2 unterschiedliche Bäume entstehen, einer enthält
+        $(e, b)$, der andere $(f, b)$.
+
+    \item[b)]
+        \begin{enumerate}
+        \item[(i)]
+            $(a, b)$, $(b, c)$, $(c, g)$, $(g, d)$, $(g, f)$, $(g, h)$, $(a, e)$
+        \item[(ii)]
+            $(a, b)$, $(d, g)$, $(g, f)$, $(g, h)$, $(b, c)$, $(c, g)$, $(a, e)$
+        \item[(iii)]
+            $(a, f)$, $(f, b)$, $(b, g)$, $(e, f)$, $(d, h)$, $(c, d)$
+        \end{enumerate}
+    \end{enumerate}
+\end{enumerate}
+\end{document}

@@ -1,0 +1,96 @@
+\newcommand{\authorinfo}{Paul Bienkowski, Nils Rokita, Arne Struck}
+\newcommand{\titleinfo}{Optimierung Blatt 11 zum 13.01.2014}
+
+% PREAMBLE ===============================================================
+
+\documentclass[a4paper,11pt]{article}
+\usepackage[german,ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[top=1.3in, bottom=1in, left=1.0in, right=0.6in]{geometry}
+\usepackage{lmodern}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{enumerate}
+\usepackage{pgfplots}
+\usepackage{breqn}
+\usepackage{tikz}
+\usepackage{fancyhdr}
+\usepackage{multicol}
+
+\usetikzlibrary{calc}
+\usetikzlibrary{patterns}
+
+\newcommand{\bra}[1]{\left(#1\right)}
+
+\author{\authorinfo}
+\title{\titleinfo}
+\date{\today}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\authorinfo}
+\fancyhead[R]{\titleinfo}
+\fancyfoot[C]{\thepage}
+
+\renewcommand\arraystretch{1.2}
+
+\begin{document}
+\maketitle
+\begin{enumerate}
+\item[\textbf{1.}]
+    \begin{enumerate}
+    \item[a)]
+        \( s(-, \infty) \)\\
+        \( a(s, +, 38) \)\\
+        \( b(s, +, 1) \)\\
+        \( f(s, +, 2) \)\\
+        \( c(a, +, 10) \)\\
+        \( d(a, +, 38) \)\\
+        \( g(f, +, 2) \)\\
+        \( e(c, +, 10) \)\\
+        \( t(c, +, 10) \)
+
+        \begin{enumerate}
+            \item[(i)]
+                Die Markierungsreihenfolge ist also: \texttt{sabfcdget}. Kein Knoten
+                bleibt unmarkiert.
+            \item[(ii)]
+                Der erste Flussvergrößernde Pfad lautet \texttt{s-a-c-t} und
+                vergrößert den Pfad um $10$.
+        \end{enumerate}
+
+    \item[b)]
+        Die Menge S beschreibt alle am Fluß beteiligten Knoten, V sind alle anderen.
+        Erkennbar ist dies daran, welcher Knoten ein Label hat und welcher nicht.
+
+    \item[c)]
+        Kreuzchen 2: (i) ist wahr, (ii) ist falsch.
+
+    \item[d)]
+        n/a
+
+    \end{enumerate}
+
+\item[\textbf{2.}]
+    \begin{enumerate}
+    \item[a)]
+        \( M_1 = \{ (x_1, y_1) \} \) \\
+        \( M_2 = \{ (x_1, y_1), (x_2, y_2) \} \) \\
+        \( M_3 = \{ (x_1, y_1), (x_2, y_2), (x_3, y_5) \} \) \\
+        \( M_4 = \{ (x_1, y_1), (x_2, y_2), (x_3, y_5), (x_4, y_3) \} \) \\
+        \( M_5 = \{ (x_1, y_4), (x_2, y_2), (x_3, y_5), (x_4, y_3), (x_5, y_1) \} \) \\
+        \( M_6 = \{ (x_1, y_4), (x_2, y_2), (x_3, y_5), (x_4, y_3), (x_5, y_1), (x_6, y_6) \} \)
+
+    \item[b)]
+        \( M_1 = \{ (x_1, y_1) \} \) \\
+        \( M_2 = \{ (x_1, y_1), (x_2, y_2) \} \) \\
+        \( M_3 = \{ (x_1, y_3), (x_2, y_2), (x_3, y_1) \} \) \\
+        \( M_4 = \{ (x_1, y_3), (x_2, y_2), (x_3, y_1), (x_4, y_4) \} \) \\
+        \( M_5 = \{ (x_1, y_3), (x_2, y_2), (x_3, y_1), (x_4, y_4), (x_5, y_6) \} \) \\
+        \( M_6 = \{ (x_1, y_3), (x_2, y_5), (x_3, y_2), (x_4, y_4), (x_5, y_6), (x_6, y_1) \} \) \\
+
+    \end{enumerate}
+\end{enumerate}
+\end{document}
