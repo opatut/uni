@@ -1,0 +1,43 @@
+\begin{thebibliography}{1}
+
+\bibitem{hou2007}
+Xiaodi Hou and Liqing Zhang.
+\newblock {Saliency detection: A spectral residual approach}.
+\newblock In {\em {Computer Vision and Pattern Recognition, 2007. CVPR'07. IEEE
+  Conference on}}, pages 1--8. IEEE, 2007.
+
+\bibitem{itti2001}
+Laurent Itti and Christof Koch.
+\newblock {Computational modelling of visual attention}.
+\newblock {\em Nature reviews neuroscience}, 2(3):194--203, 2001.
+
+\bibitem{klein2008}
+R.~M. Klein and J.~Ivanoff.
+\newblock {{I}nhibition of return}.
+\newblock 3(10):3650, 2008.
+\newblock {revision \#90806}.
+
+\bibitem{klein2000}
+Raymond~M Klein.
+\newblock {Inhibition of return}.
+\newblock {\em Trends in cognitive sciences}, 4(4):138--147, 2000.
+
+\bibitem{koch1987}
+Christof Koch and Shimon Ullman.
+\newblock {Shifts in selective visual attention: towards the underlying neural
+  circuitry}.
+\newblock In {\em {Matters of Intelligence}}, pages 115--141. Springer, 1987.
+
+\bibitem{perazzi2012}
+Federico Perazzi, Philipp Krahenbuhl, Yael Pritch, and Alexander Hornung.
+\newblock {Saliency filters: Contrast based filtering for salient region
+  detection}.
+\newblock In {\em {Computer Vision and Pattern Recognition (CVPR), 2012 IEEE
+  Conference on}}, pages 733--740. IEEE, 2012.
+
+\bibitem{reinagel1999}
+Pamela Reinagel and Anthony~M Zador.
+\newblock {Natural scene statistics at the centre of gaze}.
+\newblock {\em Network: Computation in Neural Systems}, 10(4):341--350, 1999.
+
+\end{thebibliography}
