@@ -28,6 +28,14 @@ Christof Koch and Shimon Ullman.
   circuitry}.
 \newblock In {\em {Matters of Intelligence}}, pages 115--141. Springer, 1987.
 
+\bibitem{kruger2013}
+Norbert Kr\"{u}ger, Peter Janssen, Sinan Kalkan, Markus Lappe, Ales Leonardis,
+  Justus Piater, Antonio~Jose Rodriguez-Sanchez, and Laurenz Wiskott.
+\newblock {Deep hierarchies in the primate visual cortex: What can we learn for
+  computer vision?}
+\newblock {\em Pattern Analysis and Machine Intelligence, IEEE Transactions
+  on}, 35(8):1847--1871, 2013.
+
 \bibitem{perazzi2012}
 Federico Perazzi, Philipp Krahenbuhl, Yael Pritch, and Alexander Hornung.
 \newblock {Saliency filters: Contrast based filtering for salient region

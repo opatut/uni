@@ -1,0 +1,50 @@
+This is BibTeX, Version 0.99d (TeX Live 2013/Arch Linux)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: saliency-maps.aux
+The style file: plain.bst
+Database file #1: ../paper/sources.bib
+Warning--string name "scholarpedia" is undefined
+--line 62 of file ../paper/sources.bib
+Warning--empty journal in klein2008
+You've used 8 entries,
+            2118 wiz_defined-function locations,
+            553 strings with 5446 characters,
+and the built_in function-call counts, 3203 in all, are:
+= -- 330
+> -- 138
+< -- 3
++ -- 54
+- -- 46
+* -- 231
+:= -- 512
+add.period$ -- 28
+call.type$ -- 8
+change.case$ -- 47
+chr.to.int$ -- 0
+cite$ -- 9
+duplicate$ -- 121
+empty$ -- 252
+format.name$ -- 46
+if$ -- 684
+int.to.chr$ -- 0
+int.to.str$ -- 8
+missing$ -- 8
+newline$ -- 44
+num.names$ -- 16
+pop$ -- 47
+preamble$ -- 1
+purify$ -- 39
+quote$ -- 0
+skip$ -- 88
+stack$ -- 0
+substring$ -- 238
+swap$ -- 32
+text.length$ -- 3
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 32
+warning$ -- 1
+while$ -- 34
+width$ -- 9
+write$ -- 94
+(There were 2 warnings)

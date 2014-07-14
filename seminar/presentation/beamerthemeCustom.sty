@@ -1,0 +1,58 @@
+\mode<presentation>
+
+\useoutertheme[subsection=false]{miniframes}
+%\useinnertheme{circles}
+\useinnertheme{rectangles}
+%\usecolortheme{beaver}
+
+\definecolor{primary}{HTML}{649E2A}
+
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd{\slideentry}{\advance\beamer@tempdim by -.05cm}{\advance\beamer@tempdim by\beamer@vboxoffset\advance\beamer@tempdim by\beamer@boxsize\advance\beamer@tempdim by 1.2\pgflinewidth}{}{}
+\patchcmd{\slideentry}{\kern\beamer@tempdim}{\advance\beamer@tempdim by 2pt\advance\beamer@tempdim by\wd\beamer@sectionbox\kern\beamer@tempdim}{}{}
+\makeatother
+
+%\setbeamerfont{block title}{size={}}
+\setbeamerfont{subsection in toc}{size=\scriptsize}
+\setbeamerfont{subsubsection in toc}{size=\tiny}
+
+\setbeamercolor{item projected}{bg=primary}
+\setbeamertemplate{enumerate items}[default]
+
+\setbeamercolor{title}{fg=white,bg=primary}
+\setbeamercolor{itemize item}{fg=primary}
+\setbeamercolor{itemize subitem}{fg=primary}
+\setbeamercolor{itemize subsubitem}{fg=primary}
+\setbeamercolor{enumerate item}{fg=primary}
+\setbeamercolor{enumerate subitem}{fg=primary}
+\setbeamercolor{enumerate subsubitem}{fg=primary}
+\setbeamercolor{section in toc}{fg=primary}
+\setbeamercolor{section number projected}{bg=primary}
+\setbeamercolor{subsection number projected}{bg=primary}
+\setbeamercolor{subsubsection number projected}{bg=primary}
+\setbeamercolor{section in head/foot}{fg=white,bg=primary}
+\setbeamercolor{subsection in head/foot}{fg=black,bg=white!90!}
+\setbeamercolor{frametitle}{fg=black,bg=white!90!black}
+\setbeamercolor{caption name}{fg=primary}
+%\setbeamercolor{upper separation line head}{bg=black}
+%\setbeamercolor{middle separation line head}{bg=black}
+%\setbeamercolor{lower separation line head}{bg=black}
+\setbeamercolor{block title}{fg=white,bg=primary}
+\setbeamercolor{block body}{fg=black,bg=white!90!black}
+
+\setbeamercolor{section in sidebar}{bg=black!60}
+\setbeamercolor{section in sidebar projected}{bg=black!80}
+\setbeamercolor{subsection in sidebar}{bg=white!80!black}
+\setbeamercolor{subsection in sidebar projected}{bg=black}
+
+
+\setbeamercolor{bibliography item}{parent=palette primary}
+\setbeamercolor*{bibliography entry title}{parent=palette primary}
+\setbeamercolor*{bibliography entry date}{parent=palette primary}
+
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}[frame number]
+\setbeamertemplate{frametitle continuation}{}
+
+\mode<all>
