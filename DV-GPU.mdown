@@ -1,0 +1,363 @@
+# Datenvisualisierung und GPU-Computing
+
+## Random stuff
+
+* Der Shader heißt Phong!
+
+## Einleitung
+
+* Wissenschaftliche Methodik
+    - numerische Simulation
+
+    Natur -> Beobachtung  -> Theorie, Model -> Experiment -> Beobachtung <-\
+                              \-> Numerische Sim. ->  \->  Visualisierung -/
+
+    - "virtuelles Labor/Experiment"
+    - Complex Problem Solving Environment (PSE)
+    - Werkzeug zur Modellbildung, neben Theorie und Experiment
+    - Erkenntnisgewinn und -vermittlung
+* Parallelrechner/HPC sind notwendig weil viel viel Daten, kein Zuwachs mehr ohne Parallelrechnen
+
+* Batchverarbeitung: Keine Interaktion
+    - Betrachtung nach (Post-)Processing, z.B. Video/Geometriemodell
+    - für aufwändige Prozesse angepasst (HD oder viele Daten)
+    - aka wenn nicht realtime möglich, weil nicht so geil
+* Co-Visualisierung
+    - Aufbereitung und Darstellung Zeitnah zur Datenerfassung: "Tracking"
+        + z.B. einzelne Frames während der Aufzeichnung anzeigen
+        + z.B. zur Überprüfung der Parameter während Simulation
+    - Echtzeitfähig: "In-Situ-Processing"
+        + Pipelining, Streaming
+        + nur wenn Aufbereitung der Daten in gleicher Aufteilung wie Errechnung funktioniert
+* Interaktive Visualisierung + Simulationssteuerung
+    - Rückkanal zur Datenquelle
+        + Interaktivität, Steuerung der Simulationsparameter (nicht *Visualisierungs*parameter!)
+    - benötigt sehr kurze Reaktionszeiten des Systems
+
+
+## Grundlagen von Simulationen
+
+* Diskretisierung der Welt (Finite-Elemente-Modell)
+    - Zerlegung des Raumes in Gitter
+    - Kriterium der Gitterpunkte
+    - unterschiedliche Gitterdichte im Modellgitter
+    - Gitter angepasst an Modellscenario (z.B. Bauvorhaben: Strömungsumlenkwand)
+* Visualisierung angepasst an Scenario (Beispiel: stark überhöhte Darstellung des Flussbettes)
+
+## Pipelining-Modell "Scientific Visualization"
+
++-----------+   +--------------+   +---------+   +-------------------------+
+|Datenquelle|-->|Filter, Mapper|-->|Rendering|-->|Präsentation, Interaktion|
++-----------+   +--------------+   +---------+   +-------------------------+
+       |           ^       |          ^   |                 ^
+       | Rohdaten  |       | 3D-Geom. |   | 2D-Pixelbilder  |
+       V           |       V          |   V                 |
++--------------------------------------------------------------------------+
+|                       Kommunikationsnetze, Server                        |
++--------------------------------------------------------------------------+
+
+Der Nutzer kann u.U. nach Beobachtung der Präsentation interaktiv auf alle vorherigen Schritte Einfluss nehmen.
+
+* Datenquelle: Co-Visualisierung
+* Filter/Mapper/Rendering: Interaktive Visualisierung
+
+
+### Filter (Rohdaten -> Extrakte)
+
+### Mapper (Extrakte -> Geometrien, 3D)
+
+* Varianten
+    - Streamlines
+    - Isosurfaces
+    - Coloured Slicers
+    - Attributierung
+* Gittertypen
+    - Uniform Grid
+        + orthogonal
+        + konstante Abstände je dimension
+        + Variante **kartesisch**: $\delta x == \delta y$
+        + Variante **regulär**: $\delta x != \delta y$
+        + Koordinaten implizit, relativ zu Gitter-Origin
+        + Nachbarschaftsbeziehung implizit
+    - Rectilinear grid
+        + orthogonal
+        + variable Abstände zwischen Gitterlinien
+        + Koordinaten pro Achse 1x spezifiziert
+        + Nachbarschaftsbeziehung implizit
+    - Curvilinear grid
+        + nicht orthogonal
+        + alle Koordinaten explizit angeben
+        + Nachbarschaftsbeziehung implizit
+        + Modelldimension (Struktur des Gitters) ndim festzulegen
+        + Raumdimension (nspace) muss nicht = ndim sein
+    - Irregular grid
+        + beliebige Konnektivität
+        + explizite Spezifikation der Koordinaten und Nachbarschaftsbeziehung
+        + typische Zelltypen (finite Elemente)
+            * Dreiecke, Vierecke, Prismen, Tetraeder, Hexaeder
+
+### Rendering (3D -> 2D)
+
+* Perspektivische Abbildung beleuchteter 3D-Szenen
+    - Z-Buffer
+
+## Datenklassifikation (Entität)
+
+* die zu visualisierende Entität E:
+    
+    E_{3}^{S1}
+
+* hochgestellt: Merkmalsraum (abhängige Variablen)
+    - was sind die eigentlichen Daten, die gemessen werden
+    - z.B. Vektor ($V_n$), Skalar ($S$)
+* tiefgestellt: Beobachtungsraum (unabhängige Variablen)
+    - Punkte: ohne Klammern $3$
+    - Bereiche/Intervalle: mit eckigen Klammern $[3]$
+    - Elemente einer Aufzählungsmenge, ${3}$
+
+
+  B* \ M* |  1D                 | 2D           |  3D
+========================================================================
+ 1D       |  y = f(x)           |              |  Raumkurve \vec{x}(t)
+------------------------------------------------------------------------
+2D        |                     |              |
+------------------------------------------------------------------------
+3D        |  CT-Daten d(x,y,y)  |              |  3D-Strömung \vec{v}(x, y, z)
+
+                ^                                                    ^
+                |                                                    |
+                \- Volumenvisualisierung   Strömungsvisualisierung --/
+
+\* B: Merkmalsraum, M: Merkmalsraum
+
+
+## Volumenvisualisierung
+
+### Slicing
+
+* Orthogonale Schnitte
+    - gut bei regulärem Gitter
+    - Attributiertes Dreiecksnetz (ein paar Quads)
+        + **color per vertex** (ganz viele Quads)
+            * shading yeah!
+        + **texture mapped** (ein Quad, eine Textur)
+            * geht nur bei uniform grid realistisch, da eine Textur selbst ein uniform grid *ist*
+    - Color mapping, z.B.
+        + Rainbow -> hue 0 .. 330deg
+        + Darkhue -> Schwarz, Blau, Rot, Orange, Gelb
+        + Blackbody -> Schwarz, Rot, Orange, Weiß (wie Glut)
+        + Dark Gray -> Schwarz, Grau, Weiß
+
+
+### Isosurfaces
+
+* Flächenextraktion "Äquipotenzialfläche"
+    - gegeben: Schwellwert
+    - kennt man von Höhenlinien
+* Approximation durch Dreicksnetz (weil man sie rendern will)
+
+#### Marching cubes
+
+* voxelification (also uniform grid)
+* Eckpunkte klassifizieren (schwarz/weiß anmalen, ob über/unter Threshold)
+* 2^8 Fälle, aber nach Auflösung der Symmetrieäquivalenzen nur 15 versch. Fälle
+* Lookup-Table für Dreieckskonfiguration
+* Lineare Interpolation zwischen Voxel-Eckpunkten
+* Normalen aus Gradienten oder Dreicksnormalen generieren/mitteln
+
+## Filterung???
+
+### Polygonal Simplification: Vertex Clustering
+
+* Clustergebiete (grid) anlegen
+* je Clustergebiet ein average (Centroid) erfassen
+* Rekonstruktion des Polygonnetzes
+
+### Edge-Collapsing
+
+* Funktion schätzt Qualitätsverlust durch Polygonreduktion ab
+* die Punkte einer Kante werden zusammengefasst
+* die Dreiecke werden angepasst, 2 Dreiecke fallen weg
+* viele Iterationen benötigt, aber bessere Annäherung da kontrolliert
+
+### Direct Volume Rendering (DVR)
+
+* Rendering *ohne* "Umweg" über polygonale Grafik 
+    - Ray Casting (kennt man ja)
+    - Texture Mapping (**ANSCHAUEN!!!**)
+
+## Strömungsvisualisierung
+
+* Pfeile, Glyphs
+    - schwierig bei 3D oder vielen Punkten
+* Partikelbewegung (Animation erforderlich!)
+* Bahnlinien, Stromlinien, Streichlinien
+    - speziell "Illuminated Lines"
+    - Problematik bei instationären Strömungen 
+* Lokale Methoden: Flussbänder
+* Globale Methoden: ...
+
+### Bahnlinien
+* Bewegung einzelner Particles ("Particle Tracing")
+* Raumkurve, ermittelt durch    
+    - Integration durch das Geschwindigkeitsfeld
+    - Anfangspunkt
+* Integration nur numerisch (diskret) möglich
+    - Euler-Integration mit kleinen Schrittwerten
+    - Runge-Kutta-Verfahren (nicht am Punkt gucken, sondern 1/2 Zeitschritt voraus)
+
+        y2 = y1 + dy/dt(t_1 + t/2) * t
+
+    - Höhere Ordnung ebenfalls möglich (rekursiv)
+
+### Stromlinien
+* 
+
+### Illuminated Lines
+* Rendering von Linien-Primitiven mit Phong-Beleuchtung
+* Zylinder-Modellierung -> zu viele Polygone
+* Linien-Rendering -> kein Normalenvektor
+* 2 Ansätze
+    - Glanz und Transparenz aus Normalen berechnen
+    - Billboards auf GPU berechnen ()
+* Transparenz: 
+* Halos: Z-Buffer mit dickerer Linie malen, hintere Linie wird unterbrochen
+
+### Line Integral Convolution
+* Noise Texture + Vector field
+* Bahnkurve ermitteln, Mittelwert berechnen, Diskretisiert
+* Runge-Kutte für Bahnkurve
+
+
+## Rendering
+
+* Geometry Processing 
+    - Transformation von Objekten
+    - Projektion auf 2D-Ebene
+    - Matrixmultiplikation
+    - Beleuchtung (OpenGL 1.0 haha!)
+* Rasterization
+    - Flächenfüllung und Texturierung
+
+### Beleuchtungsmodelle
+
+* Kosinusgesetz nach Lambert (diffuse Reflektion)
+
+    l_l = l_L * k_d * \cos(\alpha) = l_L * k_d * (N * L)
+
+    l_L = Intensität der Lichtquelle
+    k_d = diffuser Reflektionskoeffizient
+    L = Vektor zur Lichtquelle
+    N = Normalenvektor
+
+* Ambient light 
+    
+    l_a = l_H * k_a
+
+    L_H = Intensität der Hintergrundbeleuchtung
+    k_a ...
+
+* Specular (Phong)
+    R = L Reflektieren an N
+    A = Vektor zum Auge
+
+    phi = Winkel zwischen A und R
+
+    l_s = l_L * k_s * cos^c(phi)
+        = l_L * k_s * (A * R)^c
+
+    k_s ...
+
+    l = l_s + l_l + l_a
+
+
+### Rendering Qualität
+
+* Ortsdiskretisierung: Rasterisierung: Samplewert -> Sampleort (Pixel)
+* Antialiasing yeah
+* Geräteabhängigkeit :( dagegen:
+    - CIELAB/ CIELUV
+    - Farbabstand 1 => Just Noticable Difference
+
+
+## Computing
+
+* Prozessorarchiketur:
+    - Moore's Law: 2x alle 18 Monate
+    - Mehr Funktionen auf 1 Chip
+    - Parallelität 
+        + Wortgröße
+        + Pipelining
+        + Vektorinstruktionen
+        + Spezialhardware
+* Parallelrechner: SISD, MISD, SIMD, MIMD
+* Shared memory Parallelrechner: SMP, NUMA, CC-NUMA
+
+### Leistungsbegriff
+* Bewertung: Response Time vs Throughput
+* MIPS, MFLOPS
+* SPEC, LINPACK, TOP500
+
+* Kosten, Speedup, Effiezient
+* Superlinear Speedup!! :D
+* Gesetze von Amdahl und Gusafson
+* Einfluss der Kommunikation
+
+
+### Parallele Programmierung
+
+* shared memory
+    - Pthreads
+    - OpenMP
+* message passing
+    - MPI
+        + Send/Recv, Bcast, Barrier, Scatter, Gather
+        + Reduce, Scan
+        + Blocking, non-blocking, asynchronous send, buffers, ...
+        + Primitive + komplexe Datentypen
+        + Deadlocks möglich :(
+
+## GPU-Computing
+
+* Spezialprozessoren
+* CUDA
+* SIMD
+
+### GLSL
+
+* old stuff
+
+### CUDA 
+
+* nur NVidia
+* direkt beim Compiling wird der Grafikkartencode erzeugt
+
+### OpenCL
+
+* firmenunabhängig
+* Device Specific Code wird bei Laufzeit generiert
+
+
+## Data Extraction and Visualisierung Framework "DSVR"
+
+Öhh, bestimmt wichtig. (Eigene Forschung!)
+
+> Einigermaßen innovativ, jedenfalls als wir damit angefangen haben...
+
+* Parallel in-situ data extraction
+    - Minimization of sequential bottelnecks
+        + Parallelization of visualization mapping
+        + Asynchronous transfoer of data extracts: Streaming
+    - Reduction of data volume
+        + Storage of 3D polygons and lines instead of raw data
+
+* ON-demand 3D presentation and interaction
+    - Limitation of bandwidth an rendering update time
+        + Volume of data extracts has to be controlled 
+    - Flexible and efficient reduction
+        + Parallel, vertex cluster based simplified isosurfaces
+        + Parallel extraction of property-enhanced pathlines
+        + Interactive post-filtering
+            * Geometrie anreichern mit Datenwerten zum Filtern
+
+**TL;DR**: Parallelisierung von Filter+Mapper "In Situ"
