@@ -46,6 +46,7 @@
 
 ## Pipelining-Modell "Scientific Visualization"
 
+```
 +-----------+   +--------------+   +---------+   +-------------------------+
 |Datenquelle|-->|Filter, Mapper|-->|Rendering|-->|Präsentation, Interaktion|
 +-----------+   +--------------+   +---------+   +-------------------------+
@@ -55,6 +56,7 @@
 +--------------------------------------------------------------------------+
 |                       Kommunikationsnetze, Server                        |
 +--------------------------------------------------------------------------+
+```
 
 Der Nutzer kann u.U. nach Beobachtung der Präsentation interaktiv auf alle vorherigen Schritte Einfluss nehmen.
 
@@ -115,7 +117,7 @@ Der Nutzer kann u.U. nach Beobachtung der Präsentation interaktiv auf alle vorh
     - Bereiche/Intervalle: mit eckigen Klammern $[3]$
     - Elemente einer Aufzählungsmenge, ${3}$
 
-
+```
   B* \ M* |  1D                 | 2D           |  3D
 ========================================================================
  1D       |  y = f(x)           |              |  Raumkurve \vec{x}(t)
@@ -129,6 +131,7 @@ Der Nutzer kann u.U. nach Beobachtung der Präsentation interaktiv auf alle vorh
                 \- Volumenvisualisierung   Strömungsvisualisierung --/
 
 \* B: Merkmalsraum, M: Merkmalsraum
+```
 
 
 ## Volumenvisualisierung
@@ -243,32 +246,33 @@ Der Nutzer kann u.U. nach Beobachtung der Präsentation interaktiv auf alle vorh
 
 * Kosinusgesetz nach Lambert (diffuse Reflektion)
 
-    l_l = l_L * k_d * \cos(\alpha) = l_L * k_d * (N * L)
+        l_l = l_L * k_d * \cos(\alpha) = l_L * k_d * (N * L)
 
-    l_L = Intensität der Lichtquelle
-    k_d = diffuser Reflektionskoeffizient
-    L = Vektor zur Lichtquelle
-    N = Normalenvektor
+        l_L = Intensität der Lichtquelle
+        k_d = diffuser Reflektionskoeffizient
+        L = Vektor zur Lichtquelle
+        N = Normalenvektor
 
 * Ambient light 
     
-    l_a = l_H * k_a
+        l_a = l_H * k_a
 
-    L_H = Intensität der Hintergrundbeleuchtung
-    k_a ...
+        L_H = Intensität der Hintergrundbeleuchtung
+        k_a ...
 
 * Specular (Phong)
-    R = L Reflektieren an N
-    A = Vektor zum Auge
 
-    phi = Winkel zwischen A und R
+        R = L Reflektieren an N
+        A = Vektor zum Auge
 
-    l_s = l_L * k_s * cos^c(phi)
-        = l_L * k_s * (A * R)^c
+        phi = Winkel zwischen A und R
 
-    k_s ...
+        l_s = l_L * k_s * cos^c(phi)
+            = l_L * k_s * (A * R)^c
 
-    l = l_s + l_l + l_a
+        k_s ...
+
+        l = l_s + l_l + l_a
 
 
 ### Rendering Qualität
